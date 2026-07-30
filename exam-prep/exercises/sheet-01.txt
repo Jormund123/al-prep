@@ -1,0 +1,162 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, SS26\\Sheet01}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de, 945149\\
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+
+\section*{Assignment 1}
+\begin{problem}
+What is the major difference between Weak Artificial Life and Strong Artificial Life?
+\end{problem}
+In Strong Artificial Life it is about really creating life (living machines), but in Weak Artificial Life it is mostly about simulating conditions and resulting behavior.
+
+\section*{Assignment 2}
+\begin{problem}
+Name and describe a definition of live or living that has not been named during the lecture. Please cite the publication where you have found the definition in a scientific way.
+\end{problem}
+Plato definion; he divided life into three parts: vegetable life, animal life, and rational life. All living creatures possessed the first in the form of nutrition and reproduction, animals were additionally capable of sensation and locomotion, and humans also had rational souls.
+
+From: Mariscal, Carlos, "Life", The Stanford Encyclopedia of Philosophy (Spring 2026 Edition), Edward N. Zalta \& Uri Nodelman (eds.), https://plato.stanford.edu/archives/spr2026/entries/life/.
+
+\section*{Assignment 3}
+\begin{problem}
+Give the four to six criteria that you find to be most feasable to distinguish living from non living. Explain your decision.
+\end{problem}
+
+\begin{enumerate}
+    \item Growth
+    \item Metabolism
+    \item Ontogenetic development
+    \item Reproduction
+    \item creation and death (decay)
+\end{enumerate}
+For me, intuitively, living needs growth in size and behaviorism (some kind of learning in interaction with the environment). A necessity for physical growing is metabolism. It develops/learns over time (ontogenetic) individually. Finally, it needs to reproduce itself somehow, so that there is a creation/birth-day and also an "end" of life. It is a cycle for each individual.
+
+\section*{Assignment 4}
+\begin{problem}
+Try to sort the following items with respect to their property of beeing a living item according to one of the definitions (either from the lecture or from assignments 2 or 3):
+\end{problem}
+
+Using criteria from page 40 of the slide set, but it is not easy because criteria are not weighted:
+
+\begin{enumerate}
+    \item English language
+\item wooden chair
+\item lettuce from the mensa
+\item river Rhine
+\item a tornado
+\item C++ compiler
+\item DNA sequence
+\item car 
+\item Yeast
+\item a dried pea
+\item the plasmodium causing malaria
+ \item mule,hinny 
+ \item colony of ants
+ \end{enumerate}
+ 
+\section*{Assignment 5}
+\begin{problem}
+Describe the different phases of the behaviour that Langton’s Ant shows on a uniform white plane in your own words.
+\end{problem}
+
+\begin{enumerate}
+    \item Initialization phase; build symmetric base platform
+    \item growing phase; it looks chaotic but only because of our limited intelligence
+    \item repetitive phase; build symmetric extremity
+\end{enumerate}
+
+\section*{Assignment 6}
+\begin{problem}
+Compare the resulting patterns and behavior that Langton’s Ant shows for the \\case A: starting on a uniform white plane, with \\case B: starting on a uniform black plane.
+\end{problem}
+
+For this I used \url{https://josephpetitti.com/ant?r=////AAAA-E&a=BkDI&m=BkBkAE} that means holding a white background but switch L and R behavior. The result for A and B is the same but mirrored at the y-axis.
+
+\section*{Assignment 7}
+\begin{problem}
+Imagine Langton’s Ant starting in a white square of an (infinite) checkerboard. Depict the first 8 steps.
+\end{problem}
+
+\includegraphics[width=0.3\linewidth]{sheet01-misc/sheet01-ass07.pdf}
+
+\section*{Assignment 8}
+\begin{problem}
+Langton’s Ant is sometimes called a two-dimensional Turing machine. Can you imagine why?, Try to refer to the formal definition of a Turing machine.
+\end{problem}
+
+A Turing machine is a formal mathematical model of computation consisting of an infinite tape, a tape head, a state register, and a transition function.
+
+Langton’s Ant acts on a 2-dim inf board, is able to scan (read), turn(decide direction), flip (write) and move (move tape head) upon this "2-dim tape". And it has a transition function.
+
+\section*{Assignment 9}
+\begin{problem}
+There are several tools that can simulate and visualize Langton’s Ant. You may use one of these tools to solve the Assignments 5,6,7. Name at least two tools, and tell where and how you have found them. Try at least to characterice the properties of these tools.
+\end{problem}
+
+\begin{itemize}
+    \item \url{https://josephpetitti.com/ant}: really simple version for basics
+    \item \url{https://lutfalla.fr/ant/gl_ant.html}: allows complex configurations
+\end{itemize}
+
+Both found via Google search using term: "langton's ant simulator".
+
+\section*{Assignment 10}
+\begin{problem}
+How would you try to answer the following question: Is there a starting configuration, that generates a pure periodic behavior for Langton’s Ant?
+\end{problem}
+
+This depends on allowed Langton's Ant options like changing the behavior, allow more states and so on. For the given "RL" behavior, we would need to have a starting configuration that let the ant coming back to the starting position and all visited cells have the same configuration as before.
+
+\end{document}

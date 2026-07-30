@@ -1,0 +1,1297 @@
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+1
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata (CA)
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+2
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Still some organizational issues
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+3
+Modalities MA-INF 4201, Artificial Life SS26
+The module Artificial Life in summer 25 teaching period will
+be operated in presence in HS-2, HSZ
+I will be available by 14:00, HS-2
+I will start with the slides at 14:15.
+The slides will be provided before the lecture on eCampus.
+The assignments will be handed out after the lecture and will
+have to be handed in one week later, before 14:00.
+The exercises will be operated in presence.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+4
+Assignments:
+There will be 12 mandatory weekly assignment sheets with
+paper and pencil and programming assignments.
+Work on the assignments in 3 or 4 person working groups.
+We believe, that practicing to explain the assignments during
+the exercises is helpful to comprehend the content.
+They are operated in a Monday -- Monday cycle:
+distributed on eCampus after the lecture
+to be handed in by uploading a pdf file in eCampus
+before 14:00 o’clock, Mondays.
+The first assignment sheet is published today (13.4.26)
+it is due in one week, on Mon 20.4.26 before 14:00.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+5
+Assignments:
+- weekly assignments (12 in total),
+ - paper & pencil assignments (12*15=180)
+ - programming assignments (total of 50 points)
+ - thus a total of: 12*15 + 50 = 180 + 50 = 230
+- work in 3- or 4-person groups
+ members have to be in the same exercise group
+ - hand in the solutions via eCampus page,
+ before 14:00, the start of the lecture.
+ - the eCampus system will establish a strict deadline
+To be admitted to the exam you need:
+ - >50% => 115 points minimum in the assignments
+ - two presentations of your solutions in the exercises 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+6
+Exercise Groups:
+The exercises are designed to help you to comprehend the
+content of the Artificial Life lecture.
+The tutors will give you feedback for your assignments,
+and will answer questions regarded to the lecture.
+The exercise groups will be operated in presence
+Room 0.011.
+We have arranged 6 time-slots and the room for this.
+Please prepare for the exercises;
+use the opportunity to ask questions;
+prepare to get a fruitful discussion.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+7
+Exercise Groups:
+At the moment we have organized 6 exercise groups,
+A: Wed 12 – 14
+B: Wed 14 – 16
+C: Thu 12 – 14
+D: Thu 14 – 16
+E: Fri 8:30 – 10
+F: Fri 10 – 12
+The distribution to the respective groups was done by the
+tutorial assignment system TVS
+If you have not been assigned to a group,
+please tell me, I will take care.
+Strictly NO self enrollment .
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+8
+Exercise Groups:
+The distribution to the respective groups was done via the
+tutorial assignment system TVS.
+If you have not been assigned to a group,
+please tell me, I will take care.
+Strictly NO self enrollment .
+Please register in eCampus in the group you have been
+assigned to. This is still possible till Fri 1.5.26, 17:59 am.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+9
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata (CA)
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+10
+Cellular Automata
+Cellular Automata are an approach to perform information
+processing. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+11
+Cellular Automata
+Cellular Automata are an approach to perform information
+processing.
+Their structure is not based on the von-Neumann computing
+architecture that most of our classical computers have.
+Cellular Automata are often referred to as,
+NON-von-Neumann computers. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+12
+Cellular Automata
+Cellular Automata are an approach to perform information
+processing.
+Their structure is not based on the von-Neumann computing
+architecture that most of our classical computers have.
+Cellular Automata are often referred to as,
+NON-von-Neumann computers.
+This classification sounds a bit strange,
+because one of the first scientific work on the structure that
+we call Cellular Automata has been done and published by
+John von Neumann:
+„Theory and Organisation of Complicated Automata (1949)“
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+13
+Cellular Automata
+John von Neumann, Stanislav Ulam and Arthur Burks, are
+pioneers in the field of computing. A lot of our computing
+structures have been proposed and developed by them.
+In addition, they have worked in the 40ies and 50ies of the
+last century on Cellular Automata for a possibility to do
+information processing and computing.
+In 1982 a young scientist (Stephen Wolfram), was so
+fascinated from the possibilities of Cellular Automata, that
+he started to investigate the properties and capabilities of
+Cellular Automata in a structured way.
+He started to focus his work on investigating 1-dimensional
+Cellular Automata. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+14
+Cellular Automata
+Cellular Automata (CA) are a discrete model of information
+processing.
+They consist of cells, that are organized as a grid or lattice
+with a specific topology.
+Each cell has a state (from an alphabet).
+An initial state for the cells.
+A (transition) rule is determining the new state of a cell with
+respect to the state of that cell and the states of some other
+cells (neighborhood).
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+15
+Cellular Automata
+Cellular Automata (CA) are a discrete model of information
+processing. They are discrete (space, time, value),
+and deterministic.
+A Cellular Automaton (CA) consists of:
+a lattice of cells,
+a neighborhood,
+a finite set of states (an alphabet),
+an initial state,
+a rule, determining the next state of a cell.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+16
+CA: lattice
+The lattice or grid of a Cellular Automaton consists of
+cells. The grid is typically organized as a regular,
+rectangular grid in one or two dimensions.
+This is denoted as dim=1 or dim=2, or d=1, d=2.
+Thus, a d=1 CA is just a chain of cells adjacent to each
+other.
+In d=2 dimensions, a normal CA has
+a rectangular grid of cells,
+that cover the 2-dim plane
+in a regular way.
+A dim>2 is possible but very unusual.
+... ...
+... ...
+.
+.
+.
+.
+.
+.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+17
+CA: neighborhood
+The neighborhood of a specific cell is a set of cells from
+the CA that is (typically) in the direct vicinity of that very
+cell.
+In one dimensional CAs the neighborhood is defined as
+those cells that have a distance closer or equal to a given
+neighborhood-radius r to the cell.
+d=1, r=2
+i
+... ...
+i+1
+i-2
+i-1
+i+2
+The (d=1,r=2) neighborhood for cell i: { i-r, ..., i-1, i, i+1, ..., i+r } 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+18
+CA: neighborhood
+The size of the neighborhood, the number n of cells for
+the d=1, r case is:
+n = 2*r + 1
+The cell i, itself is part of the neighborhood.
+The cells of the neighborhood without the cell
+are called: periphery.
+Typical values for d=1, are r=1 and r=2.
+Remark: r=0 is rather unusual, but is explicitly allowed.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+19
+CA: states
+Each of the cells of the CA can have a state from
+the finite set of states, (alphabet).
+The number of allowed states (the size of the alphabet) is
+typically denoted with: k
+In a lot of cases, the CA has only 2, binary states,
+with k=2 , and with the binary set = { 0 , I }
+The states don't have to be numerical values,
+they can be e.g. letters, items, or colors.
+Sometimes the two states {0,I} are called {dead, alive}.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+20
+CA: initial state
+The states of all cells from the CA, at the beginning is
+called initial state.
+Since the computational complexity of a CA is tremendous,
+the effect of the initial state is only investigated in parts.
+There are three usual ways to initialize a CA:
+by random, the state of each cell is set randomly,
+as a seed, only one cell is „set“, all other cells are „0“,
+an initial pattern, to be investigated further. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+21
+CA: rule
+The rule, (or transition rule) is determining the next state
+of a cell within the CA.
+The rule takes the state of all cells from the neighborhood
+of cell i, at time t,
+to yield the next state ai(t+1) of cell i for timestep t+1.
+d=1, r=1 i
+timestep = t ... ...
+timestep = t+1
+}
+ai(t+1)
+The rule is applied for all cells, to get the next state of the CA. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+22
+CA: rule
+The rule is applied in a synchronous way, which means,
+that all cells are updated for time-step t+1 at the same time.
+The rule is using only states from time-step t, to determine
+the states for time-step t+1.
+If all cells of the CA obey the same rule,
+have the same neighborhood, and the same set of states,
+the CA is called to be homogeneous.
+When working with a finite lattice, the cells at the border
+may have some extra rule defined. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+23
+CA: rule example
+An example rule for a simple Cellular Automaton:
+with d=1, r=1, k=2; states { , }
+Thus, we have a one dimensional row of cells,
+a neighborhood with n = 2*r +1 = 2*1 +1 = 3 cells,
+Each of these neighborhood cells can have
+one out of 2 states (k=2),
+Thus, we have a total of k
+n
+ = k(2*r+1) = 2(2*1 +1) = 23 = 8
+possible states for the neighborhood.
+The rule has to implement a mapping for all possible states
+of the neighborhood to one of the allowed states for cell i,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+24
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+25
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+26
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+27
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+28
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+29
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1) a'i(t+1)
+Two examples for rules
+with d=1, r=1, k=2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+30
+CA: rule example
+The rule can be implemented and visualized as a table,
+mapping each of the possible states of the neighborhood
+onto one of the states from the set, here d=1, r=1, k=2.
+ai-1(t) ai(t) ai+1(t) ai(t+1)
+How many (different)
+rules can you define for a
+d=1, r=1, k=2, CA ?
+a'i(t+1)
+Two examples for rules
+with d=1, r=1, k=2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+31
+CA: many rules
+How many (different) rules can you define for a CA with
+d=1, r=1, k=2 ?
+The table of such a rule has L = k
+(2*r+1) = 23 = 8 Lines,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+32
+CA: many rules
+How many (different) rules can you define for a CA with
+d=1, r=1, k=2 ?
+The table of such a rule has L = k
+(2*r+1) = 23 = 8 Lines,
+Therefore we have to compute all vectors with the length of
+8 entries, and k=2 possible states per entry:
+Z = kL = k8
+ = 256 possible rules.
+As a complete formula:
+ Z = kL
+ = k k
+(2*r+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+33
+CA: many rules
+The amount Z of possible rules for even small numbers of k
+and r is tremendous (already in the one dimensional case).
+It is by no means thinkable of investigating or testing all
+rules in a complete, systematic way.
+e.g. d=1, r=2, k=2, => a neighborhood of n=2*r+1 = 5 cells
+and a rule table with L= 25
+ = 32 lines, and a total of
+possible rules: Z = kL
+ = 232
+ = 4 Giga.
+e.g. d=1, r=2, k=8, => the neighborhood can have 32768
+different states (L= k(2*r+1) = 85
+= 32768), and a total of
+rules Z = k L
+ = 832768
+ 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+34
+CA: rule example
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+Sometimes the rule can be visualized easily by a picture: 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+35
+CA: rule example
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+To calculate the CA, we have to apply the rule for every cell,
+and for every time-step, starting with t=0, the initial state.
+Sometimes the rule can be visualized easily by a picture: 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+36
+CA: rule example
+Sometimes the rule can be visualized easily by a picture:
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+To calculate the CA, we have to apply the rule for every cell,
+and for every time-step, starting with t=0, the initial state.
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+To visualize the development of a d=1 CA,
+the spatial position i is depicted horizontal,
+and the subsequent time-steps t are depicted vertical.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+37
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+38
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+Initial condition: seed
+just one cell is set.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+39
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+40
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+41
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+42
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+43
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+44
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+45
+CA: rule example
+t=0
+t=1
+t=2
+t=3
+time
+space i, i+1
+t
+t+1
+t=4
+t=6
+t=5
+t=7
+t=8
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+46
+CA: rule properties
+For easier handling, and grouping the rules, S.Wolfram
+proposed to define some terms, aligned with the properties
+of the rules:
+silent state,
+symmetric rules,
+legal rules,
+peripheral rules
+totalistic rules.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+47
+CA: rule properties
+Silent state:
+A rule is denoted to have a silent state, if the state of the
+neighborhood with all cells „unset“ or set to state „0“ is
+mapped onto the state „0“
+e.g. d=1, r=2, k=2, states { 0= , I= }
+t
+}
+t+1
+Especially, when all cells of the CA
+are „unset“ the CA remains calm;
+the „silent state“ persists.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+48
+CA: rule properties
+Symmetric rules:
+A rule is denoted to be symmetric if states and mirrored
+states yield the same result for the next state of the cell.
+e.g. d=1, r=1, k=2, states { 0= , I= }
+These pairwise states must yield the same result:
+and and
+The other states don't care because they are identical to their
+mirrored state: 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+49
+CA: rule properties
+Is this rule symmetric?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+50
+CA: rule properties
+Is this rule symmetric?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+=
+=
+Yes, this rule is symmetric.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+51
+CA: rule properties
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+Is this rule symmetric?
+This rule is symmetric.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+52
+CA: rule properties
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+=
+No, this rule is not symmetric. Is this rule symmetric?
+This rule is symmetric.
+=
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+53
+CA: rule properties
+Legal rules:
+A rule is denoted legal, or a „legal rule“, if it has the
+following two properties:
+the rule must be symmetric
+and must have a silent state.
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+Is this rule legal?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+54
+CA: rule properties
+Legal rules:
+A rule is denoted legal, or a „legal rule“, if it has the
+following two properties:
+the rule must be symmetric
+and must have a silent state.
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+Is this rule legal?
+Yes, this rule is legal:
+it is symmetric,
+and has a silent state.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+55
+CA: rule properties
+Peripheral rule:
+A rule is denoted peripheral, if the state of the cell itself is
+not influencing the result.
+The next state of the cell depends only of the periphery,
+the state of the cell itself is regarded as „don't care“.
+e.g. d=1, r=1, k=2, states { 0= , I= }
+These pairwise states must yield the same result:
+X and X X and X
+X and X X and X
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+56
+CA: rule properties
+Totalistic rule:
+A rule is denoted totalistic, if only the sum of the cells that are
+set, within the neighborhood determine the next state.
+The table for the rule thus, depends only on the
+SUM(t) = ai-r(t) + … + ai-1(t) + ai(t) + ai+1(t) + … + ai+r(t)
+( if k=2, and the set is { 0 , I } )
+SUM(t) 3 2 1 0
+ai(t+1) I 0 0 I
+d=1, r=1, k=2
+SUM(t) 5 4 3 2 1 0
+ai(t+1) I 0 I 0 0 I
+d=1, r=2, k=2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+57
+CA: rule properties
+Is this rule totalistic?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+58
+CA: rule properties
+Is this rule totalistic?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+SUM(t) 3 2 1 0
+ai(t+1) ? ? ? ?
+d=1, r=1, k=2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+59
+CA: rule properties
+Is this rule totalistic?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+S(t)=3 S(t)=2 S(t)=2 S(t)=1 S(t)=2 S(t)=1 S(t)=1 S(t)=0
+SUM(t) 3 2 1 0
+ai(t+1) ? ? ? ?
+d=1, r=1, k=2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+60
+CA: rule properties
+Is this rule totalistic?
+t
+ai(t+1)
+}
+}
+}
+}
+}
+}
+}
+}
+S(t)=3 S(t)=2 S(t)=2 S(t)=1 S(t)=2 S(t)=1 S(t)=1 S(t)=0
+SUM(t) 3 2 1 0
+ai(t+1) 0 ? ? 0
+d=1, r=1, k=2
+No, this rule is not totalistic.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+61
+CA: rule properties
+Totalistic rule:
+For CAs with different states than {0, I}, or more than k=2
+states, the way how to calculate the SUM is not obvious.
+If the SUM is defined properly, it is still possible to talk about
+totalistic rules.
+Typically, SUM denotes the number of cells that are „set“
+,
+that are not in silent state.
+Other, exotic, definitions might apply as well,
+if the SUM is defined reasonable.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+62
+CA: rule properties
+Totalistic rule:
+For CAs with different states than {0, I}, or more than k=2
+states, the way how to calculate the SUM is not obvious.
+If the SUM is defined properly, it is still possible to talk about
+totalistic rules.
+Typically, SUM denotes the number of cells that are „set“
+,
+that are not in silent state.
+Other, exotic, definitions might apply as well,
+if the SUM is defined reasonable.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+63
+Cellular Automata: examples
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+64
+Cellular Automata: examples
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+65
+Example for a 1-dim Cellular Automaton
+from:http://mathworld.wolfram.com/CellularAutomaton.html
+Cellular Automata: examples
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+66
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html
+Cellular Automata: examples
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+67
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html
+Cellular Automata: examples
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+68
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html
+Cellular Automata: examples
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+69
+Cellular Automata: examples
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+70
+Cellular Automata: examples
+Example for a 1-dim Cellular Automaton
+from: http://mathworld.wolfram.com/CellularAutomaton.html 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+71
+Cellular Automata: examples
+from: http://liinwww.ira.uka.de/~rahn/ca.pics/
+Rule 110
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+72
+Cellular Automata: examples
+from: http://liinwww.ira.uka.de/~rahn/ca.pics/
+Rule 110 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+73
+Cellular Automata: examples
+from: http://liinwww.ira.uka.de/~rahn/ca.pics/
+Rule 90 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+74
+Cellular Automata: examples
+from:: http://liinwww.ira.uka.de/~rahn/ca.pics/
+Rule 90
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+75
+CA: Wolfram number
+For 1-dim CA, with a neighborhood radius of r=1, and the
+binary states k=2, {0,I}, Stephen Wolfram has proposed a
+numbering system for easier access to the rules.
+Since in this case, d=1,r=1,k=2 the right hand side of the
+rule table is a binary vector with L=8 lines, yielding a total
+Z=28
+=256 rules a binary numbering system comes to mind.
+Identifying each of the output states with a power of 2, the
+rule can be converted into a decimal number. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+76
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+77
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+0 I 0 I I 0 I 0
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+78
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+0 I 0 I I 0 I 0
+0*20
+0*22
+1*23
+1*24
+1*21
+0*25
+1*26
+0*27
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+79
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+0 I 0 I I 0 I 0
+0*20
+0*22
+1*23
+1*24
+1*21
+0*25
+1*26
+0*27
+0*128 + 1*64 + 0*32 + 1*16 + 1*8 + 0*4 + 1*2 + 0*1
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+80
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+0 I 0 I I 0 I 0
+0*20
+0*22
+1*23
+1*24
+1*21
+0*25
+1*26
+0*27
+0*128 + 1*64 + 0*32 + 1*16 + 1*8 + 0*4 + 1*2 + 0*1
+= 90D
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+81
+CA: Wolfram number
+For the CA, d=1,r=1,k=2, each of the output states is
+identified with a power of 2.
+Thus the rule can be converted into a decimal number
+t
+ai(t+1)
+0 I 0 I I 0 I 0
+0*20
+0*22
+1*23
+1*24
+1*21
+0*25
+1*26
+0*27
+0*128 + 1*64 + 0*32 + 1*16 + 1*8 + 0*4 + 1*2 + 0*1
+= 90D = 0I0II0I0B = 5AHEX 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+82
+Cellular Automata: examples (k>4)
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+83
+Cellular Automata: examples
+from:: http://liinwww.ira.uka.de/~rahn/ca.pics/
+Rule 90
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+84
+Cellular Automata: examples
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+85
+Boundary in CA Grids
+In real Cellular Automata the underlying grid is typically not
+infinite in size. Therefore several approaches have been
+proposed to cope with this problem.
+Virtually infinite (no boundary)
+Periodic, cyclic topology of the grid
+Fixed boundary (assigned boundary)
+Random boundary (assigned boundary)
+● Adiabatic boundary (copy, mirror)
+● Open boundary (absorbing boundary)
+● Closed boundary (reflecting boundary)
+The first four approaches for implementing a boundary
+condition are the typical ones for CAs. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+86
+Virtually Infinite Grid
+To virtually implement an infinite grid for the CA,
+the size of the grid can be:
+ - larger than the expected space needed,
+ - or enhanced, enlarged whenever necessary.
+A virtually infinite grid is reasonable when the starting
+condition is a seed, or a (small) fixed pattern.
+Implementing a virtually infinite grid requires a smart and fast
+memory management for the CA simulation tool.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+87
+Periodic, Cyclic Grid Toplogy
+To circumvent any problems of boundary conditions, the grid
+can be made periodic, or cyclic, by wrapping around the grid,
+gluing one end of the grid directly with the grid on the opposite
+side.
+The implementation of a cyclic grid is easy,
+by just doing all index calculations using the modulo function,
+Thus leaving the grid on one side, is entering the grid on the
+other side.
+In one dimension (d=1) a line becomes a ring or circle.
+In two dimensions (d=2) a rectangle becomes a torus.
+In three dimensions (d=3) a block becomes a hyper-torus.
+In 4 dimensions, …
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+88
+Fixed Boundary
+The cells at the boundaries of the CA are set to a predefined,
+fixed value.
+Implementation can be done, by:
+- not applying the update rule for these cells,
+- re-setting the state of these cells to the predefined values.
+The size of this fixed boundary should be set to the
+neighborhood radius r, for not having any undefined values
+within the neighborhood.
+It is often a good choice, to use the silent state for these cells.
+A fixed, random boundary is a special case. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+89
+Boundary in CA Grids
+Implementing an Adiabatic Boundary (copy, mirror) the grid is
+extended by some cells (r) that are „behind the boundary“.
+The values of these cells mirror the state of those grid cells
+that are „before the boundary“.
+The other variants of boundary conditions Open Boundary
+(absorbing boundary), or Closed Boundary (reflecting
+boundary), require deeper knowledge of the dynamical
+properties that are to be modeled with the specific CA, and
+can be complex to realize.
+In general, they are only used in specialized applications
+(e.g. simulation of diffusion processes, or behavior of quasiparticles like Solitons).
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+90
+4 Classes of Behavior
+Cellular Automata develop a tremendous variety of patterns,
+with respect to their rule, and their initial state.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+91
+4 Classes of Behavior
+Cellular Automata develop a tremendous variety of patterns,
+with respect to their rule, and their initial state.
+S. Wolfram has investigated the CA in an systematic way,
+and found some typical behaviors that occurred several
+times. Thus, he tried to sort the resulting long term
+development of the CA into 4 Classes of Behavior. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+92
+4 Classes of Behavior
+Cellular Automata develop a tremendous variety of patterns,
+with respect to their rule, and their initial state.
+S. Wolfram has investigated the CA in an systematic way,
+and found some typical behaviors that occurred several
+times. Thus, he tried to sort the resulting long term
+development of the CA into 4 Classes of Behavior.
+To determine the class of behavior, the CA is initialized with
+a random init pattern, and iterated for a long time.
+This is repeated for several random initializations,
+then the typical, occurring dynamics of the CA is classified.
+The Wolfram classes of behavior are to some extent aligned
+with observations from nonlinear dynamical systems theory. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+93
+4 Classes of Behavior
+Class I: Homogeneous
+Homogeneous state for all cells (mostly silent state)
+Class II: Periodic
+Periodic, oscillatory patterns (incl. stable patterns)
+Class III: Chaotic
+Deterministic chaos, no periodicity is observable.
+Class IV: Complex, Patterns, „Self Organization“
+Interesting structures evolve, persist, seem to interact,
+and generate new structures.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+94
+4 Classes of Behavior
+Class I: Homogeneous
+Homogeneous state for all cells (mostly silent state)
+http://classes.yale.edu/fractals/CA/CAPatterns/Wolfram/Wolfram1.html
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+95
+4 Classes of Behavior
+http://classes.yale.edu/fractals/CA/CAPatterns/Wolfram/Wolfram2.html
+Class II: Periodic
+Periodic, oscillatory patterns (incl. stable patterns) 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+96
+4 Classes of Behavior
+Class III: Chaotic
+Deterministic chaos, no periodicity is observable.
+Created with Mirek's Celebration CA Simulator
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+97
+4 Classes of Behavior
+Class IV: Complex, Patterns, „Self Organization“
+Interesting structures evolve, persist, interact.
+Created with Mirek's Celebration CA Simulator
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+98
+4 Classes of Behavior
+Class IV: Complex, Patterns, „Self Organization“
+Interesting structures evolve, persist, interact.
+Created with Mirek's Celebration CA Simulator
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+99
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata (CA)
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 02: Cellular Automata, Mon 20 April 2026, Computer Science University of Bonn
+100
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata (CA)
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2
+Thank you for listening

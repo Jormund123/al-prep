@@ -1,0 +1,1212 @@
+© Nils Goerke, University Bonn, 6/2026 1
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Roots of Complex Behavior
+&
+Braitenberg Vehicles
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2
+© Nils Goerke, University Bonn, 6/2026 2
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Roots of Complex Behavior
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 3
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Ideas from biology and engineering
+Trying to build systems that behave like the systems we can find in
+living nature (e.g. animals) has been an idea and a challenge
+throughout the last years, the last decades and the last centuries.
+The state-of-the art in control architectures has progressed
+tremendously during the last 5-10 years,
+but still,
+the results are by no means comparable to the capabilities of even
+simple animals. 
+© Nils Goerke, University Bonn, 6/2026 4
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Today a variety of control architectures exits.
+Some of them have been inspired by living nature, or have tried to
+copy aspects from the biological role model.
+Other approaches have been engineered to solve specific problems
+and later on been revealed as being equivalent to concepts found in
+living nature.
+Control Architectures
+© Nils Goerke, University Bonn, 6/2026 5
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Control Architectures
+Examples for control architectures:
+reactive control
+open-loop / closed loop control
+SMPA architectures
+Subsumption architecture
+Learning control (Neural Networks, Fuzzy, ...)
+Blackboard architectures
+Hierarchical control
+... ... ... and many more ... 
+© Nils Goerke, University Bonn, 6/2026 6
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+perceptual space to a command space.
+© Nils Goerke, University Bonn, 6/2026 7
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+perceptual space to a command space.
+© Nils Goerke, University Bonn, 6/2026 8
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+perceptual space to a command space. 
+© Nils Goerke, University Bonn, 6/2026 9
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+sensory space to a command space.
+© Nils Goerke, University Bonn, 6/2026 10
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+sensory space to a command space.
+Sensors Controller Motors
+W
+o
+r
+l
+d
+© Nils Goerke, University Bonn, 6/2026 11
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+sensory space to a command space.
+Sensors Controller Motors
+feedback
+W
+o
+r
+l
+d
+© Nils Goerke, University Bonn, 6/2026 12
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Reactive Control
+Reactive control can be defined as a direct mapping from a
+sensory space to a command space.
+W
+o
+r
+l
+d
+Sensors Controller Motors
+( 2.0, 0.4 )
+( 1.2, 0.5 )
+( 2.3, 0.9 )
+( -1.0, 0.5)
+( 0.3, 0.5 )
+( 0.5, 0.42 )
+( 2.0, 0.5 )
+( 2.0, 0.1 )
+© Nils Goerke, University Bonn, 6/2026 13
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Proactive Control
+In contrast to a reactive control scheme, the proactive control uses an
+internal model of the world to determine and generate the next
+actions to perform.
+Typically a proactive controller will require one or more of the
+following aspects:
+Internal world model
+Plan
+Prediction 
+© Nils Goerke, University Bonn, 6/2026 14
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Proactive Control
+For proactive control, the controller has a more complicated mapping
+from sensory space to commands.
+W
+o
+r
+l
+d
+Sensors Controller Motors
+© Nils Goerke, University Bonn, 6/2026 15
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Proactive Control
+For proactive control, the controller has a more complicated mapping
+from sensory space to commands.
+W
+o
+r
+l
+d
+Sensors Motors
+Controller:
+World Model
+Prediction
+Plan
+Cost function
+© Nils Goerke, University Bonn, 6/2026 16
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 17
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+One of the most implemented control principles is the SMPA
+Architecture.
+Here, the control task is subdivided into four blocks, that are
+processed as a sequence.
+Sense – Model – Plan – Act
+S M P A
+© Nils Goerke, University Bonn, 6/2026 18
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+The sensory input (Sense) obtained from the outer world is
+processed by the SMPA architecture onto commands controlling the
+robot/or the environment (Act).
+S
+e
+n
+s
+e
+M
+o
+d
+el
+Pla
+n
+A
+c
+t
+W
+o
+r
+l
+d
+© Nils Goerke, University Bonn, 6/2026 19
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 20
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+S M P A
+© Nils Goerke, University Bonn, 6/2026 21
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+and even between these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 22
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+and even between these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 23
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+and even between these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 24
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+and even between these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 25
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+SMPA Architecture
+Although the SMPA architecture is organized as four modules in a
+row, there can be various feedback loops within these boxes,
+and even between these boxes.
+S M P A
+© Nils Goerke, University Bonn, 6/2026 26
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles,
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 27
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Systems Theory (engineering perspective)
+The basis for classical control theory is the systems view.
+Systems theory organizes the world into functional blocks that are
+interconnected.
+The functional blocks represent dynamical systems
+© Nils Goerke, University Bonn, 6/2026 28
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Systems Theory (engineering perspective)
+x y
+g
+The input to the system is typically denoted: x
+The output from the system is denoted with: y
+The transfer function is typically denoted: g
+The basis for classical control theory is the systems view.
+Systems theory organizes the world into functional blocks that are
+interconnected.
+The functional blocks represent dynamical systems
+© Nils Goerke, University Bonn, 6/2026 29
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Systems Theory (engineering perspective)
+The input x, the output y, and the transfer function g of the system
+are typically time dependent functions.
+x(t), y(t), g(t)
+e.g.: x(t) = x0
+ + A*sin(w*
+t + )
+x(t) y(t) g(t)
+The properties g(t) of such a system can now be described by
+means of differential equations or by convolutions.
+Calculation with convolutions (Faltung) can be complicated. 
+© Nils Goerke, University Bonn, 6/2026 30
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Systems Theory (engineering perspective)
+Transposing the complete system x(t), y(t), g(t) from time domain
+into frequency domain using the Fourier transform or the more
+powerful Laplace transform yields:
+In time domain: x(t), y(t), g(t)
+In frequency domain: X(i), Y(i), G(i) (Fourier)
+X(s), Y(s), G(s) (Laplace)
+X(s) G(s) Y(s)
+© Nils Goerke, University Bonn, 6/2026 31
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+A lot of calculations turn out to be simpler when performed in
+frequency domain, e.g.
+time domain: g(t) frequency domain G(i),
+or G(s)
+differentiation multiplication with
+*(i) or 1*s
+integration division 1/(i)
+or 1/s
+Systems Theory (engineering perspective)
+∫dt
+d
+dt
+© Nils Goerke, University Bonn, 6/2026 32
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Systems Theory (engineering perspective)
+The basic elements of systems are:
+- Signals, input, output: x(t), X(i), X(s)
+- System with function:
+- Connections, branching:
+- Arithmetic operations: sum, difference, scaling
+- Modification,
+ change of parameters:
+G(s)
++  4 *
+-
+© Nils Goerke, University Bonn, 6/2026 33
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Control theory deals with the description and the control of
+dynamical systems.
+Something that is to be controlled: a system S, a plant P
+Something that is controlling: the controller C
+Something that is acting: an actuator A
+Something that measures the result: sensor S, feedback F
+The two major control modalities are:
+Open loop control and closed loop control (feedback control)
+ [ Steuerung und Regelung ] (German).
+Control Theory (classical control)
+© Nils Goerke, University Bonn, 6/2026 34
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Open Loop Control:
+C(s) A(s) + P(S)
+X(s) Y(s)
+N(s)
+U2 U (s) 1
+(s)
+If the involved systems are linear,
+the output calculates easily to:
+Y(s) = P(s) *
+ ( N(s) + A(s)*C(s)*X(s) )
+If actuator and noise are omitted: Y(s) = P(s)C(s)X(s)
+Open loop control systems consist of a chain of connected blocks:
+input X(s), the controller C, the actuator A, the plant P, and an
+output Y(s), and some (additive) noise N(s). 
+© Nils Goerke, University Bonn, 6/2026 35
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Closed Loop Control
+C(s) A(s) + P(S)
+X(s) Y(s)
+N(s)
+F(s)
+-
+Sensor
+Controller Actuator Plant
+E(s)
+The difference between measured output Y(s) and the input X(s)
+(the desired value) is denoted as error E(s).
+Closed loop control systems extend the open loop control by a
+feedback loop, with a sensor F(s) measuring the output Y(s),
+and a comparison of this result with the input X(s).
+© Nils Goerke, University Bonn, 6/2026 36
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Closed Loop Control
+C(s) P(S)
+X(s) Y(s)
+F(s)
+- Sensor
+Controller Plant
+E(s) U(s)
+Y (s) = (
+P(s)C(s)
+1+F(s)P(s)C(s))
+X (s) = G (s) X(s)
+For a reduced closed loop control (omitting noise and actuator)
+the closed-loop transfer function G(s) can be determined to:
+G(s) =
+Y (s)
+X(s)
+=
+output
+input
+© Nils Goerke, University Bonn, 6/2026 37
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles,
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 38
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Vehicles: Valentino Braitenberg
+In 1984 Valentino Braitenberg published his famous book
+„Vehicles: Experiments in Synthetic Psychology“
+There, he proposes a set of simple
+vehicles that are capable of
+producing a variety of complex
+behaviors.
+
+Although the internal structure of
+some vehicles is just a pure reactive
+control strategy, the behavior is
+complex and fascinating.
+From 29€ to 112€ on 15.6.2024
+$18.23 on 22.5.2014
+© Nils Goerke, University Bonn, 6/2026 39
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Prof. Dr. Dr. Valentino Braitenberg
+Valentino Braitenberg
+(Prof. Dr.med, Dr. rer.nat. h.c.)
+Starting in 1968 till his retirement in
+1994, Valentino Braitenberg was
+director of the department Structure
+and Function of Natural Nerve-Net
+at the Max Planck Institute for
+Biological Cybernetics.
+He died in 2011.
+His basic research interests intended to unravel the neural anatomy of the
+fly's visual nervous system. He concentrated on the functions of the
+cerebellum, examined the anatomy of the cerebral cortex and made the
+first computer simulations. Referring to the specificity of orientation in the
+visual cortex, Valentino Braitenberg also carried out psychophysical studies
+in humans. The vehicles he proposed were inspired by results from
+neuroscience and from psychology. From: http://www.kyb.mpg.de
+© Nils Goerke, University Bonn, 6/2026 40
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Braitenberg Type Vehicles
+Valentino Braitenberg (Dr.med, Dr. rer.nat. h.c.) has proposed a set of
+vehicles that are structured in a very simple way inspired by results
+from neuroscience and from psychology.
+The vehicles (type1, type 2, 2a,2b,2c, type 3, 3a,3b,3c, … ) are
+designed with increasing complexity, implementing basic biological
+and technical control features.
+All three type of vehicles have a set of sensors, and a set of motors
+and pure reactive controller, with a direct, linear mapping from
+sensory values to motor values.
+© Nils Goerke, University Bonn, 6/2026 41
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 42
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+The simplest Braitenberg vehicle is a type 1:
+„Vehicle 1 is equipped with one sensor and one motor.
+The connection is a very simple one.
+© Nils Goerke, University Bonn, 6/2026 43
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+The simplest Braitenberg vehicle is a type 1:
+„Vehicle 1 is equipped with one sensor and one motor.
+The connection is a very simple one.
+The more there is of the quality to which the sensor is tuned, the
+faster the motor goes.“
++
+© Nils Goerke, University Bonn, 6/2026 44
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+The simplest Braitenberg vehicle is a type 1:
+„Vehicle 1 is equipped with one sensor and one motor.
+The connection is a very simple one.
+The more there is of the quality to which the sensor is tuned, the
+faster the motor goes.“
+The value, the sensor is measuring
+from the outside is controlling
+the activity of the motor.
+Thus, the vehicle is moving faster or
+slower with respect to the
+environment.
++
+© Nils Goerke, University Bonn, 6/2026 45
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+Lets suppose the sensor is delivering a value which is
+proportional to the temperature (measured in Kelvin).
+Since the connection between sensor and motor is linear, and
+positive (+) and the sensor gives only positive values, the
+vehicle is always moving forward.
++
+In warm areas the vehicle will speed
+up, in cold areas the vehicle will
+slow down.
+© Nils Goerke, University Bonn, 6/2026 46
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+Only moving straight ahead, forward (even with changing speed) is a
+little bit boring.
+It is the stochastic component
+that makes the behavior interesting.
+In reality, there will always exist small perturbations from
+the mechanical construction, the surface or from friction
+that will cause the vehicle to change it's direction slightly.
+© Nils Goerke, University Bonn, 6/2026 47
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions. 
+© Nils Goerke, University Bonn, 6/2026 48
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions. 
+© Nils Goerke, University Bonn, 6/2026 49
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions. 
+© Nils Goerke, University Bonn, 6/2026 50
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions.
+© Nils Goerke, University Bonn, 6/2026 51
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions. 
+© Nils Goerke, University Bonn, 6/2026 52
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions. 
+© Nils Goerke, University Bonn, 6/2026 53
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions.
+© Nils Goerke, University Bonn, 6/2026 54
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1 Braitenberg Vehicle
+In warm areas the vehicle will speed up,
+in cold areas the vehicle will slow down,
+and thus stay longer in cold regions.
+From an „outside perspective“ it seems as if the vehicle
+„loves“ cold regions, and „dislikes“ warm regions. 
+© Nils Goerke, University Bonn, 6/2026 55
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 56
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2 Braitenberg Vehicles
+The next Braitenberg vehicle is more complicated:
+„Vehicle 2 is generally similar to Vehicle 1
+except that it has two sensors, one on each side,
+and two motors, right and left.“
+„You may think of it as being a descendant of Vehicle 1,
+through some incomplete process of biological
+reduplication:
+two of the earlier brand stuck together side by side.
+Again, the more the sensors are excited (+),
+the faster the motors run.“
+[Vehicles,VB84, pp. 12]
+© Nils Goerke, University Bonn, 6/2026 57
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2 Braitenberg Vehicles
+Lets suppose the sensors yield a value proportional to the
+illumination (light dependent sensor).
+Lets further assume that a light source,
+emitting the light from a spot is obeying the
+laws of physics. The light arriving at the
+sensors is fewer with larger distance.
+In the example shown, the left sensor will
+receive more light than the right one. 
+© Nils Goerke, University Bonn, 6/2026 58
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2 Braitenberg Vehicles
+„Of course you notice right away that we can make three kinds of such
+vehicles, depending on whether we connect:
+2a: each sensor to the motor on the same side,
+2b: each sensor to the motor on the opposite side, or
+2c: both sensors to both motors.
+We can immediately dismiss case (2c), for this is nothing but a somewhat
+more luxurious version of Vehicle 1.
+The difference between (2a) and (2b), however, is very interesting“
+[Vehicles,VB84, p.6]
+© Nils Goerke, University Bonn, 6/2026 59
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2 Braitenberg Vehicles
+Braitenberg vehicles 2 have positive connections
+between sensors and motors.
+They differ in the way the connections are realized.
++
++ +
++ +
++ +
+type 2a type 2b type 2c
++ + + +
+© Nils Goerke, University Bonn, 6/2026 60
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2a Braitenberg Vehicles
+Type 2a vehicles will drive
+away from the light
+source.
+The further away they get,
+the slower they will be.
+They stop if the light
+source is no longer
+visible.
++
++
+type 2a
++
++
+© Nils Goerke, University Bonn, 6/2026 61
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2b Braitenberg Vehicles
+Type 2b vehicles will drive
+towards the light source
+almost regardless of their
+initial initialization with
+increasing velocity.
+If possible, they
+would hit the light source, or
+pass by underneath.
++
++
++
++
+type 2b
+© Nils Goerke, University Bonn, 6/2026 62
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 2 Braitenberg Vehicles
+Describing the movements of the type 2 vehicles V.Braitenberg has
+tried to paraphrase the observed behavior using a more human
+friendly vocabulary, borrowed from psychology.
+The 2a vehicle is tending away from the light source
+„as if it would be afraid from light“.
+The vehicle of type 2b is moving towards the light source with
+increasing speed; Braitenberg calls this:
+„as if it wanted to destroy them, vehicle 2b is aggressive“.
+© Nils Goerke, University Bonn, 6/2026 63
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 64
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3a, 3b Braitenberg Vehicles
+Type 3a and 3b Braitenberg have almost the same structure than the
+type 2Vehicles, having two sensors, and
+two motors, but have an altered connection type.
+„What comes to mind is to introduce some
+inhibition in the connections between the sensors
+and the motors, switching the sign of the influence
+from positive to negative.
+This will make the motor slow down when the
+corresponding sensor is activated.”
+–
+[Vehicles,VB84, p.10]
+© Nils Goerke, University Bonn, 6/2026 65
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3 Braitenberg Vehicles
+Braitenberg vehicles of type 3a and 3b have negative or
+inhibiting connections between sensors and motors.
+type 3a type 3b
+- - - -
+© Nils Goerke, University Bonn, 6/2026 66
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3a Braitenberg Vehicles
+-
+-
+type 3a
+Due to the inhibitory connections the motors on the side facing the
+light source will slow down, and the vehicle will turn towards that side
+and thus face the light source.
+© Nils Goerke, University Bonn, 6/2026 67
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3a Braitenberg Vehicles
+The inhibition will make
+the vehicle stop in front of the
+light source, and will make the
+vehicle to face it frontal.
+-
+-
+type 3a
+Due to the inhibitory connections the motors on the side facing the
+light source will slow down, and the vehicle will turn towards that side
+and thus face the light source.
+- -
+type 3a
+© Nils Goerke, University Bonn, 6/2026 68
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3a Braitenberg Vehicles
+The inhibition will make
+the vehicle stop in front of the
+light source, and will make the
+vehicle to face it frontal.
+Type 3a vehicles end up
+„sitting motionless in front of the
+light source“.
+-
+-
+type 3a
+Due to the inhibitory connections the motors on the side facing the
+light source will slow down, and the vehicle will turn towards that side
+and thus face the light source.
+- -
+type 3a
+© Nils Goerke, University Bonn, 6/2026 69
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Vehicles
+Type 3b vehicles will turn away from the
+light source, but they pass almost in
+slow-motion.
+As soon as they have
+passed by, and are heading
+away from the light source,
+they increase their speed
+an may even leave
+the playground.
+-
+-
+-
+-
+type 3b
+© Nils Goerke, University Bonn, 6/2026 70
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3c Braitenberg Vehicle
+The Braitenberg type 3c vehicles have two motors and 4 pairs of
+sensors with both, positive and negative (or inhibitory) connections
+going to the same and to the opposite side.
+type 3c
+Braitenberg proposed:
+„light, temperature, oxygen concentration, and
+amount of organic matter; connect the first pair to the
+motors with uncrossed excitatory connections (2a) the
+second pair with crossed excitatory connections (2b),
+the third and the fourth pairs with inhibitory
+connections crossed (3b) and uncrossed (3a).“
+v U
+o X X o
+U v
+[Vehicles,VB84, p.12]
+© Nils Goerke, University Bonn, 6/2026 71
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3c Braitenberg Vehicle
+„The type 3c vehicle dislikes high temperature, turns away from hot
+places, and at the same time seems to dislike light bulbs, with even
+greater passion, since it turns toward them and destroys them.
+On the other hand it definitely seems to prefer a
+well-oxygenated environment and one containing
+many organic molecules, since it spends much of
+its time in such places.
+But it is in the habit of moving elsewhere when
+the supply of either organic matter or (especially)
+oxygen is low.“
+type 3c
+v U
+o X X o
+U v
+[Vehicles,VB84, p.12]
+© Nils Goerke, University Bonn, 6/2026 72
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 73
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+Type 3b Braitenberg vehicle is the most popular of the Braitenberg
+vehicles, it can be found in a lot of robotic applications.
+Change the sensory modality from light-sensor to a proximity
+measuring sensor, and you can directly implement an obstacle
+avoiding behavior
+The closer the object is, the higher the proximity value is, the more
+the motor on the opposite side will be inhibited.
+© Nils Goerke, University Bonn, 6/2026 74
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+The closer the object is, the larger the value
+from the proximity sensor will be.
+sensor
+value
+proximity sensor
+© Nils Goerke, University Bonn, 6/2026 75
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+The closer the object is, the larger the value
+from the proximity sensor will be.
+The inhibiting connections will
+make the motor on the opposite side
+slow down,
+and thus make the robot
+turn away from the obstacle.
+Braitenberg type 3b obstacle avoidance
+is very popular, caused by the
+easy-to-implement structure.
+© Nils Goerke, University Bonn, 6/2026 76
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+The basic principle behind Braitenberg 3b obstacle avoidance is
+the concept of:
+antagonistic inhibition
+Antagonistic inhibition seems to be a fundamental
+principle in living nature.
+Lateral inhibition was a clue to establish stable
+patterns (see activator-inhibitor reaction-diffusion
+differential equations).
+© Nils Goerke, University Bonn, 6/2026 77
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+Although Braitenberg 3b obstacle avoidance is fascinating
+powerful compared to it's complexity it is not „fool-proof“.
+Corners are already a challenge for this kind of reactive control.
+-
+-
+© Nils Goerke, University Bonn, 6/2026 78
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+Although Braitenberg 3b obstacle avoidance is fascinating
+powerful compared to it's complexity it is not „fool-proof“.
+Corners are already a challenge for this kind of reactive control.
+-
+-
+turn left
+© Nils Goerke, University Bonn, 6/2026 79
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 3b Braitenberg Obstacle Avoidance
+Although Braitenberg 3b obstacle avoidance is fascinating
+powerful compared to it's complexity it is not „fool-proof“.
+Corners are already a challenge for this kind of reactive control.
+-
+-
+turn left
+-
+-
+turn right
+© Nils Goerke, University Bonn, 6/2026 80
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+-
+-
+.. static
+-
+-
+or oscillating
+-
+-
+Type 3b Braitenberg Obstacle Avoidance
+Although Braitenberg 3b obstacle avoidance is fascinating
+powerful compared to it's complexity it is not „fool-proof“.
+Corners are already a challenge for this kind of reactive control.
+© Nils Goerke, University Bonn, 6/2026 81
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 82
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 1,2,3 Braitenberg Vehicles
+Type 1,2, and 3 Braitenberg Vehicles have a linear increasing or
+decreasing characteristics between physical modality (distance,
+proximity, light, ...) and motor values
+e.g. the closer the object is, the slower the motor will run.
+sensor value
+proximity
+motor value
+proximity sensor type b
+© Nils Goerke, University Bonn, 6/2026 83
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+Type 4a vehicles have a more sophisticated characteristic to map
+the physical modalities onto motor values,
+direct connections and crossed connections are included.
+type 4a
+motor value
+physical value
+Consider a non-monotonic, smooth characteristic between a (light)
+sensor and the motor activation. 
+© Nils Goerke, University Bonn, 6/2026 84
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+motor value
+physical value
+ type 2 and type 3
+Consider a non-monotonic, smooth characteristic between a (light)
+sensor and the motor activation.
+Type 4a vehicles have a more sophisticated characteristic to map
+the physical modalities onto motor values,
+direct connections and crossed connections are included.
+type 4a
+© Nils Goerke, University Bonn, 6/2026 85
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+type 4a
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ?
+?
+© Nils Goerke, University Bonn, 6/2026 86
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+type 4a
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ?
+?
+© Nils Goerke, University Bonn, 6/2026 87
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+type 4a
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ? 
+© Nils Goerke, University Bonn, 6/2026 88
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+type 4a
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ? 
+© Nils Goerke, University Bonn, 6/2026 89
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+type 4a
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ? 
+© Nils Goerke, University Bonn, 6/2026 90
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+motor speed
+light
+How will the behavior of such a type 4a vehicle with
+light sensors be,
+in a world with two light sources ? 
+© Nils Goerke, University Bonn, 6/2026 91
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+Type 4a Braitenberg vehicles show a wide variety of different,
+complex behaviors.
+motor speed
+light
+© Nils Goerke, University Bonn, 6/2026 92
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+m
+v
+Type 4b vehicles have abrupt changes in mapping the physical
+modalities onto motor values.
+© Nils Goerke, University Bonn, 6/2026 93
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+m
+v
+m
+v
+Type 4b vehicles have abrupt changes in mapping the physical
+modalities onto motor values.
+© Nils Goerke, University Bonn, 6/2026 94
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+m
+v
+m
+v
+m
+v
+Type 4b vehicles have abrupt changes in mapping the physical
+modalities onto motor values.
+© Nils Goerke, University Bonn, 6/2026 95
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+m
+v
+m
+v
+m
+v
+m
+v
+Type 4b vehicles have abrupt changes in mapping the physical
+modalities onto motor values.
+© Nils Goerke, University Bonn, 6/2026 96
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Type 4 Braitenberg Vehicles
+m
+v
+m
+v
+m
+v
+m
+v
+m
+v almost type 5 characteristic
+Type 4b vehicles have abrupt changes in mapping the physical
+modalities onto motor values.
+© Nils Goerke, University Bonn, 6/2026 97
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Braitenberg Vehicles
+Wall-following
+Even more sophisticated tasks like wall following can be easily
+implemented using the principles proposed by Valentino
+Braitenberg, e.g. when the sensors are allowed to scan into
+different directions.
+© Nils Goerke, University Bonn, 6/2026 98
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Overview
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 99
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Braitenberg Vehicles, Implementations
+Since the publication of Valentino Braitenberg's book,
+a lot of researchers have implemented them in simulation and in
+hardware.
+Since the principle is so easy, it is a widely used testbed for
+experiments and research.
+From: http://people.cs.uchicago.edu/~wiseman/vehicles/
+© Nils Goerke, University Bonn, 6/2026 100
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Braitenberg Vehicles, Implementations
+From: http://people.cs.uchicago.edu/~wiseman/vehicles/
+© Nils Goerke, University Bonn, 6/2026 101
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Braitenberg Vehicles, Implementations
+light sensors
+distance sensors
+left wheel
+right wheel
+Braitenberg Vehicle,
+Type 2 and 3
+implemented with
+LEGO Mindstorms:
+2 motors
+2 light sensors
+2 distance sensors
+© Nils Goerke, University Bonn, 6/2026 102
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+More Braitenberg Vehicles
+Type 1, 2, 3, 4:
+reactive control
+Type 5:
+internal states, with chains of logic elements.
+Type 6:
+design of type 5 structure by evolutionary process.
+Type 7:
+learning internal structure (Mnemotrix).
+Type 8:
+visual system
+Type 9, 10, 11, 12, 13, 14,
+© Nils Goerke, University Bonn, 6/2026 103
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+More Braitenberg Vehicles (following the book)
+Vehicle 1: Getting Around
+Vehicle 2: Fear and Aggression
+Vehicle 3: Love
+Vehicle 4: Values and Special Tastes
+Vehicle 5: Logic
+Vehicle 6: Selection, the Impersonal Engineer
+Vehicle 7: Concepts
+Vehicle 8: Space, Things, and Movements
+Vehicle 9: Shapes
+Vehicle 10: Getting Ideas
+Vehicle 11: Rules and Regularities
+Vehicle 12: Trains of Thought
+Vehicle 13: Foresight
+Vehicle 14: Egotism and Optimism
+© Nils Goerke, University Bonn, 6/2026 104
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Roots of Complex Behavior
+Ideas from biology and from engineering
+Control architectures
+Reactive control
+Proactive control
+SMPA architecture
+Some systems theory
+Braitenberg vehicles
+Type 1
+Type 2
+Type 3
+Type 3b based obstacle avoidance
+Type 4
+Type 5 - 14
+© Nils Goerke, University Bonn, 6/2026 105
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Roots of Complex Behavior
+&
+Braitenberg Vehicles
+© Nils Goerke, University Bonn, 6/2026 106
+Artificial Life [MA-INF 4201], 10, Complex Behavior, Braitenberg V. Mon 22.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Roots of Complex Behavior
+&
+Braitenberg Vehicles
+Thank you for listening

@@ -1,0 +1,168 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+\usepackage{tikz} % drawing diagrams with code
+\usetikzlibrary{arrows.meta, positioning, calc}
+\usepackage{standalone} % include tiks files as graphic
+
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet07}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section*{Assignment 46 (2 Points)}
+\begin{problem}
+    It is possible to re-formulate a maximization problem into a minimization problem. \\
+    Discuss if this is always a favorable idea; give arguments supporting such a transformation and arguments against. \\
+    Describe an example for the above mentioned effect.
+\end{problem}
+
+\begin{answer} % Sebastian
+    Re-formulating a maximization problem into a minimization problem is \underline{not} always a favorable idea. While it can be useful to perform such a transformation to apply generalized minimization algorithms to the problem, problems can occur. The transformation might not necessarily keep the linearity of the problem intact and may curve the problem space, possibly leading to unexpected behavior.
+\end{answer}
+
+\section*{Assignment 47 (2 Points)}
+\begin{problem}
+    How many different offspring can be created from the two parents $\mathbf{A}$ and $\mathbf{B}$ by using the 1-point-cross-over recombination-operator? \\
+    Both genomes ($\mathbf{A}$ and $\mathbf{B}$) are $L$-dimensional vectors that consist of $L=64$ independent real values; the individual values are not changed by the 1-point-cross-over operator.
+\end{problem}
+
+\begin{answer} % Sebastian
+    Given that both parents genomes are of length $L=64$, then for a random but fixed crossing point $C$ that is neither before the first, nor behind the last entry of the genome, there are 4 possible combinations of the genomes, resulting in up to 4 different children.
+    \begin{align*}
+        (a_1,\ldots,a_C&,a_{C+1},\ldots,a_L)
+        & (a_1,\ldots,a_C&,b_{C+1},\ldots,b_L) \\\\
+        (b_1,\ldots,b_C&,a_{C+1},\ldots,a_L)
+        & (b_1,\ldots,b_C&,b_{C+1},\ldots,b_L) \\
+    \end{align*}
+    And for $C$ that is either before the first or after the last entry, there are 2 possible offspring. Specifically the copy of either parent.
+    
+    This is what was considered to be the amount of offspring using the afore mentioned method during the lecture. However, assuming $C$ is not fixed, the amount of possible children increases to $2\cdot (L-1) + 2$. That is, for any $C$ the children can be duplicates of either parent ($+2$), and for any cross point \underline{between} two \textit{chromosomes(?)} there are two additional possible children combinations. Namely a genome starting with chromosomes from $\mathbf{A}$ until cross point $C$, followed by the ending sequence after $C$ from $\mathbf{B}$, and the genome starting with the section of $\mathbf{B}$ and ending with the section of $\mathbf{A}$.
+\end{answer}
+
+\section*{Assignment 48 (2 Points)}
+\begin{problem}
+    Draw the sequence of operations for an Evolutionary Algorithm, name each step, and characterize or explain each step in one short sentence each.
+\end{problem}
+
+\begin{answer} % Sebastian
+    \begin{figure}[H]
+        \centering
+        \includestandalone[width=0.75\linewidth]{sheet07-misc/EA_diagram}
+    \end{figure}
+    \begin{itemize}
+        \item \textbf{Initialization}: An initial population of individuals is generated.
+        \item \textbf{Fitness Evaluation}: The fitness of each individual in the population is determined via a fitness function.
+        \item \textbf{External Selection}: A subset of the population is selected. The new population is set to that subset. Remaining individuals are disregarded. The selection does usually occur w.r.t. the fitness of each individual. Common selection methods are fitness rank based selection and fitness value based selection.
+        \item \textbf{Finished?}: If a predetermined criteria is met, the algorithm stops and returns the population as its result. Common criteria are reaching a certain fitness, amount of iterations or distance of an approximation to the desired result.
+        \item \textbf{Parent Selection}: A subset of the population is chosen as parents for the inheritance step. Usually 2 parents are selected for each child.
+        \item \textbf{Inheritance}: The population is stocked up again. Usually to its previous size, before external selection. A combination of parents, selected in the previous step, determines the genome of the children.
+        \item \textbf{Mutation}: The genome of each individual in the population is altered in some, or no way respectively. 
+    \end{itemize}
+\end{answer}
+
+\section*{Assignment 49 (1 Point)}
+\begin{problem}
+    Propose and describe the structure of a genome for an Evolutionary Algorithm that is implementing a seating of students within a lecture hall (e.g. for a written exam). Suppose the lecture hall has r rows and c columns. It is not necessary (at the moment) to design the Selection process, the Inheritance oper- ators, the Mutation operators or a sensefull Fitness function, just propose a layout of the genome.
+\end{problem}
+
+\begin{answer} % Manfred
+    The genome could be just a serialized version of a binary $r \times c$ grid/array. 1 for seating allowed, 0 for seating not allowed. Therefore, it is a $r \cdot c$ bit string, or just an integer value, representing the $2^{r \cdot c}$ value. If $r$ and $c$ is not fixed/known, it need to be prefixed as a binary value.
+\end{answer}
+
+
+\section*{Assignment 50 (4 Point)}
+
+\begin{answer} % Manfred
+    It is just the probability that one new individual has not changed a single bit, divided by $N$.
+    \[Q = p^{-L}*N^{-1}\]
+    Using $N = 25, L = 100, p = 0.015$, we derive $Q=0.015^{-100}*25^{-1} \approx 9.839 \times 10^{180}$ 
+\end{answer}
+
+
+\section*{Assignment 51 (2 Point)}
+\begin{problem}
+    Compare the methods Random Search and Random Optimization. What is different what is common?
+\end{problem}
+
+\begin{answer} % Manfred
+
+\textbf{Common}: Both use randomness to explore the search space and require no gradient information.
+
+\textbf{Different}: In \textit{Random Search} independent candidate solutions are randomly sampled and the best found is picked. On the other side, \textit{Random Optimization} uses random variations to iteratively improve a current solution, guiding the search toward better results.
+\end{answer}
+
+\section*{Assignment 52 (2 Point)}
+\begin{problem}
+    One part of a genome of an Evolutionary Algorithm is a binary string, organized as the binary representation of a 32 bit signed integer value $v$. When the mutation operator is flipping one of these bits, the value is changed from $v$ to $\tilde{v}$.
+    What is the minimal, the maximal and the average difference between $v$ and $\tilde{v}$?
+\end{problem}
+
+\begin{answer} % Manfred
+    \begin{description}
+        \item[MIN:] 1 (flipping the $2^0$ bit)
+        \item[MAX:] $2^{32}-1$ (flipping the sign bit)
+        \item[AVG:] $\frac{-1 + \sum_{i=0}^{31}2^{i}}{32}$
+    \end{description}
+\end{answer}
+\end{document}

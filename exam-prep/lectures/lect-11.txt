@@ -1,0 +1,920 @@
+© Nils Goerke, University Bonn, 6/2026 1
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Multi Robotics, DidaBots,
+Swarms, Boids
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 6/2026 2
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Examination:
+After the end of the lecture period (24.7.26) there will be an
+examination for the module Artificial Life.
+To be admitted for the exam , you will need
+- to register
+- a minimum of 50% of the possible reachable points
+- a minimum two presentations of your solutions in the exercises.
+Exam date: Thursday 30 July 2026, 12:00-14:00,
+Lecture hall: Hörsaal X, University Bonn Main Building
+The examination will be a written exam,
+operated in presence, Lecture hall Hörsaal X, Main Building
+exam duration is 90 minutes
+up to 90 points are reachable (approx. 1 minute per point). 
+© Nils Goerke, University Bonn, 6/2026 3
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Some details for the exam
+Exam:
+Thursday 30.7.25 12:00 - 14:00
+Lecture Hall Hörsaal X, University Main Building
+Date for resit exam:
+Tuesday 15.9.26 9:00 - 12:00
+Lecture Hall 1
+© Nils Goerke, University Bonn, 6/2026 4
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Some details for the exam
+Thursday 30th July 2026, Lecture Hall X, Main Building 12:00 – 14:00
+For the exam:
+Please take your students id card (Studentenausweis) with you.
+Documents with a photo, to check your an identity with you
+(identity card, or passport, or drivers license, … ).
+Bring a pen, ball pen, felt-tip pen with you.
+You will not need a calculator for the exam.
+Paper will be provided.
+© Nils Goerke, University Bonn, 6/2026 5
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Some important details for the exam
+Thursday 30th July 2026, Lecture Hall X, Main Building 12:00 – 14:00
+Exam time is 90 minutes
+up to 90 points are reachable (approx. 1 minute per point)
+only pen, ball pen, felt-tip pen are allowed, NO pencil.
+only blue or black, NO red or green colors.
+NO correction fluid, No white out (Tipp-Ex).
+all answers need an explanation.
+please indicate clearly what you consider to be the solution.
+when you use formulas, all variables must be explained explicitly.
+short sentences and keywords are preferable to long text
+passages.
+no extra tools or utilities or electronic devices are allowed.
+© Nils Goerke, University Bonn, 6/2026 6
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids
+© Nils Goerke, University Bonn, 6/2026 7
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+© Nils Goerke, University Bonn, 6/2026 8
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Cooperating Robots
+During the last years robotics research has made a lot of
+progress. The capabilities of our modern robots is opening the
+field to novel areas of application.
+Some tasks are still too complicated for a single robot, and will
+need cooperating robots,
+which is a hard challenge nowadays.
+While modern robots became more and more sophisticated,
+they suffer from being rather expensive.
+The idea came up to use multiple, cheap robots with limited
+capabilities of a single robot, but with new capabilities of the
+group of cooperating robots.
+© Nils Goerke, University Bonn, 6/2026 9
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+© Nils Goerke, University Bonn, 6/2026 10
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots, Swiss Robots
+Didabots: shape and purpose
+Using Didabots to investigate reactive obstacle avoidance
+The environment
+Unexpected results from the experiment
+“Emergence” ?
+Explanation: Pushing Boxes
+Explanation: Spontaneous release of boxes
+Explanation: Induced release of boxes
+Explanation: Heaps
+Multiple Didabots
+© Nils Goerke, University Bonn, 6/2026 11
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+Didabots are a development of the AI Lab of the University of Zürich
+(Switzerland) for teaching students (Didactic Robots) .
+“The goal was to create a group of general purpose robots that are
+small and flexible and can easily be programmed from a host
+computer”.
+From: The Didactic Robots, AILab Technical Report 95.09, M.Maris, R.Schaad, Artificial Intelligence
+Laboratory, Computer Science Department, University of Zürich, Winterthurerstrasse 190, 1995
+Didabot structure:
+a chassis with two motors (differential steering), 6 wheels, a
+uProcessor board, six infrared (IR) proximity sensors, six ambient
+light sensors, nine touch sensors, a beeper, a light bulb, and two
+wheel encoders. 
+© Nils Goerke, University Bonn, 6/2026 12
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+From: The Didactic Robots, AILab Technical Report 95.09, M.Maris, R.Schaad, Artificial Intelligence
+Laboratory, Computer Science Department, University of Zürich, Winterthurerstrasse 190, 1995
+http://www.ifi.uzh.ch/ailab/robots/robots-a.html
+© Nils Goerke, University Bonn, 6/2026 13
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+2 motors with 6 wheels (differential drive).
+In the Didabot Experiment only those two of the infrared
+proximity sensors are used that point diagonal to the front.
+© Nils Goerke, University Bonn, 6/2026 14
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots obstacle avoidance
+In one experimental setup, the Didabots were used to investigate the
+obstacle avoidance capabilities in an environment (arena) with a lot
+of rectangular obstacles, boxes. 
+© Nils Goerke, University Bonn, 6/2026 15
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots obstacle avoidance:
+In one experimental setup, the Didabots were used to investigate the
+obstacle avoidance capabilities in an environment (arena) with a lot
+of rectangular obstacles, boxes. 
+© Nils Goerke, University Bonn, 6/2026 16
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots obstacle avoidance
+In one experimental setup, the Didabots were used to investigate the
+obstacle avoidance capabilities in an environment (arena) with a lot
+of rectangular obstacles, boxes. 
+© Nils Goerke, University Bonn, 6/2026 17
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots obstacle avoidance
+In one experimental setup, the Didabots were used to investigate the
+obstacle avoidance capabilities in an environment (arena) with a lot
+of rectangular obstacles, boxes.
+The robot is using 2
+proximity sensors, and is
+controlled in a Braitenberg
+type 3b manner:
+“ if there is a sensory
+stimulation on the left, turn
+(a bit) to the right,
+if there is a sensory
+stimulation on the right, turn
+(a bit) to the left ”
+© Nils Goerke, University Bonn, 6/2026 18
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Experimental setup with obstacles and several Didabots.
+Artificial Intelligence Lab, University of Zurich, Switzerland
+© Nils Goerke, University Bonn, 6/2026 19
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Running the experiment with the described setup
+(Didabot, type 3b behavior, environment) an unexpected effect
+occurres.
+After a while the box distribution has changed in a very specific way:
+The boxes are building clusters,
+heaps of several boxes close together plus some boxes close to the
+boundary of the arena.
+Maris, M. and Boekhorst, R te. (1996). Exploiting Physical Constraints: Heap formation
+through behavioral error in a group of robots. In proc. of IROS `96, Nov. 4-8, Osaka, Japan
+© Nils Goerke, University Bonn, 6/2026 20
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Artificial Intelligence Lab, University of Zurich, Switzerland
+Experimental setup with obstacles and several Didabots. 
+© Nils Goerke, University Bonn, 6/2026 21
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Artificial Intelligence Lab, University of Zurich, Switzerland
+Experimental setup with obstacles and several Didabots. 
+© Nils Goerke, University Bonn, 6/2026 22
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Artificial Intelligence Lab, University of Zurich, Switzerland
+Experimental setup with obstacles and several Didabots. 
+© Nils Goerke, University Bonn, 6/2026 23
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment:
+Artificial Intelligence Lab, University of Zurich, Switzerland
+Experimental setup with obstacles and several Didabots.
+?
+© Nils Goerke, University Bonn, 6/2026 24
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+Artificial Intelligence Lab, University of Zurich, Switzerland
+Experimental setup with obstacles and several Didabots. 
+© Nils Goerke, University Bonn, 6/2026 25
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Emergence
+© Nils Goerke, University Bonn, 6/2026 26
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Emergence
+The term Emergence or Emergent has become very popular
+during the last years.
+Today a lot of phenomena exist that are called to be Emergent.
+© Nils Goerke, University Bonn, 6/2026 27
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Emergence
+From Wikipedia, 26.6.2011:
+“ In philosophy, systems theory, science, and art, emergence is the
+way complex systems and patterns arise out of a multiplicity of
+relatively simple interactions.
+Emergence is central to the theories of integrative levels and of
+complex systems. “
+The term Emergence or Emergent has become very popular
+during the last years.
+Today a lot of phenomena exist that are called to be Emergent.
+© Nils Goerke, University Bonn, 6/2026 28
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+A closer look to the Didabot morphology, the robot control scheme
+and the resulting Didabot behavior reveals the reason for the cluster
+production.
+© Nils Goerke, University Bonn, 6/2026 29
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabot Experiment
+A closer look to the Didabot morphology, the robot control scheme
+and the resulting Didabot behavior reveals the reason for the cluster
+production.
+The following properties are essential for the observed effect:
+The boxes can be pushed around by the robot.
+The boxes are smaller than the distance between the two sensors
+used.
+The front of the robot is not flat, but curved.
+Braitenberg type 3b, obstacle avoidance behavior.
+© Nils Goerke, University Bonn, 6/2026 30
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+© Nils Goerke, University Bonn, 6/2026 31
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+© Nils Goerke, University Bonn, 6/2026 32
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+In case the box is directly in front, it will be between the two sensors
+and thus “invisible” for the robot. 
+© Nils Goerke, University Bonn, 6/2026 33
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+In case the box is directly in front, it will be between the two sensors
+and thus “invisible” for the robot. 
+© Nils Goerke, University Bonn, 6/2026 34
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+In case the box is directly in front, it will be between the two sensors
+and thus “invisible” for the robot.
+Thus, it will “sit” on the
+“nose” of the Didabot and
+will be pushed around by
+the moving, type 3b
+behaving robot;
+until it will be released
+eventually. 
+© Nils Goerke, University Bonn, 6/2026 35
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+The Braitenberg type 3b generates a normal obstacle avoiding
+behavior when a box is somewhere in reach of the sensors.
+In case the box is directly in front, it will be between the two sensors
+and thus “invisible” for the robot.
+Thus, it will “sit” on the
+“nose” of the Didabot and
+will be pushed around by
+the moving, type 3b
+behaving robot;
+until it will be released
+eventually. 
+© Nils Goerke, University Bonn, 6/2026 36
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots:
+Two mechanisms exist that the box is released:
+spontaneous release and induced release
+© Nils Goerke, University Bonn, 6/2026 37
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots:
+Two mechanisms exist that the box is released:
+spontaneous release and induced release
+Spontaneous release:
+since the nose of the Didabot is curved, there is a probability that the
+natural jiggling of the robot will move the box aside, until it comes into
+the reach of one of the sensors.
+Then, following the 3b behavior, the robot will turn, and release the
+box at an arbitrary position. 
+© Nils Goerke, University Bonn, 6/2026 38
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots:
+Two mechanisms exist that the box is released:
+spontaneous release and induced release
+Spontaneous release:
+since the nose of the Didabot is curved, there is a probability that the
+natural jiggling of the robot will move the box aside, until it comes into
+the reach of one of the sensors.
+Then, following the 3b behavior, the robot will turn, and release the
+box at an arbitrary position.
+Induced release:
+when the robot encounters an obstacle, or another box with its
+sensors, the 3b behavior will make the robot turn, and the box on the
+nose is released.
+This time, the release point is close to an obstacle, or another box,
+and thus heaps are formed.
+© Nils Goerke, University Bonn, 6/2026 39
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+Clusters or heaps of boxes will be formed everywhere in the inner
+part of the arena, and explicitly at the boundaries.
+© Nils Goerke, University Bonn, 6/2026 40
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+Clusters or heaps of boxes will be formed everywhere in the inner
+part of the arena, and explicitly at the boundaries.
+The size, and the number of heaps depends on the density of
+objects, the probability of spontaneous release (and thereby on the
+shape of the robot) on the characteristics of the sensors, and on
+the details of the Braitenberg type 3b implementation.
+© Nils Goerke, University Bonn, 6/2026 41
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots:
+Clusters or heaps of boxes will be formed everywhere in the inner
+part of the arena, and explicitly at the boundaries.
+The size, and the number of heaps depends on the density of
+objects, the probability of spontaneous release (and thereby on the
+shape of the robot) on the characteristics of the sensors, and on
+the details of the Braitenberg type 3b implementation.
+The behavior of the Didabots has sometimes been called:
+“Cleaning up”, “Making free space”, “Try to build clusters”,
+But in fact the programmed micro-behavior is just reactive,
+obstacle avoidance following Braitenberg's principle of
+antagonistic inhibition.
+© Nils Goerke, University Bonn, 6/2026 42
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multiple Didabots
+How will the result change, if multiple, identical Didabots are in the
+arena at the same time?
+© Nils Goerke, University Bonn, 6/2026 43
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multiple Didabots
+How will the result change, if multiple, identical Didabots are in the
+arena at the same time?
+Each one of them will do the same thing:
+type 3b obstacle avoidance; box pushing and heap building.
+© Nils Goerke, University Bonn, 6/2026 44
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multiple Didabots
+How will the result change, if multiple, identical Didabots are in the
+arena at the same time?
+Each one of them will do the same thing:
+type 3b obstacle avoidance; box pushing and heap building.
+As before, the two principles, spontaneous release and
+induced release are active,
+but now, a third release mechanism is becoming active 
+© Nils Goerke, University Bonn, 6/2026 45
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multiple Didabots
+How will the result change, if multiple, identical Didabots are in the
+arena at the same time?
+Each one of them will do the same thing:
+type 3b obstacle avoidance; box pushing and heap building.
+As before, the two principles, spontaneous release and
+induced release are active,
+but now, a third release mechanism is becoming active
+Induced release type 2,
+ 
+© Nils Goerke, University Bonn, 6/2026 46
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multiple Didabots
+How will the result change, if multiple, identical Didabots are in the
+arena at the same time?
+Each one of them will do the same thing:
+type 3b obstacle avoidance; box pushing and heap building.
+As before, the two principles, spontaneous release and
+induced release are active,
+but now, a third release mechanism is becoming active
+Induced release type 2,
+two Didabots approaching each other will perform an avoiding
+movement (type 3b behavior),
+and will thus release any boxes they are carrying. 
+© Nils Goerke, University Bonn, 6/2026 47
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Didabots
+Several Didabots are building clusters of boxes.
+© Nils Goerke, University Bonn, 6/2026 48
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+© Nils Goerke, University Bonn, 6/2026 49
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+What is a Swarm?
+Swarm, Flock, School, Herd, ...
+Examples from Biology
+Evolution of swarms (D.Kriesel)
+http://www.dkriesel.com/en/science/distributed_evolution_of_swarms
+© Nils Goerke, University Bonn, 6/2026 50
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+The research on swarming or swarm behavior has increased
+during the last years.
+Understanding the collective phenomenon of swarms is an
+interesting subject of current research in biology, biocybernetics,
+bionics, psychology, social sciences, cognitive robotics, or
+computer science.
+© Nils Goerke, University Bonn, 6/2026 51
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Intelligence
+Swarm intelligence (SI) is the collective behavior of decentralized,
+self-organized systems, natural or artificial. The concept is
+employed in work on artificial intelligence. The expression was
+introduced by Gerardo Beni and Jing Wang in 1989, in the context
+of cellular robotic systems.
+SI systems consist typically of a population of simple agents or boids interacting
+locally with one another and with their environment. The inspiration often comes
+from nature, especially biological systems.
+The agents follow very simple rules, and although there is no centralized control
+structure dictating how individual agents should behave, local, and to a certain
+degree random, interactions between such agents lead to the emergence of
+"intelligent" global behavior, unknown to the individual agents.
+Examples in natural systems of SI include ant colonies, bird flocking, animal
+herding, bacterial growth, fish schooling and microbial intelligence.
+From: wikipedia, Swarm Intelligence, 13.7.2017
+https://en.wikipedia.org/wiki/Swarm_intelligence 
+© Nils Goerke, University Bonn, 6/2026 52
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+What is a swarm?
+© Nils Goerke, University Bonn, 6/2026 53
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+What is a swarm?
+It is a common observation, that a lot of species live together in
+groups. Some of these groups are permanent, some are
+temporary.
+© Nils Goerke, University Bonn, 6/2026 54
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+What is a swarm?
+It is a common observation, that a lot of species live together in
+groups. Some of these groups are permanent, some are
+temporary.
+We talk about a herd of gnus, a shoal of herring, a school of
+dolphins, a pod of whales and a flock of geese, ....
+“ group, collective, swarm, flock, shoal, herd, pod, hive, school, … “
+© Nils Goerke, University Bonn, 6/2026 55
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 56
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+...
+Some of these groups consist of animals that are all alike.
+In other groups the individuals are alike, but their individual position
+within the group is different from each other.
+Still other groups have even different shape, physiognomy and task
+for the different individuals.
+© Nils Goerke, University Bonn, 6/2026 57
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 58
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+© Nils Goerke, University Bonn, 6/2026 59
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+.
+.
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 60
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+. .
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 61
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+. .
+.
+.
+.
+.
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 62
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm, Swarming, Swarm Behavior
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Different type of groups have different properties and can have
+different structure; e.g.
+they can be homogeneous or different (size, color, type, ...)
+they can be permanent or can be temporary,
+they can be uniform or can be structured,
+they can have a hierarchical organization or not, ...
+© Nils Goerke, University Bonn, 6/2026 63
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: http://en.wikipedia.org/wiki/Swarm_behaviour
+A flock of auklets exhibit swarm behaviour
+© Nils Goerke, University Bonn, 6/2026 64
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: http://en.wikipedia.org/wiki/Swarm_behaviour
+Birds flocking, as an example for swarming behavior. 
+© Nils Goerke, University Bonn, 6/2026 65
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: http://en.wikipedia.org/wiki/Swarm_behaviour
+Great cormorant flock flying in Vee formation
+© Nils Goerke, University Bonn, 6/2026 66
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: http://en.wikipedia.org/wiki/Swarm_behaviour
+These bluestripe snapper are schooling.
+They are all swimming in the same direction in a coordinated way.
+© Nils Goerke, University Bonn, 6/2026 67
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+rfom: http://en.wikipedia.org/wiki/Swarm_behaviour
+Schooling predator fish size up schooling anchovies
+© Nils Goerke, University Bonn, 6/2026 68
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+Herd of thousands of king penguins with their youngs (brown)
+from: http://www.guardian.co.uk/ 
+© Nils Goerke, University Bonn, 6/2026 69
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+http://en.wikipedia.org/wiki/Jellyfish
+Swarm of jellyfish
+By Brocken Inaglory - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2141765
+© Nils Goerke, University Bonn, 6/2026 70
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: http://de.wikipedia.org/wiki/Zebra
+Herd of zebra 
+© Nils Goerke, University Bonn, 6/2026 71
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: https://en.wikipedia.org/wiki/Locust
+Migratory
+locust
+(Locusta
+migratoria),
+grasshoppers
+in a migratory
+phase of their
+life
+© Nils Goerke, University Bonn, 6/2026 72
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Swarm Behavior
+from: https://en.wikipedia.org/wiki/2019-2022_locust_infestation
+Swarm near Satrokala, Madagascar during a 2014 outbreak,
+Swarm sizes of 100-200 Billion animals have been reported. 
+© Nils Goerke, University Bonn, 6/2026 73
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Evolving Swarm Behavior
+from: http://www.dkriesel.com/en/science/distributed_evolution_of_swarms
+A recently published work has focused on implementing an
+evolutionary process to generate swarm behavior:
+“ The variety of evolved behaviours
+includes several behavioural patterns
+observed in nature, such as mutual
+inhibition of reproduction in order to
+budget food, sophisticated aggregation
+behaviour, marking food sources with
+pheromones, and exploration. Forms of
+communication were evolved, simple,
+though essential for the swarm.
+Behaviours were evolved which can be
+observed everywhere in nature –
+however, in a synthetical and, therefore,
+completely transparent analyzable way.“
+© Nils Goerke, University Bonn, 6/2026 74
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarm & Boids
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+© Nils Goerke, University Bonn, 6/2026 75
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+© Nils Goerke, University Bonn, 6/2026 76
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+In 1986 Craig Reynolds developed a simple model consisting of
+three rules for each individual, that is capable of generating a
+swarm like behavior.
+He called the individuals: Boids (Birds, Androids) to implement
+coordinated animal motion such as bird flocks and fish schools.
+Reynolds, C. W. (1987) Flocks, Herds, and Schools: A
+Distributed Behavioral Model, in Computer Graphics, 21(4)
+(SIGGRAPH '87 Conference Proceedings) pages 25-34.
+https://www.youtube.com/watch?v=86iQiV3-3IA
+http://www.red3d.com/cwr/boids/
+© Nils Goerke, University Bonn, 6/2026 77
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+The basic flocking model consists of three
+simple steering behaviors which describe
+how an individual boid maneuvers,
+based on the positions and velocities of its nearby flockmates.
+Separation:
+steer to avoid crowding local flockmates
+Alignment:
+steer towards the average heading of local flockmates
+Cohesion:
+steer to move toward the average position of local flockmates 
+© Nils Goerke, University Bonn, 6/2026 78
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+Separation:
+steer to avoid
+crowding local flockmates
+Alignment:
+steer towards the average
+heading of local flockmates
+Cohesion:
+steer to move toward the
+average position of local
+flockmates
+http://www.red3d.com/cwr/boids/
+© Nils Goerke, University Bonn, 6/2026 79
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+http://www.red3d.com/cwr/boids/
+Simulated boid flock avoiding cylindrical obstacles (1986) 
+© Nils Goerke, University Bonn, 6/2026 80
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Boids: Craig Reynolds
+Since the publication of the boids by C.Reynolds, the idea to
+generate natural like swarming behavior by sets of (simple) steering
+rules has been adopted within a lot of applications:
+Computer Animation
+Games, Interactive graphics and virtual reality
+Robotics
+Aerospace
+Biology
+Physics
+Search, optimization and visualization techniques
+http://www.red3d.com/cwr/boids/
+© Nils Goerke, University Bonn, 6/2026 81
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+© Nils Goerke, University Bonn, 6/2026 82
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Multi Robotics, DidaBots,
+Swarms, Boids
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 6/2026 83
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids Mon 29.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Multi Robotics, DidaBots,
+Swarms, Boids,
+Thank you for your patience

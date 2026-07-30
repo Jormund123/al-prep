@@ -1,0 +1,9 @@
+# Ignore everything in the root
+/*
+
+# Except the exam-prep directory and the .gitignore file itself
+!/exam-prep/
+!.gitignore
+
+# Standard OS ignores
+.DS_Store

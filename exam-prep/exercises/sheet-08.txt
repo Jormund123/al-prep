@@ -1,0 +1,160 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+\usepackage{tikz} % drawing diagrams with code
+\usetikzlibrary{arrows.meta, positioning, calc}
+\usepackage{standalone} % include tiks files as graphic
+
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet08}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section*{Assignment 53 (2 Points)}
+\begin{problem}
+    Explain how a hypercube and a binary genome of an Evolutionary Algorithm are related to each other. Draw a sketch, visualizing this for a binary genome that has more than two bits.
+\end{problem}
+
+\begin{answer} % Sebastian
+    A hypercube and a binary genome of a an EA are related assuming both have the same dimensionality. The corners of the hyper-unit-cube do directly correspond to the individual genome bit encoding. \\
+    TODO: Drawing a sketch. Show coordinates of 3D cube corners in sketch. They will cover all possible 3-bit combinations, aka the genome encoding.
+\end{answer}
+
+\section*{Assignment 54 (3 Points)}
+\begin{problem}
+    Imagine an Evolutionary Algorithm shall optimize the recipe for a chocolate bar. The fitness function would be a group of volunteering students tasting and judging the creation. \\
+    The genome would then represent the recipe and consists of: \\
+    \begin{itemize}
+        \item A real value for the amount of sugar,
+        \item a real value for the amount of cacao butter,
+        \item a real value for the amount of cacao,
+        \item a real value for the amount of milk,
+        \item and 38 binary values telling if a special flavor (like vanilla, orange, etc.) is included or not.
+    \end{itemize}
+    How large is the genome, and what is the dimension $d$ of the resulting search space?
+\end{problem}
+
+\begin{answer} % Sebastian
+    I do not understand the difference between the size and the dimensionality in this context. They are $4+38=42$.
+\end{answer}
+
+\section*{Assignment 55 (2 Points)}
+\begin{problem}
+Draw a typical development of the best fitness within the population (performance graph) during an evolutionary algorithm working with a deterministic rank based, elitism, $(\mu+\lambda)$ strategy with no mutation for the parents.
+\end{problem}
+
+\begin{answer} % Sebastian
+    TODO: Draw diagram. Fast increase at the start, slower later on. Never decreasing. increase is immediate. Only vertical and horizontal lines.
+\end{answer}
+
+\section*{Assignment 56 (2 Points)}
+\begin{problem}
+    Explain the term \textit{Hamming-Cliffs} with respect to Evolutionary Algorithms. \\
+    Discuss the negative and positive aspects of this phenomenon in the context of EAs.\\
+    \\
+    You are explicitly encouraged to seek the literature about Evolutionary Algorithms to complete the task, provided you give correct reference (citation).
+\end{problem}
+
+\begin{answer} % Sebastian
+    The Hamming Distance is a distance measure. In EA it can determine the distance between genomes. The distance is measured by counting the amount of differing entries between genomes. A Hamming Cliff refers to an abrupt difference between similar genomes. Genomes are similar when they are close in the problem space. For example, a bit representation of integer numbers includes the similar numbers $3_{10}=011_2, 4_{10}=100_2$, but their hamming distance is maximized, as all entries differ.
+\end{answer}
+
+\section*{Assignment 57 (2 Points)}
+\begin{problem}
+    Depict the fitness sorted distribution of fitness values within a population of an Evolutionary Algorithm before and after applying the 3 EA steps (4 diagrams):
+    \begin{enumerate}
+        \item External selection $(\mu+\lambda)$ with rank based elitism
+        \item Inheritance step
+        \item Mutation step
+    \end{enumerate}
+\end{problem}
+
+\begin{answer}
+    TODO: Draw 4 diagrams. First with k bars, ordered by fitness. Second with 
+\end{answer}
+
+\section*{Assignment 58 (2 Points)}
+\begin{problem}
+    Name, and describe at least three aspects, why evolutionary algorithms are so popular.
+\end{problem}
+\begin{answer}
+    \begin{enumerate}
+    \item \textbf{Broad applicability / no gradient needed.} EAs treat the objective as a black box. They only require a fitness value, not derivatives, continuity, or an analytic form, so they work on discrete, mixed, noisy, non-differentiable, or otherwise ill-behaved problems where classical optimizers fail.
+
+    \item \textbf{Global search robust to local optima.} Working with a population and using stochastic operators (mutation, recombination) lets EAs explore many regions of the search space simultaneously, making them far less likely than local methods to get permanently stuck in a single local optimum.
+
+    \item \textbf{Simplicity, generality, and flexibility.} The basic algorithm is conceptually simple and easy to implement, and the same framework adapts to almost any problem by just redefining the genome encoding and fitness function. They are also inherently parallelizable (fitness evaluations are independent) and can yield multiple good solutions at once.
+\end{enumerate}
+\end{answer}
+
+\section*{Assignment 59 (2 Points)}
+\begin{problem}
+    Describe two operators for an evolutionary algorithm: one that is implementing a pure exploration strategy, and a second one implementing a pure exploitation strategy.
+\end{problem}
+\begin{answer}
+    \begin{itemize}
+        \item \textbf{Pure exploration operator: macro / random mutation}: For example, a uniform random reset of genes or a large-step mutation. It generates offspring largely independent of the parents' current values, sampling new, distant regions of the search space and introducing fresh genetic material. This widens the search but ignores accumulated quality information.
+        \item \textbf{Pure exploitation operator: deterministic rank-based elitist $(\mu + \lambda)$ selection}: It always keeps the best-ranked individuals and discards the worst, with no randomness. This concentrates the search around the currently best solutions, refining them, but contributes no new diversity on its own.
+        \end{itemize}
+\end{answer}
+\end{document}

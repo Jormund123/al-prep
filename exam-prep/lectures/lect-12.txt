@@ -1,0 +1,1534 @@
+© Nils Goerke, University Bonn, 7/2026 1
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+PSO Particle Swarm Optimization,
+Subsumption Architecture
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 7/2026 2
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Multi Robotics, Swarms, Boids, PSO
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+Particle Swarm Optimization, PSO
+Subsumbtion Architecture
+© Nils Goerke, University Bonn, 7/2026 3
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Multi Robotics, Swarm, Boids, PSO
+Cooperating Robots
+The Didabot Experiment
+Swarm, Swarming, Swarm Behavior
+C.Reynolds: Boids
+PSO: Particle Swarm Optimization
+Remark:
+Please do not mix up the two paradigms: Boids and PSO
+Although Particle Swarm Optimization has been inspired by Boids
+these are different paradigms, and they have a different purpose.
+© Nils Goerke, University Bonn, 7/2026 4
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO, Subsumption Architecture
+Particle Swarm Optimization, PSO
+Subsumbtion Architecture
+© Nils Goerke, University Bonn, 7/2026 5
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Particle Swarm Optimization is an Artificial Life inspired, multi
+hypothesis, meta heuristic method for optimization.
+Based on C.Reynolds approach of the Boids,
+J.Kennedy, R.Eberhart and Y.Shi developed an approach to
+generate and to simulate social behavior.
+© Nils Goerke, University Bonn, 7/2026 6
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Particle Swarm Optimization is an Artificial Life inspired, multi
+hypothesis, meta heuristic method for optimization.
+Based on C.Reynolds approach of the Boids,
+J.Kennedy, R.Eberhart and Y.Shi developed an approach to
+generate and to simulate social behavior.
+Their approach included an objective (position) that should be
+reached by the simulated individuals.
+The results obtained while including the objective function were
+so successful, that PSO became a well accepted optimization
+method.
+The concept of Particle Swarm Optimization is related to
+Evolutionary Algorithms, Particle Filters and Boids.
+J. Kennedy, R.C. Eberhart, “Particle Swarm Optimization”,
+in: Proceedings of IEEE International Conference on Neural
+Networks, Perth, Australia, pp. 1942–1948, 1999
+© Nils Goerke, University Bonn, 7/2026 7
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+The PSO consists of:
+Each particle j has:
+© Nils Goerke, University Bonn, 7/2026 8
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+The PSO consists of:
+a population of P particles, j=1:P
+a search space S, with positions X in S
+an objective function f(X)
+a memory to store the best result in the population so far
+global best: Xgb, f(Xgb)
+( several sub-groups of particles )
+Each particle j has:
+© Nils Goerke, University Bonn, 7/2026 9
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+The PSO consists of:
+a population of P particles, j=1:P
+a search space S, with positions X in S
+an objective function f(X)
+a memory to store the best result in the population so far
+global best: Xgb, f(Xgb)
+( several sub-groups of particles )
+Each particle j has:
+a position Xj in search space S
+a velocity Vj , (change in position)
+a memory to store the best result for the individual so far
+personal best: Xj,pb, f(Xj,pb)
+(group of particles it belongs to, group best Xj,grb, f(Xj,grb))
+© Nils Goerke, University Bonn, 7/2026 10
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Init PSO, Xj
+, Vj
+, groups
+Main loop:
+calculate new velocity Vj
+calculate new position Xj
+calculate new performance f(Xj
+) , evaluate particle
+store new best performances
+personal best
+global best
+group best
+Finish?
+© Nils Goerke, University Bonn, 7/2026 11
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+The velocity Vj
+ is calculated as a weighted combination of 4 different
+aspects, comparable to the steering rules of Boids:
+ Vj ← w*Vj
+ + a*R*(Xj,pb – Xj
+) + b*R*(Xgb
+ – Xj
+) + g*R*(Xj,grb
+ – Xj
+)
+w*Vj
+ keep the old direction
+a*R*(Xj,pb – Xj
+) steer towards personal best
+b*R*(Xgb
+ – Xj
+) steer towards global best
+g*R*(Xj,grb
+ – Xj
+) steer towards group best
+w, a, b, g are control parameters,
+with 0.0 £ w £ 1.0, and 0.0 £ a,b,g £ 4.0
+R is a random value, [0 … 1], (exploration)
+© Nils Goerke, University Bonn, 7/2026 12
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Init PSO, Xj
+, Vj
+, groups
+Main loop:
+calculate new velocity Vj
+Vj ← w*Vj
+ + a*R*(Xj,pb – Xj
+) + b*R*(Xgb
+ – Xj
+) + g*R*(Xj,grb
+ – Xj
+)
+calculate new position Xj
+Xj
+ ← Xj
+ + Vj
+calculate new performance f(Xj
+) , evaluate particle
+store new best performances
+personal best Xj,pb , f(Xj,pb)
+global best Xgb
+ , f(Xgb)
+group best Xj,grb , f(Xj,pb)
+Finish?
+© Nils Goerke, University Bonn, 7/2026 13
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Usually no special group is defined for the particles,
+and only personal best and global best are used (g=0.0).
+Sometimes the group is defined as the neighborhood in space,
+and global best is omitted (b=0.0).
+Typical values for the parameters are:
+P= 20 … 40, w=1.0, a=2.0, b=2.0, g=1.0
+ Vj ← w*Vj
+ + a*R*(Xj,pb – Xj
+) + b*R*(Xgb
+ – Xj
+) + g*R*(Xj,grb
+ – Xj
+)
+ Xj ← Xj
+ + Vj
+© Nils Goerke, University Bonn, 7/2026 14
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Position Bounds:
+For most applications an area within the search space can be
+determined a priori where the results are expected.
+In this case, it is reasonable to restrict the positions of the particles
+to remain within this predetermined area.
+Different philosophies how to handle particles that “try to escape”
+can be chosen with respect to the application:
+(bounce, reset to start, reset randomly, reset to stored best, ...) .
+Velocity Bounds:
+To restrict the movement of the particles upper bounds for the
+velocity can be defined. 
+© Nils Goerke, University Bonn, 7/2026 15
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Swarm / Group Topology:
+It has been proposed to structure the swarm of particles into groups,
+or sub-swarms, that obey a special topology.
+Within the group only the information from the particle itself
+(personal best) and from a local neighborhood is used to calculate
+the new velocity. 
+© Nils Goerke, University Bonn, 7/2026 16
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Swarm / Group Topology:
+It has been proposed to structure the swarm of particles into groups,
+or sub-swarms, that obey a special topology.
+Within the group only the information from the particle itself
+(personal best) and from a local neighborhood is used to calculate
+the new velocity.
+Typical (Sub-)Swarm topologies:
+Singletons (no special topology, just single particles)
+Ring (cyclic, one dimensional)
+Grid (N-dimensional regular structure, including torus)
+Mesh (Random connected particles)
+Fully-connected 
+© Nils Goerke, University Bonn, 7/2026 17
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO: Particle Swarm Optimization
+Particle Swarm Optimization
+is a rather young meta heuristics for optimization, that showed
+some very promising results during the last years.
+It is extremely easy to implement, and can be very fast.
+To reveal what really is happening inside an PSO system is a
+subject of current research. 
+© Nils Goerke, University Bonn, 7/2026 18
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+PSO, Subsumption Architecture
+Particle Swarm Optimization, PSO
+Subsumbtion Architecture
+© Nils Goerke, University Bonn, 7/2026 19
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, 1985, R.Brooks
+Rodney A. Brooks (1985)
+„ A Robust Layered Control System for a Mobile Robot “
+A.I Memo 864, 1985
+Massachusetts Institute of Technology
+Artificial Intelligence Laboratory
+http://www.uv.edu.mx/mia/ingreso/documents/Brooks.pdf
+© Nils Goerke, University Bonn, 7/2026 20
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Behavior Based Robotics
+R. Brooks defines a number of requirements of a control system
+for an intelligent autonomous mobile robot.
+They each put constraints on possible control systems that one
+might build and employ.
+A robotics wish list for Santa Claus:
+Multiple Goals
+Multiple Sensors
+Robustness
+Additivity
+See publication of R.Brooks (1985) for details.
+© Nils Goerke, University Bonn, 7/2026 21
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+SMPA Architecture - reminder
+The sensory input (Sense) obtained from the outer world is
+processed by the SMPA architecture onto commands controlling
+the robot/or the environment (Act).
+S
+e
+n
+s
+e
+M
+o
+d
+el
+Pla
+n
+A
+c
+t
+W
+o
+r
+l
+d
+© Nils Goerke, University Bonn, 7/2026 22
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+SMPA Architecture - once more
+The classical SMPA architecture in a more detailed version:
+Sensors Actuators
+p
+e
+r
+c
+e
+p
+tio
+n
+m
+o
+d
+elin
+g
+m
+o
+t
+o
+r
+c
+o
+n
+t
+r
+ol
+pla
+n
+nin
+g
+t
+a
+s
+k
+e
+x
+e
+c
+u
+tio
+n
+A traditional decomposition of a mobile robot control system
+into functional modules (Brooks 1985)
+© Nils Goerke, University Bonn, 7/2026 23
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 24
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Nine Dogmatic Principles
+Brooks bases the design of the robot on nine dogmatic principles.
+Complex (and useful) behavior
+Things should be simple
+Map making is of crucial importance
+Three dimensional environment
+Relational maps for the robot
+No artificial environment for the robot, (no exact world model)
+Visual data for the robot (not just sonar ranger data)
+Self calibrating robot system, self calibration at all time
+Robots must be self sustaining
+© Nils Goerke, University Bonn, 7/2026 25
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Levels of Competence, Levels of Behavior
+The approach of Rodney Brooks decomposes the robot
+control problem into a number of levels of competence.
+A level of competence is an informal specification of a
+desired class of behaviors for the robot over all environments
+it will encounter.
+A higher level of competence implies a more specified desired
+class of behaviors.
+Thus the different levels of behavior are used to structure the
+robot controller. 
+© Nils Goerke, University Bonn, 7/2026 26
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Levels of Competence, Levels of Behavior
+The following 8 levels of competence were proposed (Brooks):
+0.Avoid contact with objects
+1.Wander aimlessly around (without hitting things)
+2.Explore the world
+3.Build a map, and plan routes within this map
+4. Notice changes in this (static) environment
+5. Reason about the world
+6.Formulate and execute plans changing the world
+7. Reason about the behavior of other objects in the world
+© Nils Goerke, University Bonn, 7/2026 27
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Layered Control
+sensors
+Control is layered with higher level layers subsuming the lower levels.
+level 2
+level 1
+level 0 actuators,
+motors
+level 3
+© Nils Goerke, University Bonn, 7/2026 28
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 29
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Layered Control
+sensors
+level 2
+level 3
+level 1
+level 0
+?
+Control is layered with higher level layers subsuming the lower levels.
+actuators,
+motors 
+© Nils Goerke, University Bonn, 7/2026 30
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Control
+If necessary, or appropriate for the task, the higher level
+layers subsum the effect of the lower layers.
+Thus, the higher level behaviors can dominate the lover level
+behaviors.
+And as an additional positive effect:
+If, in any case some part of this layered control structure is
+not producing any commands (busy, or damaged, or ...)
+the lower levels would still be operational and would thus
+implement a working controller. 
+© Nils Goerke, University Bonn, 7/2026 31
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Implementing the Layers
+The layers are build up following a modular approach. They
+consist of simple structured control units (modules).
+The modules are as simple as a finite state machine.
+(In fact, R.Brooks has explicitly designed them to be finite
+state machines, for easily implementing them in hardware.)
+A module has input and output lines connecting the modules
+among each other.
+The interconnected modules combine to a network.
+© Nils Goerke, University Bonn, 7/2026 32
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Structure of a Module
+Each module is implemented as a finite state machine
+augmented with some instance variables
+Inputs
+Outputs
+Reset
+Module
+© Nils Goerke, University Bonn, 7/2026 33
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Modules are Connected
+The output of one module can be connected to the input of one of the
+other modules.
+Each module is responsible for a special subtask:
+e.g. motor control
+The signals between the modules correspond to messages between the
+subtasks: e.g. halt
+robot
+robot
+halt
+motor
+© Nils Goerke, University Bonn, 7/2026 34
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Suppress and Inhibit
+Inputs Outputs
+ Module
+Beside the connection of input and output lines between the
+modules, the output of a module can alter the signal on
+another connection by 2 methods: 
+© Nils Goerke, University Bonn, 7/2026 35
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Suppress and Inhibit
+Inputs Outputs
+ Module
+Beside the connection of input and output lines between the
+modules, the output of a module can alter the signal on
+another connection by 2 methods:
+Inhibiting:
+Suppressing:
+© Nils Goerke, University Bonn, 7/2026 36
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Suppress and Inhibit
+Inputs Outputs
+ Module I
+17
+Inhibiting
+Beside the connection of input and output lines between the
+modules, the output of a module can alter the signal on
+another connection by 2 methods:
+Inhibiting: canceling signals for z time steps
+Suppressing:
+© Nils Goerke, University Bonn, 7/2026 37
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Suppress and Inhibit
+Inputs Outputs
+ Module
+S
+Z
+Suppressing,
+overwriting
+I
+17
+Inhibiting
+Beside the connection of input and output lines between the
+modules, the output of a module can alter the signal on
+another connection by 2 methods:
+Inhibiting: canceling signals for z time steps.
+Suppressing: overwriting signal lines for z time steps 
+© Nils Goerke, University Bonn, 7/2026 38
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 39
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+© Nils Goerke, University Bonn, 7/2026 40
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+Therefore, two mechanisms have been implemented:
+Stop the robot if a collision is detected: halt
+If something approaches the robot - move away: runaway
+© Nils Goerke, University Bonn, 7/2026 41
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+Therefore, two mechanisms have been implemented:
+Stop the robot if a collision is detected: halt
+If something approaches the robot - move away: runaway
+robot
+sonar
+robot
+motor
+© Nils Goerke, University Bonn, 7/2026 42
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+robot
+sonar
+robot
+motor
+sonar:
+the sonar module takes a vector of sonar readings, filters them for
+invalid readings, and effectively produces a robot centered map of
+obstacles in polar coordinates.
+© Nils Goerke, University Bonn, 7/2026 43
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+robot
+sonar
+robot
+motor
+motor:
+the motor module communicates with the actual robot.
+The communication is going in both ways, so the motor controller can
+be implemented as closed loop control.
+It accepts a command specifying angle and turning velocity,
+magnitude of forward movement and velocity.
+© Nils Goerke, University Bonn, 7/2026 44
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+Therefore, two mechanisms have been implemented:
+Stop the robot if a collision is detected: halt
+If something approaches the robot - move away: runaway
+robot
+sonar
+robot
+motor
+© Nils Goerke, University Bonn, 7/2026 45
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+Therefore, two mechanisms have been implemented:
+Stop the robot if a collision is detected: halt
+If something approaches the robot - move away: runaway
+robot
+collide?
+sonar
+robot
+halt
+motor
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 46
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+collide?:
+the collide module monitors the sonar map and if it detects objects
+dead ahead it sends a signal on the halt line to the motor module. The
+collide module does not know or care whether the robot is moving
+Halt messages sent while the robot is stationary are essentially lost.
+robot
+collide?
+sonar
+robot
+halt
+motor
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 47
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+The designated behavior for level 0 is to:
+Avoid the contact between the robot and any objects.
+Therefore, two mechanisms have been implemented:
+Stop the robot if a collision is detected: halt
+If something approaches the robot - move away: runaway
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 48
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+sonar:
+the sonar module takes a vector of sonar readings, filters them for
+invalid readings, and effectively produces a robot centered map of
+obstacles in polar coordinates.
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 49
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+feelforce:
+the feelforce module sums the results of considering each detected
+object as a repulsive force, generating a simple resultant force.
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 50
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+runaway:
+the runaway module monitors the force produced by the sonar
+detected obstacles and sends command (e.g. heading) to the motor
+module if it ever becomes significant.
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 51
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 0: Avoid Objects
+motor:
+the motor module communicates with the actual robot.
+The communication is going in both ways, so the motor controller can
+be implemented as closed loop control.
+It accepts a command specifying angle and turning velocity,
+magnitude of forward movement and velocity.
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 52
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 53
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+The designated behavior for level 1 is to:
+Wander around
+The first level layer of control, when combined with level 0, imbues
+the robot with the ability to wander around aimlessly without hitting
+obstacles.
+This control level relies in a large degree on the level 0 aversion to
+hitting obstacles.
+© Nils Goerke, University Bonn, 7/2026 54
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+The designated behavior for level 1 is to:
+Wander around
+The first layer level of control will add new modules to the existing
+layer 0.
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 55
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+The designated behavior for level 1 is to:
+Wander around
+The first layer level of control will add new modules to the existing
+layer 0.
+Level 1 modules: wander and avoid
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 56
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+wander:
+the wander module generates a new heading for the robot in a fixed
+time interval (e.g. every 10 seconds or so).
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 57
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid:
+the avoid module takes the result of the force computation from level
+0, and combines it with the desired heading to produce a modified
+heading which usually points in roughly the correct direction, but
+perturbed to avoid any obvious obstacles.
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 58
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 1: Wander
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid:
+the output form the avoid module suppresses the output from the
+runaway module of level 0, before entering the motor module.
+The signal from level 0 is suppressed (overwritten, replaced) by the
+level 1 commands for 15 time steps
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 59
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 60
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+The designated behavior for level 2 is to:
+Explore the environment
+Level 2 is meant (by R. Brooks) to add an exploratory mode of
+behavior to the robot, using visual observations to select
+interesting places to visit.
+( At the time of the publication in 1985, R.Brooks could only
+implement the non-vision aspects of this level )
+A total of 5 new modules, 10 new signals, 17 connections, 4
+places of signal inhibition and 3 places of signal supression are
+added in level 2 to the existing level 0 and level 1.
+© Nils Goerke, University Bonn, 7/2026 61
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+© Nils Goerke, University Bonn, 7/2026 62
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 63
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+monitor integrate
+straighten
+S
+15
+S
+2
+I
+2
+I
+2
+S
+15 I
+14
+I
+25
+nostop
+done goal
+grab
+travel
+integral
+heading
+begin
+command
+© Nils Goerke, University Bonn, 7/2026 64
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+© Nils Goerke, University Bonn, 7/2026 65
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+grabber
+pathplan
+monitor integrate
+straighten
+© Nils Goerke, University Bonn, 7/2026 66
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+Level 2 implies the following 5 new modules:
+grabber module
+monitor module
+integrate module
+pathplan module
+straighten module
+grabber
+pathplan
+monitor integrate
+straighten
+© Nils Goerke, University Bonn, 7/2026 67
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+grabber:
+the grabber (video grabber) module ensures that level 2 has control
+of the motors by sending a halt signal to the motor module, then
+temporarily inhibiting a number of communication paths in the lower
+levels so that no new actions can be initiated, and waiting for the
+motor module to indicate that it is no longer controlling the robot
+motion.
+At this point the (visual) sensor will be giving stable readings
+sufficient to plan a detailed motion, so a goal can be sent to the
+pathplan module.
+Please notice: while stopping the other levels, the robot will be
+unable to avoid approaching objects for a brief 2 seconds.
+© Nils Goerke, University Bonn, 7/2026 68
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+S
+2
+I
+2
+I
+2 I
+14
+goal
+grab
+command
+© Nils Goerke, University Bonn, 7/2026 69
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+pathplan:
+the pathplan module takes a goal specification and attempts to reach
+that goal.
+To do this, it sends headings to the avoid module, which may perturb
+them to avoid local obstacles, and monitors its integral input which is
+an integration of actual motions.
+The messages to the avoid module suppress random wanderings of
+the robot, so long as the higher level planner remains active.
+When the position of the robot is close to the desired position it
+outputs the goal to the straighten module.
+© Nils Goerke, University Bonn, 7/2026 70
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+S
+2
+I
+2
+I
+2
+S
+15 I
+14
+goal
+grab
+heading
+begin
+command
+© Nils Goerke, University Bonn, 7/2026 71
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+monitor:
+the monitor module continually monitors the status of the motor
+module. As soon as the module becomes inactive the monitor module
+queries the robot via a direct connection to get a reading from its
+shaft encoders on how far it has traveled
+Thus it is able to track each motion, whether it terminated as
+intended or if there was an early hat due to looming obstacles.
+© Nils Goerke, University Bonn, 7/2026 72
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+monitor integrate
+S
+2
+I
+2
+I
+2
+S
+15 I
+14
+goal
+grab
+travel
+integral
+heading
+begin
+command
+© Nils Goerke, University Bonn, 7/2026 73
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+integrate:
+the integrate module accumulates reports of motions from the
+monitor module and always sends its most recent result out on its
+integral line.
+It gets restarted by application of a signal to its reset input.
+© Nils Goerke, University Bonn, 7/2026 74
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+monitor integrate
+S
+2
+I
+2
+I
+2
+S
+15 I
+14
+goal
+grab
+travel
+integral
+heading
+begin
+command
+© Nils Goerke, University Bonn, 7/2026 75
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+straighten:
+the straighten module is responsible for modifying the final
+orientation of the robot.
+Any command with just an angular heading will not get through the
+avoid module as it filters out small motions, since the pressure of
+forces from remote obstacles would otherwise make it „buzz“ with
+large turns and small forward motions.
+The straighten module sends its commands directly to the motor
+module, and monitors the integral line to make sure it is successful.
+For good measures it also inhibits the collision reflex, since there is
+no danger of a collision from forward motion (straighten only turns
+the robot). 
+© Nils Goerke, University Bonn, 7/2026 76
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Level 2: Explore
+robot
+feelforce runaway
+collide?
+sonar
+robot
+halt
+motor
+heading force
+polar
+map
+avoid wander
+S
+15
+heading
+goal grabber
+pathplan
+monitor integrate
+straighten
+S
+15
+S
+2
+I
+2
+I
+2
+S
+15 I
+14
+I
+25
+nostop
+done goal
+grab
+travel
+integral
+heading
+begin
+command
+© Nils Goerke, University Bonn, 7/2026 77
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Task Achieving Behaviors
+sensors actuators
+motors
+A decomposition of a mobile robot control system based on task
+achieving behaviors (Brooks 1985)
+avoid objects
+wander
+explore
+build maps
+monitor changes
+identify objects
+plan changes to the world
+reason about behavior of objects
+© Nils Goerke, University Bonn, 7/2026 78
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture
+R.Brooks' test world for the subsumption controlled robot.
+Robot is equipped
+with sonar based
+distance sensors.
+© Nils Goerke, University Bonn, 7/2026 79
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture
+R.Brooks' test world for the subsumption controlled robot.
+Under levels 0 and 1
+control the robot wanders
+around aimlessly.
+It does not hit obstacles
+© Nils Goerke, University Bonn, 7/2026 80
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture
+R.Brooks' test world for the subsumption controlled robot.
+With level 2 control the
+robot tries to achieve
+command goals. The
+nominal goals are the two
+straight (red) lines.
+After reaching the second
+(final) goal the robot
+reverts to aimless level 1
+behavior.
+© Nils Goerke, University Bonn, 7/2026 81
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Layered Control
+sensors
+Control is layered with higher level layers subsuming the lower levels.
+level 2
+level 1
+level 0 actuators,
+motors
+level 3
+© Nils Goerke, University Bonn, 7/2026 82
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Some Literature on Subsumption Architecture
+R. A. Brooks (1986),
+"A Robust Layer Control System for a Mobile Robot",
+IEEE Journal of Robotics and Automation RA-2, 14-23.
+R. A. Brooks (1987),
+"Planning is just a way of avoiding figuring out what to do next",
+Technical report, Working Paper 303, MIT Artificial Intelligence Laboratory.
+R. A. Brooks (1991),
+"Intelligence Without Reason",
+in Proc. of the 1991 Int. Joint Conf. on Artificial Intelligence, pp. 569–595.
+R. A Brooks (1991),
+"Intelligence Without Representation",
+Artificial Intelligence 47 (1991) 139-159.
+Brooks, R.A. (1992)
+“Artificial Life and Real Robots”.
+In F. J. Varela and P. Bourgine, editors, “Toward a Practice of Autonomous
+Systems”: Proceedings of the First European Conference on Artificial Life,
+pages 3-10. MIT Press/Bradford Books, Cambridge, MA, 1992.
+© Nils Goerke, University Bonn, 7/2026 83
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+A working robot with Subsumption Architecture
+In 1991 the company iRobot has been funded by three MIT researchers
+(MIT roboticists Colin Angle, Helen Greiner and Rodney Brooks).
+The company iRobot has launched a series of robots,
+e.g. Ghengis, Ariel and Packbot.
+© Nils Goerke, University Bonn, 7/2026 84
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+A working robot with Subsumption Architecture
+In 1991 the company iRobot has been funded by three MIT researchers
+(MIT roboticists Colin Angle, Helen Greiner and Rodney Brooks).
+The company iRobot has launched a series of robots,
+e.g. Ghengis, Ariel and Packbot.
+In 2002 iRobot launches the Roomba® floor vacuuming robot, which is one of their
+most selling robots. 
+© Nils Goerke, University Bonn, 7/2026 85
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+A working robot with Subsumption Architecture
+In 1991 the company iRobot has been funded by three MIT researchers
+(MIT roboticists Colin Angle, Helen Greiner and Rodney Brooks).
+The company iRobot has launched a series of robots,
+e.g. Ghengis, Ariel and Packbot.
+In 2002 iRobot launches the Roomba® floor vacuuming robot, which is one of their
+most selling robots.
+A variation of the roomba became the iRobot Create
+platform which has been explicitly developed for
+educational and research purposes.
+Major parts of the roomba behavioral systemis
+implemented using the subsumption architecture
+from Rodney Brooks. 
+© Nils Goerke, University Bonn, 7/2026 86
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+A working robot with Subsumption Architecture
+In 1991 the company iRobot has been funded by three MIT researchers
+(MIT roboticists Colin Angle, Helen Greiner and Rodney Brooks).
+The company iRobot has launched a series of robots,
+e.g. Ghengis, Ariel and Packbot.
+In 2002 iRobot launches the Roomba® floor vacuuming robot, which is one of their
+most selling robots.
+A variation of the roomba became the iRobot Create
+platform which has been explicitly developed for
+educational and research purposes.
+Major parts of the roomba behavioral systemis
+implemented using the subsumption architecture
+from Rodney Brooks.
+The vacuuming robot roomba is the basis for the RoomRider,
+the teaching and research platform of the AIS research group
+of the University of Bonn. 
+© Nils Goerke, University Bonn, 7/2026 87
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 88
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Forward Left Motor
+Forward Right Motor
+forward
+forward
+Start with a robot which can
+just go forward.
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 89
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Detection
+Forward Left Motor
+Forward Right Motor
+Avoid
+S
+forward
+forward
+backward
+backward obstacle
+Add a layer which
+recognizes obstacles and
+while they are detected, the
+layer generates a message
+for one wheel to go
+backward to prevent the
+robot from colliding.
+S
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 90
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Random
+Detection
+Forward Left Motor
+Forward Right Motor
+Avoid
+Turn
+S
+S
+forward
+forward
+backward
+backward
+trigger controlled virtual obstacle
+obstacle
+Add a layer which
+sometimes causes the robot
+to perform random turns.
+Making the lower level
+believe that there is an
+obstacle it is caused to do
+an avoidance movement.
+S
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 91
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Random
+Detection
+Forward Left Motor
+Forward Right Motor
+Avoid
+Turn
+Compass Transfer
+Explorer
+S
+S
+S
+forward
+forward
+backward
+backward
+trigger
+direction controlled virtual obstacle
+controlled virtual obstacle
+obstacle
+The next layer implements
+an exploratory behavior by
+generating sequences of
+headings adjusted with a
+global orientation. Again a
+virtual obstacle is used to
+control the lower levels.
+S
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 92
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Subsumption Architecture, Example
+Landmarks
+Random
+Detection
+Forward Left Motor
+Forward Right Motor
+Avoid
+Turn
+Compass Transfer
+Explorer
+Navigate
+S
+S
+S
+S
+forward
+forward
+backward
+backward
+trigger
+direction
+goal
+obstacle
+goal
+user
+controlled virtual obstacle
+controlled virtual obstacle
+obstacle
+intended path
+The next level can detect
+landmarks and when having
+received a goal from the
+user it can navigate to one
+of them by controlling the
+movement direction in the
+lower level.
+S
+Adapted from:Andrej Lúĉny
+Comenius Uiniversity Bratislava
+Robotic Summer School 2009
+www.microstep-mis.com/~andy
+© Nils Goerke, University Bonn, 7/2026 93
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Summary Subsumption Architecture
+The subsumption architecture is:
+A hierarchical control architecture
+Organized in layers of competence
+Each layer is working autonomously (unless)
+Controlled by higher layers
+Inhibition and suppression control lower layers
+The layers consist of simple structured modules
+Rather robust against damage or module failure
+Implementation can be very complex
+© Nils Goerke, University Bonn, 7/2026 94
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Control Architectures
+Examples for control architectures:
+reactive control
+open-loop / closed loop control
+SMPA architectures
+Subsumption architecture
+Learning control (Neural Networks, Fuzzy, ...)
+Blackboard architectures
+ACT-R
+Hierarchical control
+... ... ... and many more interesting approaches ... 
+© Nils Goerke, University Bonn, 7/2026 95
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+PSO Particle Swarm Optimization,
+Subsumption Architecture
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 7/2026 96
+Artificial Life [MA-INF 4201], 11, DidaBots, Swarm Behavior, Boids, PSO, Mon 30.6.25, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+PSO Particle Swarm Optimization,
+Subsumption Architecture
+Thank you for your patience

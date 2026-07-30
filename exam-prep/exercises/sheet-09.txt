@@ -1,0 +1,216 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+\usepackage{tikz} % drawing diagrams with code
+\usetikzlibrary{arrows.meta, positioning, calc}
+\usepackage{standalone} % include tiks files as graphic
+
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet09}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section*{Assignment 60 (2 Points)}
+\begin{problem}
+    Derive a formula that calculates the probability $\omega_i$ for an individual $i$ to be chosen as parent. The rank of the individual $i$ shall be $r(i)$, the size of the population is $P$. The selection shall be probabilistic, fitness dependent, rank depending using the Wheel-of-Fortune method.
+\end{problem}
+\begin{answer}
+    With Wheel-of-Fortune, each individual gets a slice of the wheel proportional to its assigned weight. For rank based selection we use the rank $r(i)$ as the weight instead of the raw fitness. Let the best individual have the highest rank value.
+
+    If we assign weight $r(i)$ to individual $i$, the probability is the weight divided by the sum of all weights:
+    \[
+        \omega_i = \frac{r(i)}{\sum_{j=1}^{P} r(j)}
+    \]
+    Since the ranks are the numbers $1, 2, \dots, P$, the sum is
+    \[
+        \sum_{j=1}^{P} r(j) = \frac{P(P+1)}{2}
+    \]
+    so the formula becomes
+    \[
+        \omega_i = \frac{r(i)}{\frac{P(P+1)}{2}} = \frac{2\,r(i)}{P(P+1)}
+    \]
+    This guarantees $\sum_i \omega_i = 1$, and individuals with a better rank get a larger slice of the wheel.
+\end{answer}
+
+\section*{Assignment 61 (2 Points)}
+\begin{problem}
+    Within an Evolutionary Algorithm the probabilistic, rank based parent selection selects $\rho = 4$ parents from the population of $P = 32$ individuals. The method shall be Tournament selection (as described in the lecture) starting with 16 different individuals, chosen randomly from the population. Calculate the probability $\omega_T$ that the best individual from the population ($P = 32$) is among the $\rho = 4$ selected parents.
+\end{problem}
+\begin{answer}
+    In Tournament selection we randomly draw 16 different individuals from the 32 into the tournament pool. The best individual of the whole population, if it is in this pool, always wins its tournament and becomes a parent, because it has the highest rank against everyone.
+
+    So the best individual ends up as a parent exactly when it is among the 16 drawn individuals. The probability of being picked into a pool of 16 out of 32 is:
+    \[
+        \omega_T = \frac{16}{32} = \frac{1}{2} = 0.5
+    \]
+    So with probability $\omega_T = 0.5$ the best individual is among the selected parents.
+\end{answer}
+
+\section*{Assignment 62 (2 Points)}
+\begin{problem}
+    Within an Evolutionary Algorithm the probabilistic, rank based parent selection selects $\rho = 4$ parents from the population of $P = 32$ individuals. The method shall be Wheel-of-Fortune (as described in the lecture). Calculate the probability $\omega_F$ that the best individual from the population ($P = 32$) is among the $\rho = 4$ selected parents.
+\end{problem}
+\begin{answer}
+    With Wheel-of-Fortune we spin the wheel $\rho = 4$ times (independently, with replacement). The best individual has rank $r = 32$, and the total of all ranks is
+    \[
+        \sum_{j=1}^{32} j = \frac{32 \cdot 33}{2} = 528
+    \]
+    So in one spin the probability of picking the best individual is
+    \[
+        p = \frac{32}{528} = \frac{2}{33}
+    \]
+    and the probability of NOT picking it in one spin is
+    \[
+        1 - p = \frac{31}{33}
+    \]
+    Over 4 independent spins, the probability that it is never picked is $\left(\frac{31}{33}\right)^4$. The probability that the best individual is among the 4 parents is the complement:
+    \[
+        \omega_F = 1 - \left(\frac{31}{33}\right)^4 = 1 - \frac{31^4}{33^4} = 1 - \frac{923521}{1185921} \approx 0.221
+    \]
+    So with probability $\omega_F \approx 0.22$ the best individual is among the selected parents, clearly lower than the $0.5$ from Tournament selection.
+\end{answer}
+
+\section*{Assignment 63 (2 Points)}
+\begin{problem}
+    Explain in a few words some necessary/desirable properties of fitness functions in the context of Evolutionary Algorithms. As a hint: explain why a binary fitness function yielding only 0 or 1 is inappropriate for Evolutionary Algorithms.
+\end{problem}
+\begin{answer}
+    Desirable properties of a fitness function:
+    \begin{itemize}
+        \item It should give a graded, fine resolution measure of quality, not just pass/fail, so that small improvements between individuals are visible.
+        \item It should be able to distinguish and rank individuals relative to each other.
+        \item It should provide a gradient or selection pressure that guides the search toward better regions.
+        \item It should be reasonably fast to evaluate, since it is computed many times.
+    \end{itemize}
+
+    A binary fitness function giving only 0 or 1 is inappropriate because almost all individuals at the start get a 0. The algorithm then cannot tell which of the bad individuals are closer to a solution, so there is no selection pressure and no direction to evolve. The search basically degrades to random search until one individual accidentally hits a 1. A smooth, graded fitness instead rewards partial progress and lets evolution climb step by step.
+\end{answer}
+
+\section*{Assignment 64 (2 Points)}
+\begin{problem}
+    Someone told me, that the process of generating pseudo random numbers is rather time consuming. Since random numbers are necessary in a lot of EA steps, this would be a severe drawback. Can you help me to check if this is true or not? Please cite scientific literature if possible.
+\end{problem}
+\begin{answer}
+    In practice this is not a severe drawback. Standard pseudo random number generators are extremely fast. A generator like the Mersenne Twister (Matsumoto and Nishimura, 1998) produces a high quality random number in only a handful of CPU operations, and modern generators such as xorshift (Marsaglia, 2003) or the PCG family (O'Neill, 2014) are even cheaper.
+
+    Compared to the cost of a typical EA step, the fitness evaluation is usually far more expensive than drawing a random number, since fitness often involves a simulation or a complex computation. So the random number generation is normally a negligible part of the total runtime. The claim is therefore not true for typical Evolutionary Algorithms.
+
+    References:
+    \begin{itemize}
+        \item M. Matsumoto, T. Nishimura: Mersenne Twister, ACM Transactions on Modeling and Computer Simulation, 1998.
+        \item G. Marsaglia: Xorshift RNGs, Journal of Statistical Software, 2003.
+        \item M. E. O'Neill: PCG: A Family of Simple Fast Space-Efficient Random Number Generators, 2014.
+    \end{itemize}
+\end{answer}
+
+\section*{Assignment 65 (1 Point)}
+\begin{problem}
+    The distribution of the fitness value $f(g)$ for a population of $P$ individuals within an evolutionary algorithm happens to be (almost) a normal distribution around a rather bad fitness value $f$, with a standard deviation $\sigma$. The best fitness value within the population shall be $f^*$, with $f^* \geq f + 4\sigma$. The stochastic, fitness proportional selection process is selecting $\mu$ individuals to be the pool of parents. Explain the resulting distribution of fitness values within the pool of parents. Depict the distribution; a sketch is sufficient.
+\end{problem}
+\begin{answer}
+    With fitness proportional selection, individuals are chosen with probability proportional to their fitness. The best individual $f^*$ lies more than $4\sigma$ above the mean, so it has a hugely larger fitness than the rest of the population. This makes it a Super-Individual.
+
+    As a result the parent pool gets dominated by copies of this one best individual. Instead of staying a normal distribution around $f$, the pool distribution becomes strongly skewed: a big spike at $f^*$ and only few parents from the original normal bulk around $f$. Diversity collapses quickly and the EA risks premature convergence.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{sheet09-misc/a65_distribution.png}
+    \caption{Parent pool: shrunken bell around $f$ with a spike at $f^*$.}
+\end{figure}
+\end{answer}
+
+\section*{Assignment 66 (2 Points)}
+\begin{problem}
+    Make two proposals how to avoid Super-Individuals in an Evolutionary Algorithm and describe them.
+\end{problem}
+\begin{answer}
+    Two proposals:
+    \begin{itemize}
+        \item \textbf{Rank based selection:} Instead of using the raw fitness for the selection probability, use only the rank of the individual. Then the best individual gets a fixed moderate advantage based on its position, not on how huge its fitness is. A Super-Individual can no longer dominate the wheel, because the gap between rank $P$ and rank $P-1$ is always just one step.
+        \item \textbf{Fitness scaling / windowing:} Transform the fitness values before selection, for example with sigma scaling or a fitness window, so that extreme values get compressed. This limits the selection probability of the best individual to a reasonable factor and keeps selection pressure balanced.
+    \end{itemize}
+    (Tournament selection would also work, since the win chance does not depend on the absolute fitness gap.)
+\end{answer}
+
+\section*{Assignment 67 (2 Points)}
+\begin{problem}
+    Propose an inheritance operator (recombination, $k = 2$ parents) and a mutation operator for tree-based genetic/evolutionary programming genomes. Explain the functionality of the proposed operators using a little example. Support your explanation with a sketch or a diagram.
+\end{problem}
+\begin{answer}
+    For tree-based genomes (for example expression trees), I propose subtree crossover for recombination and subtree mutation for mutation.
+
+    \textbf{Subtree crossover ($k = 2$):} Pick a random node in parent 1 and a random node in parent 2. Swap the whole subtrees hanging below those two nodes. This creates two children that mix structure from both parents.
+
+    Example: Parent 1 encodes $(x + 3)$ and parent 2 encodes $(y * 2)$. If we pick the $3$ in parent 1 and the subtree $(y * 2)$ in parent 2, swapping gives a child $(x + (y * 2))$.
+
+    \textbf{Subtree mutation:} Pick a random node in one individual and replace its subtree with a newly generated random subtree. This introduces new genetic material.
+
+    Example: In $(x + (y * 2))$ we pick the node $(y * 2)$ and replace it with a fresh random subtree $(z - 1)$, giving $(x + (z - 1))$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{sheet09-misc/a67_crossover.png}\\[1em]
+    \includegraphics[width=0.7\textwidth]{sheet09-misc/a67_mutation.png}
+    \caption{Subtree crossover (top) and subtree mutation (bottom).}
+\end{figure}
+\end{answer}
+\end{document}

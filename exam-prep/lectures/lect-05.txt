@@ -1,0 +1,1351 @@
+© Nils Goerke, University Bonn, 5/2026 1
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Examples for Pattern Formation in
+Biological Systems
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 5/2026 2
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Pattern Formation
+Iterated functions
+Linear and exponential growth
+Fibonacci sequence
+Logistic growth
+Predator-prey system
+Lotka-Volterra equations
+Activator-inhibitor equations
+Reaction-diffusion systems
+Plant morphogenesis, phylotaxis
+Golden section, Golden angle
+Self similarity
+© Nils Goerke, University Bonn, 5/2026 3
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions are closely related to sequences.
+Sequence of values:
+{ x(1), x(2), x(3), x(4), x(5), ... }
+Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 4
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions are closely related to sequences.
+Sequence of values:
+{ x(1), x(2), x(3), x(4), x(5), ... }
+Sequences can be generated using recursive defined or iterated
+functions:
+x(i+1) = f ( x(i) )
+Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 5
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions are closely related to sequences.
+Sequence of values:
+{ x(1), x(2), x(3), x(4), x(5), ... }
+Sequences can be generated using recursive defined or iterated
+functions:
+x(i+1) = f ( x(i) )
+Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 6
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions are closely related to sequences.
+Sequence of values:
+{ x(1), x(2), x(3), x(4), x(5), ... }
+Sequences can be generated using recursive defined or iterated
+functions:
+x(i+1) = f ( x(i) )
+In iterated functions the next value x(i+1) is a function of the
+preceding value x(i).
+Iterated functions need an initial value x(0) .
+Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 7
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Examples for iterated functions:
+x(i+1) = x(i) + 2 with x(0)=3
+{ 3, 5, 7, 9, 11, .... }
+x(i+1) = a x(i) with x(0)=100.0, a=0.9
+{ 100.00, 90.00, 81.00, 72.90, 65.61, 59.049, ... }
+x(i+1) = (1-ε) x(i) with x(0)>0, and 0 < ε << 1
+x(i+1) = (1+ε) x(i) with x(0)>0, and 0 < ε << 1
+Iterated Functions, examples
+© Nils Goerke, University Bonn, 5/2026 8
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The definition of iterated functions can contain logic functions as well:
+
+Iterated Functions, examples 2
+© Nils Goerke, University Bonn, 5/2026 9
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The definition of iterated functions can contain logic functions as well:
+ ½ x(i) if x(i) is even
+x(i+1) =
+ { 3 x(i) + 1 if x(i) is odd
+Iterated Functions, examples 2
+© Nils Goerke, University Bonn, 5/2026 10
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The definition of iterated functions can contain logic functions as well:
+ ½ x(i) if x(i) is even
+x(i+1) =
+ { 3 x(i) + 1 if x(i) is odd
+Can you predict the final value of x(i) when the
+starting value x(0) is given ?
+Iterated Functions, examples 2
+© Nils Goerke, University Bonn, 5/2026 11
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The definition of iterated functions can contain logic functions as well:
+ ½ x(i) if x(i) is even
+x(i+1) =
+ { 3 x(i) + 1 if x(i) is odd
+Can you predict the final value of x(i) when the
+starting value x(0) is given ?
+Play this iterated function as a two person game:
+Start with x(0) and iterate the function by turns:
+You lose, if you end up with x(i)=1.
+Iterated Functions, examples 2
+See: Collatz Conjecture; https://en.wikipedia.org/wiki/Collatz_conjecture 
+© Nils Goerke, University Bonn, 5/2026 12
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions, examples 3
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+© Nils Goerke, University Bonn, 5/2026 13
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 14
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1 : “one 1”
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 15
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1 : “one 1” resulting in “11”
+L&S (1) : 11
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 16
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1 : “one 1” resulting in “11”
+L&S (1) : 11 : “two 1s” resulting in “21”
+L&S (2) : 21 :
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 17
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1 : “one 1” resulting in “11”
+L&S (1) : 11 : “two 1s” resulting in “21”
+L&S (2) : 21 : “one 2” , “one 1” resulting in “1211”
+L&S (3) : 1211 :
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 18
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Another really nice, and interesting iterated sequence is defined
+via a mixture of math and language.
+It is called “Look-and-Say Sequence”:
+Look at the element(i) of the sequence and say what you see;
+this yields the next element (i+1).
+In detail: speak out the amount of identical ciphers of a kind,
+followed by the numerical value of the cipher.
+L&S (0) : 1 : “one 1” resulting in “11”
+L&S (1) : 11 : “two 1s” resulting in “21”
+L&S (2) : 21 : “one 2” , “one 1” resulting in “1211”
+L&S (3) : 1211 : “one 1” , “one 2” , “two 1s”
+L&S (4) : 111221 : “three 1s” , “two 2s” , “one 1”
+L&S (5) : 312211 : “one 3” , “one 1” , “two 2s” , “two 1s”
+L&S (6) : 13112221 : “one 1” , “one 3”, …. …. ….
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 19
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 20
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+● The idea behind this sequence is identical to the Run-length
+ encoding (RLE) lossless data compression algorithm (1967, 1983).
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 21
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+● The idea behind this sequence is identical to the Run-length
+ encoding (RLE) lossless data compression algorithm (1967, 1983).
+● The starting number “d”, will stay at the end end of the sequence
+ “ d , 1d , 111d , 311d , 13211d , 111312211d , … “
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 22
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+● The idea behind this sequence is identical to the Run-length
+ encoding (RLE) lossless data compression algorithm (1967, 1983).
+● The starting number “d”, will stay at the end end of the sequence
+ “ d , 1d , 111d , 311d , 13211d , 111312211d , … “
+● The sequence will grow indefinitely, exept for “22, 22, 22, …. ”.
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 23
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+● The idea behind this sequence is identical to the Run-length
+ encoding (RLE) lossless data compression algorithm (1967, 1983).
+● The starting number “d”, will stay at the end end of the sequence
+ “ d , 1d , 111d , 311d , 13211d , 111312211d , … “
+● The sequence will grow indefinitely, exept for “22, 22, 22, …. ”.
+● Starting with numbers “0,1,2,3” no larger number than 3 will appear.
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 24
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+● The look-and-say sequence was introduced and analyzed by the
+ mathematician John Horton Conway.
+● The sequence, starting with “d=3” is named, Conway sequence.
+● The idea behind this sequence is identical to the Run-length
+ encoding (RLE) lossless data compression algorithm (1967, 1983).
+● The starting number “d”, will stay at the end end of the sequence
+ “ d , 1d , 111d , 311d , 13211d , 111312211d , … “
+● The sequence will grow indefinitely, exept for “22, 22, 22, …. ”.
+● Starting with numbers “0,1,2,3” no larger number than 3 will appear.
+● Denoting Li
+ as the length of the sequence, the limit of the ratio of
+ two subsequent lengths exists and is given by:
+ with average growth of 30%.
+
+lim
+i→∞
+Li+1
+Li
+= λ ≈ 1.30357726903 ...
+Parts taken from: https://en.wikipedia.org/wiki/Look-and-say_sequence
+Iterated functions, examples 3
+© Nils Goerke, University Bonn, 5/2026 25
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+From dynamical system theory, the following classes of behavior
+including some sub-classes have been identified (so far).
+- divergence
+- convergence
+- periodic behavior
+- deterministic chaos
+Directly related are the different types of attractors:
+- infinity
+- fixpoint, stable and unstable
+- limit cycles, stable and unstable
+- strange attractors, often with fractal dimension
+Iterated functions, Typical Behavior
+© Nils Goerke, University Bonn, 5/2026 26
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 27
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+0.0 < a < 1.0 : decay to 0.0
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 28
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+0.0 < a < 1.0 : decay to 0.0
+1.0 < a < 3.0 : convergence to a fixpoint x* (depending on a)
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 29
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+0.0 < a < 1.0 : decay to 0.0
+1.0 < a < 3.0 : convergence to a fixpoint x* (depending on a)
+3.0 < a < 3.44949. periodic oscillation between 2 values
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 30
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+0.0 < a < 1.0 : decay to 0.0
+1.0 < a < 3.0 : convergence to a fixpoint x* (depending on a)
+3.0 < a < 3.44949. periodic oscillation between 2 values
+3.44949 < a < ... periodic oscillation between 4 values
+. periodic oscillation between 8 values
+. periodic oscillation between 16 values
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 31
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+An extremely fascinating iterated function is the logistic map:
+x(i+1) = a x(i) ( 1 - x(i) ) 0.0 < x(i) < 1.0, and 0.0 < a < 4.0
+Almost independent of the starting value x(0) this function shows all
+known classes of behavior, adjustable via the parameter a.
+0.0 < a < 1.0 : decay to 0.0
+1.0 < a < 3.0 : convergence to a fixpoint x* (depending on a)
+3.0 < a < 3.44949. periodic oscillation between 2 values
+3.44949 < a < ... periodic oscillation between 4 values
+. periodic oscillation between 8 values
+. periodic oscillation between 16 values
+3.56995 < a < 4.0 onset to deterministic chaos
+ a = 4.0 deterministic chaos
+ 4.0 < a divergence
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 32
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+a
+Picture from: https://en.wikipedia.org/wiki/Logistic_map
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 33
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+a
+P1 P2 P48
+Picture adapted from from: https://en.wikipedia.org/wiki/Logistic_map
+Iterated functions, Logistic Map
+© Nils Goerke, University Bonn, 5/2026 34
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterated functions can show a wide variety of different behaviors.
+Depending on kind and structure of the iterated functions, some of
+these behaviors can be described and explicitly explained:
+e.g.:
+- linear growth
+- exponential decay
+- exponential growth
+- logistic growth
+- periodic behavior
+- deterministic chaos (in part)
+But be aware, that some of the possible behaviors are still too
+complex to be easily described by todays vocabulary.
+Iterated functions, Typical Behavior
+© Nils Goerke, University Bonn, 5/2026 35
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Linear Growth
+Implementing linear growth of a population of individuals is easy
+with iterated functions:
+x(i+1) = x(i) + c with x(0)>0, and c >0
+© Nils Goerke, University Bonn, 5/2026 36
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+time t
+iteration i
+x(t)
+*
+x(0)
+Linear Growth
+Implementing linear growth of a population of individuals is easy
+with iterated functions:
+x(i+1) = x(i) + c with x(0)>0, and c >0
+© Nils Goerke, University Bonn, 5/2026 37
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+x(t)
+*
+*
+*
+*
+*
+*
+*
+x(0)
+Implementing linear growth of a population of individuals is easy
+with iterated functions:
+x(i+1) = x(i) + c with x(0)>0, and c >0
+time t
+iteration i
+Linear Growth
+© Nils Goerke, University Bonn, 5/2026 38
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+x(t)
+*
+*
+*
+*
+*
+*
+*
+x(0)
+Implementing linear growth of a population of individuals is easy
+with iterated functions:
+x(i+1) = x(i) + c with x(0)>0, and c >0
+time t
+iteration i
+Linear Growth
+© Nils Goerke, University Bonn, 5/2026 39
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+To obtain exponential growth, the increase is proportional to the
+number of individuals (birthrate).
+x(i+1) = x(i) + r x(i) with x(0)>0
+ = ( 1 + r ) x(i) with b=1+r = 1+ε
+ = b x(i)
+Depending on b a different behavior results:
+0.0 < b < 1.0 exponential decay
+b = 1.0 constant, stable population
+b > 1.0 exponential growth
+Exponential Growth
+© Nils Goerke, University Bonn, 5/2026 40
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+x(i)
+*
+x(0)
+i
+x(i)
+*
+x(i)
+*
+x(0)
+i i
+x(0)
+0.0 < b < 1.0 b = 1.0 b > 1.0
+To obtain exponential growth, the increase is proportional to the
+number of individuals (birthrate).
+x(i+1) = b x(i)
+Exponential Growth
+© Nils Goerke, University Bonn, 5/2026 41
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+In 1202 AD, Leonardo of Pisa (also known as Fibonacci), has
+mentioned a recursive sequence that has been inspired by a
+growing population
+(number of pairs of rabbits, unbounded reproduction).
+x(i+1) = x(i) + x(i-1)
+x(0)=0, x(1)=1
+{ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ... }
+The sequence (although named after Fibonacci) has been reported to be known
+before that time, e.g. 200 BC, by Indian mathematicians.
+From Wikipedia, (9.6.2009) http://en.wikipedia.org/wiki/Fibonacci_number
+Fibonacci Sequence
+© Nils Goerke, University Bonn, 5/2026 42
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+From Ron Knott's web pages on Mathematics, Fibonacci Numbers and Nature ,9.6.2009
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html
+Suppose a newly-born pair of
+rabbits, one male, one female,
+are put in a field.
+Rabbits are able to mate at the
+age of one month so that at
+the end of its second month a
+female can produce another
+pair of rabbits.
+Suppose that our rabbits never
+die and that the female always
+produces one new pair (one
+male, one female) every
+month from the second month
+on.
+Fibonacci Sequence
+© Nils Goerke, University Bonn, 5/2026 43
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+There is a fascinating connection between the Fibonacci Sequence
+and the Golden Ratio.
+The limit of the quotient of two consecutive Fibonacci numbers is the
+very interesting number r:
+and the inverse φ = 1/r is interesting as well
+lim
+i→∞
+x (i)
+x(i+1)
+= ρ ≈ 0.618033988 ...
+lim
+i→∞
+x(i+1)
+x(i)
+= ϕ ≈ 1.618033988 ...
+Fibonacci Sequence
+© Nils Goerke, University Bonn, 5/2026 44
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 45
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+0.0 1.0 x
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 46
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+0.0 1.0 x
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 47
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+0.0 1.0 x
+the longer part is to
+the shorter part
+the complete part is to
+the longer part as
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 48
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+0.0 1.0 x
+1 / x = x / (1-x)
+the longer part is to
+the shorter part
+the complete part is to
+the longer part as
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 49
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The Golden Ratio divides a given interval in
+a very special way into two pieces:
+0.0 1.0 x
+1 / x = x / (1-x)
+1 * (1-x) = x * x
+(1-x) = x2
+x2 + x - 1 = 0
+the longer part is to
+the shorter part
+the complete part is to
+the longer part as
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 50
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the quadratic equation yields two solutions:
+x2 + x - 1 = 0
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 51
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the quadratic equation yields two solutions:
+x2 + x - 1 = 0
+ -x1 = φ ≈ 1.618033988...
+ x2 = r ≈ 0.618033988...
+ϕ =
+1+√5
+2
+≈ 1.618033988...
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 52
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the quadratic equation yields two solutions:
+x2 + x - 1 = 0
+ -x1 = φ ≈ 1.618033988...
+ x2 = r ≈ 0.618033988...
+φ and r are called the Golden Ratio,
+they have some interesting algebraic properties:
+ϕ =
+1+√5
+2
+≈ 1.618033988...
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 53
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the quadratic equation yields two solutions:
+x2 + x - 1 = 0
+ -x1 = φ ≈ 1.618033988...
+ x2 = r ≈ 0.618033988...
+φ and r are called the Golden Ratio,
+they have some interesting algebraic properties:
+φ - r = 1 1/φ = φ - 1
+φ 1/r = r + 1 *
+r = 1
+ φ2 = 1 + φ
+ r2 = 1 - r
+ϕ =
+1+√5
+2
+≈ 1.618033988...
+Golden Ratio
+© Nils Goerke, University Bonn, 5/2026 54
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Unbounded reproduction is not realistic.
+Several circumstances exist (e.g. restricted resources) that yield to a
+maximal, bounded growth rate.
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 55
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Unbounded reproduction is not realistic.
+Several circumstances exist (e.g. restricted resources) that yield to a
+maximal, bounded growth rate.
+x(i+1) = x(i) + g x(i) with a growth rate g
+The growth rate g shall now reflect restricted resources.
+The available resources are those resources that have been left
+over by the population x(i).
+Thus, g is modeled as a growth rate a, that is bounded by
+g = a ( M – x(i) ) with M maximum of the resources.
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 56
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Thus a modified growth formula can be used:
+x(i+1) = x(i) + g x(i) with g = a( M-x(i) )
+ = x(i) + a ( M – x(i) ) x(i)
+This iterated function implements a differential equation to model
+realistic growth of populations.
+It was published by P.-F. Verhulst (1838) :
+From Wikipedia, (9.6.2009)
+http://en.wikipedia.org/wiki/Logistic_function
+dP
+dt
+= P(1−P)
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 57
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Iterating the equation with a small initial value of x(0)
+x(i+1) = x(i) + a( M-x(i) ) x(i)
+The population grows, the number x(i) of individuals within the
+population, starts to increase with almost exponential growth.
+In this phase, the increase is getting larger from step to step.
+This growth continues until x(i) reaches a value of x(j)=½ M.
+After that, the increase is getting smaller and smaller,
+until x(i) converges to the maximal possible value of x(i) = M.
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 58
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the Verhulst differential equation yields
+the logistic function
+with its typical sigmoid shape.
+From Wikipedia, (9.6.2009): http://en.wikipedia.org/wiki/Logistic_function
+dP
+dt
+= P(1−P)
+P(t) =
+1
+1+e
+−t
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 59
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Solving the Verhulst differential equation yields
+the logistic function
+with its typical sigmoid shape.
+From Wikipedia, (9.6.2009)
+http://en.wikipedia.org/wiki/Logistic_function
+In the field of neural
+networks one can find
+this function denoted as:
+Sigmoid function
+or Fermi function.
+P(t) =
+1
+1+e
+−t
+dP
+dt
+= P(1−P)
+Logistic Growth
+© Nils Goerke, University Bonn, 5/2026 60
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+A special version of logistic growth is the function called:
+Logistic Map or Logistic Parabola
+
+x(i+1) = a x(i) ( 1 – x(i) ) with 0.0 < a < 4.0
+The logistic map is famous within the community researching on
+nonlinear dynamics and chaos. It shows a wide variety of nonlinear
+effects known to be related with deterministic chaos;
+ - period doubling route to chaos
+ - self similarity
+ - positive Ljapunov exponents
+ - strange attractor
+ - fractal dimension
+ - Hopf bifurcations, Pitchfork bifurcations
+Logistic Map / Logistic Parabola
+© Nils Goerke, University Bonn, 5/2026 61
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Consider a situation with more than one species that interact with
+each other:
+Predator-Prey System
+© Nils Goerke, University Bonn, 5/2026 62
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Consider a situation with more than one species that interact with
+each other:
+Predator and Prey
+one species (prey) is chased by the other species (predator).
+Predator-Prey System
+© Nils Goerke, University Bonn, 5/2026 63
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Consider a situation with more than one species that interact with
+each other:
+Predator and Prey
+one species (prey) is chased by the other species (predator).
+Both, predator and prey are growing,
+and both are interacting.
+The dynamics can be modeled by the following equations:
+N(i+1) = N(i) + aN(i) – b N(i)P(i)
+P(i+1) = P(i) + cP(i)N(i) – d P(i)
+Predator-Prey System
+© Nils Goerke, University Bonn, 5/2026 64
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+N(i+1) = N(i) + aN(i) – b N(i)P(i) prey
+P(i+1) = P(i) + cP(i)N(i) – d P(i) predator
+N(i) is the number of prey individuals:
+N(i) is increasing with the growth factor a (birth)
+and is decreasing due to limited resources bN(i)
+and due to the number of predators P(i) (hunt).
+P(i) his the number of predators:
+P(i) is increasing proportional to the number of predators P(i)
+(birth) and the number of prey N(i) (food),
+and is decreasing due to limited resources defined by d.
+Predator-Prey System
+© Nils Goerke, University Bonn, 5/2026 65
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+The prey-predator equations written as system of two coupled
+differential equations:
+Lotka-Volterra (1925, 1926)
+∂N/∂t = aN – bPN = N (a – bP) (prey)
+∂P/∂t = cPN – d P = P (cN – d) (predator)
+Several observations from real animal data indicate that the
+Lotka-Volterra model is describing population dynamics
+sufficiently:
+Hudson-Bay Company, 1845 – 1935, lynx, hares.
+Lotka-Volterra Equations
+© Nils Goerke, University Bonn, 5/2026 66
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+From Wikipedia, (9.6.2009)http://en.wikipedia.org/wiki/Lotka-Volterra_equation
+The prey-predator equations from Lotka and Volterra establish a
+periodic oscillation over time.
+Lotka-Volterra Equations
+© Nils Goerke, University Bonn, 5/2026 67
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+The prey-predator equations are an example of a complete family of
+differential equations called:
+Activator – Inhibitor Systems
+Typical Activator – Inhibitor systems have two components that
+interact with each other.
+One component is called the Activator, making the system grow.
+The other component is called the Inhibitor, which is the component
+that restricts the system and prevents the growth from getting
+exponential. 
+© Nils Goerke, University Bonn, 5/2026 68
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+X(i+1) = X(i) +aX(i) – bY(i) activator
+Y(i+1) = Y(i) +cX(i) – dY(i) inhibitor
+© Nils Goerke, University Bonn, 5/2026 69
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+The Activator X enforces it's own growth,
+and enforces the growth of the inhibitor.
+X(i+1) = ... + aX(i) ... Y(i+1) = ... +cX(i) ...
+X(i+1) = X(i) +aX(i) – bY(i) activator
+Y(i+1) = Y(i) +cX(i) – dY(i) inhibitor
+© Nils Goerke, University Bonn, 5/2026 70
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+The Activator X enforces it's own growth,
+and enforces the growth of the inhibitor.
+X(i+1) = ... + aX(i) ... Y(i+1) = ... +cX(i) ...
+The Inhibitor Y constrains it's own growth,
+and constrains the growth of the activator.
+X(i+1) = ... – bY(i) ... Y(i+1) = ... – dY(i) ...
+X(i+1) = X(i) +aX(i) – bY(i) activator
+Y(i+1) = Y(i) +cX(i) – dY(i) inhibitor
+© Nils Goerke, University Bonn, 5/2026 71
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+Activator-Inhibitor characteristics can be found in a lot of systems
+from biology, physics, medicine and techniques.
+© Nils Goerke, University Bonn, 5/2026 72
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+Morphogenesis
+plants, animals
+Textures
+sea shells, tiger stripes (Alan Turing 1952)
+Generation of rhythmic patterns
+heartbeat, locomotion
+Limb control, muscles
+antagonistic pairs, flexor-extensor
+Population dynamics
+predator-prey, birthrate-deathrate
+Activator-Inhibitor characteristics can be found in a lot of systems
+from biology, physics, medicine and techniques:
+© Nils Goerke, University Bonn, 5/2026 73
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+Activator-Inhibitor characteristics can be found in a lot of systems
+from biology, physics, medicine and techniques:
+© Nils Goerke, University Bonn, 5/2026 74
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Activator-Inhibitor Equations
+Activator-Inhibitor characteristics can be found in a lot of systems
+from biology, physics, medicine and techniques:
+Very often the Activator-Inhibitor principle is combined with a
+spatial component.
+Not only the conditions at one spatial position are considered, but
+also the conditions from the direct neighborhood are taken into
+account via a diffusion process.
+© Nils Goerke, University Bonn, 5/2026 75
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 76
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 77
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Reaction
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 78
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Reaction
+dV/dt = f
+V
+(V)
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 79
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Reaction Reaction Reaction
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 80
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Reaction
+Diffusion Diffusion
+Reaction Reaction
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 81
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Reaction
+Diffusion Diffusion
+Reaction Reaction
+dV/dt = μ ∂
+2V/∂x2 + f
+V
+(V)
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 82
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+dV/dt = μ ∂
+2V/∂x2 + f
+V
+(V,W)
+ dW/dt = σ ∂2W/∂x2
+ + fW
+(V,W)
+Example for a 1-dim Reaction-Diffusion system
+with the diffusion terms: μ ∂
+2V/∂x2 and σ ∂2W/∂x2
+and the reaction terms: f
+V
+(V,W) and fW
+(V,W)
+The differential equations of a Reaction-Diffusion system try to
+model the local influence from the neighborhood via a diffusion
+processes and the activity within one compartment using the
+reaction terms.
+© Nils Goerke, University Bonn, 5/2026 83
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Cellular automata can be seen as discretized versions of ReactionDiffusion systems.
+© Nils Goerke, University Bonn, 5/2026 84
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Cellular automata can be seen as discretized versions of ReactionDiffusion systems.
+The rule of a cellular automaton takes the state of the direct
+neighborhood into account, thus the diffusion part of a ReactionDiffusion system can be easily implemented; the reaction term is
+straight forward.
+© Nils Goerke, University Bonn, 5/2026 85
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Cellular automata can be seen as discretized versions of ReactionDiffusion systems.
+The rule of a cellular automaton takes the state of the direct
+neighborhood into account, thus the diffusion part of a ReactionDiffusion system can be easily implemented; the reaction term is
+straight forward.
+0 1 0 1 1 0 1 0 90D
+© Nils Goerke, University Bonn, 5/2026 86
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+Vcc
+GND
+Reaction
+© Nils Goerke, University Bonn, 5/2026 87
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Vcc
+GND
+Reaction
+Diffusion Diffusion
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+© Nils Goerke, University Bonn, 5/2026 88
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Vcc
+GND
+Reaction
+Diffusion Diffusion
+Reaction Reaction
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+© Nils Goerke, University Bonn, 5/2026 89
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+Diffusion Diffusion
+Reaction
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+© Nils Goerke, University Bonn, 5/2026 90
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+© Nils Goerke, University Bonn, 5/2026 91
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+© Nils Goerke, University Bonn, 5/2026 92
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+A real implementation of an Activator-Inhibitor Reaction-Diffusion
+system is a field (1 or 2-dim) of nonlinear electrical oscillators.
+© Nils Goerke, University Bonn, 5/2026 93
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+128 oscillators are
+connected to a onedimensional field.
+© Nils Goerke, University Bonn, 5/2026 94
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+Spatial structures
+emerge as a result of
+coupling.
+128 oscillators are
+connected to a onedimensional field.
+© Nils Goerke, University Bonn, 5/2026 95
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+Spatial structures emerge as a result of coupling.
+© Nils Goerke, University Bonn, 5/2026 96
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction-Diffusion System
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/ElNw-de.html
+Spatial structures emerge as a result of coupling.
+© Nils Goerke, University Bonn, 5/2026 97
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction – Diffusion System
+Formation of a hexagonal pattern from noisy initial conditions in
+the two-component reaction-diffusion system of Fitzhugh–
+Nagumo type:
+https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system
+© Nils Goerke, University Bonn, 5/2026 98
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Reaction – Diffusion System
+Other patterns in the two-component reaction-diffusion system
+of Fitzhugh–Nagumo type:
+https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system
+© Nils Goerke, University Bonn, 5/2026 99
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Belousov-Zhabotinsky-Reaction
+http://www.scholarpedia.org/article/Belousov-Zhabotinsky_reaction
+Example for an Activator-Inhibitor Reaction-Diffusion System from
+chemistry.
+The Belousov-Zhabotinsky
+reaction yields a spatio-temporal
+moving pattern.
+© Nils Goerke, University Bonn, 5/2026 100
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Belousov-Zhabotinsky-Reaction
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/BZ-Reaktion-de.tml
+© Nils Goerke, University Bonn, 5/2026 101
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Patterns in Mixtures of Granulated Material
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/Streifen_im_Salz-Mohn-Gemisch-de.html
+A mixture of granulated material with
+different density consisting of Salt
+(white) and Poppy Seed (black) can
+establish a spatial structure.
+© Nils Goerke, University Bonn, 5/2026 102
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Patterns in Mixtures of Granulated Material
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/Streifen_im_Salz-Mohn-Gemisch-de.html
+A mixture of granulated material with
+different density consisting of Salt
+(white) and Poppy Seed (black) can
+establish a spatial structure.
+© Nils Goerke, University Bonn, 5/2026 103
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Patterns in Mixtures of Granulated Material
+http://www.uni-muenster.de/Physik.AP/Purwins/DE/Streifen_im_Salz-Mohn-Gemisch-de.html
+A mixture of granulated material with
+different density consisting of Salt
+(white) and Poppy Seed (black) can
+establish a spatial structure.
+The nonlinear combination of
+different densities, the movement and
+the friction causes the effect.
+© Nils Goerke, University Bonn, 5/2026 104
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+Growth patterns of plants are often determined by activator-inhibitor
+reaction-diffusion systems.
+© Nils Goerke, University Bonn, 5/2026 105
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+Growth patterns of plants are often determined by activator-inhibitor
+reaction-diffusion systems.
+© Nils Goerke, University Bonn, 5/2026 106
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+The growing plant produces resources (activator)
+© Nils Goerke, University Bonn, 5/2026 107
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+As soon as enough resources (activator) are available,
+a leaf is growing in that position.
+© Nils Goerke, University Bonn, 5/2026 108
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+With the plant growing, the concentration of activator and inhibitor is
+decaying.
+Inhibitor distribution
+Activator distribution 
+© Nils Goerke, University Bonn, 5/2026 109
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+After a while, enough resources are available again to produce a
+new leaf.
+Inhibitor distribution
+Activator distribution 
+© Nils Goerke, University Bonn, 5/2026 110
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+But the inhibitor is still present; thus the position of the next leaf will
+be a far away from the fist one.
+Inhibitor distribution
+Activator distribution 
+© Nils Goerke, University Bonn, 5/2026 111
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+Again, the growing leaf will produce inhibitor.
+Inhibitor distribution
+Activator distribution 
+© Nils Goerke, University Bonn, 5/2026 112
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+The next leaf to grow is influenced by the inhibitor of both existing
+leaves, leading to a position in between.
+© Nils Goerke, University Bonn, 5/2026 113
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+The next leaf to grow is influenced by the inhibitor of all the existing
+leaves, leading to a positions in between.
+1
+2
+3
+4
+© Nils Goerke, University Bonn, 5/2026 114
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+After a while, the angle between subsequent leafs has become
+almost the Golden Angle of 137.51° .
+1
+2
+3
+4
+5
+6
+7
+© Nils Goerke, University Bonn, 5/2026 115
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+Growth patterns of plants are often determined by activator-inhibitor
+reaction-diffusion systems.
+http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibnat.html#leavesperturn
+© Nils Goerke, University Bonn, 5/2026 116
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Growth Patterns
+Growth patterns of plants are often determined by activator-inhibitor
+reaction-diffusion systems.
+http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibnat.html#leavesperturn
+© Nils Goerke, University Bonn, 5/2026 117
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 118
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 119
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 120
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 121
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 122
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+From Ron Knott's web pages on Mathematics, Fibonacci Numbers and Nature , 9.6.2009
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+The number of spirals that can be found in either direction are
+typically consecutive Fibonacci numbers.
+© Nils Goerke, University Bonn, 5/2026 123
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 124
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 125
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 126
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/fibnat.html#pinecones
+© Nils Goerke, University Bonn, 5/2026 127
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+© Nils Goerke, University Bonn, 5/2026 128
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Fibonacci Spirals in Plant Morphogenesis
+© Nils Goerke, University Bonn, 5/2026 129
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Some structures that can be found in natural systems and in
+mathematical systems show a fascinating property.
+The overall structure repeats itself:
+A fragment of the overall system looks like the total system itself.
+This fascinating property is called:
+Self Similarity
+© Nils Goerke, University Bonn, 5/2026 130
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 131
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 132
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 133
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Lindenmayer Systems: Examples
+From:http://www.biologie.uni-hamburg.de/b-online/e28_3/lsys.html
+F → F[-F]F[+F][F]
+© Nils Goerke, University Bonn, 5/2026 134
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 135
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 136
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 137
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+- Plant Morphogenesis
+- Lindenmayer Systems
+- Cellular Automata
+- Nonlinear Dynamical Systems
+Deterministic Chaos
+- Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 138
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity
+Self Similarity can be found in:
+Plant Morphogenesis
+Lindenmayer Systems
+Cellular Automata
+Nonlinear Dynamical Systems
+Deterministic Chaos
+Iterated Functions
+© Nils Goerke, University Bonn, 5/2026 139
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity in Plant Morphogenesis
+Brassica oleracea (Romanescu)
+© Biopix.dk: N Sloth
+© Nils Goerke, University Bonn, 5/2026 140
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity in Plant Morphogenesis
+Brassica oleracea (Romanescu)
+© Biopix.dk: N Sloth
+© Nils Goerke, University Bonn, 5/2026 141
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Self Similarity in Plant Morphogenesis
+Brassica oleracea (Romanescu)
+© Biopix.dk: N Sloth
+© Nils Goerke, University Bonn, 5/2026 142
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Pattern Formation
+Iterated functions
+Linear and exponential growth
+Fibonacci sequence
+Logistic growth
+Predator-prey system
+Lotka-Volterra equations
+Activator-inhibitor equations
+Reaction-diffusion systems
+Plant morphogenesis, phylotaxis
+Golden section, Golden angle
+Self similarity
+© Nils Goerke, University Bonn, 5/2026 143
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Cellular Automata ( )
+Langton's Ant
+Langton's Loop
+Self Organizing Criticality (SOC)
+Lindenmayer systems
+Iterated functions
+Differential equations
+Population dynamics
+Pattern Formation
+© Nils Goerke, University Bonn, 5/2026 144
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Some important dates
+Fri 1.5.26 : 1
+st May, Public Holiday
+Thu 14.5.26 : Ascension Day , no lectures, no exercises, …
+Wed 20.5.26: Dies Academicus , special talks, no regular teaching
+Sun 24.5. - 25.5.26 : Pentecost, Whitsun, Pfingsten, Public holiday
+Tue 26.5.26 – Fri 29.5.26 : Excursion week, no lectures, exercises, …
+Thu 4.6.26 : Feast of Corpus Christi, no lectures, exercises, ...
+© Nils Goerke, University Bonn, 5/2026 145
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Examples for Pattern Formation in
+Biological Systems
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 5/2026 146
+Artificial Life [MA-INF 4201], 05, Pattern Formation, Mon 11.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Examples for Pattern Formation in
+Biological Systems
+Thank you for your kind attention

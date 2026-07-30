@@ -1,0 +1,1294 @@
+© Nils Goerke, University Bonn, 5/2026 1
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Self Organized Criticality, SOC
+ Ant Algorithms
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2
+© Nils Goerke, University Bonn, 5/2026 2
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Topics
+Self Organized Criticality, SOC
+Ant Algorithms
+© Nils Goerke, University Bonn, 5/2026 3
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Overview: SOC
+What is Self Organized Criticality?
+Motivation
+Power law , Scaling law
+Examples of SOC systems
+Forest Fire Model
+Sandpile model
+Land slides
+Earthquakes
+Zipf's Law
+Lotka’s Law
+Size Distributions of Cities
+© Nils Goerke, University Bonn, 5/2026 4
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+Within the scientific literature Self Organizing Criticality is
+sometimes denoted as:
+Self Organization to Criticality
+Self-Organized Criticality
+© Nils Goerke, University Bonn, 5/2026 5
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+Within the scientific literature Self Organizing Criticality is
+sometimes denoted as:
+Self Organization to Criticality
+Self-Organized Criticality
+Examples for SOC systems have been reported from:
+Statistical Physics
+Nonlinear dynamical systems,
+Theory of Self Organization
+Economics
+Systems biology
+Bio-Inspired computational intelligence
+Artificial Life
+© Nils Goerke, University Bonn, 5/2026 6
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+Self Organizing Criticality (SOC) is a special property that
+can be observed in some dynamical systems.
+These systems show the interesting (and somehow strange)
+behavior, to be most of the time in a critical situation or state. 
+© Nils Goerke, University Bonn, 5/2026 7
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+Self Organizing Criticality (SOC) is a special property that
+can be observed in some dynamical systems.
+These systems show the interesting (and somehow strange)
+behavior, to be most of the time in a critical situation or state.
+A situation is called critical, if a large or substantial change
+within the system is about to occur.
+If an event happens, the event is changing the situation of the
+system in a non-reversible, drastic way.
+Sometimes the change can be called dramatic. 
+© Nils Goerke, University Bonn, 5/2026 8
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+Self Organizing Criticality (SOC) is a special property that
+can be observed in some dynamical systems.
+These systems show the interesting (and somehow strange)
+behavior, to be most of the time in a critical situation or state.
+In other words, since these systems are in a critical state,
+these systems are typically close to a catastrophe.
+A situation is called critical, if a large or substantial change
+within the system is about to occur.
+If an event happens, the event is changing the situation of the
+system in a non-reversible, drastic way.
+Sometimes the change can be called dramatic. 
+© Nils Goerke, University Bonn, 5/2026 9
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The dynamics of systems that can show Self Organizing
+Criticality (SOC) generates events.
+© Nils Goerke, University Bonn, 5/2026 10
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The dynamics of systems that can show Self Organizing
+Criticality (SOC) generates events.
+
+An event is a discrete, finite change of the system state, with a
+well defined starting and a well defined ending.
+© Nils Goerke, University Bonn, 5/2026 11
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The dynamics of systems that can show Self Organizing
+Criticality (SOC) generates events.
+
+An event is a discrete, finite change of the system state, with a
+well defined starting and a well defined ending.
+Common examples of events are:
+earthquakes, landslides, traffic jams, groups of cars in traffic
+flow, occurrences of keywords in text, ... 
+© Nils Goerke, University Bonn, 5/2026 12
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The dynamics of systems that can show Self Organizing
+Criticality (SOC) generates events.
+
+An event is a discrete, finite change of the system state, with a
+well defined starting and a well defined ending.
+Common examples of events are:
+earthquakes, landslides, traffic jams, groups of cars in traffic
+flow, occurrences of keywords in text, ...
+Events occur from time to time, and occur with different
+strength. The strength or size of an event is denoted by s, and
+the number of events is denoted by N.
+© Nils Goerke, University Bonn, 5/2026 13
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+© Nils Goerke, University Bonn, 5/2026 14
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The dynamics of systems that can show Self Organizing
+Criticality (SOC) generates events.
+
+An event is a discrete, finite change of the system state, with a
+well defined starting and a well defined ending.
+Common examples of events are:
+earthquakes, landslides, traffic jams, groups of cars in traffic
+flow, occurrences of keywords in text, ...
+Events occur from time to time, and occur with different
+strength. The strength or size of an event is denoted by s, and
+the number of events is denoted by N.
+SOC systems show an interesting relation between s and N.
+© Nils Goerke, University Bonn, 5/2026 15
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+The following question might give you an idea:
+© Nils Goerke, University Bonn, 5/2026 16
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+The following question might give you an idea:
+How large is a typical earthquake?
+© Nils Goerke, University Bonn, 5/2026 17
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Motivation:
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+The following question might give you an idea:
+How large is a typical earthquake?
+There are a lot of small earthquakes,
+some with medium strength,
+a few large,
+and rare extreme ones.
+© Nils Goerke, University Bonn, 5/2026 18
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Scaling Law
+A function f(x) is denoted to obey a scaling law, or is denoted
+scaling invariant if it shows the following property when
+scaling the argument x from x → λx:
+ f(λx) ~ f(x)
+ 
+© Nils Goerke, University Bonn, 5/2026 19
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Scaling Law
+A function f(x) is denoted to obey a scaling law, or is denoted
+scaling invariant if it shows the following property when
+scaling the argument x from x → λx:
+ f(λx) ~ f(x)
+ f(λx) = C(λ)f(x)
+Where the scaling factor C(λ) does not depend on x. 
+© Nils Goerke, University Bonn, 5/2026 20
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Scaling Law
+A function f(x) is denoted to obey a scaling law, or is denoted
+scaling invariant if it shows the following property when
+scaling the argument x from x → λx:
+ f(λx) ~ f(x)
+ f(λx) = C(λ)f(x)
+Where the scaling factor C(λ) does not depend on x.
+ f(λx) = λ
+n
+f(x)
+In principle C(λ) can be any function,
+but is often just an integer n. 
+© Nils Goerke, University Bonn, 5/2026 21
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+© Nils Goerke, University Bonn, 5/2026 22
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+Size distribution:
+How does the number of events N(s)
+depend on the size s of the event? 
+© Nils Goerke, University Bonn, 5/2026 23
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+Size distribution:
+How does the number of events N(s)
+depend on the size s of the event?
+N(s) ~ 1 / s
+b
+© Nils Goerke, University Bonn, 5/2026 24
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+Size distribution:
+How does the number of events N(s)
+depend on the size s of the event?
+N(s) ~ 1 / s
+b
+log(N(s)) ~ -b log(s)
+© Nils Goerke, University Bonn, 5/2026 25
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The relation between the strength s of an event and the
+frequency, or number of events N of SOC systems show a
+behavior that obeys a power law or a scaling law.
+Size distribution:
+How does the number of events N(s)
+depend on the size s of the event?
+N(s) ~ 1 / s
+b
+log(N(s)) ~ -b log(s)
+This is a linear decreasing dependency of the number of events
+with the strength; both in logarithmic scale. 
+© Nils Goerke, University Bonn, 5/2026 26
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+The size distribution graph shows the characteristic, linear
+decreasing curve, setting the number of events N(s) in relation
+to the size s of the event in a logarithmic plot.
+N(s) ~ 1 / s
+b
+log(N(s))
+log(s)
+log(N(s)) ~ -b log(s)
+Within a reasonable limit for s and N,
+the graph is a decreasing line.
+© Nils Goerke, University Bonn, 5/2026 27
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+Other aspects that are known to show a power law or a
+scaling law behavior:
+© Nils Goerke, University Bonn, 5/2026 28
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+Other aspects that are known to show a power law or a
+scaling law behavior:
+Temporal distribution:
+Number of events N depend on the time t between events,
+The Inter-event-interval distribution
+N(t) ~ 1 / t
+g
+© Nils Goerke, University Bonn, 5/2026 29
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Power Laws & Scaling Laws
+Other aspects that are known to show a power law or a
+scaling law behavior:
+Frequency distribution, density distribution
+Power spectrum P(f) depends on the frequency f of the signal.
+P(f) ~ 1 / f
+a
+Temporal distribution:
+Number of events N depend on the time t between events,
+The Inter-event-interval distribution
+N(t) ~ 1 / t
+g
+© Nils Goerke, University Bonn, 5/2026 30
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Examples of SOC Systems
+Forest fire model (K. Chen, P. Bak, M. H. Jensen: 1990
+ B. Drossel, F. Schwabl: 1992)
+Sandpile model (P. Bak, C. Tang, K. Wiesenfeld: 1987)
+Land slides (Y. Fuii: 1969)
+Percolation Theory (S. Broadbent, J. Hammersley, 1957)
+Earthquakes (B. Gutenberg, C.F. Richter, 1949, 1954)
+Zipf's Law (G.K. Zipf: 1935)
+Lotka's Law (A.J. Lotka: 1926)
+Auerbach’s Detection (F. Auerbach, 1913)
+© Nils Goerke, University Bonn, 5/2026 31
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+SOC example: Forest-Fire Model
+Forest-Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+F
+T
+A empty / Ashes
+Tree
+burning tree / Fire
+f
+p
+q
+von Neumann
+Drossel, B. and Schwabl, F. (1992)
+"Self-organized critical forest-fire model."
+Phys. Rev. Lett. 69, 1629–1632.
+Chen, K., Bak, P. and Jensen, M. H. (1990),
+"A deterministic critical forest-fire model.
+Phys. Lett. A 149, 207–210.
+Fire turns into ashes
+Spontaneous growth
+Spontaneous fire
+Induced fire: a tree burns if
+at least one neighbor burns
+Induced growth:
+a tree grows if at least one
+neighbor is a tree 
+© Nils Goerke, University Bonn, 5/2026 32
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Forest-Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+f
+p
+q
+The behavior of the complete system is determined by
+the underlying mircro-behavior of the cells.
+The control parameters are:
+p rate of spontaneous growth
+f rate of spontaneous fire
+q rate of induced growth
+A setting of q=0 (no induced growth) is a good setting to
+start from.
+Interesting (fractal) behavior arises when f << p
+(e.g. p/f = 100).
+SOC example: Forest-Fire Model
+© Nils Goerke, University Bonn, 5/2026 33
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+p
+f
+q
+Forest-Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+SOC example: Forest-Fire Model
+© Nils Goerke, University Bonn, 5/2026 34
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A simple model that shows the effects of self organizing criticality is the
+Sandpile Model, proposed by Per Bak, Chao Tang and Kurt Wiesenfeld in
+1987. They showed that such dynamical systems evolve naturally into a
+critical state through a self-organizational process.
+© Nils Goerke, University Bonn, 5/2026 35
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A simple model that shows the effects of self organizing criticality is the
+Sandpile Model, proposed by Per Bak, Chao Tang and Kurt Wiesenfeld in
+1987. They showed that such dynamical systems evolve naturally into a
+critical state through a self-organizational process.
+The system consists of a regular lattice with sites that can contain “grains of
+sand”. The amount of grains is considered as the height h(x) in position x.
+© Nils Goerke, University Bonn, 5/2026 36
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A simple model that shows the effects of self organizing criticality is the
+Sandpile Model, proposed by Per Bak, Chao Tang and Kurt Wiesenfeld in
+1987. They showed that such dynamical systems evolve naturally into a
+critical state through a self-organizational process.
+The system consists of a regular lattice with sites that can contain “grains of
+sand”. The amount of grains is considered as the height h(x) in position x.
+First, a particle is added to a random site: h(x) += 1.
+Second, after the addition, the difference between the height of adjacent
+sites determine if the grain of sand stays there, or if the configuration is
+instable h(x) – h(x+1) >= C and the grain tumbles aside.
+© Nils Goerke, University Bonn, 5/2026 37
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A simple model that shows the effects of self organizing criticality is the
+Sandpile Model, proposed by Per Bak, Chao Tang and Kurt Wiesenfeld in
+1987. They showed that such dynamical systems evolve naturally into a
+critical state through a self-organizational process.
+The system consists of a regular lattice with sites that can contain “grains of
+sand”. The amount of grains is considered as the height h(x) in position x.
+First, a particle is added to a random site: h(x) += 1.
+Second, after the addition, the difference between the height of adjacent
+sites determine if the grain of sand stays there, or if the configuration is
+instable h(x) – h(x+1) >= C and the grain tumbles aside.
+In case the grain of sand is moving it can cause the other site to become
+instable as well, making other grains to move, and so on (avalanche).
+After a while the system gains a stable configuration and the next grain of
+sand can be positioned randomly. 
+© Nils Goerke, University Bonn, 5/2026 38
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 9 10 8 6 5 5 5 4 4 3 2 1 1 t=0
+© Nils Goerke, University Bonn, 5/2026 39
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 9 10 8 6 6 5 5 4 4 3 2 1 1
+A grain of sand is positioned
+at a random location x
+t=1
+10 9 10 8 6 5 5 5 4 4 3 2 1 1 t=0
+10 9 10 8 6 6 5 5 4 4 3 2 1 1
+t=1
+© Nils Goerke, University Bonn, 5/2026 40
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 9 10 8 6 6 5 5 4 4 3 2 1 1 t=1
+The new situation is stable.
+© Nils Goerke, University Bonn, 5/2026 41
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 9 11 8 6 6 5 5 4 4 3 2 1 1
+Again a new grain of sand
+is positioned at a random
+location x
+t=2
+© Nils Goerke, University Bonn, 5/2026 42
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 9 12 8 6 6 5 5 4 4 3 2 1 1
+This time the pile is instable,
+since h(x) > h(x+1) + 2
+The grains tumble aside:
+h(x) -= 2
+h(x-1) += 1
+h(x+1) += 1
+t=2
+© Nils Goerke, University Bonn, 5/2026 43
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 10 9 9 6 6 5 5 4 4 3 2 1 1
+After the movement,
+still a part of the pile is instable,
+and grains will continue moving.
+t=3
+© Nils Goerke, University Bonn, 5/2026 44
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+h(x) number, amount of sand in position x
+h(x) 10 10 9 8 7 6 5 5 4 4 3 2 1 1
+After the movement,
+still a part of the pile is instable,
+and grains will continue moving,
+until a stable situation is
+reached again.
+t=4
+© Nils Goerke, University Bonn, 5/2026 45
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A unit of sand is added at a random position x:
+h(x) → h(x) + 1
+h(j) → h(j) for all positions j ≠ x
+When the height difference h(x) – h(x+1) becomes higher than
+a fixed critical value C=3, the sand moves to the adjacent fields:
+h(x) → h(x) − 2
+h(x+1) → h(x+1) + 1
+h(x-1) → h(x-1) + 1
+Sandpile model in one dimension
+© Nils Goerke, University Bonn, 5/2026 46
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+A unit of sand is added at a random position x:
+h(x) → h(x) + 1
+z(x) → z(x) + 1
+z(x-1) → z(x-1) – 1
+When the height difference z(x) = h(x) – h(x+1) becomes
+higher than a fixed critical value z(x) ≥ C = 3, the sand moves
+to both adjacent fields:
+z(x) → z(x) − 3
+z(x-1) → z(x-1) + 3
+z(x+1) → z(x+1) + 1
+Instead of looking at the height h(x) of the sandpile, it is easier to look at the
+differences between adjacent fields: z(x) = h(x) – h(x+1) 
+© Nils Goerke, University Bonn, 5/2026 47
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+The BTW sandpile model of Bak, Tang, Wiesenfeld was defined as a
+discrete, cellular based system with a rectangular grid and discrete states
+(almost like a cellular automaton).
+Each position (cell) is representing by the value z(x,y) the no of grains, or
+the slope within a sandpile in position (x,y).
+The critical value is set to C=4, which results for the stable state, that only
+values for the cells to be z(x,y) ∊ {0,1,2,3} are possible.
+Depending on the intermediate values z(x,y) part of the sandpile gets
+instable, collapses, and grains of sand are distributed to adjacent cells
+(r=1, von Neumann neighborhood).
+The distributed grains might cause further positions to get instable, they
+collapse, and again grains are distributed to other cells.
+At the boundary of the field, grains leave the playground; “they fall off”.
+© Nils Goerke, University Bonn, 5/2026 48
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Sandpile Model (P. Bak, C.Tang, K.Wiesenfeld: 1987)
+0: Initialize all positions, e.g. by random, or with a special pattern
+1: Choose a position (x,y) randomly
+2: Add a grain to the position (x,y), keep the rest unchanged
+z(x,y) ⇾ z(x,y) + 1
+z(a,b) ⇾ z(a,b) if (a,b) ≠ (x,y)
+3: Check if all positions are stable: IF ALL z(x,y) < 4 GOTO step 1
+4: Take one of the instable positions, and redistribute those grains:
+z(x,y) ⇾ z(x,y) – 4
+z(x-1,y) ⇾ z(x-1,y) + 1
+z(x+1,y) ⇾ z(x+1,y) + 1
+z(x,y-1) ⇾ z(x,y-1) + 1
+z(x,y+1) ⇾ z(x,y+1) + 1
+Grains at the edge of the grid, fall off the playground, and are lost.
+5: GOTO Step 3 (thus repeating Step 4 until all positions are stable)
+In part taken from “http://en.wikipedia.org/wiki/Abelian_sandpile_model”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 49
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0
+© Nils Goerke, University Bonn, 5/2026 50
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1
+© Nils Goerke, University Bonn, 5/2026 51
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 2
+3 1 3 2 1
+0 2 2 1 2
+4
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1 t=2
+© Nils Goerke, University Bonn, 5/2026 52
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 2
+3 1 3 2 1
+0 2 2 1 2
+4
+1 2 0 2 3
+2 3 3 3 0
+1 3 0 2
+3 1 2 1
+0 2 2 1 2
+4
+4
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1 t=2 t=3
+© Nils Goerke, University Bonn, 5/2026 53
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 2
+3 1 3 2 1
+0 2 2 1 2
+4
+1 2 0 2 3
+2 3 3 3 0
+1 3 0 2
+3 1 2 1
+0 2 2 1 2
+4
+4
+1 2 0 2 3
+2 3 3 4 0
+1 3 2 0 3
+3 2 0 4 1
+0 2 3 1 2
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1 t=2 t=3
+t=4
+Adapted from:
+P. Bak 96,
+How nature Works,
+The science of selforganized criticality
+© Nils Goerke, University Bonn, 5/2026 54
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 2
+3 1 3 2 1
+0 2 2 1 2
+4
+1 2 0 2 3
+2 3 3 3 0
+1 3 0 2
+3 1 2 1
+0 2 2 1 2
+4
+4
+1 2 0 2 3
+2 3 3 4 0
+1 3 2 0 3
+3 2 0 4 1
+0 2 3 1 2
+1 2 0 3 3
+2 3 4 0 1
+1 3 2 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 2 1 3 3
+2 4 0 1 1
+1 3 3 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 0 1 1 1
+1 4 3 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 1 1 1 1
+2 0 4 2 3
+3 3 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 1 2 1 1
+2 1 0 3 3
+3 3 2 0 2
+0 2 3 2 2
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1 t=2 t=3
+t=4 t=5 t=6 t=7
+t=8 t=9
+Adapted from:
+P. Bak 96,
+How nature Works,
+The science of selforganized criticality
+© Nils Goerke, University Bonn, 5/2026 55
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+1 2 0 2 3
+2 3 2 3 0
+1 2 3 2
+3 1 3 2 1
+0 2 2 1 2
+4
+1 2 0 2 3
+2 3 3 3 0
+1 3 0 2
+3 1 2 1
+0 2 2 1 2
+4
+4
+1 2 0 2 3
+2 3 3 4 0
+1 3 2 0 3
+3 2 0 4 1
+0 2 3 1 2
+1 2 0 3 3
+2 3 4 0 1
+1 3 2 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 2 1 3 3
+2 4 0 1 1
+1 3 3 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 0 1 1 1
+1 4 3 2 3
+3 2 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 1 1 1 1
+2 0 4 2 3
+3 3 1 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 1 2 1 1
+2 1 0 3 3
+3 3 2 0 2
+0 2 3 2 2
+1 3 1 3 3
+3 1 2 1 1
+2 1 0 3 3
+3 3 2 0 2
+0 2 3 2 2
+1 2 0 2 3
+2 2 2 3 0
+1 2 3 3 2
+3 1 3 2 1
+0 2 2 1 2
+t=0 t=1 t=2 t=3
+t=4 t=5 t=6 t=7
+t=8 t=9 Avalanche area
+Adapted from:
+P. Bak 96,
+How nature Works,
+The science of selforganized criticality
+© Nils Goerke, University Bonn, 5/2026 56
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Gutenberg-Richter Law (1949, 1954)
+In part taken from “http://en.wikipedia.org/wiki/Gutenberg-Richter_law”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 57
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Gutenberg-Richter Law (1949, 1954)
+The Gutenberg Richter law yields a statistical dependency of the number N
+of earthquakes with at least magnitude M, and the magnitude M (strength in
+logarithmic scale),
+b is a constant value, which is typically close to b=1.0
+Values of 0.5 < b < 1.5 are reasonable in special environments.
+In part taken from “http://en.wikipedia.org/wiki/Gutenberg-Richter_law”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 58
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Gutenberg-Richter Law (1949, 1954)
+The Gutenberg Richter law yields a statistical dependency of the number N
+of earthquakes with at least magnitude M, and the magnitude M (strength in
+logarithmic scale),
+b is a constant value, which is typically close to b=1.0
+Values of 0.5 < b < 1.5 are reasonable in special environments.
+N = 10a-bM
+log10(N) = a - bM
+In part taken from “http://en.wikipedia.org/wiki/Gutenberg-Richter_law”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 59
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Zipf's Law (1935, 1949)
+Zipf's law is a statistical observation relating the frequency of a word in a
+data set to the rank of this word in the sorted list.
+In part taken from “http://en.wikipedia.org/wiki/Zipf's_law”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 60
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Zipf's Law (1935, 1949)
+Zipf's law is a statistical observation relating the frequency of a word in a
+data set to the rank of this word in the sorted list.
+Zipf's law states that given some corpus of natural language utterances, the
+frequency f(r) of any word is inversely proportional to its rank r in the
+frequency table.
+Thus the most frequent word will occur approximately twice as often as the
+second most frequent word, three times as often as the third most frequent
+word, etc.
+In part taken from “http://en.wikipedia.org/wiki/Zipf's_law”, 5/2013 
+© Nils Goerke, University Bonn, 5/2026 61
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Zipf's Law (1935, 1949)
+Zipf's law is a statistical observation relating the frequency of a word in a
+data set to the rank of this word in the sorted list.
+Zipf's law states that given some corpus of natural language utterances, the
+frequency f(r) of any word is inversely proportional to its rank r in the
+frequency table.
+Thus the most frequent word will occur approximately twice as often as the
+second most frequent word, three times as often as the third most frequent
+word, etc.
+In part taken from “http://en.wikipedia.org/wiki/Zipf's_law”, 5/2013
+f (r) ∼
+1
+r
+γ
+f (r , γ ,N) =
+1
+r
+γ∗
+1
+∑
+n=1
+N
+1/ n
+γ
+N: no of words, size of corpus
+r: rank of word in sorted list
+g: characteristic exponent ,
+very often: g ≈ 1
+© Nils Goerke, University Bonn, 5/2026 62
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Zipf-Mandelbrot Law (1935, 1949)
+An extension to Zipf's law is the Zipf-Mandelbrot Law, with a slightly
+modified relation between word rank and word frequency.
+The special case that b=0 yields exactly Zipf’s Law.
+f (r) ∼
+1
+(r+b)
+γ
+Typical values that have been found are:
+ƔZ
+=1.01 and ƔZM=1.06, bZM=1.17 (British National Corpus BNC, 1997)
+ƔZ
+=0.97 and ƔZM=1.03, bZM=2.29 (DeReKo German Reference Kopus, 2011)
+© Nils Goerke, University Bonn, 5/2026 63
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Lotka's Law (1926)
+Lotka's law is in principle the same observation as Zipf’s Law. It describes
+the frequency of publications by authors in any given field. As the number of
+articles published increases, authors producing that many publications
+become less frequent.
+It states, that the number Y(x) of authors making x contributions in a given
+period, is a fraction of the number making a single contribution, following the
+formula:
+where a ≈ 2.0 an approximate inverse-square law, where the number of
+authors publishing a certain number of articles is a fixed ratio to the number
+of authors publishing a single article.
+There are 1/4 as many authors publishing 2 articles within a specified time
+period as there are single-publication authors,
+1/9 as many publishing 3 articles, 1/16 as many publishing 4 articles, etc.
+In part taken from “http://en.wikipedia.org/wiki/Lotka’s_law”, 5/2013
+Y (x)=
+C
+x
+a
+© Nils Goerke, University Bonn, 5/2026 64
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Auerbach’s Detection (1913), Pareto Distribution
+The relationship between the rank (by size) of a city, and the population is
+following the same power law as Zipf’s law.
+In 1913 Felix Auerbach discovered, that the rank of the cities, sorted by
+population size and the population of these cities is related to each other
+following a power law.
+This has been re-found later in 1953 and 1993 by other researchers.
+In fact, the same principle relation for continuous distributions has been
+published already in 1897 by Vilfredo Pareto.
+The Pareto distribution has colloquially become known and referred to as
+the Pareto principle, or the "80-20 rule".
+This rule states that,
+for example, 80% of the wealth of a society is held by 20% of its population,
+or that 80% of the information can be obtained by 20% of the sources.
+© Nils Goerke, University Bonn, 5/2026 65
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Auerbach’s Detection
+© Nils Goerke, University Bonn, 5/2026 66
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Examples of SOC Systems
+Forest fire model (K. Chen, P. Bak, M. H. Jensen: 1990
+ B. Drossel, F. Schwabl: 1992)
+Sandpile model (P. Bak, C. Tang, K. Wiesenfeld: 1987)
+Land slides (Y. Fuii: 1969)
+Percolation Theory (S. Broadbent, J. Hammersley, 1957)
+Earthquakes (B. Gutenberg, C.F. Richter, 1949, 1954)
+Zipf's Law (G.K. Zipf: 1935)
+Lotka's Law (A.J. Lotka: 1926)
+Auerbach’s Detection (F. Auerbach, 1913)
+© Nils Goerke, University Bonn, 5/2026 67
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Topics
+Self Organized Criticality, SOC
+Ant Algorithms
+© Nils Goerke, University Bonn, 5/2026 68
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches
+Evolutionary Computation (EC)
+Swarm Behavior / Swarm Intelligence
+- Ant Algorithm
+- Ant Colony Optimization
+- Particle Swarm Optimization
+Evolutionary Algorithms (EA)
+- Genetic Algorithms (GA)
+- Genetic Programming (GP)
+- Evolutionary Strategies (ES)
+- Evolutionary Programming (EP)
+© Nils Goerke, University Bonn, 5/2026 69
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms, Ant colony optimization
+Ant Algorithm
+The Ant Algorithm is a method for discrete optimization.
+It has been inspired by observations of typical behaviors of ants,
+and colonies of ants.
+Since the first publications on Ant Algorithms by M.Dorigo and
+colleagues in 1991 and 1992, a lot of further developments,
+enhancements and applications haven been proposed, and
+published.
+Meanwhile a community of researchers and research groups on
+Ant Algorithms has been established.
+M.Dorigo: Optimization, Learning and Natural Algorithms,
+PhDThesis, (in Italian) Dipartimento die Elletronica, Politechnico di Milano, IT, 1992
+M.Dorigo, V.Maniezzo, and A.Colorni. Positive feedback as a search strategy.
+Technical Report 91-016, Dipartimento die Elletronica, Politechnico di Milano, IT, 1991
+© Nils Goerke, University Bonn, 5/2026 70
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+“Ant Algorithms were inspired by the observation of real ant colonies.
+Ants are social insects, that is, insects that live in colonies and whose
+behavior is directed more to the survival of the colony as a whole than
+to that of a single individual component of the colony.
+Social insects have captured the attention of many scientists because
+of the high structuration level their colonies can achieve, especially
+when compared to the relative simplicity of the colony’s individuals.
+An important and interesting behavior of ant colonies is their foraging
+behavior, and, in particular, how ants can find shortest paths between
+food sources and their nest.”
+Text taken from: Marco Dorigo and Gianni Di Caro, Luca M. Gambardella:
+Ant Algorithms for Discrete Optimization Tech. Report IRIDIA / 98-10
+© Nils Goerke, University Bonn, 5/2026 71
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The main idea behind the Ant Algorithm is to have a system of
+cooperating agents, that can reach a solution in a better, or more
+efficient way, than a single individual would do.
+Essential ingredients of an Ant System (AS) are:
+Multiple cooperating agents,
+which are simple structured;
+they have a sensory system,
+a method to deposit pheromones (stigmergy),
+and a simple mechanism to decide where to go.
+The pheromones evaporate after a while.
+© Nils Goerke, University Bonn, 5/2026 72
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants are leaving the nest N searching for food.
+They leave the nest heading into arbitrary directions. 
+© Nils Goerke, University Bonn, 5/2026 73
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants are leaving the nest N searching for food.
+They leave the nest heading into arbitrary directions.
+During their journey they will deposit pheromones along their
+pathway. 
+© Nils Goerke, University Bonn, 5/2026 74
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+A nest, some ants, and a pile of food.
+A nest of ants.
+Some food. 
+© Nils Goerke, University Bonn, 5/2026 75
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The ants are leaving the nest ... 
+© Nils Goerke, University Bonn, 5/2026 76
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The ants are leaving the nest …
+… heading into arbitrary directions. 
+© Nils Goerke, University Bonn, 5/2026 77
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The ants are leaving the nest …
+… heading into arbitrary directions.
+They drop pheromones along the trail. 
+© Nils Goerke, University Bonn, 5/2026 78
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The ants are leaving the nest …
+… heading into arbitrary directions.
+They drop pheromones along the trail. 
+© Nils Goerke, University Bonn, 5/2026 79
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+By chance, one of the ants has reached the source of food.
+© Nils Goerke, University Bonn, 5/2026 80
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+By chance, one of the ants has reached the source of food.
+While the other ants are still searching
+the winner will return to the nest. 
+© Nils Goerke, University Bonn, 5/2026 81
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+By chance, one of the ants has reached the source of food.
+While the other ants are still searching
+the winner will return to the nest,
+and increase the pheromone
+ concentration on the
+successful trail. 
+© Nils Goerke, University Bonn, 5/2026 82
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+The pheromone concentration on the successful path will rise,
+while more and more ants are traveling along this trail.
+The other pheromone trails
+will decay rather soon.
+© Nils Goerke, University Bonn, 5/2026 83
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Ants are leaving the nest N searching for food.
+They leave the nest heading into arbitrary directions.
+During their journey they will deposit pheromones along their
+pathway.
+Eventually one will reach an area where food is located.
+There, it will get some food, and will then travel back to the nest.
+The ant is following it's own pheromone trail, and will thus
+(almost) take the same route back.
+Even during the return travel, the ant will drop some pheromone,
+thus increasing the concentration of pheromones along the path.
+After reaching the nest, the pheromone trail will guide this ant,
+and other ants to the food area.
+© Nils Goerke, University Bonn, 5/2026 84
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Since the pheromones will evaporate over time, and the trail that has
+reached a food source first, will be taken twice (forth and back), and
+thus have a higher pheromone concentration compared to the trails
+of the other ants.
+The ants can sense the pheromone, and they base their movement
+on the pheromone concentration.
+The higher the pheromone concentration is,
+the more likely an ant will take the respective path,
+or instead will follow an arbitrary route (almost random).
+Other ants will base their journey on the pheromone concentration.
+Thus, the most successful path will get a higher probability to be
+chosen, more ants will take this path, and will further increase the
+pheromone concentration (positive feedback, autocatalytic
+mechanism).
+© Nils Goerke, University Bonn, 5/2026 85
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants, that do not have any prior pheromone trail, are just
+performing random movements.
+Random movements are a method to find a path ;
+although this is slow and inefficient, it can be shown that there is
+a chance for even finding the optimal path.
+© Nils Goerke, University Bonn, 5/2026 86
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants, that do not have any prior pheromone trail, are just
+performing random movements.
+Random movements are a method to find a path ;
+although this is slow and inefficient, it can be shown that there is
+a chance for even finding the optimal path.
+Ants, that follow a pheromone trail are using the knowledge that
+has been acquired before.
+The more successful a path has been before, the more likely it
+will be taken. Those trails are local minima of the underlying
+optimization problem. 
+© Nils Goerke, University Bonn, 5/2026 87
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants, that do not have any prior pheromone trail, are just
+performing random movements.
+Random movements are a method to find a path ;
+although this is slow and inefficient, it can be shown that there is
+a chance for even finding the optimal path.
+Ants, that follow a pheromone trail are using the knowledge that
+has been acquired before.
+The more successful a path has been before, the more likely it
+will be taken. Those trails are local minima of the underlying
+optimization problem.
+The process of time dependent evaporation is tricky:
+ - it enforces faster, and thereby shorter routes,
+ - it can react on dynamic changes of the environment,
+ exhausted source of food, changing path length, ...
+ - virtual reset of unused trails.
+© Nils Goerke, University Bonn, 5/2026 88
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithm
+Ants, that do not have any prior pheromone trail, are just
+performing random movements: Exploration.
+Random movements are a method to find a path ;
+although this is slow and inefficient, it can be shown that there is
+a chance for even finding the optimal path.
+Ants, that follow a pheromone trail are using the knowledge that
+has been acquired before: Exploitation.
+The more successful a path has been before, the more likely it
+will be taken. Those trails are local minima of the underlying
+optimization problem.
+The process of time dependent evaporation is tricky:
+ - it enforces faster, and thereby shorter routes,
+ - it can react on dynamic changes of the environment,
+ exhausted source of food, changing path length, ...
+ - virtual reset of unused trails.
+© Nils Goerke, University Bonn, 5/2026 89
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+Just make the ants travel along a graph, where the starting point
+(nest) and the goal (food) are two special nodes, the other nodes
+are connected by edges representing the allowed routes to travel.
+Within each discrete time step an ant can travel one edge, the
+pheromones are disposed on the edges reciprocal to the length of
+the edge.
+Evaporation of the pheromones, is implemented by an
+exponential decay.
+The pheromone dependent decision is implemented using a
+softmax, or a Boltzmann distribution.
+© Nils Goerke, University Bonn, 5/2026 90
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+N F
+© Nils Goerke, University Bonn, 5/2026 91
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+N F
+© Nils Goerke, University Bonn, 5/2026 92
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+N F
+© Nils Goerke, University Bonn, 5/2026 93
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+N F
+© Nils Goerke, University Bonn, 5/2026 94
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Transposing the ant algorithm, from real valued trails, to a
+discrete world is straight forward.
+N F
+© Nils Goerke, University Bonn, 5/2026 95
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+© Nils Goerke, University Bonn, 5/2026 96
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+Ant Colony System, ACS:
+Ant Colony Optimization, ACO:
+AntNet:
+© Nils Goerke, University Bonn, 5/2026 97
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+The pheromone update is only performed after the journey of an
+ant has been completed (e.g. nest → food → nest).
+Ant Colony System, ACS:
+Ant Colony Optimization, ACO:
+AntNet:
+© Nils Goerke, University Bonn, 5/2026 98
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+The pheromone update is only performed after the journey of an
+ant has been completed (e.g. nest → food → nest).
+Ant Colony System, ACS:
+Like AS, but the ant decision is a greedy decision, and, only the
+best ant will generate a pheromone trail.
+Ant Colony Optimization, ACO:
+AntNet:
+© Nils Goerke, University Bonn, 5/2026 99
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+The pheromone update is only performed after the journey of an
+ant has been completed (e.g. nest → food → nest).
+Ant Colony System, ACS:
+Like AS, but the ant decision is a greedy decision, and, only the
+best ant will generate a pheromone trail.
+Ant Colony Optimization, ACO:
+Meta-heuristics comprising AS, and ACS methods, but with
+further options to change decision and pheromone dropping.
+AntNet:
+© Nils Goerke, University Bonn, 5/2026 100
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+The pheromone update is only performed after the journey of an
+ant has been completed (e.g. nest → food → nest).
+Ant Colony System, ACS:
+Like AS, but the ant decision is a greedy decision, and, only the
+best ant will generate a pheromone trail.
+Ant Colony Optimization, ACO:
+Meta-heuristics comprising AS, and ACS methods, but with
+further options to change decision and pheromone dropping.
+AntNet:
+An application of ACO for finding an adequate network-routing.
+© Nils Goerke, University Bonn, 5/2026 101
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Ant Algorithms
+Beside the original Ant Algorithm, a set of variants have been
+proposed. They differ in the way, the pheromone trail is updated,
+and how the ants decide.
+Ant System, AS:
+The pheromone update is only performed after the journey of an
+ant has been completed (e.g. nest → food → nest).
+Ant Colony System, ACS:
+Like AS, but the ant decision is a greedy decision, and, only the
+best ant will generate a pheromone trail.
+Ant Colony Optimization, ACO:
+Meta-heuristics comprising AS, and ACS methods, but with
+further options to change decision and pheromone dropping.
+AntNet: (G.Di Caro, M.Dorigo, (1998), http://arxiv.org/pdf/1105.5449)
+An application of ACO for finding an adequate network-routing.
+(AntNet: Distributed Stigmergetic Control for Communications Networks) 
+© Nils Goerke, University Bonn, 5/2026 102
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Topics
+Self Organized Criticality, SOC
+Ant Algorithms
+© Nils Goerke, University Bonn, 5/2026 103
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Some important dates
+Fri 1.5.26 : 1
+st May, Public Holiday
+Thu 14.5.26 : Ascension Day , no lectures, no exercises, …
+Wed 20.5.26: Dies Academicus , special talks, no regular teaching
+Sun 24.5. - 25.5.26 : Pentecost, Whitsun, Pfingsten, Public holiday
+Tue 26.5.26 – Fri 29.5.26 : Excursion week, no lectures, exercises, …
+Thu 4.6.26 : Feast of Corpus Christi, no lectures, exercises, ...
+© Nils Goerke, University Bonn, 5/2026 104
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Self Organized Criticality, SOC
+ Ant Algorithms
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2
+© Nils Goerke, University Bonn, 5/2026 105
+Artificial Life [MA-INF 4201], 06, SOC, Ant-Algorithm Mon 18.5.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Self Organized Criticality, SOC
+ Ant Algorithms
+Thank you for your patience

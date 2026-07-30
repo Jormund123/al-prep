@@ -1,0 +1,369 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet02}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+
+\section*{Assignment 11}
+\begin{problem}
+How long would it take to print all $Z$ possible rules for a 1-dimensional CA for the case $k = 4$ and $r = 1$ if you can manage to print 100 rules per second? To answer this task set up a formula for the number $Z = Z (r, k)$ of possible rules as a function of the neighborhood radius $r$ and the number of states $k$.
+\end{problem}
+
+\begin{answer} % Sebastian
+The size of the neighborhood is
+\begin{align*}
+    n
+    &= 2r+1 \\
+    &= 2\cdot 1 + 1 \\
+    &= 3
+\end{align*}
+The number of permutations of the neighborhood is
+\begin{align*}
+    k^n
+    &= 4^3 \\
+    &= 64
+\end{align*}
+Each permutation can map to any state. Thus, the total number of possible rules is
+\begin{align*}
+    Z(r, k) &= k^{(k^n)} = k^{(k^{(2r+1)})} \\
+    Z(1, 4) &= k^{64} \\
+    &= 4^{64} \\
+    &= 340282366920938463463374607431768211456
+\end{align*}
+Assuming we can print 100 rules per second it would take
+\begin{align*}
+    \frac{Z(r, k)}{100}\sec 
+    &= 3402823669209384634633746074317682114\sec + 560\text{\,ms} \\
+    &= 56713727820156410577229101238628035\text{\,min} + 14\sec + 560\text{\,ms} \\
+    &= 945228797002606842953818353977133\text{\,hr} + 55\text{\,min} + 14\sec + 560\text{\,ms} \\
+    &= 39384533208441951789742431415713\text{\,d} + 21\text{\,hr} + 55\text{\,min} + 14\sec + 560\text{\,ms} \\
+    &= 107\,902\,830\,708\,060\,141\,889\,705\,291\,549\text{\,y} + 328\text{\,d} + 21\text{\,hr} + 55\text{\,min} + 14\sec + 560\text{\,ms} \\
+\end{align*}
+\small(assuming 24 hours a days, 365 days a year)
+\end{answer}
+
+\section*{Assignment 12}
+\begin{problem}
+Prove or disprove the following sentence for 1-dim, $k=2$, cellular Automata: \\
+\textit{All totalistic rules are legal, because they are symmetric and have a silent state.}
+\end{problem}
+
+\begin{answer} % Sebastian
+This statement is false. Consider the case $r=0$ and the rule 1:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c||c}
+        $a_i(t)$ & $a_i(t+1)$ & sum \\\hline\hline
+        0 & 1 & 0 \\
+        1 & 0 & 1\\
+    \end{tabular}
+\end{table}
+As can easily be seen in the table, all the rows with the same sum yield the same next state. Thus the rule is totalistic. However, the silent state does not map to 0, thus it does fulfill the silent state property and consequently cannot be a legal rule. \\
+\textit{(This holds for any $r$ and rule 1. I chose $r=0$ for readability.}
+\end{answer}
+
+\section*{Assignment 13}
+\begin{problem}
+Find and name a simulation tool for 1-dimensional cellular automata, that is operating under Unix/Linux, or Android, or iOS, or Windows, or one that is operating from a web browser. \\
+Give the detailed web address, and write a personal comment about the simulation tool.
+\end{problem}
+
+\begin{answer}
+\\
+\textbf{Tool name:} Elementary Cellular Automaton Simulator by Devin Acker
+
+\textbf{Web address:} \url{https://devinacker.github.io/celldemo/}
+
+\textbf{Personal comment:} This is a lightweight browser simulator that does exactly what you need without unnecessary complexity. You can select preset rules (Rule 30, 90, 110, 184) or define your own 8-entry transition table by clicking outputs. The interface clearly links the rule table to the resulting pattern: the 8 neighborhood configurations are shown at the top, you set outputs, and immediately see the evolution below. You can also choose different starting conditions like a single cell, random, or custom. It removes distractions and helps you focus on how simple local rules create global behavior. You can quickly switch rules and visually compare how different lookup tables produce patterns ranging from uniform decay to fractals to apparent chaos.
+
+\end{answer}
+
+\section*{Assignment 14}
+\begin{problem}
+A rule of a Cellular Automaton can be visualized as a table. \\
+Depict the tables for the ($d=1, r=1, k=2$) rules defined by the following (decimal) Wolfram Numbers, and classify for each rule if it is \textit{legal, symmetric, totalistic, or peripheral}: \\
+\begin{align*}
+    (0,\ 17,\ 42,\ 51,\ 110,\ 165,\ 204,\ 243)
+\end{align*}
+Your solution shall show, how the Wolfram numbers and the table are connected.
+\end{problem}
+
+\begin{answer} % Sebastian
+The Wolfram number and the table of a rule can be determined from another. The binary of the wolfram number corresponds to the mapping of a neighborhood to the entries of the binary. We can interpret any neighborhood as a binary $N_2\in\{0,1\}^3$ itself. Given some binary rule number $R_2\in\{0,1\}^8=\{0,1\}^{k^{2r+1}}$ the rule corresponding to a mapping $m(\cdot)$ of any neighborhood is given by the following formula:
+\begin{align*}
+    R_2
+    &= \sum_{N_2\in\{0,1\}^3} m(2^{N_2})
+\end{align*}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $0000\,0000_2$ \\
+                $\downarrow$ \\
+                $0_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 0 $\Longrightarrow$ totalistic, peripheral, and legal (and therefore also symmetric and silent)}
+    \label{tab:rule0}
+\end{table} % 0
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $0001\,0001_2$ \\
+                $\downarrow$ \\
+                $17_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 17 $\Longrightarrow$ no rule properties hold}
+    \label{tab:rule17}
+\end{table} % 17
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $0010\,1010_2$ \\
+                $\downarrow$ \\
+                $42_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 42 $\Longrightarrow$ silent}
+    \label{tab:rule42}
+\end{table} % 42
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $0011\,0011_2$ \\
+                $\downarrow$ \\
+                $51_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 51 $\Longrightarrow$ symmetric}
+    \label{tab:rule51}
+\end{table} % 51
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $0110\,1110_2$ \\
+                $\downarrow$ \\
+                $110_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 110 $\Longrightarrow$ silent}
+    \label{tab:rule110}
+\end{table} % 110
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        1 & 0 & 1 & 0 & 0 & 1 & 0 & 1 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $1010\,0101_2$ \\
+                $\downarrow$ \\
+                $165_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 165 $\Longrightarrow$ peripheral, symmetric}
+    \label{tab:rule165}
+\end{table} % 165
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $1100\,1100_2$ \\
+                $\downarrow$ \\
+                $204_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 204 $\Longrightarrow$ legal (and therefore also symmetric and silent)}
+    \label{tab:rule204}
+\end{table} % 204
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        $a_{i-1}(t)\ a_i(t)\ a_{i+1}(t)$ &
+        111 & 110 & 101 & 100 & 011 & 010 & 001 & 000 \\\hline
+        $a_i(t+1)$ &
+        1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 \\\hline\hline
+        Rule &
+        \multicolumn{8}{c|}{
+            \makecell{
+                $1111\,0011_2$ \\
+                $\downarrow$ \\
+                $243_{10}$
+            }
+        } \\\hline
+    \end{tabular}
+    \caption{Rule 243 $\Longrightarrow$ no rule properties hold}
+    \label{tab:rule243}
+\end{table} % 243
+\end{answer}
+
+\section*{Assignment 15}
+\begin{problem}
+Please write down formulas that calculate the number $Z$ of possible rules for a 1-dimensional CA with respect to the neighborhood radius $r$ and the number of states $k$ for the case of: \\
+\begin{enumerate}
+    \item[a)] all possible rules $Z=$
+    \item[b)] rules that are peripheral $Z_p=$
+    \item[c)] rules that are totalistic $Z_t=$
+    \item[d)] rules that have a silent state $Z_s=$
+\end{enumerate}
+\end{problem}
+
+\begin{answer} % Sebastian
+\begin{align*}
+    Z
+    &= k^{(k^{2r+1})} \\
+    Z_p
+    &= k^{(k^{2r})} \\
+    Z_t
+    &= k^{2r+2} \\
+    Z_s
+    &= k^{(k^{2r+1}-1)}
+\end{align*}
+\end{answer}
+
+\section*{Assignment 16}
+\begin{problem}
+Imagine you would have to explain the 4 behaviours of CAs (Wolfram's classification) to someone who has not listened to the Artificial Life lecture and no experience in cellular automata. \\
+Name these 4 behaviours of CAs (Wolfram's classification) and describe their characteristics in your own words (maximum two sentences each).
+\end{problem}
+
+\begin{answer} % Sebastian
+\begin{itemize}
+    \item[\textbf{Class I:}] \textbf{Homogeneous} The state converges to the same value for all cells. (In the lecture specifically to 0, or the silent state)
+    \item[\textbf{Class II:}] \textbf{Periodic} All states end up in a repeating loop.
+    \item[\textbf{Class III:}] \textbf{Chaotic} The states seem random and unpredictable.
+    \item[\textbf{Class IV:}] \textbf{Complex, Patterns, \textit{"Self Organization"}} The states appear to follow conceivable patterns. (Even though they always follow a pattern according to the given rule.) 
+\end{itemize}
+\end{answer}
+
+\end{document}

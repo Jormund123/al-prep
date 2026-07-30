@@ -1,0 +1,1311 @@
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+1
+Artificial Life
+Summer 2026
+Master Computer Science [MA-INF 4201]
+Mon 14 c.t. – 15:45, HSZ, HS-2
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Agenda for Monday 13.4.26
+ Welcome Message
+ A: Some Organizational Issues
+ B: Introduction, Natural Life - Artificial Life
+ C: Langton’s Ant
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+2
+Artificial Life
+Summer 2026
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HSZ, HS-2
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+A: Some Organizational Issues
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+3
+Modalities MA-INF 4201, Artificial Life SS26
+The module Artificial Life in summer 26 teaching period will
+be operated in presence in HS-2, HSZ
+I will be available by 14:00, HS-2
+I will start with the slides at 14:15.
+The slides will be provided before the lecture on eCampus.
+The assignments will be handed out after the lecture and will
+have to be handed in one week later, before 14:00.
+The exercises will be operated in presence.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+4
+Assignments:
+There will be 12 mandatory weekly assignment sheets with
+paper and pencil and programming assignments.
+Work on the assignments in 3 or 4 person working groups.
+We believe, that practicing to explain the assignments during
+the exercises is helpful to comprehend the content.
+They are operated in a Monday -- Monday cycle:
+distributed on eCampus after the lecture
+to be handed in by uploading a pdf file in eCampus
+before 14:00 o’clock, Mondays.
+The first assignment sheet is published today (13.4.26)
+it is due in one week, on Mon 20.4.26 before 14:00.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+5
+Assignments:
+- weekly assignments (12 in total),
+ - paper & pencil assignments (12*15=180)
+ - programming assignments (total of 50 points)
+ - thus a total of: 12*15 + 50 = 180 + 50 = 230
+- work in 3- or 4-person groups
+ members have to be in the same exercise group
+ - hand in the solutions via eCampus page,
+ before 14:00, the start of the lecture.
+ - the eCampus system will establish a strict deadline
+To be admitted to the exam you need:
+ - >50% => 115 points minimum in the assignments
+ - two presentations of your solutions in the exercises 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+6
+Exercise Groups:
+The exercises are designed to help you to comprehend the
+content of the Artificial Life lecture.
+The tutors will give you feedback for your assignments,
+and will answer questions regarded to the lecture.
+The exercise groups will be operated in presence
+Room 0.011.
+We have arranged 6 time-slots and the room for this.
+Please prepare for the exercises;
+use the opportunity to ask questions;
+prepare to get a fruitful discussion.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+7
+Exercise Groups:
+At the moment we have organized 6 exercise groups,
+A: Wed 12 – 14
+B: Wed 14 – 16
+C: Thu 12 – 14
+D: Thu 14 – 16
+E: Fri 8:30 – 10
+F: Fri 10 – 12
+The distribution to the respective groups is done via the
+tutorial assignment system TVS, until: Fri 17.4.26, 23:00.
+https://puma.cs.uni-bonn.de
+Password: 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+8
+Exercise Groups distribution:
+After the TVS has assigned you to one of the 6 groups please
+register on the eCampus page of the lecture
+only in that very group you have been assigned to.
+It will be possible from Saturday 18.4.26.
+Hand in your solution
+only in that very group you have been assigned to.
+For those who are late, or have not been assigned to a group,
+there will be an extra slot where to hand in your solutions until
+we have cured the problem.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+9
+Examination:
+After the end of the lecture period there will be an
+examination for the module Artificial Life.
+To be admitted for the exam , you will need
+- a minimum of 115 points (50%) from the assignments,
+- a minimum of two presentations of your solutions in
+ the exercises.
+The examination will be in presence
+probably end of July.
+The resit exam will be probably beginning of September.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+10
+Artificial Life
+Summer 2026
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+B:
+Introduction
+Natural Life - Artificial Life 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+11
+Overview:
+• What is: Artificial Life ?
+• What is: Natural Life ?
+• At the border of natural Life
+• Systems of Artificial Life
+• Initiating a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+12
+Overview:
+• What is: Artificial Life ?
+• What is: Natural Life ?
+• At the border of natural Life
+• Systems of Artificial Life
+• Initiating a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+13
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+14
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+15
+What is: Artificial Life ?
+„“
+Johann Wolfgang von Goethe, 1832,
+Faust II, zweiter Akt Laboratorium
+Nach Paracelsus' Anleitung
+De generatione rerum naturalium
+(Über die Erzeugung der natürlichen Dinge).
+Following Paracelsus' recipe
+De generatione rerum naturalium
+(On the generation of natural things). 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+16
+„Es leuchtet! seht! - Nun läßt sich wirklich hoffen,
+Daß, wenn wir aus viel hundert Stoffen
+Durch Mischung - denn auf Mischung kommt es an -
+Den Menschenstoff gemächlich komponieren,
+In einen Kolben verlutieren
+Und ihn gehörig kohobieren,
+So ist das Werk im stillen abgetan.
+Es wird! die Masse regt sich klarer!
+Die überzeugung wahrer, wahrer:
+Was man an der Natur Geheimnisvolles pries,
+Das wagen wir verständig zu probieren,
+Und was sie sonst organisieren ließ,
+Das lassen wir kristallisieren.“
+Johann Wolfgang von Goethe, 1832,
+Faust II, zweiter Akt Laboratorium
+Nach Paracelsus' Anleitung
+De generatione rerum naturalium
+(Über die Erzeugung der natürlichen Dinge).
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+17
+„It flashes, see! Now truly we may hold
+That if from substances a hundredfold,
+Through mixture - for on mixture all dependsMan's substance gently be consolidated,
+In an alembic sealed and segregated,
+And properly be cohobated,
+In quiet and success the labour ends.
+'Twill be! The mass is working clearer,
+Conviction gathers, truer, nearer.
+What men as Nature's mysteries would hold,
+All that to test by reason we make bold,
+And what she once was wont to organize,
+That we bid now to crystallize.“
+Johann Wolfgang von Goethe, 1832,
+Faust II, zweiter Akt Laboratorium
+Translation George Madison Priest
+http://www.levity.com/alchemy/faust29.html
+Following Paracelsus' recipe
+De generatione rerum naturalium
+(On the generation of natural things).
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+18
+What is: Artificial Life ?
+Golem: 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+19
+What is: Artificial Life ?
+Golem:
+In Jewish folklore, a golem is an animated
+anthropomorphic being
+created entirely from inanimate matter.
+Depending on the version of the legend the
+rabbi of Prague constructed the Golem out of
+clay from the banks of the Vltava river, and
+brought it to life through rituals and Hebrew
+incantations.
+The existence of a golem is sometimes a
+mixed blessing. Golems are not intelligent:
+If commanded to perform a task, they will
+take the instructions perfectly literally.
+From: http://en.wikipedia.org/wiki/Golem
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+20
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+21
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+22
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+23
+What is: Artificial Life ?
+The Turk: a chess playing automaton was a famous (1769) chess playing
+machinery, build in 1769 by the Austrian-Hungarian constructor
+Wolfgang von Kempelen. 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+24
+What is: Artificial Life ?
+The Turk: a chess playing automaton was a famous (1769) chess playing
+machinery, build in 1769 by the Austrian-Hungarian constructor
+Wolfgang von Kempelen. Later on it has been revealed to be a hoax;
+a human was sitting in the lower part of the machinery controlling the
+Turks movements.
+From:http://de.wikipedia.org/wiki/Wolfgang_von_Kempelen
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+25
+What is: Artificial Life ?
+Mechanical Duck (1735) by
+Jacques de Vaucanson.
+Special focus was layed on
+the design of the digestive
+part of the duck.
+From: http://en.wikipedia.org/wiki/Digesting_Duck
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+26
+What is: Artificial Life ?
+The Writer:
+Automaton of
+Jaquet-Droz
+1738
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+27
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+28
+What is: Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+29
+What is: Artificial Life ?
+What is: Natural Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+30
+What is: Artificial Life ?
+What is: Natural Life ?
+What is: Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+31
+Overview:
+• What is: Artificial Life ?
+• What is: Natural Life ?
+• At the border of natural Life
+• Systems of Artificial Life
+• Starting a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+32
+Definitions of Life or Living :
+At the moment no commonly accepted definition what life or
+living is, can be found in literature.
+But you can find a variety of attempts to define life.
+Most definitions try to define live or living based on sets of
+criteria that have to be fulfilled.
+The individual sets are different with respect to size, quality
+and kind.
+Some are missing relevant aspects, some are
+contradictory to each other.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+33
+Definitions of Life or Living :
+On the other hand, it is noticeable that most people will
+respond without any hesitation to the question
+Is a specific item XXXX living or not ?
+There seems to be a wide consensus among most people in
+this very question, although a concise definition reveals to
+be still difficult.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+34
+Definitions of Life or Living :
+The property or quality that distinguishes living organisms
+from dead organisms and inanimate matter, manifested in
+functions such as
+- metabolism,
+- growth,
+- reproduction, and
+- response to stimuli or
+- adaptation to the environment originating from within the
+organism.
+From: http://www.thefreedictionary.com/life
+The Freedictionary
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+35
+Definitions of Life or Living :
+The molecular biologist Daniel E. Koshland Jr. was asked to write a
+special essay (Science, March 22, 2002) where he would set out to
+define life. In this article, he suggested that something could be
+considered “alive” if it meets the following 7 conditions.
+1) … a program to make copies of themselves ...
+2) Life adapts and evolves … through mutation and selection
+3) … complex, highly organized, have compartmentalized structures
+4) … ability to take energy from their environment ...
+5) … regeneration systems that replace parts of themselves ...
+6) … respond to environmental stimuli through feedback ...
+7) … numerous metabolic reactions ..separated from each other
+From: http://www.physicalgeography.net/fundamentals/9a.html
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+36
+Definitions of Life or Living :
+To qualify as a living thing, an organism must in one way or another meet each of those criteria.
+MOTION -- does it seem to move under its own power? Does it move
+with some discernible purpose? (Toward food, away from heat, etc)
+REPRODUCTION -- does it have some way of making more of itself,
+either through sexual reproduction or by budding or fissioning in
+some way?
+CONSUMPTION -- does it eat or drink? Does it take in nutrients
+in one way or another in order to survive, grow, and eventually
+multiply?
+GROWTH -- does the organism develop over time, increase in
+complexity, until it reaches a mature stage?
+STIMULUS RESPONSE -- does the organism respond to external
+stimuli, i.e. has a nervous system of some sort to detect
+external conditions?
+From: http://www.newton.dep.anl.gov/askasci/bio99/bio99171.htm 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+37
+Definitions of Life or Living :
+A definition of life (a living individual) in cybernetic terms is proposed. In this
+formulation, life (a living individual) is defined as a network of inferior
+negative feedbacks (regulatory mechanisms) subordinated to (being at service
+of) a superior positive feedback (potential of expansion). It is suggested that this
+definition is the minimal definition, necessary and sufficient, for life to be
+distinguished from inanimate phenomena and, as such, it describes the essence
+of life. Subsequently, a quantitative expression for the amount of the
+biologically relevant ("purposeful") information (as opposed to the amount of
+information in the thermodynamic sense) is proposed. This is followed by the
+application of the formulated approach to different phenomena of a dubious
+status existing presently on the Earth as well as to the process of origination of
+life on our planet.
+Cybernetic formulation of the definition of life
+Korzeniewski B. , J Theor Biol. 2001 Apr 7;209(3):275-86.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+38
+Definitions of Life or Living :
+There, the following definitions for life are found. Life is
+- the general condition that distinguishes organism from inorganic objects and dead
+ organisms, being manifested by growth through metabolism, a means of reproduction,
+ and internal regulation in response to the environment.
+- the animate existence or period of animate existence of an individual.
+- a corresponding state, existence, or principle of existence conceived of as belonging
+ to the soul.
+- the general or universal condition of human existence.
+- any specified period of animate existence.
+- the period of existence, activity, or effectiveness of something inanimate, as a
+ machine, lease, or play.
+- animation; liveliness; spirit: (example: The party was full of life).
+- the force that makes or keeps something alive; the vivifying or quickening principle.
+Adopted from Prof. Dr. R. Pfeifer, Dale Thomas, Lecture Artificial Life, Summer 2001
+http://www.ifi.uzh.ch/groups/ailab/teaching/AL01.html
+Random House Webster's Dictionary
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+39
+Definitions of Life or Living :
+Biology is the science of the living creatures, and of their
+biological properties, like shape, morhogenesis, structure ,...
+(further on it says:)
+Creatures consist of cells.
+The minimal creature is a monad, protozoon (Einzeller).
+Cells are build out of carbon based organic material.
+The German DTV Atlas zur Biologie says:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+40
+Definitions of Life or Living :
+Existence in space and time
+Reproduction
+Metabolism
+Phylogenetic development
+Ontogenetic development
+Growth
+Movement out of itself
+Reaction as a consequence to the environment
+Decay, death
+Storage of information about oneself
+Among others, here is one set of common criteria
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+41
+Overview:
+What is: Artificial Life ?
+What is: Natural Life ?
+At the border of natural Life
+Systems of Artificial Life
+Starting a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+42
+Natural Life: animals
+Bumble-bee
+From: http://commons.wikimedia.org/wiki/File:Bumblebee_2007-04-19.jpg From: http://de.wikipedia.org/wiki/Hummeln
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+43
+Natural Life: animals
+From: https://en.wikipedia.org/wiki/Swan
+By Diego Delso, CC BY-SA 3.0,
+https://commons.wikimedia.org/w/
+index.php?curid=18759800
+Mute Swan, Cygnus olor
+From:https://de.wikipedia.org/wiki/Schwäne
+Von EPei - Eigenes Werk Originaltext: selbst fotografiert, CC BY-SA 3.0 de, https://commons.wikimedia.org/w/index.php?curid=42095367
+Höckerschwan mit Brut (Mosel)
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+44
+Natural Life: animals
+From: https://de.wikipedia.org/wiki/Afrikanischer_Elefant
+Von Greg Willis from Denver, CO, usa - Mother and baby, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=24311978
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+45
+Natural Life: animals
+From: https://de.wikipedia.org/wiki/Afrikanischer_Elefant
+The author is nickandmel2006 on flickr -
+Übertragen aus en.wikipedia nach Commons., CC BY-SA 2.0,
+https://commons.wikimedia.org/w/index.php?curid=2281482
+From: https://de.wikipedia.org/wiki/Afrikanischer_Elefant
+Gorgo - Photo taken by author, Gemeinfrei, https://commons.wikimedia.org/w/index.php?curid=1422604
+Loxodonta Africana
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+46
+Panthera Tigris From: http://de.wikipedia.org/wiki/Tiger
+Natural Life: animals
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+47
+From: http://de.wikipedia.org/wiki/Seerose From: http://de.wikipedia.org/w/index.php?title=Datei:Michaelseiche
+_bei_Albertshausen,_3.jpg&filetimestamp=20070609201042
+Natural Life: plants
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+48
+Natural Life: plants
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+49
+Brassica oleracea (Romanescu) © Biopix.dk: N Sloth
+Natural Life: plants
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+50
+Brassica oleracea (Romanescu) © Biopix.dk: N Sloth
+Natural Life: plants
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+51
+From: http://de.wikipedia.org/wiki/Eukaryotenc
+Natural Life: animal (eucariyotic cell)
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+52
+Einzeller: Prokaryoten, Eurakyoten, Bazillen
+From: http://de.wikipedia.org/wiki/Eukaryoten
+Natural Life: animal (eucariyotic cell)
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+53
+From: http://de.wikipedia.org/wiki/Eukaryoten
+Natural Life: plant cell
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+54
+Sonnentierchen,
+heliozoan
+acathocystis turfacea
+From: http://de.wikipedia.org/wiki/Eukaryoten
+Natural Life: monad, protozoa
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+55
+Pantoffeltierchen,
+paramecium,
+paramecium aurelia
+From: http://de.wikipedia.org/wiki/Pflanzenzelle
+Natural Life: monad, protozoa
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+56
+Bacterium: The bacteria are a large group of unicellular, prokaryote, microorganisms.
+Microscope picture,
+Bacillus subtilis ( x1000)
+From: http://de.wikipedia.org/wiki/Pflanzenzelle
+Natural Life: bacterium, bacillus, germ
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+57
+Structure and contents of a typical Gram positive bacterial cell From: http://en.wikipedia.org/wiki/Bacterium
+Natural Life: bacterium
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+58
+Overview:
+What is: Artificial Life ?
+What is: Natural Life ?
+At the border of natural Life
+Systems of Artificial Life
+Starting a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+59
+At the border of natural life:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+60
+animals
+plants
+procaryotes
+bacteria
+virus
+???
+crystals
+artificial structures
+Artificial Life Systems
+At the border of natural life:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+61
+From: http://de.wikipedia.org/wiki/Viren
+At the border of natural life:
+Virus: A virus is a small infectious agent that can replicate only inside the living cells of other organisms.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+62
+From: https://www.helmholtz-hzi.de/wissen/wissensportal/coronaviren/ © CDC/Fred Murphy, Sylvia Whitfield (Public Domain)
+At the border of natural life:
+Virus: A virus is a small infectious agent that can replicate only inside the living cells of other organisms.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+63
+Structure Lamda-Phage Structue of viroids
+From: http://de.wikipedia.org/wiki/Viren
+Virus: A virus is a small infectious agent that can replicate only inside the living cells of other organisms.
+At the border of natural life:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+64
+Bluetongue virus microscope picture
+50nm
+Adenovirus, modelled
+From: http://de.wikipedia.org/wiki/Viren
+At the border of natural life:
+Virus: A virus is a small infectious agent that can replicate only inside the living cells of other organisms.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+65
+Crystals show a variety of well organised structures.
+Lockenförmiges Aggregat beim Chalkanthit Nadeliger Habitus beim Krokoit
+At the border of natural life:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+66
+Tafeliger Habitus beim Baryt Drahtförmiges Aggregat in silver
+At the border of natural life:
+Crystals show a variety of well organised structures.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+67
+Model of virus structure
+pyrite crystal
+From: http://de.wikipedia.org/wiki/Pyrit
+At the border of natural life:
+Crystals show a variety of well organised structures.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+68
+Geysir Strokkur in Island
+From: http://en.wikipedia.org/wiki/Strokkur
+Life at the border:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+69
+From: http://en.wikipedia.org/wiki/Black_smoker
+A black smoker or sea vent is a
+type of hydrothermal vent or
+underwater hot spring found on
+the ocean floor.
+Although life is very sparse at
+these depths, black smokers are
+the center of entire ecosystems.
+A species of photo-trophic
+bacterium has been found living
+near a black smoker off the coast
+of Mexico at a depth of 2,500 m
+(8,200 ft).
+Life at the border:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+70
+From: http://en.wikipedia.org/wiki/Black_smoker
+Life at the border:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+71
+Overview:
+What is: Artificial Life ?
+What is: Natural Life ?
+At the border of natural Life
+Systems of Artificial Life
+Starting a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+72
+Systems of Artificial Life
+Cellular Automata
+Conway`s Game of Life
+Langton`s Self-Replicating Loop
+Lindenmayer Systems
+Foundations of building structures, nonlinear dynamics
+Population dynamics
+Evolutionary Methods & Genetic Algorithms
+Self Organizing Criticality
+Braitenberg Vehicles
+Swarm behavior and swarm Intelligence
+Autonomous Robots
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+73
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+74
+Artificial Life is a rather exotic sub-topic in Computer Science
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+75
+Artificial Life is a rather exotic sub-topic in Computer Science
+with numerous relations to:
+Artificial-Intelligence,
+Computational-Intelligence,
+Bionics,
+Systems-Biology,
+Molecular-Biology,
+Philosophy.
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+76
+Artificial Life is a rather exotic sub-topic in Computer Science
+with numerous relations to:
+Artificial-Intelligence,
+Computational-Intelligence,
+Bionics,
+Systems-Biology,
+Molecular-Biology,
+Philosophy.
+The scientific subject Artificial Life became popular during the
+last two decades. The foundations of Artificial Life research
+are originating from the 50ies of the last century.
+The idea of (artificially) creating life is a lot older.
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+77
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+78
+The goal of Artificial Life research has nicely been phrased as:
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+79
+The goal of Artificial Life research has nicely been phrased as:
+Life made by man rather than by Nature
+What is Artificial Life ?
+[C. Langton, 1989]
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+80
+The goal of Artificial Life research has nicely been phrased as:
+Life made by man rather than by Nature
+Life as we know it
+Life as it could be
+Artificial Life is trying to perform the step
+from:
+to:
+[C. Langton, 1989]
+What is Artificial Life ?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+81
+Today, we distinguish between two variants of Artificial Life:
+Strong Artificial Life:
+Weak Artificial Life:
+Strong Artificial Life & Weak Artificial Life
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+82
+Today, we distinguish between two variants of Artificial Life:
+Strong Artificial Life:
+The goal of strong AL is to really create artificial lifeforms;
+to create life out of non living materials.
+Strong AL is mainly operating on a molecular basis.
+Weak Artificial Life:
+Strong Artificial Life & Weak Artificial Life
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+83
+Today, we distinguish between two variants of Artificial Life:
+Strong Artificial Life:
+The goal of strong AL is to really create artificial lifeforms;
+to create life out of non living materials.
+Strong AL is mainly operating on a molecular basis.
+Weak Artificial Life:
+The goal of weak AL is to identify properties, principles and
+circumstances for life. Rather than creating a living entity,
+weak AL simulates the conditions and the behavior of life.
+Most weak AL researchers are working with simulations.
+Strong Artificial Life & Weak Artificial Life
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+84
+Overview:
+What is: Artificial Life ?
+What is: Natural Life ?
+At the border of natural Life
+Systems of Artificial Life
+Starting a discussion
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+85
+Which one of the following systems is alive?
+influenza virus
+car
+English language
+latin
+river Rhine
+anthill
+ant
+drop of grease
+crystal
+dried pea
+table yeast
+lettuce
+DNA
+bacterium
+TV screen rock
+palm tree
+protozoa
+ living
+pin worm
+mule
+not-living
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+86
+Which one of the following systems is alive?
+influenza virus
+car
+English language
+latin
+river Rhine
+anthill
+ant
+drop of grease
+crystal
+dried pea
+table yeast
+lettuce
+DNA
+bacterium
+TV screen rock
+palm tree
+protozoa
+pin worm
+mule
+not-living living
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+87
+Which one of the following systems is alive?
+influenza virus
+car
+English language
+latin
+river Rhine
+anthill
+ant
+drop of grease
+crystal
+dried pea
+table yeast
+lettuce
+DNA
+bacterium
+TV screen rock
+palm tree
+protozoa
+pin worm
+mule
+not-living living
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+88
+Which one of the following systems is alive?
+influenza virus
+car
+English language
+latin
+river Rhine
+anthill
+ant
+drop of grease
+crystal
+dried pea
+table yeast
+lettuce
+DNA
+bacterium
+TV screen rock
+palm tree
+protozoa
+pin worm
+mule
+not-living living
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+89
+Which one of the following systems is alive?
+influenza virus
+car
+English language
+latin
+river Rhine
+anthill
+ant
+drop of grease
+crystal
+dried pea
+table yeast
+lettuce
+DNA
+bacterium
+TV screen rock
+palm tree
+protozoa
+pin worm
+mule
+not-living living
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+90
+Rethink the definition of alive ?
+Do we really need a strong definition of alive?
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+91
+Rethink the definition of alive ?
+Do we really need a strong definition of alive?
+Do we need a strict YES NO categorization? 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+92
+Rethink the definition of alive ?
+Do we really need a strong definition of alive?
+Do we need a strict YES NO categorization?
+Do we really have to classify everything into one of these
+two binary categories? 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+93
+Rethink the definition of alive ?
+At least, it should be allowed to think about.
+Do we really need a strong definition of alive?
+Do we need a strict YES NO categorization?
+Do we really have to classify everything into one of these
+two binary categories?
+ …. or might it be possible to have a somehow softer
+transition between living and not-living ? 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+94
+Artificial Life
+Summer 2026
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+C: Langton’s Ant 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+95
+Langton's Ant:
+Each cell of the 2-dimensional, rectangular grid has a binary
+state {O, I} or {black,white}.
+The ant has a spatial position (x,y) and a heading (NESW),
+the ant can move one cell (heading), can turn (+90° / -90°),
+and can change the state of the cell it is on (flip cell).
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+Micro behavior: scan – turn – flip – move 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+96
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+scan turn flip move
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+97
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+98
+scan turn flip move
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+Langton's Ant micro behavior:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+99
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+100
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+101
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+102
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+103
+scan turn flip move
+Langton's Ant micro behavior:
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+104
+Langton's Ant:
+t=0 t=1 t=2 t=3
+t=4 t=5 t=6 t=7
+t=8 t=9 t=10 t=11
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+105
+Langton's Ant:
+Although, the rule for Langton's Ant is simple,
+and the micro behavior is comprehensible in every step,
+the short term behavior is between hard and impossible to
+predict.
+The mid term behavior resists any attempt of prediction and is
+often described as chaotic (although not random at all).
+The only way to determine the state of the grid, and the ant
+after a given time t, is to run the simulation and monitor the
+changes.
+The long term behavior of Langton's Ant is sometimes leading
+to a surprising different kind of behavior.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+106
+Langton's Ant:
+The macroscopic behavior that can be observed when
+Langton's Ant is started on a uniform white grid undergoes
+three 3 phases:
+Phase 1: Symmetric growth
+Phase 2: Chaotic growth
+Phase 3: Highway 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+107
+From http://www.markuswelz.de/freeware/langton_ant.zip
+Phase 1: Symmetric growth
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+108
+Langton's Ant:
+The macroscopic behavior that can be observed when
+Langton's Ant is started on a uniform white grid undergoes
+three 3 phases:
+Phase 1: Symmetric growth
+growth, almost symmetric pattern
+up to step 420 (approx)
+Phase 2: Chaotic growth
+
+Phase 3: Highway 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+109
+From http://www.markuswelz.de/freeware/langton_ant.zip
+Phase 2: Chaotic growth 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+110
+From http://www.markuswelz.de/freeware/langton_ant.zip
+Phase 2: Chaotic growth 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+111
+Langton's Ant:
+The macroscopic behavior that can be observed when
+Langton's Ant is started on a uniform white grid undergoes
+three 3 phases:
+Phase 1: Symmetric growth
+growth, almost symmetric pattern
+up to step 420 (approx)
+Phase 2: Chaotic growth
+further growth, but no structure distinguishable,
+deterministic chaos from step 400 – 10000 (approx)
+Phase 3: Highway 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+112
+From http://www.markuswelz.de/freeware/langton_ant.zip
+Phase 3: Highway
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+113
+Langton's Ant:
+The macroscopic behavior that can be observed when
+Langton's Ant is started on a uniform white grid undergoes
+three phases:
+Phase 1: Symmetric growth
+growth, almost symmetric pattern
+up to step 420 (approx)
+Phase 2: Chaotic growth
+further growth, but no structure distinguishable,
+deterministic chaos from step 400 – 10000 (approx)
+Phase 3: Highway
+suddenly a highly structured, repetitive pattern is build
+by the Ant (Highway), the structure is persistent
+from step 10000 (approx), cycle time 104 steps.
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+114
+Langton's Ant extras:
+It has been shown (Gajardo, A.; A. Moreira, E. Goles, 2000)
+that the movement of one single of Langton's Ants can
+implement any Boolean function. 
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+115
+At a white cell,
+turn 90° right, flip the cell, move forward one step.
+At a black cell,
+turn 90° left, flip the cell, move forward one step.
+scan turn flip move
+Langton's Ant micro behavior:
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+116
+Langton's Ant extras:
+A simple extension to Langton's Ant is using more than two
+states for the cells e.g. k=3, {0,1,2}.
+In every move, the state is increased by one (cyclic).
+The rules can now be easily denominated by the direction
+the Ant is turning to, with respect to the very state:
+Langton's original Ant would then be RL.
+RLR LLRR RRLLLRLLLRRR
+From: http://en.wikipedia.org/wiki/Langton's_ant
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+117
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Agenda for Monday 13.4.26
+ A: Some Organizational Issues
+ B: Introduction, Natural Life - Artificial Life
+ C: Langton’s Ant
+© Nils Goerke, University of Bonn, 4/2026
+Artificial Life [MA-INF 4201] 01: Orga., Natural- & A-Life, Langton’s Ant, Mon April 13, 2026, Computer Science University of Bonn
+
+118
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Agenda for Monday 13.4.26
+ A: Some Organizational Issues
+ B: Introduction, Natural Life - Artificial Life
+ C: Langton’s Ant
+Thank you for your attention
+and please stay healthy and peaceful

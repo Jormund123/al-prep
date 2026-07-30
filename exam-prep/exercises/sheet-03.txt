@@ -1,0 +1,198 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet03}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+
+\section*{Assignment 17}
+\begin{problem}
+Take the 2 dimensional forest fire CA from the lecture with a low rate for sponatenous growth $p << 1.0$, with a large induced growth rate $q = 1.0$. Discuss the effect of the rate for spontaneous fire for very small, medium and large values with respect to $Z$ the number of trees.
+\end{problem}
+
+\begin{answer} % Sebastian
+\begin{itemize}
+    \item \textit{very Small values $f$} - It is likely that a forest, covering the entire grid, will grow. Once a single tree is set on fire the entire forest will burn down.
+    \item \textit{medium values $f$} - It is likely that a cluster of trees is set on fire, before it covers the entire grid. As the induced growth rate is $q=1.0$ the trees will grow as fast the the fire spreads. Thus the entire grid will burn down again.
+    \item \textit{large value $f$} - It is likely that a tree burns down immediately after it has spontaneously grown. Thus singular trees will sprout and burn immediately after. In the off-chance, that induced growth is triggered, the entire grid will burn down again as above.
+\end{itemize}
+\end{answer}
+
+\section*{Assignment 18}
+\begin{problem}
+Characterize the rule of Conway's Game of Life with respect to the following rule properties: \\
+silent state, totalistic, symmetric, peripheral, legal
+\end{problem}
+
+\begin{answer} % Sebastian
+The rule $23/3$ Conway's Game of Life has the following properties:
+\begin{itemize}
+    \item \textit{silent state} - The silent state $0^{3\times3}$ maps to 0.
+    \item \textit{symmetric} - As the rule only considers the sum over the neighbors and the neighborhood has a symmetric boundary around the center cell, the rule is symmetic.
+    \item \textit{peripheral} - The rule is peripheral by definition.
+    \item \textit{legal} - The rule is symmetric and preserves the silent state, thus it is legal.
+\end{itemize}
+The following properties do not apply:
+\begin{itemize}
+    \item \textit{totalistic} - While the rule is defined by the sum, it only takes neighbors into consideration. As the center cell is not taken into account the rule is not totalistic.
+\end{itemize}
+\end{answer}
+
+\section*{Assignment 19}
+\begin{problem}
+What has been proven by the development of Gosper's Glider Gun?
+\end{problem}
+
+\begin{answer} % Sebastian
+It is possible to initialize a grid, such that it is infinity expanding. That is, the area over all active cells does continually increase.
+\end{answer}
+
+\section*{Assignment 20}
+\begin{problem}
+What class, or kind of behaviour (Wolfram's classification) is the $r$-\textit{pentomino} showing? \\
+Support your answer with scientific arguments.
+\end{problem}
+
+\begin{answer} % Anand
+The $r$-pentomino exhibits \textbf{Class IV} behaviour in Wolfram's classification.
+
+\begin{enumerate}
+    \item \textbf{Long transient:} Despite consisting of only 5 cells, the $r$-pentomino takes 1103 generations to stabilize which is far too long for Class I/II, yet finite, ruling out Class III.
+    \item \textbf{Emergent localized structures:} During evolution it spontaneously emits six \textit{gliders}; coherent, propagating structures characteristic of Class IV and absent in Class III (where no persistent structures survive).
+    \item \textbf{Eventual stabilization:} After generation 1103 the pattern resolves into stable still lifes and period-2 oscillators (Class II objects), confirming the complexity is transient.
+    \item \textbf{Computational irreducibility:} The Game of Life is Turing complete. Wolfram identifies Class IV as the class at the boundary between order (Class II) and chaos (Class III) capable of supporting universal computation. The $r$-pentomino's evolution cannot be predicted without full simulation, exemplifying this irreducibility.
+\end{enumerate}
+
+It is not Class III because the aperiodic behaviour is temporary and structured (producing gliders, not noise), and the system eventually settles.
+\end{answer}
+
+\section*{Assignment 21}
+\begin{problem}
+Imagine an exam question asking to depict a 5-cell configuration for Conway's Game of Life CA, that has been produced by Gosper's Glider gun. \\
+How many correct configurations exist? \\
+Please support your answer by an explanation.
+\end{problem}
+
+\begin{answer} % Sebastian
+There are 16 different correct configurations (excluding weird edge cases, aka only taking the glider into consideration). Depending on the orientation of the gun the glider will fly into one of 4 different directions. For each direction the Glider can have 4 different states. Every other state is mirrored along the flight path. Thus further diagonally mirrored configurations are already covered. In total the amount of configurations amounts to $4\cdot 4=16$.
+\end{answer}
+
+\section*{Assignment 22}
+\begin{problem}
+Are there applications for cellular automata? \\
+Seek for one that has not been mentioned in the lecture, and explain the idea in 1 or two sentences. Provide a scientific acceptable reference to it.
+\end{problem}
+
+\begin{answer} % Anand
+A well-established application not listed in the lecture is fluid dynamics simulation via lattice gas automata. The idea is to model fluid particles as cells on a lattice that propagate and collide according to simple CA rules; when averaged over many cells, the macroscopic behaviour recovers the Navier-Stokes equations of fluid flow.\\
+\textbf{Reference:} Frisch, U., Hasslacher, B., \& Pomeau, Y. (1986). ``Lattice-Gas Automata for the Navier--Stokes Equation.'' \textit{Physical Review Letters}, 56(14), 1505--1508.
+\end{answer}
+
+\section*{Assignment 23}
+\begin{problem}
+What is the smallest possible configuration for Conway'S Game of Life (i.e., using the fewest number of living cells) that will completely die out in a single update? \\
+To make this question non-trivial, at least one cell must die from overcrowding (from having four or more neighbors).
+\end{problem}
+
+\begin{answer} % Sebastian
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sheet03-misc/E3A23_CAdeath.png}
+    \caption{Two 9-cell configurations that die out in one turn.}
+    \label{fig:E3A23_CAdeath}
+\end{figure}
+The smallest configuration I could come up with has 9 living cells, see figures in \ref{fig:E3A23_CAdeath}. 
+One cell has to die from overcrowding, thus we need at least one cell with at least 4 neighbors. There is no configuration of 5 living cells in a $3\times3$ grid that dies out in one turn. It can easily be seen that at least one of the neighbors would themselves have at least 2, but at the edges never 4 neighbors. Thus we need a wider grid. Adding a single neighbor to each of the 4 neighbors of a 5 cell configuration of a $3\times3$ grid centered in a $5\times5$ grid can be sufficient to eliminate the inner neighbors by overcrowding, while killing the new outer cells due to loneliness (One minute of silent state, please). 
+
+To show that there cannot be less than 9, we could brute-force over all finite configurations, but this was not the question.
+
+%To show that there cannot be less than 9, we have to show that there is no 6-cell or higher configuration for the inner $3\times3$ grid, and that we need at least 4 new living cells in the outer ring of the $5\times5$ grid.
+%\begin{itemize}
+%    \item "$3\times3$": Consider the outer ring of the $3\times3$ grid. With at least 5 living cells on this ring, %there must be at least one sequence of 3 consecutive living cells on the ring. TODO
+%    \item "$5\times5$": Consider the outer ring of the $5\times5$ grid. If there is a configuration using less than %4 living cells in the outer ring, we have to use a single living cell to overcrowd at least 2 living cells on the %$3\times3$ ring. TODO
+%\end{itemize}
+%(maybe show that the inner 4 neighbors cannot be in corners? then outer must be in range, thus 9)
+\end{answer}
+
+\section*{Assignment 24}
+\begin{problem}
+Discuss which criteria of \textit{living} are not fully met by Conway's Game of Life?
+\end{problem}
+
+\begin{answer} % Manfred
+Using the criteria from page 40 of first slide set the answer is:
+\begin{itemize}
+    \item \textbf{Existence in space and time}: CGoL lives in time, but only in virtual space. Therefore, not clear to answer. 
+    \item \textbf{Reproduction}: Fully met, see "Gemini" pattern.
+    \item \textbf{Metabolism}: the simulation machinery consumes energy and delivers heat, but the CGoL itself, living in virtual space, does not really consume anything.
+    \item \textbf{Phylogenetic development / Ontogenetic development / Storage of information about oneself}: Because CGoL is turing complete, all three criteria are met in the case it also holds for currently used (Neumann-based) AI computer/algorithms. So it is more a philosophical question.
+    \item \textbf{Growth}: referencing to "Glider Guns" it is fully met
+    \item \textbf{Movement out of itself}: virtually yes, in real space not met
+    \item \textbf{Reaction as a consequence to the environment}: fully met, reacts with(in) the given environment
+    \item \textbf{Decay, death}: fully met, pattern can destroy themselves over time.
+\end{itemize}
+\end{answer}
+
+\end{document}

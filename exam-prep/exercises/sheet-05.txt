@@ -1,0 +1,239 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet05}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section{Assignment 33}
+\begin{problem}
+    Suppose a netto growth of a population of $1.5\%$ per week. \\
+    How long will it take until this population has doubled its size? \\
+    Please derive a formula for the number of years necessary to reach the doubling.
+\end{problem}
+
+\begin{answer} % Sebastian
+    Given $1.5\%$ growth rate per week we get
+    \begin{align*}
+        2 &= (1 + 0.015)^w \\
+        \log_{1.015}2 &= w \log_{1.015}1.015 \\
+        w &= \log_{1.015}2 \\
+        &= \frac{\log_2{2}}{\log_2{1.015}} \\
+        &= \frac{1}{\log_2 1.015} \\
+        &\approx \frac{1}{0.02148} \\
+        &\approx 46.5555\ \text{weeks}
+    \end{align*}
+    Assuming 1 year has an average of $52.1428571$ weeks and a growth factor $g=1.5\%$ we can derive the general formula
+    \begin{align*}
+        y
+        &= \frac{1}{52.1428571\cdot\log_2 (1 + g)} \\
+        &= \frac{1}{52.1428571\cdot\log_2 1.015} \\
+        &\approx 0.8928
+    \end{align*}
+\end{answer}
+
+\section*{Assignment 34}
+\begin{problem}
+    What is a \textit{Golden Spiral}? \\
+    Please use your own words to explain it. Copying text from the internet is not sufficient.
+\end{problem}
+
+\begin{answer} % Sebastian
+    The golden spiral is a spiral, where rotating it by $+90^\circ$ and scaling it by a factor of $\varphi=\tfrac{1+\sqrt{5}}{2}$ results in the very same spiral. The spiral can be constructed by aligning different sized squares, where each squares side length is $\varphi$ of its predecessor. Two consecutive squares align at the outer edge in a spiraling formation. As the golden ratio has the unique property of $\frac{a+b}{a} = \frac{a}{b}$, namely preserving the ratio from $a+b, a$ to $a, b$, continuing to cover the two dimensional space $\mathbb{R}^2$ with squares will not leave any free space.
+\end{answer}
+
+\section*{Assignment 35}
+\begin{problem}
+    Prove or disprove the following sentence in a formal way: \\
+    \textit{The Fibonacci sequence is rising faster than the exponential function.}
+\end{problem}
+
+\begin{answer} % Sebastian
+    In Assignment 36 we show that the Fibonacci sequence approaches an increase of $\varphi=\tfrac{1+\sqrt{5}}{2}$ per iteration. This is already exponential. Thus we can compare the growth rates $\lim_{n\to\infty}\tfrac{\varphi^n}{e^n}$. As $e \approx 2.718 > 1.618 \approx \varphi$, it follows that $\lim_{n\to\infty}\tfrac{\varphi^n}{e^n}\to0$. Thus the Fibonacci sequence does \underline{not} rise faster than the exponential function.
+\end{answer}
+
+\section*{Assignment 36}
+\begin{problem}
+    Derive a formula to calculate the limit $\beta$ of the ratios of successive terms of the Fibonacci sequence analytically, and implement a few lines of code to check this limit experimentally.
+    \begin{align*}
+        \beta &= \lim_{n\to\infty}\frac{F_{n+1}}{F_n} & F_{n+2} &= F_n+F_{n+1} & F_0 &= 0,\ F_1 = 1
+    \end{align*}
+\end{problem}
+
+\begin{answer} % Sebastian
+    We have
+    \begin{align*}
+        \beta
+        &= \lim_{n\to\infty} \frac{F_{n+1}}{F_n} \\
+        &= \lim_{n\to\infty} \frac{F_n + F_{n-1}}{F_n} \\
+        &= \lim_{n\to\infty} 1 + \frac{F_{n-1}}{F_n} \\
+    \end{align*}
+    In the limit we get $\beta = \lim_{n\to\infty}\tfrac{F_{n+1}}{F_n}=\lim_{n\to\infty}\tfrac{F_n}{F_{n-1}}$, thus we can say $\tfrac{1}{\beta}=\lim_{n\to\infty}\tfrac{F_{n-1}}{F_n}$. Taking the above equation we get:
+    \begin{align*}
+        \beta
+        &= \lim_{n\to\infty} \frac{F_{n+1}}{F_n} \\
+        &= \lim_{n\to\infty} 1 + \frac{F_{n-1}}{F_n} \\
+        &= 1 + \lim_{n\to\infty} \frac{F_{n-1}}{F_n} \\
+        &= 1 + \frac{1}{\beta} \\
+        &= \frac{\beta + 1}{\beta} \\
+        &\Downarrow \\
+        \beta^2 &= \beta + 1 \\
+        &\Downarrow \\
+        0 &= \beta^2 - \beta - 1 + (0.25 - 0.25) \\
+        &= (\beta - 0.5)^2 - 1.25 \\
+        &\Downarrow \\
+        \beta &= \pm\sqrt{1.25} + 0.5 \\
+        &= \frac{1 \pm 2\sqrt{1.25}}{2} \\
+        &= \frac{1 \pm \sqrt{4}\sqrt{1.25}}{2} \\
+        &= \frac{1 \pm \sqrt{5}}{2} \\
+    \end{align*}
+    As all Fibonacci numbers are non-negative and $F_{n+1} = F_n+F_{n-1}$, the ratio of $\frac{F_{n+1}}{F_n}$ must be positive. Therefore we get
+    \begin{align*}
+     \beta &= \frac{1 + \sqrt{5}}{2}
+    \end{align*}
+    \vspace{1cm}
+    Doing an experimental analysis, we get the following graph for the first 50 steps.
+    \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.5\linewidth]{sheet05-misc/36.png}
+    \end{figure}
+\end{answer}
+
+\section*{Assignment 37}
+\begin{problem}
+    Derive a formula to determine the fixpoint $x^*$ depending on $a$ for the following iterated function (\textit{logistic map}): $x_{i+1} = a*x_i*(1-x_i)$. \\
+    For a fixpoint of an iterated function the value is no longer changing, thus $x_{i+1}^* = x_i^*$. \\
+    Draw a diagram for the fixpoint $x^*(a)$ as a function of $a$ with $0.0<a<4.0$.
+\end{problem}
+
+\begin{answer} % Sebastian
+    Assuming $*$ in the given equation is the multiplication operation, we get
+    \begin{align*}
+        x_i
+        &\stackrel{!}{=}x_{i+1} \\
+        &= a\cdot x_i\cdot(1-x_i) \\
+        &= ax_i - ax_i^2 \tag{$\Rightarrow x_i^{*(0)}=0$ is fix}\\
+        &\Updownarrow \\
+        1 &\stackrel{!}{=} a - ax_i \\
+        &\Updownarrow \\
+        \tfrac{1}{a} &\stackrel{!}{=} 1 - x_i \\
+        &\Updownarrow \\
+        x_i &= 1 - \tfrac{1}{a} \\
+        &= x_i^*
+    \end{align*}
+    The fixpoints are $x_i^{*(0)}=0, x_i^{*(1)}=1 - \tfrac{1}{a}$.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{sheet05-misc/37.png}
+        \caption{$x_0, x_1$ represent $x_i^{*(0)}, x_i^{*(1)}$ respectively.}
+    \end{figure}
+\end{answer}
+
+\section*{Assignment 38}
+\begin{problem}
+    Please determine the long-term behavior of the \textit{logistic map}: \\
+    \begin{align*}
+        x_{i+1} = a\cdot x_i\cdot (1-x_i)
+    \end{align*}
+    for $a=3.3, a=3.51$ and $a=3.75$ for the two starting conditions $x_{i=0}=0.228734167$ and $\hat{x}_{i=0}=0.228734168$. \\
+    Which class (Wolfram classification) of behavior is reached? \\
+    Draw at least one diagram that depicts the behavior.\\
+    \\
+    The development of the difference between the values $x_i$ and $\hat{x}_i$ is as well interesting, and helpful to understand the behavior.
+\end{problem}
+
+\begin{answer} % Sebastian
+    For $a=3.3$ and $a=3.51$ each, the sequence is self-stabilizing into a cyclic behavior, clearly visible in their difference figures. Therefore, Class \textit{II} is the best matching Wolfram classification.
+    Using $a=3.75$, both graph show instable behavior each, based on the first 50 iterations. But, taking a look at the difference graph show a growing difference between both, therefore, using a tiny difference in the start seed, lead into growing difference graphs. That indicates a Class \textit{III} Wolfram classification.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{sheet05-misc/38_raw.png}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{sheet05-misc/38_diff.png}
+    \end{figure}
+\end{answer}
+
+\section*{Assignment 39}
+\begin{problem}
+    Write down the Look-and-Say sequence up to step 6, starting with "2026".
+\end{problem}
+
+\begin{answer} % Sebastian
+    Assuming 2026 is the sequence at step 0:
+    \begin{align*}
+        20&26 \\ % 0
+        1210&1216 \\ % 1
+        11121110&11121116 \\ % 2
+        31123110&31123116 \\ % 3
+        132112132110&132112132116 \\ % 4
+        11131221121113122110&11131221121113122116 \\ % 5
+        311311222112311311222110&311311222112311311222116 % 6
+    \end{align*}
+\end{answer}
+
+
+
+\end{document}

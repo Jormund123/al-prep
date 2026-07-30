@@ -1,0 +1,56 @@
+Autonomous Intelligent Systems,
+Institute for Computer Science VI, University of Bonn
+Dr. N. Goerke
+Friedrich-Hirzebruch-Allee 8, 53115 Bonn, Tel: (0228) 73-4167
+E-Mail: goerke@ais.uni-bonn.de
+www.ais.uni-bonn.de
+Exercises for Artificial Life (MA-INF 4201), SS26
+Exercises sheet 12, till: Mon 13. July, 2026
+6.7.2026
+Assignment 79 (2 Points)
+Serach for, and describe, an application for Particle Swarm Optimization (PSO) Method.
+Assignment 80 (3 Points)
+Explain the task of the Rfunction in PSO velocity update.
+What is the purpose and how can/should it be implemented.
+Assignment 81 (2 Points)
+Describe which part of the PSO Algorithm is implementing the principle of stochastic opti-
+mization called exploration, and which part is implementing exploitation?
+Assignment 82 (3 Points)
+A group of particles has been defined for a PSO algorithm to be organized as a ring of K
+particles. The update for the velocities for each of these particles in the group shall only de-
+pend on the former velocity, their personals-best and on the best of the r = 1 neighborhood
+(as defined for 1-dim CAs).
+Derive the formula to update the velocity under these conditions.
+In addition, write down the formula using your favorite programming language.
+(Every programming language is elligible, as long as you can name it, and explain the syntax
+and the formula that you have used).
+Assignment 83 (2 Points)
+The subsumption architecture is a special kind of a hierarchical architecture. Describe the
+properties of the subsumption architecture in your own words. If appropropriate draw a
+diagram to support your explanations.
+Assignment 84 (3 Points)
+There are two mechanisms how the higher levels of the subsumption architecture influence
+the lower levels. Describe them and visualize them in two diagrams. Don’t forget to label
+and explain the values inside the circles.
+Programming Assignment: H (5 Points, due date Mon 13.7.2026)
+Write a Python programm that implements function-minimization using the Particle Swarm
+Optimization method (PSO).
+The function G(⃗
+w) to minimize depends on⃗
+w which is a 9 dimensional vector⃗
+w = (w0, w1, w2, . . . , w8)
+and on the logistic function f (z) = 1
+1+e−z .
+G(⃗
+w) = 0.0−f w6 + w7 ∗f (w0) + w8 ∗f (w3)
+2
++ 1.0−f w6 + w7 ∗f (w0 + w1) + w8 ∗f (w3 + w4)
+2
++ 1.0−f w6 + w7 ∗f (w0 + w2) + w8 ∗f (w3 + w5)
+2
++ 0.0−f w6 + w7 ∗f (w0 + w1 + w2) + w8 ∗f (w3 + w4 + w5)
+2
+What is the minimal value for G that can be reached?
+Write down the vector⃗
+w∗ that has reached the minimal value for G.
+Depict the development of G during the minimization process.

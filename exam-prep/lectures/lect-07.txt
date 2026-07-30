@@ -1,0 +1,1902 @@
+© Nils Goerke, University Bonn, 1/2026 1
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Learning from Nature
+Evolutionary Algorithms
+Optimization Inspired by Biology
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2
+© Nils Goerke, University Bonn, 1/2026 2
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Some important dates
+Fri 1.5.26 : 1
+st May, Public Holiday
+Thu 14.5.26 : Ascension Day , no lectures, no exercises, …
+Wed 20.5.26: Dies Academicus , special talks, no regular teaching
+Sun 24.5. - 25.5.26 : Pentecost, Whitsun, Pfingsten, Public holiday
+Tue 26.5.26 – Fri 29.5.26 : Excursion week, no lectures, exercises, …
+Thu 4.6.26 : Feast of Corpus Christi, Public Holiday, University is closed,
+ no lectures, no exercises, ...
+© Nils Goerke, University Bonn, 1/2026 3
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Some Basics on Optimization
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 4
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization (some basics):
+Depending on the background and the context, optimization is mainly
+seen as a part of :
+ - Operations Research
+ - Artificial Intelligence, or more precise
+ - Computational Intelligence.
+Some Artificial Life approaches are directly working in the following
+subsets of optimization:
+ - Stochastic Optimization
+ - Meta heuristic Optimization
+© Nils Goerke, University Bonn, 1/2026 5
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization (some basics):
+(Global) optimization is typically based on optimizing a criterion of
+some objective function f(s):
+- minimizing some costs
+- maximizing some fitness
+Optimization is the process of finding a position s*
+in N-dimensional search space S that optimizes the
+objective function f(s) R,
+f(s*)  f(s)  sS (in case of minimization)
+f(s*)  f(s)  sS (in case of maximization)
+© Nils Goerke, University Bonn, 1/2026 6
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Minimization vs. Maximization:
+Minimization is a kind of optimization with respect to (scalar)
+costs. Costs are typically defined to have a known lower bound:
+usually „zero“.
+Maximization is a kind of optimization with respect to a (scalar)
+objective function; like fitness, profit, or performance. A realistic
+upper bound for this objective function is often not known in
+advance.
+Re-formulating a maximization problem into a minimization
+problem is often possible, but not always advisable
+because of a probable non-linear complete re-scaling of the
+objective function. 
+© Nils Goerke, University Bonn, 1/2026 7
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Global vs. Local Optimization:
+Global optimization attempts to find the absolute best (global)
+optimum for a given problem.
+Finding a global optimum (there might be several) is definitively
+one of the the hardest tasks in optimization.
+© Nils Goerke, University Bonn, 1/2026 8
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Global vs. Local Optimization:
+Beside the global optimum, there can be local optima (typically
+there are a lot of them).
+Local optimization is attempting to find an extremum in the vicinity
+of a starting point, that is good, or at least sufficient for the given
+problem.
+There is a chance to find a global optimum, even with local
+optimization methods.
+Global optimization attempts to find the absolute best (global)
+optimum for a given problem.
+Finding a global optimum (there might be several) is definitively
+one of the the hardest tasks in optimization.
+© Nils Goerke, University Bonn, 1/2026 9
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Global vs. Local Optimization:
+Beside the global optimum, there can be local optima (typically
+there are a lot of them).
+Local optimization is attempting to find an extremum in the vicinity
+of a starting point, that is good, or at least sufficient for the given
+problem.
+There is a chance to find a global optimum, even with local
+optimization methods; but you never know.
+Global optimization attempts to find the absolute best (global)
+optimum for a given problem.
+Finding a global optimum (there might be several) is definitively
+one of the the hardest tasks in optimization.
+© Nils Goerke, University Bonn, 1/2026 10
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Stochastic Optimization:
+Stochastic optimization is including a stochastic component into the
+optimization process. The stochastic component can be part of every
+aspect of the process. 
+© Nils Goerke, University Bonn, 1/2026 11
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Stochastic Optimization:
+Stochastic optimization is including a stochastic component into the
+optimization process. The stochastic component can be part of every
+aspect of the process.
+In can be:
+in the data,
+in the objective function,
+in the optimization method as explicit component,
+in the schedule of the optimization process.
+© Nils Goerke, University Bonn, 1/2026 12
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Stochastic Optimization:
+The stochastic component can be an inevitable property of the
+application one has to cope with,
+or can be included deliberately to support the algorithm.
+Stochastic optimization is including a stochastic component into the
+optimization process. The stochastic component can be part of every
+aspect of the process.
+In can be:
+in the data,
+in the objective function,
+in the optimization method as explicit component,
+in the schedule of the optimization process.
+© Nils Goerke, University Bonn, 1/2026 13
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Stochastic Optimization:
+There is a variety of other approaches from the field
+of Stochastic optimization:
+Random Search
+Random Optimization
+Monte Carlo Methods
+Simulated Annealing
+Single Start
+Multi Start
+Random Search Direction Methods
+Hill Climbing
+…
+© Nils Goerke, University Bonn, 1/2026 14
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+Draw a nasty cost function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 15
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+Draw a nasty cost function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 16
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+c(s)
+Draw a nasty cost function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 17
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+c(s)
+Draw a nasty cost function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 18
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+c(s)
+Draw a nasty cost function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 19
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+f(s)
+Draw a nasty fitness function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 20
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+f(s)
+Draw a nasty fitness function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 21
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+s
+f(s)
+Draw a nasty fitness function on the blackboard:
+© Nils Goerke, University Bonn, 1/2026 22
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+A typical playground to investigate the capabilities of
+optimization methods are test functions to be minimized.
+Optimization:
+http://infinity77.net/global_optimization/test_functions.html#test-functions-index
+Over the years, many researchers have invested a lot of time to
+design adequate and appealing test functions to demonstrate and
+evaluate the results of their optimization methods.
+Meanwhile, many collections of such functions can be found.
+A nice collections is:
+© Nils Goerke, University Bonn, 1/2026 23
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_S.html#go_benchmark.Sphere
+An easy to understand test function: 
+© Nils Goerke, University Bonn, 1/2026 24
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+http://infinity77.net/global_optimization/test_functions_nd_A.html#go_benchmark.Schwefel26
+One of Schwefel's test functions
+Optimization:
+© Nils Goerke, University Bonn, 1/2026 25
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_S.html#go_benchmark.StyblinskiTang
+© Nils Goerke, University Bonn, 1/2026 26
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_H.html#go_benchmark.Hosaki
+© Nils Goerke, University Bonn, 1/2026 27
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_E.html#go_benchmark.Easom
+© Nils Goerke, University Bonn, 1/2026 28
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_L.html#go_benchmark.Langermann
+© Nils Goerke, University Bonn, 1/2026 29
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+http://infinity77.net/global_optimization/test_functions_nd_R.html#go_benchmark.RosenbrockModified
+© Nils Goerke, University Bonn, 1/2026 30
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+http://infinity77.net/global_optimization/test_functions_nd_R.html#go_benchmark.Rastrigin
+Optimization:
+© Nils Goerke, University Bonn, 1/2026 31
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+http://infinity77.net/global_optimization/test_functions_nd_A.html#go_benchmark.Alpine01
+Optimization:
+© Nils Goerke, University Bonn, 1/2026 32
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Below is a list of common test functions (to minimize) that
+are used to investigate the capabilities of optimization
+methods:
+Schwefel’s Function
+Generalized Rosenbrock’s Function
+Rastrigin’s Function
+Ackley's (path) Function
+Langermann's Function
+Michalewicz's Function
+Easoms Function
+Griewangk’s Function
+Bohachevsky's Function
+Watson's Function
+Colville's Function
+...
+Optimization:
+© Nils Goerke, University Bonn, 1/2026 33
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Some Basics on Optimization
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 34
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Evolutionary Computation:
+Optimization inspired by Biology
+Evolutionary Computation (EC):
+What is it?
+Where does it come from?
+Where can it be found?
+Why is it interesting for Computer Science? 
+© Nils Goerke, University Bonn, 1/2026 35
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+The field is at the moment denominated as
+Evolutionary Computation (EC).
+EC comprises several approaches and ideas
+- that have been developed independently (60ies),
+- that follow the same basic guideline and
+- that have (later) been found to be so closely
+ related to each other,
+- that they can be seen as different variants or
+ dialects of the same basic principles.
+© Nils Goerke, University Bonn, 1/2026 36
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+Swarm Behavior / Swarm Intelligence
+- Ant Algorithm
+- Ant Colony Optimization
+- Particle Swarm Optimization
+Evolutionary Algorithms (EA)
+- Genetic Algorithms (GA)
+- Genetic Programming (GP)
+- Evolutionary Strategies (ES)
+- Evolutionary Programming (EP)
+© Nils Goerke, University Bonn, 1/2026 37
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+Swarm Behavior / Swarm Intelligence
+- Ant Algorithm
+- Ant Colony Optimization
+- Particle Swarm Optimization
+Evolutionary Algorithms (EA)
+- Genetic Algorithms (GA)
+- Genetic Programming (GP)
+- Evolutionary Strategies (ES)
+- Evolutionary Programming (EP)
+© Nils Goerke, University Bonn, 1/2026 38
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+
+
+
+ 
+© Nils Goerke, University Bonn, 1/2026 39
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+Genetic Algorithms (GA)
+ John Henry Holland (1975)
+
+
+ 
+© Nils Goerke, University Bonn, 1/2026 40
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+Genetic Algorithms (GA)
+ John Henry Holland (1975)
+Evolutionary Strategies (ES)
+ Ingo Rechenberg (1965), Hans-Paul Schwefel (1970)
+
+ 
+© Nils Goerke, University Bonn, 1/2026 41
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+Genetic Algorithms (GA)
+ John Henry Holland (1975)
+Evolutionary Strategies (ES)
+ Ingo Rechenberg (1965), Hans-Paul Schwefel (1970)
+Evolutionary Programming (EP)
+ Lawrence J. Fogel (1964)
+ 
+© Nils Goerke, University Bonn, 1/2026 42
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Historic Remarks, Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+Genetic Algorithms (GA)
+ John Henry Holland (1975)
+Evolutionary Strategies (ES)
+ Ingo Rechenberg (1965), Hans-Paul Schwefel (1970)
+Evolutionary Programming (EP)
+ Lawrence J. Fogel (1964)
+Genetic Programming (GP)
+ N.A.Barricelli (1954), R.M.Friedberg (1958)
+© Nils Goerke, University Bonn, 1/2026 43
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 44
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization (some basics):
+Optimization is typically based on optimizing a criterion of some
+objective function f(s):
+- minimizing some costs
+- maximizing some fitness
+Optimization is the process of finding a position s*
+in search space S that optimizes the
+objective function f(s) R,
+f(s*)  f(s)  sS (in case of minimization)
+f(s*)  f(s)  sS (in case of maximization)
+© Nils Goerke, University Bonn, 1/2026 45
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Global vs. Local Optimization:
+Beside the global optimum, there can be local optima (typically
+there are a lot of them).
+Local optimization is attempting to find an extremum in the vicinity
+of a starting point, that is good, or at least sufficient for the given
+problem.
+There is a chance to find a global optimum, even with local
+optimization methods; but you never know.
+Global optimization attempts to find the absolute best (global)
+optimum for a given problem.
+Finding a global optimum (there might be several) is definitively
+one of the the hardest tasks in optimization.
+© Nils Goerke, University Bonn, 1/2026 46
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Optimization:
+Draw a nasty fitness function on the blackboard:
+g
+f(g)
+© Nils Goerke, University Bonn, 1/2026 47
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Optimization, some basics
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 48
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+I. Rechenbergs
+tubing problem
+The fuel flows into the
+tube from the left. The
+fuel should leave the
+tube (top right) such
+that the resistance of
+the fluid is minimized.
+The question is how
+the two tubes should
+be connected, i.e. what
+is the shape of
+the connecting tube?
+From: AI Lab,
+University of Zurich 
+© Nils Goerke, University Bonn, 1/2026 49
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+I. Rechenbergs
+tubing problem
+The fuel flows into the
+tube from the left. The
+fuel should leave the
+tube (top right) such
+that the resistance of
+the fluid is minimized.
+The question is how
+the two tubes should
+be connected, i.e. what
+is the shape of
+the connecting tube?
+From: AI Lab,
+University of Zurich 
+© Nils Goerke, University Bonn, 1/2026 50
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+I. Rechenbergs
+tubing problem
+The fuel flows into the
+tube from the left. The
+fuel should leave the
+tube (top right) such
+that the resistance of
+the fluid is minimized.
+The question is how
+the two tubes should
+be connected, i.e. what
+is the shape of
+the connecting tube?
+From: AI Lab,
+University of Zurich 
+© Nils Goerke, University Bonn, 1/2026 51
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+I. Rechenbergs
+tubing problem
+The fuel flows into the
+tube from the left. The
+fuel should leave the
+tube (top right) such
+that the resistance of
+the fluid is minimized.
+The question is how
+the two tubes should
+be connected, i.e. what
+is the shape of
+the connecting tube?
+From: AI Lab,
+University of Zurich 
+© Nils Goerke, University Bonn, 1/2026 52
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+I. Rechenbergs
+tubing problem
+The fuel flows into the
+tube from the left. The
+fuel should leave the
+tube (top right) such
+that the resistance of
+the fluid is minimized.
+The question is how
+the two tubes should
+be connected, i.e. what
+is the shape of
+the connecting tube?
+From: AI Lab,
+University of Zurich 
+© Nils Goerke, University Bonn, 1/2026 53
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 54
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Idea of Evolutionary Algorithms (EA):
+The whole family of algorithms denominated as
+Evolutionary Algorithms was inspired by a series of ideas
+and principles from living nature.
+Especially the principles of Evolution (C.Darwin) and
+Reproduction and Inheritance (G.Mendel) and the discovery
+of the Genome, and the DNA (1953, J.Watson, F.Crick) have
+inspired the development of EAs in the 50ies and 60ies of
+the last century.
+Thus, major parts of EAs are designed in analogy to the
+biological role model. 
+© Nils Goerke, University Bonn, 1/2026 55
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Different Approaches:
+Evolutionary Computation (EC)
+ Evolutionary Algorithms (EA)
+- Genetic Algorithms (GA)
+ John Henry Holland (1975)
+- Evolutionary Strategies (ES)
+ Ingo Rechenberg (1965), Hans-Paul Schwefel (1970)
+- Evolutionary Programming (EP)
+ Lawrence J. Fogel (1964)
+- Genetic Programming (GP)
+ N.A.Barricelli (1954), R.M.Friedberg (1958)
+© Nils Goerke, University Bonn, 1/2026 56
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Several aspects and terms of Evolutionary Algorithms are
+directly borrowed from biology:
+Population of Individuals
+Survival of the fittest
+Selection
+Inheritance
+Reproduction
+Mating
+Recombination
+Cross-Over
+Mutation
+Genome
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 57
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Evolutionary Algorithms perform a stochastic optimization using
+a modified Multi-Start approach, (Multi-Hypothesis approach).
+Instead of working with one single hypothesis, several
+different hypotheses will be regarded at the same time
+(working „quasi“ in parallel).
+Within an Evolutionary Algorithm, each of the multi
+hypotheses is called an Individual.
+The collective of all Individuals is called the Population of
+the Evolutionary Algorithm.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 58
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Each Individual of the Population will typically have a different
+position sp
+in search space S, and thus, a different fitness f(sp
+).
+Some of the Individuals might represent acceptable
+solutions, close to a local optimum,
+or even close to the global one.
+Some of them represent mediocre solutions.
+Some might represent just rubbish (most will).
+The position sp
+ in search space is defining the individual p;
+sp is called the Genome of p.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 59
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The entire Population carries more information about the
+objective function than, any of those single Individuals alone.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 60
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The entire Population carries more information about the
+objective function than, any of those single Individuals alone.
+ Keep the good ones.
+Discard the bad ones.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 61
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The entire Population carries more information about the
+objective function than, any of those single Individuals alone.
+ Keep the good ones.
+Discard the bad ones.
+This is the implementation of the biological principle:
+Selection
+„Survival of the fittest“
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 62
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The Selection (whom to keep, whom to discard) is
+performed with respect to the result achieved by the
+objective function f(s).
+This is called „External Selection“, because the objective
+function f(s) is provided by the environment from external
+the EA.
+(sometimes called „Environmental Selection“)
+The result of this External Selection is a reduced population,
+with only the best individuals surviving.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 63
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The individuals, that survived the external selection process,
+are now entitled to restock the population to it's original size.
+They are called parents, allowed to generate offspring.
+Re-stocking the population could in principle be done by
+generating complete new individuals.
+But it is assumed (and proven) that using some of the already
+acquired information for the new individuals is preferable.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 64
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The individuals, that survived the external selection process,
+are now entitled to restock the population to it's original size.
+They are called parents, allowed to generate offspring.
+Re-stocking the population could in principle be done by
+generating complete new individuals.
+But it is assumed (and proven) that using some of the already
+acquired information for the new individuals is preferable.
+This is an implementation of the biological principles:
+Reproduction and Inheritance
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 65
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+To transport some of the information from the previous
+generation, into the next generation (inheritance), the
+offspring are generated out of the genome of the parents.
+The most popular way in Evolutionary Algorithms is to select
+two parents from the remaining population
+(parent selection), and to generate offspring by mixing, or
+combining the genome of these parents.
+
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 66
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+To transport some of the information from the previous
+generation, into the next generation (inheritance), the
+offspring are generated out of the genome of the parents.
+The most popular way in Evolutionary Algorithms is to select
+two parents from the remaining population
+(parent selection), and to generate offspring by mixing, or
+combining the genome of these parents.
+This is called:
+Mating and Recombination
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 67
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Inheritance with parent selection, and reproduction of
+offspring via mating and recombination is used to benefit from
+the information already acquired (exploitation of knowledge).
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 68
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Inheritance with parent selection, and reproduction of
+offspring via mating and recombination is used to benefit from
+the information already acquired (exploitation of knowledge).
+On the other hand, it is a valuable idea to explore new
+positions s in search space S, on a stochastic or random
+basis.
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 69
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Inheritance with parent selection, and reproduction of
+offspring via mating and recombination is used to benefit from
+the information already acquired (exploitation of knowledge).
+On the other hand, it is a valuable idea to explore new
+positions s in search space S, on a stochastic or random
+basis.
+This way of exploration is implemented in EAs using a
+random alteration of the existing genomes.
+It is called:
+Mutation
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 70
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Several aspects and terms of Evolutionary Algorithms are
+directly borrowed from biology:
+Population of Individuals
+Survival of the fittest
+Selection
+Inheritance
+Reproduction
+Mating
+Recombination
+Cross-Over
+Mutation
+Genome
+Idea of Evolutionary Algorithms (EA):
+© Nils Goerke, University Bonn, 1/2026 71
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 72
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 73
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 74
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 75
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+Fitness Evaluation
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 76
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+External Selection
+Fitness Evaluation
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 77
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+External Selection
+Fitness Evaluation
+Finish?
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 78
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+External Selection
+Fitness Evaluation
+Finish?
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 79
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+External Selection
+Fitness Evaluation
+Finish?
+Inheritance
+Initialization
+© Nils Goerke, University Bonn, 1/2026 80
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 81
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 82
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 83
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 84
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 85
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 86
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 87
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 88
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 89
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 90
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+An Evolutionary Algorithm works with a population of
+single individuals.
+Population, Individual, Genome, Fitness
+© Nils Goerke, University Bonn, 1/2026 91
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+An Evolutionary Algorithm works with a population of
+single individuals.
+Population, Individual, Genome, Fitness
+Each individual owns a genome.
+© Nils Goerke, University Bonn, 1/2026 92
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+An Evolutionary Algorithm works with a population of
+single individuals.
+Population, Individual, Genome, Fitness
+Each individual owns a genome.
+A genome is a set of parameters s out of a search space S. 
+© Nils Goerke, University Bonn, 1/2026 93
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+An Evolutionary Algorithm works with a population of
+single individuals.
+Population, Individual, Genome, Fitness
+Each individual owns a genome.
+A genome is a set of parameters s out of a search space S.
+The genome sp of an individual p is evaluated with respect to a
+fitness function f (objective function).
+The result f(sp
+) of this evaluation is called f
+p
+fitness of the individual p.
+© Nils Goerke, University Bonn, 1/2026 94
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Population of Individuals
+Indi 1
+Indi 2
+Indi 12
+Indi 4
+Indi 3
+Indi 8
+Indi 13
+Indi 11
+Indi 7
+Indi 9
+Indi 6
+Indi 10
+A population is a set
+or group of
+individuals.
+...
+Each individual has
+an individual genome.
+A genome is a set of
+parameters s out of a
+search space S.
+O O I I O I O I O I I O I I O O I
+Indi 1 Indi 2
+© Nils Goerke, University Bonn, 1/2026 95
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Indi 1
+Indi 2 O I I O O O I I I I O O I I I O O
+O O I I O I O I O I I O I I O O I
+Indi 3
+Indi 4
+Indi 5
+Indi 6
+Indi 7
+Indi 8
+I O I I O I I I O I I I I I O O I
+O O O I I I O O O I I I O O O I I
+O I O I O I O I O I O I O I O I O
+O I I O I O I I O O I O I O I O I
+O O O I O O O O O I I O O I O O I
+O I O I I O O I I O O I O O O I I
+Population of Individuals
+A population of individuals with individual genomes.
+© Nils Goerke, University Bonn, 1/2026 96
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome is a set of parameters s out of a search space
+S. The genome determines the properties and capabilities
+of an individual (phenotype).
+Indi 1 O O I I O I O I O I I O I I O O I
+© Nils Goerke, University Bonn, 1/2026 97
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome is a set of parameters s out of a search space
+S. The genome determines the properties and capabilities
+of an individual (phenotype).
+The implementation of a genome can be a simple string of
+bits, can be a vector of integer or real values, or can be a set
+of items, (or something else).
+A genome can even be a string of characters, like a
+computer program, or a complete text.
+© Nils Goerke, University Bonn, 1/2026 98
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome is a set of parameters s out of a search space
+S. The genome determines the properties and capabilities
+of an individual (phenotype).
+The implementation of a genome can be a simple string of
+bits, can be a vector of integer or real values, or can be a set
+of items, (or something else).
+A genome can even be a string of characters, like a
+computer program, or a complete text.
+A genome does not even has to have a fixed length.
+The length can change during the optimization of the EA.
+© Nils Goerke, University Bonn, 1/2026 99
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be 
+© Nils Goerke, University Bonn, 1/2026 100
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be
+a simple string of bits: O O I I O I O I O I I O
+© Nils Goerke, University Bonn, 1/2026 101
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be
+a simple string of bits:
+a vector of values:
+O O I I O I O I O I I O
+17 0.38 2.0e-7 42 3.141
+© Nils Goerke, University Bonn, 1/2026 102
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be
+a simple string of bits:
+a vector of values:
+a set of items:
+O O I I O I O I O I I O
+17 0.38 2.0e-7 42 3.141
+{ Car, Banana, Monday, USB-Stick }
+© Nils Goerke, University Bonn, 1/2026 103
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be
+a simple string of bits:
+a vector of values:
+a set of items:
+a string of characters:
+O O I I O I O I O I I O
+17 0.38 2.0e-7 42 3.141
+{ Car, Banana, Monday, USB-Stick }
+„Throatwobbler Mangrove“
+From: Monty Python's Flying Circus: Episode 22, Cosmetic surgery 
+© Nils Goerke, University Bonn, 1/2026 104
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Genome
+A genome can be
+a simple string of bits:
+a vector of values:
+a set of items:
+a string of characters:
+a complete computer program.
+O O I I O I O I O I I O
+17 0.38 2.0e-7 42 3.141
+{ Car, Banana, Monday, USB-Stick }
+„Throatwobbler Mangrove“
+From: Monty Python's Flying Circus: Episode 22, Cosmetic surgery
+#include “Evolutionary_Algorithms.h”
+int main()
+{
+ int P = 1000; // size of population
+ int L= 20; // length of genome
+© Nils Goerke, University Bonn, 1/2026 105
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Fitnessfunction
+The fitness function f calculates the fitness value f(s) for
+each individual genome s.
+The fitness value is a scalar value.
+Larger fitness is indicating a better individual.
+The fitness is heavily depending on the application!
+The mapping from genome to fitness value
+can be directly, e.g. by a mathematical function,
+or can be a complicated process, e.g. the performance of a
+soccer playing, walking robot.
+© Nils Goerke, University Bonn, 1/2026 106
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Fitness value
+Indi 1 O O I I O I O I O I I O I I O O I f(1) = 9
+The fitness function f calculates the fitness value f(s)
+for each individual genome.
+© Nils Goerke, University Bonn, 1/2026 107
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Fitness value
+Indi 1
+Indi 2 O I I O O O I I I I O O I I I O O
+O O I I O I O I O I I O I I O O I
+Indi 3
+Indi 4
+Indi 5
+Indi 6
+Indi 7
+Indi 8
+f(1) = 9
+I O I I O I I I O I I I I I O O I
+O O O I I I O O O I I I O O O I I
+O I O I O I O I O I O I O I O I O
+O I I O I O I I O O I O I O I O I
+O O O I O O O O O I I O O I O O I
+O I O I I O O I I O O I O O O I I
+f(2) = 9
+f(3) = 12
+f(4) = 9
+f(5) = 8
+f(6) = 8
+f(7) = 8
+f(8) = 5
+The fitness function f calculates the fitness value f(s)
+for each individual genome.
+© Nils Goerke, University Bonn, 1/2026 108
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Fitness value
+Indi 1 O O I I O I O I O I I O I I O O I f'(1) = 2
+The fitness function f calculates the fitness value f(s)
+for each individual genome.
+© Nils Goerke, University Bonn, 1/2026 109
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Fitness value
+Indi 1
+Indi 2 O I I O O O I I I I O O I I I O O
+O O I I O I O I O I I O I I O O I
+Indi 3
+Indi 4
+Indi 5
+Indi 6
+Indi 7
+Indi 8
+f'(1) = 2
+I O I I O I I I O I I I I I O O I
+O O O I I I O O O I I I O O O I I
+O I O I O I O I O I O I O I O I O
+O I I O I O I I O O I O I O I O I
+O O O I O O O O O I I O O I O O I
+O I O I I O O I I O O I O O O I I
+f'(2) = 4
+f'(3) = 5
+f'(4) = 2
+f'(5) = 3
+f'(6) = 2
+f'(7) = 1
+f'(8) = 2
+The fitness function f calculates the fitness value f(s)
+for each individual genome.
+© Nils Goerke, University Bonn, 1/2026 110
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Population
+© Nils Goerke, University Bonn, 1/2026 111
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The EAs, as multi-hypothesis approach are working with a
+complete population of individuals.
+Population
+© Nils Goerke, University Bonn, 1/2026 112
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The EAs, as multi-hypothesis approach are working with a
+complete population of individuals.
+Typically, the number of hypothesis is equal to the number P
+of individuals; P is called the size of the population.
+Population
+© Nils Goerke, University Bonn, 1/2026 113
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The EAs, as multi-hypothesis approach are working with a
+complete population of individuals.
+Typically, the number of hypothesis is equal to the number P
+of individuals; P is called the size of the population.
+Population
+In general, it is a good advise, to keep the size of the
+population fixed; but it is possible to change P.
+© Nils Goerke, University Bonn, 1/2026 114
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The EAs, as multi-hypothesis approach are working with a
+complete population of individuals.
+Typically, the number of hypothesis is equal to the number P
+of individuals; P is called the size of the population.
+Population
+Special approaches and extensions of EAs divide the
+population into several sub-populations, that may be treated
+differently.
+In general, it is a good advise, to keep the size of the
+population fixed; but it is possible to change P.
+© Nils Goerke, University Bonn, 1/2026 115
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+How large shall the size of the population be?
+Population
+© Nils Goerke, University Bonn, 1/2026 116
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+How large shall the size of the population be?
+Population
+There are several aspects that influence the choice of P:
+- enough richness, diversity of hypothesis
+- costs for evaluating the individuals
+- computing costs for the entire algorithm
+© Nils Goerke, University Bonn, 1/2026 117
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+How large shall the size of the population be?
+Population
+There are several aspects that influence the choice of P:
+- enough richness, diversity of hypothesis
+- costs for evaluating the individuals
+- computing costs for the entire algorithm
+- keep it simple, keep it small
+ P = 50 … 1000 (simulations)
+ P = 5 ... 50 (real world experiments)
+© Nils Goerke, University Bonn, 1/2026 118
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 119
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 120
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 121
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The m individuals that survived the external selection process,
+are the pool to select the parents from.
+Those parents selected, will have to generate l offspring.
+For every inheritance process, a number of k individuals
+(parents) are selected from the pool of possible parents for
+mating + recombination.
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 122
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Out of the m remaining individuals the k-parents are chosen
+for the inheritance step to generate l offspring.
+Parent Selection
+pool of m
+possible
+parents
+© Nils Goerke, University Bonn, 1/2026 123
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Out of the m remaining individuals the k-parents are chosen
+for the inheritance step to generate l offspring.
+pool of m
+possible
+parents
+parent selection
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 124
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Out of the m remaining individuals the k-parents are chosen
+for the inheritance step to generate l offspring.
+pool of m
+possible
+parents
+parent selection
+mating, recombination
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 125
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Out of the m remaining individuals the k-parents are chosen
+for the inheritance step to generate l offspring.
+pool of m
+possible
+parents
+parent selection
+mating, recombination
+l offspring
+inheritance
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 126
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+random choice
+schedule based, e.g. round robin
+fitness based elitism:
+fitness proportional choice
+rank proportional choice
+fitness based stochastic:
+fitness proportionate, probabilistic choice
+rank proportionate, probabilistic choice
+combinations of the above
+Common strategies for the parent selection are:
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 127
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 128
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 129
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: Inheritance
+Thus, generating offspring means to create new individuals
+with new genomes.
+Inheritance in the context of Evolutionary Algorithms
+means to use the genomes of those parents that have been
+selected.
+Inheritance is the principle of transporting some of the
+information from the previous generation (parents),
+into the next generation,
+by generating the offspring out of the parents genomes .
+There is a wide variety of possible ways to generate offspring.
+© Nils Goerke, University Bonn, 1/2026 130
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The most popular mechanism to implement the inheritance
+principle is to use k=2 parents and to combine their genomes
+(mostly called recombination).
+Inheritance:
+- recombination
+- by cross over
+- (other recombination operators)
+- (other inheritance mechanism)
+- (other inheritance operators)
+- ...
+The most popular mechanism to implement recombination of
+2 genomes is cross over:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 131
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Select two parents, A and B and recombine their genomes
+by taking one part form parent A
+and the other part from parent B
+Choose a random point C where to split the genomes,
+and recombine the four remaining fractions to build new
+individuals, containing partial information from both parents.
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 132
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+Child 1: ?
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 133
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 134
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 135
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 136
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 137
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross-over:
+Parent A:
+Parent B:
+cross-over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 138
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross-over:
+Parent A:
+Parent B:
+cross-over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 139
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 140
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 141
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Child 3:
+Child 4: ?
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 142
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Child 3:
+Child 4:
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 143
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes
+of the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 1/2026 144
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 145
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 146
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Mutation
+The job of the mutation step is to maintain the diversity
+of the genomes within the population:
+Different positions in search space sample the fitness
+function at different points.
+Changing the genome by mutation is implementing the
+exploration principle of stochastic optimization.
+EA:
+© Nils Goerke, University Bonn, 1/2026 147
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Depending on the different way the information is coded in
+the genome, the layout of the mutation step is to be
+designed differently.
+Some common mutation operators are:
+Binary genome: a bit-flip
+Vector of parameters: change of value
+Set of items: replace a single item
+String of characters: replace a single character
+Sequence: change order within sequence
+Other: other method
+Special codings of the genome will require that the
+mutation is paying respect to this coding.
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 148
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+Before: O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 149
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+r
+Before: O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 150
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+r
+O I O O O O O I O O O I I I
+Before:
+After:
+O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 151
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+Before: I I O I I I I O I O O O I O
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 152
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+Before: I I O I I I I O I O O O I O
+0.0 < w < 1.0
+EA: Mutation
+© Nils Goerke, University Bonn, 1/2026 153
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+O I O O O O O I I O I O O I
+Before:
+After:
+I I O I I I I O I O O O I O
+EA: Mutation
+0.0 < w < 1.0
+© Nils Goerke, University Bonn, 1/2026 154
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Mutation
+It is possible, that the inheritance and the mutation process
+yield invalid genomes, which represent hypotheses s from
+outside the allowed search space S.
+Those illegal genomes would stress the optimization
+process in an unwanted way.
+Therefore, it is a good advise, to take precautions against
+illegal genomes (if possible, and economic):
+- shape the structure of the genome,
+- shape the structure of the inheritance,
+- shape the structure of the mutation.
+EA: & Inheritance
+© Nils Goerke, University Bonn, 1/2026 155
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 156
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 157
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Fitness Evaluation
+The fitness of each individual is evaluated with respect to the
+fitness-function (most case identical to the objective function).
+For Evolutionary Algorithms, it is usual to have a fitness
+function that is to be maximized.
+EA:
+© Nils Goerke, University Bonn, 1/2026 158
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The fitness of each individual is evaluated with respect to the
+fitness-function (most case identical to the objective function).
+For Evolutionary Algorithms, it is usual to have a fitness
+function that is to be maximized.
+If the fitness evaluation is expensive, it is a good idea to
+process only the new individuals/genomes from the
+inheritance step, including those individuals/genomes that
+have changed during mutation.
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 159
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+The fitness f(gp) of each individual p is evaluated with respect
+to the application using the given fitness-function f(g).
+p=P
+Genome gp
+p=5
+p=4
+p=3
+p=2
+p=1 f(g1) = 0.5
+f(g2) = - 171.0
+f(g3) = 0.228
+f(gp) =
+f(g4) = ???
+Fitness Value f(gp)
+EA:
+f(g)
+g4 g
+Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 160
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp)
+The fitness-values f(gp) for the genomes gp
+in their initial state.
+p
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 161
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp)
+The fitness-values f(gp) for the genomes gp
+in their initial state sorted by f(gp).
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 162
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp)
+The fitness-values f(gp) for the genomes gp
+sorted by f(gp) after some steps,
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 163
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp)
+The fitness-values f(gp) for the genomes gp
+sorted by f(gp) after some steps,
+and their initial state.
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 1/2026 164
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Overview:
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 1/2026 165
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operation:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 166
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA: External Selection
+The purpose of the selection process is to
+keep the „Best“, and discard the „Losers“.
+The selection is based on the achieved fitness, which is
+obtained by the fitness function, quasi from external to the EA.
+The m individuals that survive the external selection
+process, will be the pool for the parents of the next
+generation. Later on, from these m parents the l offspring
+will be generated through the inheritance process.
+© Nils Goerke, University Bonn, 1/2026 167
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+The two questions for the external selection are:
+How many (m) of the individuals shall survive?
+and
+Which are the ones to keep?
+A common way is to keep the population constant to P
+individuals.
+discard l by external selection
+and keep m as pool for the parents,
+then generate l offspring for the next generation.
+External Selection
+© Nils Goerke, University Bonn, 1/2026 168
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+External Selection
+© Nils Goerke, University Bonn, 1/2026 169
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+External Selection
+© Nils Goerke, University Bonn, 1/2026 170
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+External Selection
+© Nils Goerke, University Bonn, 1/2026 171
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+keep discard
+External Selection
+© Nils Goerke, University Bonn, 1/2026 172
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+External Selection
+© Nils Goerke, University Bonn, 1/2026 173
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+inheritance,
+l offspring
+External Selection
+© Nils Goerke, University Bonn, 1/2026 174
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+The Next
+Generation
+inheritance,
+l offspring
+TNG
+External Selection
+© Nils Goerke, University Bonn, 1/2026 175
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+random choice
+schedule based, e.g. round robin
+fitness based elitism:
+fitness proportional choice
+rank proportional choice
+fitness based stochastic:
+fitness proportionate, probabilistic choice
+rank proportionate, probabilistic choice
+combinations of the above
+Common strategies for the external selection are:
+External Selection
+© Nils Goerke, University Bonn, 1/2026 176
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA:
+There are different ideas and principles behind the selection
+of the m possible parents from the population, with special
+pros and cons.
+deterministic or stochastic selection
+fitness dependent selection
+fitness proportional selection
+rank-based selection
+tournament selection
+life-time based selection
+combinations of the above + more
+External Selection
+© Nils Goerke, University Bonn, 1/2026 177
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 1/2026 178
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Learning from Nature
+Evolutionary Algorithms
+Optimization Inspired by Biology
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2
+© Nils Goerke, University Bonn, 1/2026 179
+Artificial Life [MA-INF 4201], 07, Evolutionary Algorithms 1, Mon 1.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Learning from Nature
+Evolutionary Algorithms
+Optimization Inspired by Biology
+Thank you for attending the lecture

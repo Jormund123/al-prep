@@ -1,0 +1,253 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+\usepackage{tikz} % drawing diagrams with code
+\usetikzlibrary{arrows.meta, positioning, calc}
+\usepackage{standalone} % include tiks files as graphic
+% end of my package list
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet11}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+\begin{document}
+\maketitle
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+%======================================================================
+\section*{Assignment 73 (3 Points)}
+\begin{problem}
+What are the major differences between the following groups of animals: flocks, herds and
+swarms? What difference with respect to the behavior of the individuals can you determine
+in these groups?
+\end{problem}
+\begin{answer}
+The three terms denote group types differing in species, medium and internal structure:
+\begin{itemize}
+  \item \textbf{Flock:} group of \emph{birds} (e.g.\ geese, auklets, cormorants) moving in air.
+        Often spatially structured (e.g.\ V-formation) and strongly motion-coordinated:
+        individuals continuously align heading and speed with nearby neighbours.
+  \item \textbf{Herd:} group of (mostly large) \emph{land mammals} (e.g.\ zebra, gnus, penguins
+        on the ground). Movement on a 2D surface; individuals stay together mainly for
+        protection/foraging, coordination is looser and often hierarchically influenced
+        (lead animals).
+  \item \textbf{Swarm:} a large, often very dense group of (typically small / simple)
+        animals or insects (e.g.\ locusts, fish schools, jellyfish). Usually homogeneous,
+        no hierarchy and no fixed individual roles; global behaviour emerges purely from
+        many local interactions.
+\end{itemize}
+\textbf{Differences in individual behavior:}
+\begin{itemize}
+  \item \emph{Flock/School:} each individual actively coordinates velocity and direction with
+        local neighbours $\rightarrow$ tight, polarised, aligned motion.
+  \item \emph{Herd:} individuals are more autonomous; cohesion is driven by safety/resources,
+        alignment is weaker, position within the group can matter (centre = safer).
+  \item \emph{Swarm:} individuals follow very simple local rules with no central control and no
+        knowledge of the global pattern; ``intelligent'' collective behaviour is purely
+        \emph{emergent}.
+\end{itemize}
+In short: flocks/schools are highly velocity-aligned, herds are loosely cohesive and may be
+structured/hierarchical, swarms are homogeneous and self-organised through local interaction only.
+\end{answer}
+
+%======================================================================
+\section*{Assignment 74 (2 Points)}
+\begin{problem}
+In the Didabot experiment the Didabots are creating so called heaps or clusters of boxes.
+Give a definition of a cluster and try to formulate a mathematical criterion that can decide
+if an arrangement of boxes has clusters or not.
+\end{problem}
+\begin{answer}
+\textbf{Definition.} A \emph{cluster} (heap) is a group of two or more boxes lying so close
+together that each box of the group is in direct contact with, or within a small neighbourhood
+distance of, at least one other box of the same group. A single isolated box is not a cluster.
+
+\textbf{Mathematical criterion.} Let the boxes be $B_1,\dots,B_n$ with centre positions
+$\mathbf{p}_i \in \mathbb{R}^2$. Fix a threshold distance $\varepsilon$ (e.g.\ a small multiple
+of the box size). Define two boxes as \emph{neighbours} if
+\[
+  \lVert \mathbf{p}_i - \mathbf{p}_j \rVert \;\le\; \varepsilon , \qquad i \neq j .
+\]
+Build the graph $G=(V,E)$ with $V=\{B_1,\dots,B_n\}$ and
+\[
+  E=\bigl\{\, (i,j) \;:\; \lVert \mathbf{p}_i-\mathbf{p}_j\rVert \le \varepsilon \,\bigr\}.
+\]
+A \textbf{cluster} is then a \emph{connected component} of $G$ containing at least two vertices.
+
+\textbf{Decision.} An arrangement \emph{contains clusters} iff $G$ has at least one connected
+component of size $\ge 2$, i.e.\ iff
+\[
+  \exists\, i \neq j : \lVert \mathbf{p}_i - \mathbf{p}_j \rVert \le \varepsilon .
+\]
+Equivalently: if $\deg(B_i)=0$ for all $i$ (no edges), there are no clusters; otherwise clusters
+exist. The number of clusters equals the number of connected components of size $\ge 2$.
+\end{answer}
+
+%======================================================================
+\section*{Assignment 75 (3 Points)}
+\begin{problem}
+How will the resulting clusters be affected in the Didabot experiment when changing from one
+Didabot to multiple Didabots? Explain your solution.
+\end{problem}
+\begin{answer}
+With a \emph{single} Didabot, two release mechanisms produce the heaps:
+\begin{itemize}
+  \item \textbf{Spontaneous release:} the curved nose plus natural jiggling moves a carried box
+        sideways into a sensor's range; the 3b behavior turns the robot and drops the box at an
+        arbitrary position.
+  \item \textbf{Induced release:} the robot meets an obstacle or another box, the 3b avoidance
+        turns it and the carried box is dropped \emph{next to} that obstacle/box $\rightarrow$
+        heaps grow.
+\end{itemize}
+With \textbf{multiple identical Didabots}, each robot still performs type-3b obstacle avoidance,
+box pushing and heap building, and both mechanisms above remain active. In addition a
+\textbf{third mechanism} appears:
+\begin{itemize}
+  \item \textbf{Induced release type 2:} when two Didabots approach each other, each detects the
+        other as an obstacle and performs the 3b avoiding turn, thereby releasing the boxes they
+        are currently carrying.
+\end{itemize}
+\textbf{Effect on the clusters:} Cluster formation becomes \emph{faster} (more robots
+push/redistribute boxes in parallel and the extra release events add up). The process is more
+robust and the qualitative result (heaps in the interior and along the boundary) is unchanged,
+but the additional robot--robot induced releases create more drop events, so the final number,
+size and distribution of heaps differ from the single-robot case.
+\end{answer}
+
+%======================================================================
+\section*{Assignment 76 (2 Points)}
+\begin{problem}
+Find and cite a recent application of swarming behavior in the field of movie industry.
+Give a scientifically acceptable citation.
+\end{problem}
+\begin{answer}
+A classic and well documented application of flocking/swarming behavior in film is the
+\emph{Massive} crowd-simulation system, which used autonomous agents (in the spirit of
+Reynolds' boids) to animate the large battle crowds in Peter Jackson's
+\emph{The Lord of the Rings} trilogy. The boids steering model is the foundation of such
+crowd/flock animation in the movie industry.
+
+\textbf{Citation:}\\
+Reynolds, C.\,W. (1987). \emph{Flocks, Herds, and Schools: A Distributed Behavioral Model}.
+In \emph{Computer Graphics} (SIGGRAPH '87 Conference Proceedings), 21(4), pp.~25--34.
+
+\noindent A more application-oriented reference:\\
+Reynolds, C.\,W. (1999). \emph{Steering Behaviors for Autonomous Characters}. In
+\emph{Proceedings of the Game Developers Conference} (GDC), pp.~763--782.
+\end{answer}
+
+%======================================================================
+\section*{Assignment 77 (2 Points)}
+\begin{problem}
+Explain a set of rules for autonomous agents that is capable of generating swarm-like behavior.
+Please use your own words for the explanation.
+\end{problem}
+\begin{answer}
+Craig Reynolds' boids model generates flocking from three simple local steering rules. Each
+agent only looks at its \emph{nearby} flockmates (those within a limited perception radius) and
+adjusts its own velocity:
+\begin{itemize}
+  \item \textbf{Separation:} steer away from neighbours that are too close, so the agents do not
+        collide or crowd together.
+  \item \textbf{Alignment:} steer so that the agent's heading and speed match the average
+        velocity (average heading) of its local neighbours.
+  \item \textbf{Cohesion:} steer towards the average position (centre of mass) of the local
+        neighbours, keeping the group together.
+\end{itemize}
+At each time step every agent computes the three steering vectors, combines them (typically a
+weighted sum) and updates its velocity and position. There is no leader and no central control:
+each agent acts only on local information, yet the combination of avoiding, aligning and grouping
+makes a coherent, fluid swarm motion \emph{emerge} globally.
+\end{answer}
+
+%======================================================================
+\section*{Assignment 78 (3 Points)}
+\begin{problem}
+The original set of rules from Craig Reynolds made the Boids move aimlessly. Now consider that
+we would like them to move towards a goal. Propose an extension to the original Boids idea that
+can make the Boids pursue a goal (a special position in space, or a maximum/minimum of a given
+objective function, etc.). Feel free to propose ideas of your own.
+\end{problem}
+\begin{answer}
+The three original rules (separation, alignment, cohesion) only produce internally coherent but
+directionless motion. To make the swarm pursue a goal we add a \textbf{fourth steering rule}
+that contributes its own velocity term to the weighted sum.
+
+\textbf{(a) Goal-seeking towards a fixed target $\mathbf{g}$.}
+For an agent at position $\mathbf{p}_i$ define a desired velocity pointing at the goal,
+\[
+  \mathbf{v}^{\text{goal}}_i \;=\; v_{\max}\,
+  \frac{\mathbf{g}-\mathbf{p}_i}{\lVert \mathbf{g}-\mathbf{p}_i \rVert},
+\]
+and add it to the existing rules:
+\[
+  \mathbf{v}_i \;\leftarrow\; w_s\,\mathbf{v}^{\text{sep}}_i
+  + w_a\,\mathbf{v}^{\text{ali}}_i
+  + w_c\,\mathbf{v}^{\text{coh}}_i
+  + w_g\,\mathbf{v}^{\text{goal}}_i ,
+\]
+with weights $w_s,w_a,w_c,w_g$. The goal weight $w_g$ controls how strongly the swarm is pulled
+towards $\mathbf{g}$ while the other three rules keep it a cohesive, collision-free group.
+
+\textbf{(b) Optimising an objective function $f(\mathbf{p})$.}
+If instead we want the boids to find a maximum/minimum of an objective function, replace the
+goal direction by the local \emph{gradient}:
+\[
+  \mathbf{v}^{\text{goal}}_i \;=\; \pm\, \nabla f(\mathbf{p}_i)
+  \quad (\,+\text{ for a maximum},\ -\text{ for a minimum}\,).
+\]
+Each agent thus climbs/descends the function while separation, alignment and cohesion keep the
+swarm together. If the gradient is unknown, each boid can be steered towards the best position
+found among itself and its neighbours (a particle-swarm-optimisation style rule using a local
+best and a global best), which lets the swarm collectively search for the optimum.
+
+In both cases the key idea is the same: \emph{add an extra goal-/gradient-steering term to the
+combined velocity}, so the swarm keeps its emergent flocking structure but now moves with purpose.
+\end{answer}
+
+\end{document}

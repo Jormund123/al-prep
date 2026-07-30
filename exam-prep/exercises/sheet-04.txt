@@ -1,0 +1,193 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet04}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section*{Assignment 25}
+\begin{problem}
+Describe the system called von Neumann’s Universal Constructor.
+\end{problem}
+\begin{answer}
+John Von Neumann's universal constructor is a theoretical self-replicating machine which uses a 2-D cellular automata and is capabale of both computation and automaton.\\\\
+The requirements are:
+\begin{itemize}
+    \item Several computational elements
+    \item A manipulating element
+    \item Cutting, Fusing and Sensing elements
+    \item Girders that build the chassis and the information carrier
+\end{itemize}
+
+The characteristics are:
+\begin{itemize}
+    \item Lives on a virtually infinite rectangular grid with an unlimited supply of elements
+    \item Has 29 different states for the elements (cells)
+    \item Has a construction unit
+    \item Has a construction arm (hand, cutting, fusing, sensing capabilities)
+    \item Has a tape unit
+    \item Has an infinite tape
+    \item Consists of approximately 150{,}000 elements
+\end{itemize}
+So, the machine with 29 different states could process signals and perform logical operations. It used a tape containing instructions and a construction arm to build an exact copy of itself including the instruction tape.
+
+\end{answer}
+
+\section*{Assignment 26}
+\begin{problem}
+Explain how Chou-Reggia’s Loop is reproducing itself. Depict the development of the first 3 steps of Chou-Reggia’s Loop. 
+\end{problem}
+\begin{answer}
+It reproduces by growing a guided “construction arm” from the parent loop, which traces and builds a new closed loop. Once the structure is complete, the daughter loop detaches and becomes an independent copy.
+\begin{itemize}
+    \item Step 0: Stable parent loop exists
+    \item Step 1: Construction arm activates and starts extending outward
+    \item Step 2: Arm continues growth and begins shaping the outline of a new loop
+\end{itemize}
+\end{answer}
+
+\section*{Assignment 27}
+\begin{problem}
+Seek for an application of Lindenmayer Systems (even one from the lecture), describe it in your own words and address the following topics:
+\begin{enumerate}
+    \item What is the application trying to do? 
+    \item How is the Lindenmayer System applied to do this?
+    \item What are the major results within this application?
+\end{enumerate}
+\end{problem}
+\begin{answer}
+Application of Lindenmayer Systems: Plant Growth Modeling
+    \begin{enumerate}
+    \item It is used to realistically simulate the growth of plants such as trees, leaves, and roots using simple rule-based systems instead of manually designing complex structures.
+
+    \item A Lindenmayer System (L-system) starts from an initial symbol (axiom) and applies rewriting rules in parallel over multiple iterations. The resulting strings are then interpreted geometrically (for example using turtle graphics), where symbols correspond to actions like moving forward or creating branches.
+
+    \item It enables the generation of complex and realistic plant-like structures from simple rules, allows efficient procedural modeling of vegetation, and is widely used in computer graphics, animation, and procedural environment generation.
+\end{enumerate}
+\end{answer}
+
+\section*{Assignment 28} 
+\begin{problem}
+Create, and specify a Lindenmayer System with exactly three rules that will create in step 5 the 32 symbol string shown below, starting with the Axiom A in step 0.
+\begin{tabular}{lc}
+     Step 5 & ABBCBCCABCCACAABBCCACAABCAABABBC \\
+\end{tabular}
+
+\end{problem}
+
+\begin{answer} % Manfred
+Using alphabet \{A, B, C\}, no constant, Axiom A and rule-set from following tabular:
+
+\begin{tabular}{rcc}
+     Rule & Src & Dst \\
+     \hline
+     1 & A & AB \\
+     2 & B & BC \\
+     3 & C & CA \\
+\end{tabular}
+
+we find the expected result as depicted in the step list:
+
+\begin{tabular}{rc}
+     Step & String \\
+     \hline
+     0 & A \\
+     1 & AB \\
+     2 & ABBC \\
+     3 & ABBCBCCA \\
+     4 & ABBCBCCABCCACAAB \\
+     5 & ABBCBCCABCCACAABBCCACAABCAABABBC
+\end{tabular}
+\end{answer}
+
+\section*{ASsignment 29}
+\begin{problem}
+    Create 3 Lindenmayer systems (alphabet, axiom, rules, \ldots) and depict the results. \\
+    Do not take examples from the lecture).
+    \begin{enumerate}
+        \item[a)] A Lindenmayer System that is creating a spiral in 2 dimensions. Please state how the length and the shape of the spiral can be adjusted, plot the result in a graph.
+        \item[b)] A Lidenmayer system (2-dim) that creates a shape resemblind a natural looking tree.
+        \item[c)] A Lindenmayer system (with context!) that implements a 4 bit Gray coding.
+    \end{enumerate}
+\end{problem}
+
+\begin{answer} % Sebastian
+    \begin{enumerate}
+        \item[a)] 
+    \end{enumerate}
+\end{answer}
+
+\section*{Assignment 32}
+\begin{problem}
+A really nice CA application is the Wahle-Schreckenberg model. What is the application trying to do? How is the CA used to do this? What are the major result within this application?
+\end{problem}
+\begin{answer}
+\begin{itemize}
+    \item It aims to simulate and understand real highway traffic, especially how traffic jams form and propagate even without obvious obstacles.
+    \item The road is modeled as a 1D cellular automaton where each cell can be empty or contain a car with a discrete speed. At each time step, simple local rules update all cars in parallel: they accelerate if possible, slow down to avoid collisions, and include random slowing to model human behavior.
+    \item The model reproduces realistic traffic phenomena such as spontaneous traffic jams, stop-and-go waves, and phase transitions between free flow and congested traffic, showing that complex traffic patterns can emerge from very simple rules.
+\end{itemize}
+\end{answer}
+
+\end{document}

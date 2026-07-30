@@ -1,0 +1,160 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=2.2cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+
+% added some new packages to allow copy pasting of my solutions (Sebastian)
+\usepackage{float} % Allows floating figures, such that they appear on paper where they were written in text (I use [H], see assignment 12)
+\usepackage{makecell} % table: linebreak in cell
+\usepackage{multicol} % table: multi column
+\usepackage{multirow} % table: multi row
+% end of my package list
+
+\usepackage{siunitx}
+\sisetup{
+    locale = US, % or "output-decimal-marker={,}" for only set decimal marker
+    %range-phrase = { bis },
+    range-phrase = --,
+    range-units = single,
+    tight-spacing = true,
+    table-number-alignment = center,
+    separate-uncertainty = true,
+%    accepted = true
+}
+
+
+% Environment to quote the problem. Currently, this is just a new name for the
+% quote environment.
+\newenvironment{problem}{\begin{quote}\textsf{\textbf{Problem:}}\quad}{\end{quote}}
+% Environment for our solution. I just copied the problem env above to keep the layout consistent. (Sebastian)
+\newenvironment{answer}{\begin{quote}\textsf{\textbf{Answer:}}\quad}{\end{quote}}
+
+\title{Exercises for Artificial Life, ST26\\Group B, Sheet06}
+\author{
+    Manfred Fandel-Backhausen, mafand@uni-bonn.de\\
+    Sebastian Sauerbier, s6sesaue@uni-bonn.de\\
+    Niklas Kerkfeld, s6nikerk@uni-bonn.de\\
+    Anand Karna, s03akarn@uni-bonn.de
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\lstset{
+frame=single,
+language=C,
+keywordstyle=\color{blue},
+commentstyle=\color{red},
+numbers=left,
+basicstyle=\ttfamily,
+breakatwhitespace=false,         
+breaklines=true,                 
+keepspaces=true,                 
+numbersep=5pt
+}
+
+\section*{Assignment 39 (2 Points)}
+\begin{problem}
+    Show by calculation, that the relation
+    \[N(s) = a\frac{1}{s^\alpha}\]
+    will show a linear dependency in a log - log plot.
+\end{problem}
+
+\begin{answer} % Manfred
+    \begin{align}
+        N(s) &= a\frac{1}{s^\alpha} \\
+        \overset{N(s)>0,\; s>0,\; a>0}{\Longleftrightarrow} \log(N(s)) &= \log(a\frac{1}{s^\alpha}) \\
+        \Longleftrightarrow \log(N(s)) &= \log(a) - \log(s^\alpha) \\
+        \Longleftrightarrow \log(N(s)) &=  -\log(\alpha)\log(s) + \log(a) 
+        \end{align}
+\end{answer}
+
+\section*{Assignment 40 (2 Points)}
+\begin{problem}
+    A function $f(z)$ is called \textit{scale invariant} if scaling the argument $z$ with a constant factor $k$
+    yields a proportional scaling of the function value  $f(kz) \sim f(z)$.\\
+    Show, that the function $N(s) = a\frac{1}{s^\alpha}$ is \textit{scale invariant}.\\
+    Give another function, or family of functions, that is \textit{scale invariant}.
+\end{problem}
+
+\begin{answer} % Manfred
+    $f$ \textit{scale invariant} more precisely means $f(kz)=C(k)f(z)$. So we need to show that $N(ks) = C(k)N(s)$:
+    \begin{align}
+        N(ks)   &= a\frac{1}{(ks)^\alpha} 
+                = a\frac{1}{s^\alpha k^\alpha} \\
+                &= \frac{1}{k^\alpha} a\frac{1}{s^\alpha} 
+                = \frac{1}{k^\alpha} N(s) \\
+                &= C(k) N(s) \qquad \text{with } C(k) = \frac{1}{k^\alpha} = k^{-\alpha}
+        \end{align}
+In general, \textit{scale invariant} functions are \textbf{homogeneous} functions.
+The simplest and most important family is the power-law family, as shown above.
+\end{answer}
+
+\section*{Assignment 41 (3 Points)}
+\begin{problem}
+   \textit{Zipf’s Law} describes the relation between the frequency of a word within a text, and the rank of that very word.\\
+    Propose a set-up to check if \textit{Zipf’s Law} is valid for source-code of computer programs. \\
+    What are the problems you will have to focus for this task? \\
+    What data do you propose for such an investigation?
+\end{problem}
+
+\begin{answer} % Manfred
+    The problems are:
+    \begin{itemize}
+        \item the corpus of the programming language itself is typically very small (compared to natural language)
+        \item words obtained from documentation/comments as well as in-code natural language snippets from \textit{strings} extend the corpus in an unwanted manner
+        \item variable/constant/function/method/class names are typically following a scheme of abbreviated natural language words
+    \end{itemize}
+    For such an investigation I would propose to only use real programming language words, excluding all the natural language word components. But, following the list above, this is not that easy. Therefore, I would apply to only take into account words from a programming language specific \textit{positive} list (if word is not used within a string).
+\end{answer}
+
+\section*{Assignment 42 (1 Points)}
+\begin{problem}
+   Derive a formula to implement an exponential decay (pheromones for an ant algorithm) that calculates the pheromone concentration to decay to 10\% after 42 steps of iteration.
+\end{problem}
+
+\begin{answer} % Manfred
+    Using iteration count $i=42$ and pheromone start concentration $s$ and pheromone target concentration $t=10\%*s$, the formula is \[s*k^i=t\]
+    Solving to $k$ gives $k= 0.1^{\frac{1}{i}} \approx 0.94665$
+\end{answer}
+
+
+\section*{Assignment 44 (3 Points)}
+\begin{problem}
+    \textbf{Advise:} As an exercise for the exam, try to answer this Assignment (44) in 5 minutes. \\
+    \\
+    Explain why the \textit{evaporation of pheromones} in Ant Algorithms is helpful, if the environment is dynamic. \\
+    Use an easy exemplary set-up to support your explanation.
+\end{problem}
+
+\begin{answer} % Sebastian
+    As the dynamic environment changes, points of interest might change. If the pheromones do not evaporate the ants may still traverse a path that is no longer relevant. \\
+    Imagine a simple dynamic environment, where a source of food has to be transported to the nest. Each ant can carry a small portion of the food at once and the path will be traveled many times to bring all the food back to the nest. At some point the entire source will have been transported and the location will offer nothing anymore. If the pheromones do not evaporate over time, the path will be visited and the concentration will increase indefinitely. If they evaporate, the concentration will slowly decrease over time, causing the probability of ant to chose that path to diminish, decreasing the concentration even faster, until the ant will no longer perceive that path as notable.
+\end{answer}
+
+\section*{Assignment 45 (2 Points)}
+\begin{problem}
+Which part in an Ant Algorithm is contributing to the principle of Exploitation and which part is contributing to Exploration? Explain you answer using one sentence for each part.
+\end{problem}
+
+\begin{answer} % Manfred
+    \begin{itemize}
+        \item \textbf{Exploration} is randomly searching for new paths.
+        \item \textbf{Exploitation} is following already successful explored pheromone marked paths.
+    \end{itemize}
+\end{answer}
+
+\end{document}

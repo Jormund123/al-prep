@@ -1,0 +1,2476 @@
+© Nils Goerke, University Bonn, 6/2026 1
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Evolutionary Algorithms 2
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 6/2026 2
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Last Lecture: Mon 1.6.2026
+Evolutionary Computation
+Historic Remarks
+Different Approaches
+Idea of Evolutionary Algorithms (EA)
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+© Nils Goerke, University Bonn, 6/2026 3
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples 
+© Nils Goerke, University Bonn, 6/2026 4
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 5
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Optimization:
+Draw a nasty fitness function on the blackboard:
+g
+f(g)
+© Nils Goerke, University Bonn, 6/2026 6
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA steps:
+Parent Selection
+Mutation
+External Selection
+Fitness Evaluation
+Finish?
+Inheritance
+Initialization
+© Nils Goerke, University Bonn, 6/2026 7
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 8
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 9
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 10
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Inheritance
+Thus, generating offspring means to create new individuals
+with new genomes.
+Inheritance in the context of Evolutionary Algorithms
+means to use the genomes of those parents that have been
+selected.
+Inheritance is the principle of transporting some of the
+information from the previous generation (parents),
+into the next generation,
+by generating the offspring out of the parents genomes .
+There is a wide variety of possible ways to generate offspring.
+© Nils Goerke, University Bonn, 6/2026 11
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The most popular mechanism to implement the inheritance
+principle is to use k=2 parents and to combine their genomes
+(mostly called recombination).
+Inheritance:
+- recombination
+- by cross over
+- (other recombination operators)
+- (other inheritance mechanism)
+- (other inheritance operators)
+- ...
+The most popular mechanism to implement recombination of
+2 genomes is cross over:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 12
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Select two parents, A and B and recombine their genomes
+by taking one part form parent A
+and the other part from parent B
+Choose a random point C where to split the genomes,
+and recombine the four remaining fractions to build new
+individuals, containing partial information from both parents.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 13
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+Child 1: ?
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 14
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross-over:
+Parent A:
+Parent B:
+cross-over point C
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 15
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 16
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parent A:
+Parent B:
+cross over point C
+Child 1:
+Child 2:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 17
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 18
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+x
+y
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 19
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+x
+y
+xa
+ya
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 20
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+A
+x
+y
+xa
+ya
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 21
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+A
+x
+y
+xa xb
+yb
+ya
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 22
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+
+B = ( xb , yb )
+
+A
+B
+x
+y
+xa xb
+yb
+ya
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 23
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+A
+B
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 24
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1
+C1 = ( )
+A
+B
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 25
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1
+C1 = ( )
+A
+B
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+xa yb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 26
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1
+C1 = ( )
+A
+C1 B
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+xa yb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 27
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1, C2
+C1 = ( )
+C2 = ( )
+A
+C1 B
+C2
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+ya
+xa yb
+xb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 28
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1, C2
+C1 = ( )
+C2 = ( )
+A
+C1 B
+C2
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+ya
+xa yb
+xb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 29
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by 1-point cross over:
+Parents A, B
+A = ( xa , ya )
+ = ( )
+B = ( xb , yb )
+ = ( )
+Child C1, C2
+C1 = ( )
+C2 = ( )
+A
+C1 B
+C2
+x
+y
+xa xb
+yb
+ya
+xa ya
+xb yb
+ya
+xa yb
+xb
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 30
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Inheritance can involve k=(0),1, 2, 3, ... or even all m
+individuals from the parent generation.
+Although, taking k=2 parents is the most popular choice for
+implementing inheritance,
+the other possibilities are sensible, and are in use.
+k=0 parents: no inheritance, generate a novel genome
+k=1 parent : just copy the genome of the parent
+k=2 parents: recombination,
+ e.g. cross-over, mean value, sum, ...
+k=3 parents: recombination, e.g. cyclic cross-over
+k=m parents: recombination between all parents
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 31
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=0, no inheritance, generate a novel genome.
+The decision to omit inheritance by generating novel genomes
+is possible, but not really a good idea for EAs.
+Generating new individuals on a random basis, is a very strong
+implementation of exploration.
+It can be seen as a special variant of Random Search (RS),
+(with an extremely large hypersphere).
+Typically in EAs, exploration is the role of the subsequent
+mutation step.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 32
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=1, copy, just copy the genome of the parent.
+The decision to make just a copy of one of the parents for
+creating the offspring, is not a bad choice for the inheritance
+principle.
+This is a very strong implementation of exploitation.
+Just copying, bears the danger of loosing the (necessary)
+diversity among all genomes within the population.
+Only the subsequent EA step (mutation) that will potentially
+alter the resulting genome, can maintain the diversity to some
+extent (exploration).
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 33
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The most popular mechanism to implement the inheritance
+principle is to use k=2 parents and to combine their genomes
+(mostly called recombination).
+k=2, recombination, combine the genomes of two parents.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 34
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The most popular mechanism to implement the inheritance
+principle is to use k=2 parents and to combine their genomes
+(mostly called recombination).
+k=2, recombination, combine the genomes of two parents.
+Most methods developed and proposed for recombining k=2
+parents apply as well for k>2 parents with only small
+alterations.
+k>2, recombination, combine the genomes of more parents.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 35
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes of
+the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 36
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by N-point cross over:
+The N-point cross over combination operator, produces
+offspring that lie only on the corners of a hypercube.
+This is a reduced search space to look for solutions.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 37
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Parent A:
+Parent B:
+Child 1:
+Recombination by 1-point cross over:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 38
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Parent A:
+Parent B:
+Child 1:
+Recombination by 1-point cross over:
+Recombination by 2-point cross over:
+Parent A:
+Parent B:
+Child 1:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 39
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes of
+the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 40
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values:
+Select two parents, A and B and a random position R within
+the genome, and recombine the genomes by building the
+mean value between corresponding parts at position R of
+the genomes.
+Pointwise numeric operations, like:
+mean value, sum, difference, maximum or minimum
+are only feasible, if the different parts of the genomes are
+comparable and numeric.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 41
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 42
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 43
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+½ (4.75 + 1.532 ) = ½ (6.282) = 3.141
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 44
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+3.141
+½ (4.75 + 1.532 ) = ½ (6.282) = 3.141
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 45
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+3.141
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 46
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+0.123 1.40 40 42 3.141 5926 0
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 47
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+0.123 1.40 40 42 3.141 5926 0
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 48
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+0.123 1.40 40 42 3.141 5926 0
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1:
+5926
+5926
+R
+mean value in one component R
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 49
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1: 0.123 1.40 40 42
+5926
+5926
+3.141 5926 0
+Child C2:
+mean value in all components
+mean value in one component R
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 50
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by point wise mean values
+0.333 144.6 42 92 4.75
+0.123 1.40 40 42 1.532
+Parent A:
+Parent B: 0
+10716
+Child C1: 0.123 1.40 40 42
+5926
+5926
+3.141 5926 0
+Child C2: 0.228 73 41 67 3.141 5926 5358
+mean value in one component R
+mean value in all components
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 51
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes
+of the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 52
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by union of sets
+For genomes that are structured as a set of items, a valid and
+sensible recombination is to build the union of those sets.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 53
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by union of sets
+For genomes that are structured as a set of items, a valid and
+sensible recombination is to build the union of those sets.
+Parent A: { Soup, Pasta, Fish, White-Wine }
+Parent B: { Aperitif, White-Wine, Water, Cheese }
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 54
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by union of sets
+For genomes that are structured as a set of items, a valid and
+sensible recombination is to build the union of those sets.
+Parent A: { Soup, Pasta, Fish, White-Wine }
+Parent B: { Aperitif, White-Wine, Water, Cheese }
+Child C4: { Soup, Pasta, Fish, White-Wine,
+ Aperitif, Water, Cheese }
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 55
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes
+of the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 56
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by concatenation
+Genomes that are representing strings, can be recombined
+by a simple concatenation of their strings, just „gluing“ the
+genomes one after the other.
+In this case, the order is important.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 57
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Recombination by concatenation
+Genomes that are representing strings, can be recombined
+by a simple concatenation of their strings, just „gluing“ the
+genomes one after the other.
+In this case, the order is important.
+From: Monty Python's Flying Circus: Episode 22, Cosmetic surgery
+„Throatwobbler Mangrove “
+Parent A: „Throatwobbler “
+Parent B: „Mangrove“
+Child LY:
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 58
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+k=2 and k>2, recombination with k parents
+Several ways to combine (or re-combine) the genomes of
+the k parents have been proposed.
+Some of them rely on a special structure of the genome.
+N-point cross over (the most popular)
+mean-values, one component, all components
+max, min, sum, difference of values
+union, intersection of sets of items
+concatenate (strings)
+...
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 59
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Special forms of genome coding can require
+special recombination operators.
+In some cases, the Genome is coded with a special
+semantics aligned with the application.
+The inheritance, recombination operator
+can pay respect to this fact,
+and can therefore be structured in this way,
+but it does not have to .
+There are good arguments, to regard the genome as a
+complete context free binary vector.
+Inheritance
+© Nils Goerke, University Bonn, 6/2026 60
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 61
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 62
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The job of the mutation step is to maintain the diversity
+of the genomes within the population:
+Different positions in search space sample the fitness
+function at different points.
+Changing the genome by mutation is implementing the
+exploration principle of stochastic optimization.
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 63
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Depending on the different way the information is coded in
+the genome, the layout of the mutation step is to be
+designed differently.
+Some common mutation operators are:
+Binary genome: a bit-flip
+Vector of parameters: change of value
+Set of items: replace a single item
+String of characters: replace a single character
+Sequence: change order within sequence
+Other: other method
+Special codings of the genome will require that the
+mutation is paying respect to this coding.
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 64
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+Before: O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 65
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+r
+Before: O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 66
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 1:
+Choose a random position r in the genome and flip that bit.
+This yields a 100% chance that the genome is changed;
+the resulting Hamming distance is always exactly 1.
+r
+O I O O O O O I O O O I I I
+Before:
+After:
+O I O I O O O I O O O I I I
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 67
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+Before: I I O I I I I O I O O O I O
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 68
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+Before: I I O I I I I O I O O O I O
+0.0 < w < 1.0
+EA: Mutation
+© Nils Goerke, University Bonn, 6/2026 69
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The mutation for a binary genome is typically
+implemented as one or more bit-flips:
+Method 2:
+Go through all positions in the genome, and flip each bit
+with a given bit-flip-probability w .
+There is a chance, that all bits are flipped,
+and a chance that none is flipped.
+O I O O O O O I I O I O O I
+Before:
+After:
+I I O I I I I O I O O O I O
+EA: Mutation
+0.0 < w < 1.0
+© Nils Goerke, University Bonn, 6/2026 70
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Mutation
+It is possible, that the inheritance and the mutation process
+yield invalid genomes, which represent hypotheses s from
+outside the allowed search space S.
+Those illegal genomes would stress the optimization
+process in an unwanted way.
+Therefore, it is a good advise, to take precautions against
+illegal genomes (if possible, and economic):
+- shape the structure of the genome,
+- shape the structure of the inheritance,
+- shape the structure of the mutation.
+EA: & Inheritance
+© Nils Goerke, University Bonn, 6/2026 71
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 72
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 73
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The fitness of each individual is evaluated with respect to the
+fitness-function (most case identical to the objective function).
+For EAs, it is usual to have a fitness function that is to be
+maximized.
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 74
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The fitness of each individual is evaluated with respect to the
+fitness-function (most case identical to the objective function).
+For EAs, it is usual to have a fitness function that is to be
+maximized.
+If the fitness evaluation is expensive, it is a good idea to
+process only the new individuals/genomes from the
+inheritance step, including those individuals/genomes that
+have changed during mutation.
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 75
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The fitness f(gp
+) of each individual p is evaluated with respect
+to the application using the given fitness-function f(g).
+p=P
+Genome gp
+p=5
+p=4
+p=3
+p=2
+p=1 f(g1
+) = 0.5
+f(g2
+) = - 171.0
+f(g3
+) = 0.228
+f(gp
+) =
+f(g4
+) =
+Fitness Value f(gp
+)
+f(g)
+g
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 76
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp
+)
+The fitness-values f(gp
+) for the genomes gp
+in their initial state.
+p
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 77
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp
+)
+The fitness-values f(gp
+) for the genomes gp
+in their initial state sorted by f(gp
+).
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 78
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp
+)
+The fitness-values f(gp
+) for the genomes gp
+sorted by f(gp
+) after some steps,
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 79
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Distribution of fitness values over the population.
+f(gp
+)
+The fitness-values f(gp
+) for the genomes gp
+sorted by f(gp
+) after some steps,
+and their initial state.
+rank(p)
+EA: Fitness Evaluation
+© Nils Goerke, University Bonn, 6/2026 80
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 81
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 82
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+The purpose of the selection process is to
+keep the „Best“, and discard the „Losers“.
+The selection is based on the achieved fitness, which is
+obtained by the fitness function, quasi from external to the EA.
+The m individuals that survive the external selection
+process, will be the pool for the parents of the next
+generation. Later on, from these m parents the l offspring
+will be generated through the inheritance process.
+External Selection
+© Nils Goerke, University Bonn, 6/2026 83
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The two questions for the external selection are:
+How many (m) of the individuals shall survive?
+and
+Which are the ones to keep?
+A common way is to keep the population constant to P
+individuals.
+discard l by external selection
+and keep m as pool for the parents,
+then generate l offspring for the next generation.
+External Selection
+© Nils Goerke, University Bonn, 6/2026 84
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+External Selection
+© Nils Goerke, University Bonn, 6/2026 85
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+External Selection
+© Nils Goerke, University Bonn, 6/2026 86
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+External Selection
+© Nils Goerke, University Bonn, 6/2026 87
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+keep discard
+External Selection
+© Nils Goerke, University Bonn, 6/2026 88
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+External Selection
+© Nils Goerke, University Bonn, 6/2026 89
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+inheritance,
+l offspring
+External Selection
+© Nils Goerke, University Bonn, 6/2026 90
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+the next
+generation
+inheritance,
+l offspring
+TNG
+External Selection
+© Nils Goerke, University Bonn, 6/2026 91
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+random choice
+schedule based, e.g. round robin
+fitness based elitism:
+fitness proportional choice
+rank proportional choice
+fitness based stochastic:
+fitness proportionate, probabilistic choice
+rank proportionate, probabilistic choice
+combinations of the above
+Common strategies for the external selection are:
+External Selection
+© Nils Goerke, University Bonn, 6/2026 92
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+There are different ideas and principles behind the selection
+of the m possible parents from the population, with special
+pros and cons.
+deterministic or stochastic selection
+fitness dependent selection
+fitness proportional selection
+rank-based selection
+tournament selection
+life-time based selection
+combinations of the above + more
+External Selection
+© Nils Goerke, University Bonn, 6/2026 93
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 94
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 95
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+Selection in Evolutionary Strategy ES-Systems:
+Following the initial idea of Evolutionary Strategies
+there are two strategies for the selection process:
+Parent Selection
+( m + l ) and ( m , l ) 
+© Nils Goerke, University Bonn, 6/2026 96
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+Selection in Evolutionary Strategy ES-Systems:
+Following the initial idea of Evolutionary Strategies
+there are two strategies for the selection process:
+Parent Selection
++ (plus) strategy: next generation consists of
+m parents + l offspring, parents survive.
+, (comma) strategy: next generation consists of
+only the l offspring, parents are discarded.
+( m + l ) and ( m , l ) 
+© Nils Goerke, University Bonn, 6/2026 97
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection Parent Selection
+( 1 + 1 ): m=1 one parent, l=1 one child,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection 
+© Nils Goerke, University Bonn, 6/2026 98
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection Parent Selection
+( 1 + 1 ): m=1 one parent, l=1 one child,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection
+( 1 + l ): m=1 one parent, l children, offspring,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection 
+© Nils Goerke, University Bonn, 6/2026 99
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection Parent Selection
+( 1 + 1 ): m=1 one parent, l=1 one child,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection
+( m + l ): m parents, l offspring, parents survive
+ recombination, mutation, external selection.
+( 1 + l ): m=1 one parent, l children, offspring,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection 
+© Nils Goerke, University Bonn, 6/2026 100
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection Parent Selection
+( 1 + 1 ): m=1 one parent, l=1 one child,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection
+( m + l ): m parents, l offspring, parents survive
+ recombination, mutation, external selection.
+( m , l ): m parents, l offspring,
+ recombination, mutation, external selection,
+ parents are discarded.
+( 1 + l ): m=1 one parent, l children, offspring,
+ inheritance by copying, only mutation
+ rank based, deterministic external selection 
+© Nils Goerke, University Bonn, 6/2026 101
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+the next
+generation
+inheritance,
+l offspring
+( m + l )
+Parent Selection
+TNG
+© Nils Goerke, University Bonn, 6/2026 102
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P
+Have P, keep m, generate l offspring
+m l
+external
+selection
+m parents
+the next
+generation
+inheritance,
+l offspring
+( m , l )
+Parent Selection
+TNG
+© Nils Goerke, University Bonn, 6/2026 103
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+Selection in Evolutionary Strategy ES-Systems:
+Following the initial idea of Evolutionary Strategies
+there are two strategies for the selection process:
+Parent Selection
++ (plus) strategy: next generation consists of
+m parents + l offspring, parents survive.
+, (comma) strategy: next generation consists of
+only the l offspring, parents are discarded.
+( m + l ) and ( m , l ) 
+© Nils Goerke, University Bonn, 6/2026 104
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P
+Have P, discard l, select m parents, generate l offspring
+l
+external
+selection
+( m +* l )
+Parent Selection
+keep discard
+P-l
+© Nils Goerke, University Bonn, 6/2026 105
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P
+Have P, discard l, select m parents, generate l offspring
+l
+external
+selection
+( m +* l )
+Parent Selection
+keep discard
+P-l
+select
+m parents
+© Nils Goerke, University Bonn, 6/2026 106
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P-l l P
+external
+selection
+( m +* l )
+Parent Selection
+Have P, discard l, select m parents, generate l offspring
+select
+m parents
+© Nils Goerke, University Bonn, 6/2026 107
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P-l l P
+external
+selection
+inheritance,
+l offspring
+( m +* l )
+Parent Selection
+select
+m parents
+Have P, discard l, select m parents, generate l offspring
+© Nils Goerke, University Bonn, 6/2026 108
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: External Selection
+P-l l P
+external
+selection
+the next
+generation
+inheritance,
+l offspring
+( m +* l )
+Parent Selection
+TNG
+Have P, discard l, select m parents, generate l offspring
+select
+m parents
+© Nils Goerke, University Bonn, 6/2026 109
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 110
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 111
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+There are several criteria to determine the
+finishing of the EA process:
+Finish?
+© Nils Goerke, University Bonn, 6/2026 112
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+There are several criteria to determine the
+finishing of the EA process:
+by performance of best individual
+by performance of sub-population
+by stagnation/development of fitness improvement
+by time
+by number of generations
+...
+Finish?
+© Nils Goerke, University Bonn, 6/2026 113
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+There are several criteria to determine the
+finishing of the EA process:
+by performance of best individual
+by performance of sub-population
+by stagnation/development of fitness improvement
+by time
+by number of generations
+...
+by choice of human operator
+Finish?
+© Nils Goerke, University Bonn, 6/2026 114
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+There are several criteria to determine the
+finishing of the EA process:
+by performance of best individual
+by performance of sub-population
+by stagnation/development of fitness improvement
+by time
+by number of generations
+...
+by choice of human operator; whatever that means.
+Finish?
+© Nils Goerke, University Bonn, 6/2026 115
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 116
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 117
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Initialization
+The main principles driving the initialization of
+the genomes of the first population are:
+© Nils Goerke, University Bonn, 6/2026 118
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The main principles driving the initialization of
+the genomes of the first population are:
+Start as good as possible:
+Enough richness, enough diversity:
+Initialization
+© Nils Goerke, University Bonn, 6/2026 119
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The main principles driving the initialization of
+the genomes of the first population are:
+Start as good as possible:
+Try to use all a priori knowledge available.
+Try to avoid illegal genomes (if possible).
+Enough richness, enough diversity:
+Initialization
+© Nils Goerke, University Bonn, 6/2026 120
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The main principles driving the initialization of
+the genomes of the first population are:
+Start as good as possible:
+Try to use all a priori knowledge available.
+Try to avoid illegal genomes (if possible).
+Enough richness, enough diversity:
+Sample as much from the fitness landscape as possible.
+Try to cover the complete search space.
+Initialization
+© Nils Goerke, University Bonn, 6/2026 121
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 122
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 123
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The goal of the EA is to maximize the fitness.
+So, if the EA is working properly, somehow the fitness value within
+the complete population should rise with time.
+How is the fitness of the best individual in the population changing
+over time?
+Performance Graph
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+© Nils Goerke, University Bonn, 6/2026 124
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+initial situation
+Performance Graph
+© Nils Goerke, University Bonn, 6/2026 125
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+initial situation
+strong increase
+Performance Graph
+© Nils Goerke, University Bonn, 6/2026 126
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+initial situation
+strong increase
+Performance Graph
+© Nils Goerke, University Bonn, 6/2026 127
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+initial situation
+strong increase
+Performance Graph
+© Nils Goerke, University Bonn, 6/2026 128
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+initial situation
+strong increase
+slow increase
+Performance Graph
+© Nils Goerke, University Bonn, 6/2026 129
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The performance graph is the most important tool to monitor the
+optimization process of a working evolutionary algorithm.
+Depending on the chosen strategy, the performance graph
+shows different properties:
+For a deterministic, rank dependent elitism strategy ( m + l ),
+the performance graph will increase monotonically.
+For a probabilistic, non-elitism strategy, the performance graph
+can decrease, but should show an increase on the long run.
+EA: Performance Graph
+© Nils Goerke, University Bonn, 6/2026 130
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+( m , l )
+EA: Performance Graph
+© Nils Goerke, University Bonn, 6/2026 131
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The performance graph is the most important tool to monitor the
+optimization process of a working evolutionary algorithm.
+The performance graph can depict different aspects:
+the fitness f*(t) of the best individual, (most important)
+the average fitness f
+av
+(t) of the complete population
+the average and variance over the complete population
+the average fitness f
+avp
+(t) of the parents
+all fitness values f
+p
+(t) from all parents
+EA: Performance Graph
+© Nils Goerke, University Bonn, 6/2026 132
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+EA: Performance Graph
+© Nils Goerke, University Bonn, 6/2026 133
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+The performance graph is showing the development of the fitness
+f*(t) of the best individual in each generation with respect to time.
+time
+f*(t)
+EA: Performance Graph
+© Nils Goerke, University Bonn, 6/2026 134
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 135
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 136
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Genome Structure
+Naive structuring of the genome:
+Sophisticated structuring of the genome:
+“Normal” structuring of the genome:
+© Nils Goerke, University Bonn, 6/2026 137
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Naive structuring of the genome:
+Pro: easy to implement, only few knowledge necessary.
+Con: large search space, a lot of local maxima possible,
+ may be hard or impossible to find a good solution.
+Sophisticated structuring of the genome:
+“Normal” structuring of the genome:
+Genome Structure 
+© Nils Goerke, University Bonn, 6/2026 138
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Naive structuring of the genome:
+Pro: easy to implement, only few knowledge necessary.
+Con: large search space, a lot of local maxima possible,
+ may be hard or impossible to find a good solution.
+Sophisticated structuring of the genome:
+“Normal” structuring of the genome:
+Pro: still easy to implement, some knowledge necessary,
+ wide variety to implement inheritance and mutation.
+Con: still a lot of bad or illegal genomes possible.
+Genome Structure 
+© Nils Goerke, University Bonn, 6/2026 139
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Naive structuring of the genome:
+Pro: easy to implement, only few knowledge necessary.
+Con: large search space, a lot of local maxima possible,
+ may be hard or impossible to find a good solution.
+Sophisticated structuring of the genome:
+Pro: only legal, or good genomes are to be investigated.
+Con: profound knowledge about the process and of the kind of
+ possible solutions is required, can become computational
+ expensive to implement inheritance and mutation.
+“Normal” structuring of the genome:
+Pro: still easy to implement, some knowledge necessary,
+ wide variety to implement inheritance and mutation.
+Con: still a lot of bad or illegal genomes possible.
+Genome Structure 
+© Nils Goerke, University Bonn, 6/2026 140
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 141
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example:
+Implementing a task using an Evolutionary Algorithm,
+a series of structuring decision will be necessary.
+The sequence below is not common theory, but just my personal choice of doing it.
+Objective: specify the objective
+Genome: structure the genome
+Fitness Function: define an appropriate fitness function
+Inheritance: layout the inheritance process
+Mutation: layout the mutation process
+Selection Strategy: specify the selection strategy
+© Nils Goerke, University Bonn, 6/2026 142
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Objective:
+Genome:
+Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 143
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Objective:
+find the position X, where an objective function o(X) has its
+maximal value (or minimal value).
+Genome:
+Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 144
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Objective:
+find the position X, where an objective function o(X) has its
+maximal value (or minimal value).
+Genome:
+the N-dimensional vector X
+g = X = { x1
+, x2
+, ..., xi
+, … , xN }
+with N components x1
+to xN
+Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 145
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Objective:
+find the position X, where an objective function o(X) has its
+maximal value (or minimal value).
+Genome:
+the N-dimensional vector X
+g = X = { x1
+, x2
+, ..., xi
+, … , xN }
+with N components x1
+to xN
+Fitness Function:
+fitness function f(g) is identical to the objective function o(X)
+ f(g) = o(X) 
+© Nils Goerke, University Bonn, 6/2026 146
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation:
+Inheritance:
+© Nils Goerke, University Bonn, 6/2026 147
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation:
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+© Nils Goerke, University Bonn, 6/2026 148
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation:
+chose a random component xi
+, and change that value to a
+complete new value.
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+© Nils Goerke, University Bonn, 6/2026 149
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation 1:
+chose a random component xi
+, and change that value to a
+complete new value.
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+Mutation 2:
+© Nils Goerke, University Bonn, 6/2026 150
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation 1:
+chose a random component xi
+, and change that value to a
+complete new value.
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+Mutation 2:
+chose one or two random components xi
+, xj
+ and add a small
+normally distributed value to them. 
+© Nils Goerke, University Bonn, 6/2026 151
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+Mutation 1:
+chose a random component xi
+, and change that value to a
+complete new value.
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+Mutation 2:
+chose one or two random components xi
+, xj
+ and add a small
+normally distributed value to them. 
+© Nils Goerke, University Bonn, 6/2026 152
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Selection Strategy:
+elitism, m parents, parents survive, no mutation for the parents
+deterministic, rank dependent, take the m best individuals
+(m + l), with P=500, m=100, l=400.
+Mutation 1:
+chose a random component xi
+, and change that value to a
+complete new value.
+Inheritance:
+recombination with k=2 parents, 1-point cross over
+Mutation 2:
+chose one or two random components xi
+, xj
+ and add a small
+normally distributed value to them. 
+© Nils Goerke, University Bonn, 6/2026 153
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+A typical playground to investigate the capabilities of
+optimzation methods are test functions to minimize.
+Schwefel’s Function (1981)
+f(x) = S -xj
+sin( sqrt( abs( xj
+ ) ) )
+j = 1 … d
+-500 < xj
+ < 500
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+Schwefel, H.-P.:
+Numerical optimization of computer models.
+Chichester: Wiley & Sons, 1981.
+© Nils Goerke, University Bonn, 6/2026 154
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+f(x)=sum(-x(i)·sin(sqrt(abs(x(i))))),
+i=1:n; -500<=x(i)<=500.
+f(x)=sum(100·(x(i+1)-x(i)^2)^2+(1-x(i))^2),
+i=1:n-1; -2.048<=x(i)<=2.048.
+© Nils Goerke, University Bonn, 6/2026 155
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+f(x)=10·n+sum(x(i)^2-10·cos(2·pi·x(i))),
+ i=1:n; -5.12<=x(i)<=5.12. 
+© Nils Goerke, University Bonn, 6/2026 156
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+f(x)=-a·exp(-b·sqrt(1/n·sum(x(i)^2)))-exp(1/n·sum(cos(c·x(i))))+a+exp(1);
+a=20; b=0.2; c=2·pi; i=1:n;
+© Nils Goerke, University Bonn, 6/2026 157
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+f(x)=-sum(sin(x(i))·(sin(i·x(i)^2/pi))^(2·m)),
+i=1:n, m=10;
+f(x)=-sum(c(i)·(exp(-1/pi·sum((x-A(i))^2))·cos(pi·sum((x-A(i))^2)))),
+ i=1:m, m=5
+© Nils Goerke, University Bonn, 6/2026 158
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+http://www.tu-ilmenau.de/fakia/fileadmin/template/startIA/oek_systeme/Interess_adressen/pohlheim/GA_Toolbox/fcnindex.html
+f(x1,x2) = -cos(x1)·cos(x2)·exp(-((x1-pi)^2+(x2-pi)^2));
+-100<=x(i)<=100, i=1:2.
+© Nils Goerke, University Bonn, 6/2026 159
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Fkt Maximum
+Below is a list of common test functions (to minimize) that
+are used to investigate the capabilities of optimization
+methods:
+Schwefel’s Function
+Generalized Rosenbrock’s Function
+Rastrigin’s Function
+Ackley's (path) Function
+Langermann's Function
+Michalewicz's Function
+Easoms Function
+Griewangk’s Function
+Bohachevsky's Function
+Watson's Function
+Colville's Function
+...
+© Nils Goerke, University Bonn, 6/2026 160
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Sorting
+Objective:
+Genome:
+(easy) Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 161
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Sorting
+Objective:
+sort a set of numerical values xi
+ with respect to the
+square xi
+2
+ of their value.
+Genome:
+an ordered set of values (xi
+), g = { x1
+, x2
+, ..., xi
+, … , x42 , … }
+(easy) Fitness Function:
+f(g) is the accumulation of all comparisons of subsequent values
+add a +1 if the order is correct, and a -1 if the order is wrong.
+ f(g) = S sign( xi
+2
+ – xi+1
+2
+ ) 
+© Nils Goerke, University Bonn, 6/2026 162
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: Sorting
+Selection Strategy:
+elitism, m parents, parents survive, no mutation for the parents
+deterministic, rank dependent, take the m best individuals
+(m + l), with P=500, m=100, l=400.
+Mutation:
+exchange 2 values within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome.
+Easy Inheritance:
+since a classical cross over will generate illegal genomes
+the k=1, copy operator with no recombination is fine.
+© Nils Goerke, University Bonn, 6/2026 163
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the L-bit binary representation of the square root of 42;
+unfortunately, the math. function sqrt is not available.
+Example: 42
+Fitness function:
+Genome:
+© Nils Goerke, University Bonn, 6/2026 164
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the L-bit binary representation of the square root of 42;
+unfortunately, the math. function sqrt is not available.
+Example: 42
+Fitness function:
+Genome:
+an L-bit binary vector g, in fix-point representation 
+© Nils Goerke, University Bonn, 6/2026 165
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the L-bit binary representation of the square root of 42;
+unfortunately, the math. function sqrt is not available.
+Example: 42
+Fitness function:
+take the genome g as a binary, fix point number x(g)
+calculate the square of x(g),
+compare the result to 42.0, the square of the objective number
+f(g) = | 42.0 – x(g)2
+ |
+Genome:
+an L-bit binary vector g, in fix-point representation 
+© Nils Goerke, University Bonn, 6/2026 166
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the L-bit binary representation of the square root of 42;
+unfortunately, the math. function sqrt is not available.
+Example: 42
+Fitness function:
+take the genome g as a binary, fix point number x(g)
+calculate the square of x(g),
+compare the result to 42.0, the square of the objective number
+f(g) = | 42.0 – x(g)2
+ |
+In fact, this is a cost function, that is to be minimized.
+Genome:
+an L-bit binary vector g, in fix-point representation 
+© Nils Goerke, University Bonn, 6/2026 167
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Population:
+P = 100, population size kept constant.
+Example: 42
+Mutation:
+bit-flip, flip each bit of the genome with a probability w = 0.01
+Caution: be aware of Hamming-cliffs.
+Inheritance:
+recombination, k=2 parents, 1-point cross over.
+Selection Strategy:
+elitism, m parents, parents survive, no mutation for the parents
+deterministic, rank dependent, take the m best individuals
+(m + l), with m=20, l=80.
+© Nils Goerke, University Bonn, 6/2026 168
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the shortest route visiting each point from a set of given
+points (cities) exactly once (Traveling Salesman Problem).
+Example: TSP
+Genome:
+Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 169
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the shortest route visiting each point from a set of given
+points (cities) exactly once (Traveling Salesman Problem).
+Example: TSP
+Genome:
+an ordered set of points (cities, Ci
+), sequence of cities to be
+visited, containing each city exactly once.
+g = { C3
+, C17, Ci
+, C42, ...}
+Fitness Function:
+© Nils Goerke, University Bonn, 6/2026 170
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Objective:
+find the shortest route visiting each point from a set of given
+points (cities) exactly once (Traveling Salesman Problem).
+Example: TSP
+Genome:
+an ordered set of points (cities, Ci
+), sequence of cities to be
+visited, containing each city exactly once.
+g = { C3
+, C17, Ci
+, C42, ...}
+Fitness Function:
+f(g) is the sum of all distances d(Ci
+,Ci+1) between subsequent
+cities in the list (genome). Of course all distances d(Ci
+,Cj
+)
+between the cities i and j is required; either by a distance
+matrix or by a calculation from the coordinates.
+© Nils Goerke, University Bonn, 6/2026 171
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Example: TSP
+Mutation:
+© Nils Goerke, University Bonn, 6/2026 172
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+© Nils Goerke, University Bonn, 6/2026 173
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+exchange 2 cities within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome. 
+© Nils Goerke, University Bonn, 6/2026 174
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+exchange 2 cities within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome.
+g = { … , London, Rio, Moscow, New York, Paris, Tokyo, LA, ... }
+© Nils Goerke, University Bonn, 6/2026 175
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+exchange 2 cities within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome.
+g = { … , London, Rio, Moscow, New York, Paris, Tokyo, LA, ... }
+g' = { … , London, Paris, Moscow, New York, Rio, Tokyo, LA, ... }
+© Nils Goerke, University Bonn, 6/2026 176
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+exchange 2 cities within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome.
+g = { … , London, Rio, Moscow, New York, Paris, Tokyo, LA, ... }
+g' = { … , London, Paris, Moscow, New York, Rio, Tokyo, LA, ... }
+g'' = { … , London, Tokyo, Rio, Moscow, New York, Paris, LA, ... }
+© Nils Goerke, University Bonn, 6/2026 177
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Easy Inheritance:
+Since a classical cross over will generate illegal genomes
+the k=1, copy operator, omitting recombination is O.K.
+Example: TSP
+Mutation:
+exchange 2 cities within the sequence (genome),
+or even a complete subsequence,
+or invert the order of a subsequence within the genome.
+g = { … , London, Rio, Moscow, New York, Paris, Tokyo, LA, ... }
+g' = { … , London, Paris, Moscow, New York, Rio, Tokyo, LA, ... }
+g''' = { … , London, Paris, New York, Moscow, Rio, Tokyo, LA, ... }
+g'' = { … , London, Tokyo, Rio, Moscow, New York, Paris, LA, ... }
+© Nils Goerke, University Bonn, 6/2026 178
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Sophisticated Inheritance:
+A more sophisticated inheritance operator would have to
+guarantee that the offspring still represent legal genomes,
+ - routes that visit each city exactly once - .
+This may cause high computational effort,
+which might be larger than the potential benefit.
+Example: TSP
+Sophisticated Mutation:
+ 
+© Nils Goerke, University Bonn, 6/2026 179
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Sophisticated Inheritance:
+A more sophisticated inheritance operator would have to
+guarantee that the offspring still represent legal genomes,
+ - routes that visit each city exactly once - .
+This may cause high computational effort,
+which might be larger than the potential benefit.
+Example: TSP
+Sophisticated Mutation:
+a more sophisticated mutation operator might take the
+fitness value f(g) of the genome g into account, to make only
+those changes to the genome that have a high probability for
+a fitness increase.
+© Nils Goerke, University Bonn, 6/2026 180
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Sophisticated Inheritance:
+A more sophisticated inheritance operator would have to
+guarantee that the offspring still represent legal genomes,
+ - routes that visit each city exactly once - .
+This may cause high computational effort,
+which might be larger than the potential benefit.
+Example: TSP
+Sophisticated Mutation:
+a more sophisticated mutation operator might take the
+fitness value f(g) of the genome g into account, to make only
+those changes to the genome that have a high probability for
+a fitness increase.
+How do you know?
+Either by theory (if available), or by a heuristics. 
+© Nils Goerke, University Bonn, 6/2026 181
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: 8 Queens
+© Nils Goerke, University Bonn, 6/2026 182
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The 8 queens puzzle with an evolutionary algorithm:
+Example: 8 Queens
+The task of the 8 queens puzzle is to place 8 queens on a
+chess board (8x8) so that they can not reach each other. 
+© Nils Goerke, University Bonn, 6/2026 183
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The 8 queens puzzle with an evolutionary algorithm:
+Example: 8 Queens
+The task of the 8 queens puzzle is to place 8 queens on a
+chess board (8x8) so that they can not reach each other.
+chess board with
+8x8 = 64 positions
+allowed moves
+for a queen 
+© Nils Goerke, University Bonn, 6/2026 184
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The 8 queens puzzle with an evolutionary algorithm:
+Example: 8 Queens
+The task of the 8 queens puzzle is to place 8 queens on a
+chess board (8x8) so that they can not reach each other.
+chess board with
+8x8 = 64 positions
+allowed moves
+for a queen
+One of
+the 92
+solutions
+© Nils Goerke, University Bonn, 6/2026 185
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Very naive implementation of the genome:
+a 64 bit binary vector; queen is 1, no queen is 0;
+more than 8 queens are possible.
+This very naive implementation is generating an extremely
+large search space with 2^64 possible genomes. This is
+beyond any computing power to be investigated in total.
+Example: 8 Queens
+Semi naive implementation of the genome:
+a 64 bit binary vector; queen is 1, no queen is 0;
+exactly 8 queens == 8 bits set are possible.
+Still the resulting search space is very large.
+{ }
+© Nils Goerke, University Bonn, 6/2026 186
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Normal/Sophisticated implementation of the genome:
+8 rows of 8 bit binary vectors; queen is 1, no queen is 0;
+each row contains exactly one queen.
+This is reducing the search space to 88
+ = 16777216
+possibilities, (which can be managed by brute-force).
+Example: 8 Queens
+© Nils Goerke, University Bonn, 6/2026 187
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Normal/Sophisticated implementation of the genome:
+8 rows of 8 bit binary vectors; queen is 1, no queen is 0;
+each row contains exactly one queen.
+This is reducing the search space to 88
+ = 16777216
+possibilities, (which can be managed by brute-force).
+Example: 8 Queens
+{ } row 1 row 2 row 3
+row 5 row 6 row 7
+row 4
+row 8
+Genome = 
+© Nils Goerke, University Bonn, 6/2026 188
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+Normal/Sophisticated implementation of the genome:
+8 rows of 8 bit binary vectors; queen is 1, no queen is 0;
+each row contains exactly one queen.
+This is reducing the search space to 88
+ = 16777216
+possibilities, (which can be managed by brute-force).
+Example: 8 Queens
+{ } row 1 row 2 row 3
+row 5 row 6 row 7
+row 4
+row 8
+Genome =
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8 { }
+© Nils Goerke, University Bonn, 6/2026 189
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: 8 Queens
+Inheritance, recombination, 1 point cross over
+cross-over points only between the rows
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8
+Genome A = { }
+© Nils Goerke, University Bonn, 6/2026 190
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: 8 Queens
+Inheritance, recombination, 1 point cross over
+cross-over points only between the rows
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8
+Genome A = { }
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8
+Genome B = { }
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8
+ Child = { }
+© Nils Goerke, University Bonn, 6/2026 191
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA: Example: 8 Queens
+Mutation only the position of the queen within the row is
+altered
+row 1 row 2 row 3 row 4 row 5 row 6 row 7 row 8
+Genome A = { }
+row 3
+row 3
+Chose a random row r (1, …, 8):
+and pick a new random position (1, …, 8) for the queen
+before mutation
+after mutation
+© Nils Goerke, University Bonn, 6/2026 192
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+A more sophisticated implementation of the genome:
+If you have an even more sophisticated idea for structuring
+the genome, don't forget to shape the inheritance and
+mutation operators and the fitness function accordingly.
+Example: 8 Queens
+Go ahead,
+feel free to do experiments
+© Nils Goerke, University Bonn, 6/2026 193
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The objective, is to find a placement of the 8 queens
+so that they can't reach each other.
+The fitness function for the EA should reflect this:
+a large value of f if the placement is o.k. I
+a small value of f if the placement is not o.k. O
+Example: 8 Queens
+A fitness function that yields a binary value (O,I)
+is not a good idea for an evolutionary algorithm.
+The resulting fitness surface is flat (O), with only a few
+isolated peeks (I).
+The value of this kind of fitness function is not reflecting,
+that a genome can be close to a possible solution.
+© Nils Goerke, University Bonn, 6/2026 194
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The objective, is to find a placement of the 8 queens
+so that they can't reach each other.
+An appropriate fitness function for an EA must be shaped
+accordingly;
+In addition, the fitness function f value should implement, that
+genomes g, close to an optimal solution should yield a larger
+fitness value f(g) than those far away.
+The optimal would be, to have a fitness function f(g) that is
+proportional to the distance between the genome g to an
+optimal genome g*.
+Unfortunately this is not possible in general.
+Example: 8 Queens
+© Nils Goerke, University Bonn, 6/2026 195
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA:
+The objective, is to find a placement of the 8 queens
+so that they can't reach each other.
+Example: 8 Queens
+A proposal for a fitness function for the 8 queens problem:
+Each possibilty that one queen can attack another queen is
+counted as -1
+The fitness value f(g) is the sum of all attack possibilities.
+This yields a graded response as required,
+with a maximal value f(g*) = 0.0 when no attack is possible.
+Caution:
+This fitness function is only appropriate if the number of queens
+is fixed to 8 (0 queens => 0 attack possibilities)
+© Nils Goerke, University Bonn, 6/2026 196
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+EA cycle of operations:
+Inheritance
+Mutation
+External Selection
+Finish?
+Initialization
+Fitness Evaluation
+Parent Selection
+© Nils Goerke, University Bonn, 6/2026 197
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Overview
+EA Steps
+Individual, Genome, Fitness, Population
+Parent selection
+Inheritance
+Mutation
+Fitness evaluation
+External selection
+Finish?
+Initialization
+Strategy
+Performance Graph
+Genome Structure
+Examples
+© Nils Goerke, University Bonn, 6/2026 198
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Evolutionary Algorithms 2
+Master Computer Science [MA-INF 4201]
+Mon 14:15 – 15:45, HSZ, HS-2 
+© Nils Goerke, University Bonn, 6/2026 199
+ Artificial Life [MA-INF 4201], 08, Evolutionary Algorithms 2, Mon 8.6.26, Computer Science University of Bonn
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Evolutionary Algorithms 2
+Thank you for listening

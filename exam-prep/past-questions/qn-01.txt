@@ -1,0 +1,93 @@
+MA-INF 4201 - Artificial Life SS25
+memory protocol for exam period 1
+The exam was set for 100 minutes and gave 100 points (so approx. 1min per
+point).
+18 tasks:
+• tasks 1-2 gave 10 points
+• tasks 3-18 gave 5 points (for these I don’t recall the exact order, but this
+shouldnt matter, as they were all independent from eachother)
+We were given paper to write on, the 10pt tasks had 1.5-2pages of free space
+for our solutions.
+I tried to cite the exact wording as close as possible and gave occasional (side-
+notes), that were not part of the task-descriptions when necessary.
+1
+Task 1 Wolfram Number [10pt]
+Name all possible Wolfram Numbers that produce the following d=1, k=2, r=1
+patterns. Explain how you calculated the numbers.
+t=0
+t=1
+t=2
+Task 2 Evolutionary Algorithm [10pt]
+Define all parts and steps of an Evolutionary Algorithm. What are the benefits
+and what are downsides? Use this to define an EA that solves the following
+scenario:
+You want to find the best tasting soda. The ingredients are (here 6 ingredients
+like water, carbon dioxide or sugar were named. The exact names don’t matter).
+Then you can also add up to Y=15 additives out of possible Z=60. Every
+additive mustn’t be more than 1% of the mixture and all additives together
+mustn’t be more than 3% of the mixture.
+You may also use a council of students that rate the sodas. The best comparison
+is achieved, when two sodas are compared.
+Task 3 Langton’s Ant [5pt]
+Name the 4 micro behaviors of Langton’s Ant and give a short scribble visual-
+ization for each of them.
+Task 4 Breitenberg obstacle avoidance [5pt]
+Imagine a Breitenberg vehicle for obstacle avoidance (the type was not mentioned
+here). Now someone has accidentally replaced all the proximity-sensors with
+distance-sensors.
+Explain what the expected behavior will be and draw an imagery example.
+Task 5 Power-Laws [5pt]
+Draw a diagram visualizing the Gutenberg-Richter-Law and define the variables
+you used.
+Task 6 Evolutionary Algorithm - Fitness behavior [5pt]
+Given an EA with rank-based, elitism, (λ+µ) selection process. Draw diagrams
+depicting the fitness of the population sorted by fitness before and after the
+selection process.
+2
+Task 7 Subsumption [5pt]
+There are two mechanism, how the higher levels of the subsumption architecture
+influence the lower level. Describe and visualize them.
+Task 8 Natural life [5pt]
+Name 5 attributes, commonly used to define natural life.
+Task 9 Number of Rules [5pt]
+Calculate the number of possible rules and derive a formula for a CA with d=3,
+k=2, r=1 Moore.
+Task 10 von Neumann [5pt]
+Name 2 things, that John von Neumann is associated with.
+Task 11 Wheel of Fortune [5pt]
+Given P individuals. You want to use the wheel of fortune for selection. This
+takes into account every individual. Derive a formula for ω1(P) the probability,
+that the highest-rank individual is selected. State the formula in dependence of
+the population-size P
+Task 12 Game of Life pattern [5pt]
+Within the Game of Life there is a pattern called glider. Give an example that
+moves to the lower-right and draw the 4 time-steps. (here 4 grids of size 7x7
+were given, indexed by ”t=0” up to ”t=3”)
+Task 13 Evolutionary Algorithm - Mutation Prob. [5pt]
+Within an Evolutionary Algorithm the individuals have genomes of L bits. At
+ˆ
+time-step tthe current best performing individual is
+X(t). The parent selection
+selects only this individual and creates exact copies Y(t)n to create N new in-
+dividuals. Each bit is then mutated with the probability p=
+1
+L2.
+Calculate and derive a formula for the probability Q, that in the new popu-
+lation Y(t+ 1)n no individual is identical to the parent.
+Task 14 Breitenberg vehicles [5pt]
+What is the stochastic component in a Breitenberg type I vehicle and how is
+that beneficial?
+3
+Task 15 Wolfram’s classes of behavior [5pt]
+Explain what Wolfram’s class 3 and class 4 are, how they differ and what they
+have in common.
+Task 16 L0-Systems [5pt]
+Define a L0-System, that when starting with O generates the following sequence
+at exactly time-step t=3: OAOAOAOAOAOAO
+Task 17 CA rule properties [5pt]
+Is the follwing statement true or not?
+”A totalistic rule with silent state is legal.”
+Task 18 Iterated functions [5pt]
+How does the Fibonacci-Sequence and the golden ratio relate? Derive a formula
+and give exemplary calculations.
+4

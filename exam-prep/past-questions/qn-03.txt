@@ -1,0 +1,32 @@
+Gedankenprotokoll AL SoSe2023
+The exam had 100 points and was designed for 100 minutes.
+GOL [10 Points]
+Explain all parts of Conways Game of Life with the example of a blinker.
+Evolutionary Algorithms [10 Points]
+Explain all parts of an EA with an example that had some genome restrictions.
+Didabots [10 Points]
+Explain the Didabot experiments and the observed differences between a single
+and multiple bots.
+EA Mutation [5 Points]
+Calculate the probability that at least one element of a sequence / genome is
+affected by a mutation.
+John von Neumann [5 Points]
+Name two concepts associated with John von Neumann and explain them briefly.
+Life [5 Points]
+Name 5 properties commonly associated with life.
+Braitenberg [5 Points]
+Which part of a Braitenberg Type I vehicle can profit form a stochastic element?
+Wolfram Number [5 Points]
+Write down the ruleset for the Wolfram number 42_D.
+L-Systems [5 Points]
+Create an L-System that creates the sequence
+0A0A0A0A0A0A0A0
+at step t=3 with a maximum of 4 rules.
+Golden Ration [5 Points]
+What is the relation between the golden ratio and the Fibonacci sequence?
+1
+Wheel of Fortune [5 Points]
+What is the task of the Wheel of Fortune?
+Ant Algorithm [5 Points]
+Describe the 4 phases of the Ant Algorithm.
+2

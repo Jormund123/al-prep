@@ -1,0 +1,1297 @@
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+1
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata 2D
+Conway's Game of Life
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+2
+Overview:
+• Cellular Automata in 2 dimensions
+• Examples and Applications of CAs
+• Conway's Game of Life
+• Computational Universality
+• Is Information == Structure ?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+3
+Cellular Automata in 2 dimensions
+Although S.Wolfram has investigated the 1-dim Cellular
+Automata very intensively, the original idea from Stanislav
+Ulam (1940) and J. von Neumann was a 2 dimensional
+Cellular Automaton.
+In the 50ies and 60ies the idea of Cellular Automata were the
+basis for a series of analogue computers.
+The famous German computer scientist Konrad Zuse
+published in 1969 an idea (from the 40ies)
+„Rechnender Raum“ where he supposed that the law of
+natures are discrete, working like a CA. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+4
+Neighborhood in 2 dimensions
+r =1, von Neumann r =1, Moore
+For a 2 dimensional rectangular grid there are two variants
+to define the neighborhood with r=1: 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+5
+Neighborhood in 2 dimensions
+A larger neighborhood radius r requires a more precise
+definition of the neighboring cells:
+r = 2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+6
+Cellular Automata extended
+Cellular Automata can be easily extended to higher
+dimensions, (e.g. 3-dim) to a different tiling of the workspace
+(e.g. triangles or hexagons in 2-dim) or even to a nonuniform neighborhood (e.g. graph). Only the definition of the
+neighborhood and the rule has to be adjusted accordingly.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+7
+Overview:
+• Cellular Automata in 2 dimensions
+• Examples and Applications of CAs
+• Conway's Game of Life
+• Computational Universality
+• Is Information == Structure ?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+8
+Examples and Applications of CAs
+• Growth of crystals
+• Population dynamics
+• Modeling, and predicting traffic situations
+• Modeling urban city development
+• Modeling diffusion process
+• Generation of „close to real“ patterns
+• Modeling forest fires
+• ... 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+9
+Cellular Automata in 2 Dimensions
+Majority-Voting CA
+d=2, rectangular grid, r=1, Moore, k=4,
+The state of the cell is changing to the majority of states
+present in the neighborhood. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+10
+Cellular Automata in 2 Dimensions
+Majority-Voting CA
+d=2, rectangular grid, r=1, Moore, k=4,
+The state of the cell is changing to the majority of states
+present in the neighborhood. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+11
+Cellular Automata in 2 Dimensions
+Majority-Voting CA
+d=2, rectangular grid, r=1, Moore, k=4,
+The state of the cell is changing to the majority of states
+present in the neighborhood. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+12
+Cellular Automata in 2 Dimensions
+Majority-Voting CA
+d=2, rectangular grid, r=1, Moore, k=4,
+The state of the cell is changing to the majority of states
+present in the neighborhood.
+...
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+13
+Cellular Automata in 2 Dimensions
+Non Deterministic Cellular Automata
+As an extension to the deterministic rule of a classically
+defined Cellular Automaton, the transition from one state to
+the next state can have a stochastic component. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+14
+Cellular Automata in 2 Dimensions
+Non Deterministic Cellular Automata
+As an extension to the deterministic rule of a classically
+defined Cellular Automaton, the transition from one state to
+the next state can have a stochastic component.
+ai
+(t) ai
+(t+1) a
+1-a
+ai
+(t+2)
+b
+1-b
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+15
+Cellular Automata in 2 Dimensions
+Non Deterministic Cellular Automata
+As an extension to the deterministic rule of a classically
+defined Cellular Automaton, the transition from one state to
+the next state can have a stochastic component.
+a
+1-a
+1-b
+b
+ai
+(t) ai
+(t+1) a
+1-a
+ai
+(t+2)
+b
+1-b
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+16
+Cellular Automata in 2 Dimensions
+Non Deterministic Cellular Automata
+As an extension to the deterministic rule of a classically
+defined Cellular Automaton, the transition from one state to
+the next state can have a stochastic component.
+ai
+(t)
+ai
+(t+1)
+a
+1 - (a+b)
+b
+a'i
+(t+1)
+a
+1-(a+b)
+b
+a
+1-a
+1-b
+b
+ai
+(t) ai
+(t+1) a
+1-a
+ai
+(t+2)
+b
+1-b
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+17
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+18
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+F
+T
+A empty / Ashes
+Tree
+burning tree / Fire
+von Neumann
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+19
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+F
+T
+A empty / Ashes
+Tree
+burning tree / Fire
+f
+p
+q
+von Neumann
+Fire turns into ashes
+Spontaneous growth
+Spontaneous fire
+Induced fire: a tree burns if
+at least one neighbor burns
+Induced growth:
+a tree grows if at least one
+neighbor is a tree 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+20
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+F
+T
+A empty / Ashes
+Tree
+burning tree / Fire
+f
+p
+q
+von Neumann
+Drossel, B. and Schwabl, F. (1992)
+"Self-organized critical forest-fire model."
+Phys. Rev. Lett. 69, 1629–1632.
+Chen, K., Bak, P. and Jensen, M. H. (1990),
+"A deterministic critical forest-fire model.
+Phys. Lett. A 149, 207–210.
+Fire turns into ashes
+Spontaneous growth
+Spontaneous fire
+Induced fire: a tree burns if
+at least one neighbor burns
+Induced growth:
+a tree grows if at least one
+neighbor is a tree 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+21
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+f
+p
+q
+The behavior of the complete system is determined
+by the underlying mircro-behavior of the cells.
+The control parameters are:
+p rate of spontaneous growth
+f rate of spontaneous fire
+q rate of induced growth
+A setting of q=0 (no induced growth) is a good
+setting to start from.
+Interesting (fractal) behavior arises when f << p
+(e.g. p/f = 100).
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+22
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+23
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+24
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 0,
+no induced growth
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+25
+p
+f
+q
+q = 0,
+no induced growth
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+26
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+step i-1
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+27
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+induced growth
+step i
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+28
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+induced growth
+step i+1
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+29
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+induced growth
+step i+2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+30
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+induced growth
+step i+3
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+31
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+induced growth
+step i+4
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+32
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+33
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+1
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+34
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+2
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+35
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+3
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+36
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+4
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+37
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+5
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+38
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+6
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+39
+p
+f
+q
+Cellular Automata in 2 Dimensions
+Forest Fire CA
+d=2, rectangular grid, r=1, von Neumann, k=3
+non deterministic cellular automaton,
+q = 1.0
+step i+j+7
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+40
+Overview:
+• Cellular Automata in 2 dimensions
+• Examples and Applications of CAs
+• Conway's Game of Life
+• Computational Universality
+• Is Information == Structure ?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+41
+Special Cellular Automaton in 2 dim
+In 1970 the British professor for mathematics John H.
+Conway proposed a 2 dim cellular automaton:
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+42
+Game of Life
+In 1970 the British professor for mathematics John H.
+Conway proposed a 2 dim cellular automaton:
+Game of Life
+ 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+43
+Conway's Game of Life
+In 1970 the British professor for mathematics John H.
+Conway proposed a 2 dim cellular automaton:
+Game of Life
+or
+Conway's Game of Life 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+44
+Conway's Game of Life
+In 1970 the British professor for mathematics John H.
+Conway proposed a 2 dim cellular automaton:
+Conway's Game of Life is probably the most popular
+2-dimensional cellular automaton.
+Game of Life
+or
+Conway's Game of Life 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+45
+Special Cellular Automaton in 2 dim
+John Horton Conway (26 December 1937 – 11 April 2020) was an
+English mathematician active in the theory of finite groups, knot theory,
+number theory, combinatorial game theory and coding theory.
+He also made contributions to many branches of recreational
+mathematics, most notably the invention of the cellular automaton
+called the Game of Life.
+Born and raised in Liverpool, Conway spent the first half of his career at
+the University of Cambridge before moving to the United States, where
+he held the John von Neumann Professorship at Princeton University for
+the rest of his career.
+On 11 April 2020, at age 82, he died of complications from COVID-19.
+From https://en.wikipedia.org/wiki/John_Horton_Conway (29.4.2020) 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+46
+Conway's Game of Life
+Conway's Game of Live:
+is a Cellular Automaton defined on a
+d=2, 2-dimensional rectangular grid, using a
+r=1, Moore-Neighborhood,Moore-periphery and has
+k=2, binary states for each cell: O dead, I alive.
+The rule is legal.
+The rule is implementing concepts from population dynamics:
+birth, survival, death from overcrowding or from loneliness. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+47
+Conway's Game of Life: 23/3 rule
+The rule for Conway's Game of Live was inspired by
+observations from population dynamics.
+Birth:
+A cell is born if exactly 3 neighboring cells are alive.
+Survival:
+A living cell survives if 2 or 3 neighboring cells are alive.
+Death:
+A living cell dies
+from overcrowding if more than 3 neighboring cells are alive
+or from loneliness if less than 2 neighboring cells are alive. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+48
+Conway's Game of Life: 23/3 rule
+a(t)
+Sap(t) 8 7 6 5 4 3 2 1 0
+a(t+1) O O O O O I O O O
+If cell a(t) is dead
+birth
+survival
+a(t)
+Sap(t) 8 7 6 5 4 3 2 1 0
+a(t+1) O O O O O I I O O
+If cell a(t) is alive
+overcrowded loneliness 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+49
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+50
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+51
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+52
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+53
+Cell dies out.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+Cell has no neighbors,
+cell will die out.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+54
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+55
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+56
+Both cells die out.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+Both cells have only 1 neighbor,
+Both cells will die out.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+57
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+time step t 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+58
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+59
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+60
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+61
+X
+Cell has only 1 neighbor,
+cell will stay dead.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+62
+X
+X
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+63
+X
+X
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+64
+X
+X
+The cell has the
+same configuration as
+the cell 2 positions above.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+65
+X
+X
+X
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+66
+X
+X
+X
+X
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+67
+X
+X
+X
+X
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+68
+X
+X
+X
+X
+Cell has only 1 neighbor,
+cell will die due to loneliness.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+69
+X
+X
+X
+X
+X
+Cell has only 1 neighbor,
+cell will die due to loneliness.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+70
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+Since the rule is symmetric,
+we directly have the state of these other cells.
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+71
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+The central cell has 2 neighbors,
+and will survive therefore.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+72
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+The cell has exactly 3 neighbors,
+therefore a new cell will be born.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+73
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+The cell has exactly 3 neighbors,
+therefore a new cell will be born.
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+74
+time step t+1
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+75
+time step t+2 has the same pattern as time step t
+Conway's Game of Life
+Rule: 23/3
+A cell survives with
+2 or 3 neighbors.
+A cell is born if it has 3
+neighbors. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+76
+Three cells in a row, in Conway's Game of Life yield a periodic
+structure, oscillating with period 2, called: Blinker
+It is the archetype of a periodic class II behavior.
+time step t t+1 t+2 t+3
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+77
+Examples of stationary class II patterns:
+Block Tub
+Loaf Hive Hook
+Snake
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+78
+Examples of oscillating class II patterns, period 2
+Blinker Toad Beacon
+t+1
+t
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+79
+Examples of class II oscillators.
+Caterer (p3)
+smallest oscillator known
+that has period 3
+Pentadecathlon (p15) Eight (p8)
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+80
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps.
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+81
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+82
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+83
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+84
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+85
+x x x x x
+t t +1 t +2 t +3 t +4
+Conway's Game of Life
+A special Game of Life pattern became very famous:
+it is reproducing it's shape in 4 steps.
+Please notice: although the exact shape is reproduced, the
+pattern is NOT periodic.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+86
+Conway's Game of Life: Glider
+This pattern is called Glider:
+- the Glider is a prototypic class IV pattern
+- a Glider consists of 5 living cells
+- in 4 steps it moves one cell in diagonal direction.
+x x x x x
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+87
+Conway's Game of Life: Glider
+A Glider is moving over the underlying grid.
+After 4 time steps the original shape is reconstructed in an
+adjacent position and all five cells have changed their state
+meanwhile.
+x
+ Would you consider it to be the same Glider ?
+x
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+88
+Conway's Game of Life
+Conway doubted that it is possible to create a Game of Live
+pattern that can grow infinitely,
+he offered 50$ for the first one to find one. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+89
+Conway's Game of Life
+Conway doubted that it is possible to create a Game of Live
+pattern that can grow infinitely,
+he offered 50$ for the first one to find one.
+In 1970, Bill Gospers (a MIT mathematician) found such a
+pattern, and was rewarded by Conway with 50$. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+90
+Conway's Game of Life
+Conway doubted that it is possible to create a Game of Live
+pattern that can grow infinitely,
+he offered 50$ for the first one to find one.
+Bill Gospers pattern is an oscillator, constantly changing it's
+shape, with a cycle length of 30 steps.
+During each cycle, a 5 cell sub-structure is remaining.
+The nice thing is, that this left over is a Glider.
+Thus, every cycle a Glider is produced.
+In 1970, Bill Gospers (a MIT mathematician) found such a
+pattern, and was rewarded by Conway with 50$. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+91
+Conway's Game of Life: Glidergun
+This structure is called: Glidergun
+It is composed by 4 elements, consisting of 36 cells in a
+36X9 bounding box, cycle length 30 time steps.
+Two blocks, one on the left side, one on the right implement
+two stoppers, limiting the structure.
+The two other elements approach each other, collide, turn
+around, and separate again. When they reach the stoppers
+they are reflected and the cycle starts over.
+The collision produces the 5 cell remainder which is shaped
+like a glider. This Glider starts to move, and leaves the
+Glidergun. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+92
+This, Gosper Glidergun, is producing a glider leaving to the
+lower right every cycle (30 time steps).
+Glidergun by Bill Gosper, 36 cells, 36 x 9 bounding box.
+Conway's Game of Life: Glidergun 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+93
+Conway's Game of Life: Glidergun
+Meanwhile, a wide variety of other Gliderguns have been
+found, invented or constructed with different characteristics
+like periodicity, size or type of gliders.
+Research and development is still ongoing today.
+Gliderguns are the motors of complex Game of Life
+constructions.
+Streams of Gliders are the information carriers and the
+tools of Game of Life machineries.
+A smart combination of simple Game of Life elements can
+be used to construct complex machineries. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+94
+Conway's Game of Life
+Streams of Gliders can be regarded as information streams,
+a single Glider would be a single bit.
+Gliders can interfere when they collide with other Gliders and
+with specially shaped structures.
+Depending on the individual phase during the collision they
+can be erased, delayed, reflected or doubled.
+By this means, it is possible to construct Game of Live
+structures that act as Boolean gates,
+AND, OR, NOT, NAND, NOR, XOR, ... 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+95
+Conway's Game of Life
+With a lot of effort and a lot of Game of Life experience it is
+possible to influence the shape of the remainder. Carefully
+arranged, the collision can yield a structure that is useful for
+further processing.
+Whenever a Glider collides with an other Glider or with an
+other structure an intermediate cell structure arises.
+This intermediate structure is of course undergoing further
+changes following the Game of Life rule.
+The final result is typically hard to predict.
+Colliding Gliders are the universal tools to construct and
+destroy other structures in Game of Life. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+96
+Conway's Game of Life: Gliderguns
+From: http://www.radicaleye.com/lifepage/patterns/gunprev.html
+GF: 30, Cells: 54 GF: 144, Cells: 132 GF: 44, Cells: 298
+GF: 570, Cells: 260 GF: 9990, Cells: 339 GF: 36, Cells: 1973
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+97
+Conway's Game of Life: Gliderguns
+From: http://www.radicaleye.com/lifepage/patterns/gunprev.html
+GF: 400, Cells: 2424
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+98
+Conway's Game of Life: Gliderguns
+The research on Game of
+Life structures is still
+ongoing:
+e.g. in 29-April-2010 a
+new Glidergun has been
+published, with a 45 time
+step cycle.
+From: http://pentadecathlon.com/lifeNews/index.php
+„Period 45 is currently the
+shortest known odd period
+for a true-period gun.“ 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+99
+Conway's Game of Life
+Long lasting patterns (Methuselah patterns)
+Acorn Rabbits r-pentomino
+Diehard
+Pi-heptomino
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+100
+Other Game of Life rules
+Conway's Game of Live has the rule 23/3 or (S23/B3)
+with a cell Surviving if it has 2 or 3 neighbors,
+and a new cell is Born having 3 neighbors.
+There are other rules, that lead to interesting behavior:
+2 / 3
+3 / 3
+13 / 3
+23 / 3
+34 / 3
+35 / 3
+236 / 3
+135 / 35
+1357 / 1357
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+101
+Game of Life Simulators
+A wide variety of simulation tools for Conway's Game of Life
+exist today for all typical computing architectures and
+operating systems, and most of them are freely available.
+Some of them are accompanied with a large library of
+patterns.
+Some of them are designed to simulate cellular automata,
+and “just” include Conways Game of Life.
+The list on the next page is is neither complete, nor should it
+be considered as being a judgment;
+these are just some of my personal favorites. 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+102
+The list is neither complete, nor should it be considered as
+being a judgment; these are just my personal favorites.
+Mirek's Cellebration, MCell 4.20
+1D and 2D Cellular Automata explorer by Mirek Wojtowicz
+http://psoup.math.wisc.edu/mcell/
+Winlife32, Version 2.3
+A system for manipulating Conway's Game of Life
+http://www.winlife32.com/
+Golly, Version 4.2 for Windows / Mac / Linux / Android / Web
+An open source, cross-platform Game of Life Simulator
+https://sourceforge.net/projects/golly/files/latest/download
+http://www.macupdate.com/info.php/id/19622/golly
+Game of Life Simulators
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+103
+Overview:
+• Cellular Automata in 2 dimensions
+• Examples and Applications of CAs
+• Conway's Game of Life
+• Computational Universality
+• Is Information == Structure ?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+104
+Conway's Game of Life
+Streams of Gliders can be regarded as information streams,
+a single Glider would be a single bit.
+Gliders can interfere when they collide with other Gliders and
+with specially shaped structures.
+Depending on the individual phase during the collision they
+can be erased, delayed, reflected or doubled.
+By this means, it is possible to construct Game of Live
+structures that act as Boolean gates,
+AND, OR, NOT, NAND, NOR, XOR, ... 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+105
+Overview:
+• Cellular Automata in 2 dimensions
+• Examples and Applications of CAs
+• Conway's Game of Life
+• Computational Universality
+• Is Information == Structure ?
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+106
+Is Information == structure ?
+A Glider is moving over the underlying grid.
+After 4 time steps the original shape is reconstructed in an
+adjacent position and all five cells have changed their state
+meanwhile.
+x
+ Would you consider it to be the same Glider ?
+x
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+107
+Next Friday is 1st of May
+Next Friday is May 1st
+ ,
+which is a public holiday in Germany,
+Thus, the shops will be closed,
+restaurants will be open,
+University will be closed (no lectures, seminars, labs).
+There might be festivities or parties in the night from
+April 30 to May 1st
+ .
+And thus, no Artificial Life exercise groups 1.5.26.
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+108
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata 2D
+Conway's Game of Life
+Master Computer Science [MA-INF 4201]
+Mon 14c.t. – 15:45, HS-2 
+© Nils Goerke, University of Bonn, 4/2026
+ Artificial Life [MA-INF 4201] 03, CA in 2D, Game of Life Mon April 27, 2026, Computer Science University of Bonn
+109
+Artificial Life
+Summer 2026
+Dr. Nils Goerke, Autonomous Intelligent Systems,
+Department of Computer Science, University of Bonn
+Cellular Automata 2D
+Conway's Game of Life
+Thank you for your listening
