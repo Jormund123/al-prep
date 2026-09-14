@@ -1,62 +1,53 @@
 # THE QUESTION BANK — Artificial Life MA-INF 4201
 
-**How to use this.** Every question that has been asked on a written paper, with the answer written the way you should write it. Then variants I built by changing the numbers, the wording, or the direction — because that is exactly what the examiner changes. Cover the answer, write it out, compare.
+**How to use this file.** Every question from the written papers is printed, and its answer follows directly below it. The variants after each answer change the numbers or the wording, because that is what the examiner changes. The section **IMPORTANT THEORY** holds slide material that the question does not ask for directly but that a new question could ask. Cover the answer, write it out on paper, and compare.
 
-**Two kinds of question in here. Treat them differently.**
+**There are two kinds of question.**
 
-- 🔒 **MEMORIZE** — the answer is fixed text plus a fixed drawing. Learn the block. 13 of the 20.
-- ⚙️ **RECIPE** — the examiner re-parameterizes it every sitting, so learn the procedure and run it on whatever numbers appear. 7 of the 20: Wolfram number, reverse Wolfram, rule count, glider direction, L-System target, EA mutation probability, Wheel of Fortune.
+- 🔒 **MEMORIZE** questions have a fixed answer text and a fixed drawing, so you learn the answer block.
+- ⚙️ **RECIPE** questions come with new numbers every year, so you learn the procedure and run it on the numbers given.
 
-**Marking rules that apply to every answer below.**
+**These marking rules apply to every answer.**
 
-- 1 point ≈ one crisp sentence, one formula line, or one labelled sketch. A 5-pointer wants ~5 scoring items, not one paragraph.
-- Goerke wants **exact values and the lecture's own words**. The 2017 paper says outright: *"Wants explanations for all answers including formulas (which variable means what?)"*
-- **Define every symbol you write.** An undefined variable in a formula is a lost mark.
-- Never leave a sub-part blank. Naming the mechanism earns points even when the calculation fails.
+- One point is worth roughly one clear sentence, one formula line, or one labelled sketch, so a 5-point question needs about five scoring items.
+- The examiner wants exact values and the lecture's own words. The 2017 paper states that he *"wants explanations for all answers including formulas (which variable means what?)"*.
+- You must define every symbol you write, because an undefined variable costs a mark.
+- You should never leave a sub-part blank, because naming the mechanism earns points even when a calculation fails.
 
-**Drawing convention — write this once at the top of your script:** `. = dead/white/0`, `# = alive/black/I`.
+**Drawing convention.** Write this once at the top of your exam script: `.` means dead, white or 0, and `#` means alive, black or I.
 
 ---
 ---
 
 # ASKED ON ALL FOUR PAPERS
 
-**These ten appeared on every written paper we have.** Together roughly 55 of the 90 points. Nothing else in this file matters until these are automatic.
+These ten questions appeared on every written paper, and together they are worth roughly 55 of the 90 points.
 
 ---
 
 ## Q1 · Game of Life 🔒+⚙️
-**Recurrence: 4/4. Worth 10 points on three of four papers.**
+**This question appeared on 4 of 4 papers and was worth 10 points on three of them.**
 
-### Asked as
+**❓ 2023 `qn-02` 1 · 10 pt** — *"Explain the Game of Life, every detail of it. [pattern given] Draw the next 2 steps of this pattern and explain the rules of the GoL."*
+**❓ 2023 `qn-03` · 10 pt** — *"Explain all parts of Conway's Game of Life with the example of a blinker."*
+**❓ 2017 Q1 · 10 pt** — *"Explain all parts of Conway's Game of Life…"*
 
-- *"Explain the Game of Life, every detail of it. [pattern given] Draw the next 2 steps of this pattern and explain the rules of the GoL."* — 2023 `qn-02` 1, **10 pt**
-- *"Explain all parts of Conway's Game of Life with the example of a blinker."* — 2023 `qn-03`, **10 pt**
-- *"Explain all parts of Conway's Game of Life…"* — 2017 Q1, **10 pt**
-- *"Draw a Game of Life pattern (Glider) that moves to the lower left corner. Draw 4 steps of this pattern."* — 2023 `qn-02` 5, 5 pt
-- *"Within the Game of Life there is a pattern called glider. Give an example that moves to the lower-right and draw the 4 time-steps."* — 2025 T12, 5 pt (four 7×7 grids were printed, labelled t=0…t=3)
+**✅ Answer**
 
-### THE BLOCK TO WRITE — 10-point version
+**1. The CA specification.** Conway's Game of Life, proposed by John H. Conway in 1970, is a cellular automaton with the following properties:
+- The grid is two-dimensional and rectangular, so $d = 2$.
+- Each cell looks at a Moore neighbourhood of radius $r = 1$, which means the 8 surrounding cells.
+- Each cell has $k = 2$ states: O (dead) and I (alive).
+- The rule is legal, because it is symmetric and has a silent state.
+- The rule models population dynamics: birth, survival, death from overcrowding and death from loneliness.
 
-Write these five parts in this order. Each is worth ~2 points.
+**2. The rule.** The lecture writes the rule as `23/3` (also written S23/B3).
+- A dead cell is **born** if exactly 3 of its neighbours are alive.
+- A living cell **survives** if 2 or 3 of its neighbours are alive.
+- A living cell **dies from overcrowding** if more than 3 of its neighbours are alive.
+- A living cell **dies from loneliness** if fewer than 2 of its neighbours are alive.
 
-**① The CA specification** (do not skip this — "every detail" means this)
-
-> Conway's Game of Life, proposed by John H. Conway in **1970**, is a cellular automaton with
-> - $d = 2$ — a two-dimensional rectangular grid
-> - $r = 1$ — a **Moore** neighbourhood (and Moore periphery)
-> - $k = 2$ — binary states per cell: $O$ = dead, $I$ = alive
-> - **the rule is legal** (it is symmetric and has a silent state)
-> - the rule implements concepts from **population dynamics**: birth, survival, death from overcrowding, death from loneliness.
-
-**② The rule, in the lecture's notation `23/3` (= S23/B3)**
-
-> - **Birth:** a cell is born if **exactly 3** neighbouring cells are alive.
-> - **Survival:** a living cell survives if **2 or 3** neighbours are alive.
-> - **Death from overcrowding:** a living cell dies if **more than 3** neighbours are alive.
-> - **Death from loneliness:** a living cell dies if **fewer than 2** neighbours are alive.
-
-**③ The rule table** — indexed by $S_a(t)$, the number of living cells in the periphery
+**3. The rule table.** The table is indexed by $S_a(t)$, the number of living cells among the 8 neighbours.
 
 ```
    S_a(t)              8   7   6   5   4   3   2   1   0
@@ -67,15 +58,7 @@ Write these five parts in this order. Each is worth ~2 points.
                           overcrowding    survive  loneliness
 ```
 
-**④ The worked example** — evolve whatever pattern you were given (see the drawings below).
-
-**⑤ The closing point** — this is the part that separates 8/10 from 10/10:
-
-> Gosper's Glider Gun proves **unbounded growth** is possible. Glider streams are information (one glider = one bit); colliding gliders can be erased, delayed, reflected or doubled, which allows **Boolean gates (AND, OR, NOT, NAND, NOR, XOR)** to be built — hence Game of Life is **computationally universal (Turing-complete)**.
-
-### THE DRAWINGS
-
-**Blinker — period 2, "the archetype of a periodic class II behaviour"**
+**4. The example: the blinker.** The blinker is an oscillator with period 2 and the archetype of class II behaviour.
 
 ```
       t=0            t=1            t=2  (= t=0)
@@ -87,28 +70,20 @@ Write these five parts in this order. Each is worth ~2 points.
    . . . . .      . . . . .      . . . . .
 ```
 
-Say the reasoning out loud, cell by cell — this is what "explain with the example of a blinker" means:
-- The **centre** cell has 2 living neighbours → **survives**.
-- The **two end** cells have 1 living neighbour each → **die of loneliness**.
-- The cells **above and below the centre** are dead with **exactly 3** living neighbours → **born**.
-- Everything else has ≤ 2 neighbours and stays dead.
+- The centre cell has 2 living neighbours, so it survives.
+- The two end cells have 1 living neighbour each, so they die from loneliness.
+- The dead cells directly above and below the centre have exactly 3 living neighbours, so they are born.
+- Every other cell has at most 2 living neighbours and stays dead.
 
-**Glider — LOWER RIGHT** (2017 Q17, 2025 T12). Verified step by step.
+For 2023 `qn-02` 1 you evolve the printed pattern in the same way: for every cell, count its living neighbours and apply the four rules, then draw $t=1$ and $t=2$.
 
-```
-     t=0              t=1              t=2              t=3              t=4
+**5. The closing point.** Gosper's Glider Gun shows that unbounded growth is possible in the Game of Life. A stream of gliders carries information (one glider is one bit), and colliding gliders can be erased, delayed, reflected or doubled. This allows Boolean gates such as AND, OR and NOT to be built, so the Game of Life is computationally universal (Turing-complete).
 
-  . . . . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
-  . . # . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
-  . . . # . .      . # . # . .      . . . # . .      . . # . . .      . . . # . .
-  . # # # . .      . . # # . .      . # . # . .      . . . # # .      . . . . # .
-  . . . . . .      . . # . . .      . . # # . .      . . # # . .      . . # # # .
-  . . . . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
+---
 
-                                                          t=4 = t=0 shifted one right + one down
-```
+**❓ 2023 `qn-02` 5 · 5 pt** — *"Draw a Game of Life pattern (Glider) that moves to the lower left corner. Draw 4 steps of this pattern."*
 
-**Glider — LOWER LEFT** (2023 `qn-02` 5). Horizontal mirror.
+**✅ Answer**
 
 ```
      t=0              t=1              t=2              t=3              t=4
@@ -119,32 +94,49 @@ Say the reasoning out loud, cell by cell — this is what "explain with the exam
   . . # # # .      . . # # . .      . . # . # .      . # # . . .      . # . . . .
   . . . . . .      . . . # . .      . . # # . .      . . # # . .      . # # # . .
   . . . . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
-
-                                                          t=4 = t=0 shifted one LEFT + one down
 ```
 
-**Also state the glider's three properties:** it consists of **5 living cells**; in **4 steps it moves one cell diagonally**; the original shape is reconstructed in an adjacent position although **all five cells have changed state**, so the shape recurs but the pattern is **NOT periodic**. It is **the prototypic class IV pattern**.
+The glider consists of 5 living cells. After 4 steps it has the same shape again, shifted one cell to the left and one cell down.
 
-### ⚙️ THE DIRECTION RECIPE — how to never get the diagonal wrong
+---
 
-Do not memorize four pictures. Memorize one, and this 60-second check:
+**❓ 2025 T12 · 5 pt** — *"Within the Game of Life there is a pattern called glider. Give an example that moves to the lower-right and draw the 4 time-steps."* (Four 7×7 grids labelled t=0 to t=3 were printed.)
 
-1. Draw your $t=0$.
-2. Hand-evolve **one** step.
-3. Compare centres of mass. Moved the wrong way? **Mirror your $t=0$ horizontally** (for left↔right) or **vertically** (for up↔down) and you are done.
+**✅ Answer**
 
-Memorize the lower-right one above as your anchor. Then:
-- **lower-left** = mirror left–right
-- **upper-right** = mirror top–bottom
-- **upper-left** = rotate 180° (mirror both)
+```
+     t=0              t=1              t=2              t=3              t=4
 
-### VARIANTS — solve these
+  . . . . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
+  . . # . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
+  . . . # . .      . # . # . .      . . . # . .      . . # . . .      . . . # . .
+  . # # # . .      . . # # . .      . # . # . .      . . . # # .      . . . . # .
+  . . . . . .      . . # . . .      . . # # . .      . . # # . .      . . # # # .
+  . . . . . .      . . . . . .      . . . . . .      . . . . . .      . . . . . .
+```
+
+The glider consists of 5 living cells. After 4 steps it has the same shape again, shifted one cell to the right and one cell down. All five cells change their state on the way, so the shape recurs but the pattern is not periodic. The glider is the prototypic class IV pattern.
+
+**How to draw a glider for any direction.**
+1. Learn the lower-right glider above as your anchor.
+2. For lower-left, mirror the anchor left–right. For upper-right, mirror it top–bottom. For upper-left, rotate it by 180°.
+3. Evolve one step by hand and check that the cells moved in the asked direction.
+
+### IMPORTANT THEORY
+
+- The Game of Life rule has a silent state, is symmetric and is legal. It is not peripheral, because the centre cell matters, and it is not totalistic but **outer-totalistic**.
+- The blinker is the archetype of class II behaviour (periodic), and the glider is the prototypic class IV pattern (complex).
+- Gosper's Glider Gun emits one glider after another and was the first proof that a pattern in the Game of Life can grow without bound.
+- Gliders can be used as bits, and their collisions build logic gates, which makes the Game of Life Turing-complete.
+
+### VARIANTS
 
 **V1.** *"Draw a glider that moves to the upper right. Give t=0 and t=1."*
 
 <details><summary>Answer</summary>
 
-Mirror the lower-right anchor top-to-bottom:
+The upper-right glider is the lower-right anchor mirrored top to bottom.
+
 ```
      t=0                    t=1
 
@@ -155,26 +147,30 @@ Mirror the lower-right anchor top-to-bottom:
   . . . . . .            . . . . . .
   . . . . . .            . . . . . .
 ```
-Centre of mass has moved up and right. ✔
+
+The living cells have moved up and to the right, so the direction is correct.
 </details>
 
 **V2.** *"Draw the next two steps of this pattern:"*
+
 ```
   . . . . .
   . # # . .
   . # # . .
   . . . . .
 ```
+
 <details><summary>Answer</summary>
 
-This is the **Block**, a **still life**. Every one of the four cells has exactly **3** living neighbours, so all four survive; every surrounding dead cell has at most 2 living neighbours, so nothing is born. **$t=1$ and $t=2$ are identical to $t=0$.** State that it is a stable class II pattern.
+This pattern is the **block**, which is a still life. Each of the four living cells has exactly 3 living neighbours, so all four survive. Every dead cell around it has at most 2 living neighbours, so no cell is born. Therefore $t=1$ and $t=2$ are identical to $t=0$, and the block is a stable class II pattern.
 </details>
 
-**V3.** *"Explain the Game of Life using the Toad as your example."*
+**V3.** *"Explain the Game of Life using the toad as your example."*
 
 <details><summary>Answer</summary>
 
-Same blocks ①②③⑤, with this drawing (period-2 oscillator):
+You write parts 1, 2, 3 and 5 of the main answer and use the toad as the example. The toad is an oscillator with period 2.
+
 ```
       t=0                t=1                t=2 (= t=0)
 
@@ -190,50 +186,36 @@ Same blocks ①②③⑤, with this drawing (period-2 oscillator):
 
 <details><summary>Answer</summary>
 
-**No — it is *outer*-totalistic (semi-totalistic).** A strictly totalistic rule relies only on the grand total of all 9 cells (center plus 8 neighbors). Game of Life fails this: a grand total of 4 could mean (alive cell + 3 neighbors = survives) OR (dead cell + 4 neighbors = stays dead). Because identical totals create different results, it instead depends separately on the center's state and the sum of outer neighbors. This defines outer-totalistic.
-
-Full classification: **silent state ✔, symmetric ✔, legal ✔, peripheral ✘, totalistic ✘ (outer-totalistic).**
+No, the Game of Life rule is not totalistic; it is **outer-totalistic**. A totalistic rule depends only on the total of all 9 cells, including the centre. In the Game of Life a total of 4 can mean a living cell with 3 living neighbours, which survives, or a dead cell with 4 living neighbours, which stays dead. The same total therefore gives different results, so the rule depends separately on the centre state and on the sum of the 8 neighbours.
 </details>
 
-### ⚠️ TRAPS
-
-- **Writing "totalistic ✔"** for Game of Life. It is outer-totalistic. Costs a mark on `sheet-03`-style follow-ups.
-- **Forgetting the CA specification** ($d$, $r$, $k$, legal) on a 10-pointer. "Every detail of it" is a literal instruction.
-- **Drawing the glider without labelling $t=0..t=3$.** Unlabelled grids score nothing.
-- **Getting the diagonal backwards.** Use the one-step check. Always.
+**⚠️ Traps.** You must not call the rule totalistic, because it is outer-totalistic. You must give the CA specification ($d$, $r$, $k$, legal) on the 10-point version. You must label every grid with its time step. You must check the glider direction by evolving one step.
 
 ---
 
 ## Q2 · Evolutionary Algorithm — full explanation + application 🔒
-**Recurrence: 4/4. Always 10 points. The single biggest question on the paper.**
+**This question appeared on 4 of 4 papers and is always worth 10 points.**
 
-### Asked as
+**❓ 2025 T2 · 10 pt** — *"Define all parts and steps of an Evolutionary Algorithm. What are the benefits and what are downsides? Use this to define an EA that solves the following scenario: [6 ingredients] … up to Y=15 additives out of possible Z=60. Every additive mustn't be more than 1%, all additives together mustn't be more than 3%. You may also use a council of students that rate the sodas; the best comparison is achieved when two sodas are compared."*
+**❓ 2023 `qn-02` 3 · 10 pt** — *"Explain EAs, the idea behind them, the pros and cons. Develop steps for an Evolutionary algorithm for the following problem: You want to mix the perfect soda, there are 7 fixed ingredients and 70 possible additives. You can always use 15 additives at a time, the additives cannot be more than 3% of the total mix and each additive cannot be more than 1%. To evaluate the quality you have a pool of students willing to test the sodas, the best result is achieved if the students always compare 2 drinks to each other."*
+**❓ 2023 `qn-03` · 10 pt** — *"Explain all parts of an EA with an example that had some genome restrictions."*
 
-- *"Explain EAs, the idea behind them, the pros and cons. Develop steps for an Evolutionary algorithm for the following problem: You want to mix the perfect soda, there are **7** fixed ingredients and **70** possible additives. You can always use **15** additives at a time, the additives cannot be more than **3%** of the total mix and each additive cannot be more than **1%**. To evaluate the quality you have a pool of students willing to test the sodas, the best result is achieved if the students always compare **2 drinks** to each other."* — 2023 `qn-02` 3, **10 pt**
-- *"Define all parts and steps of an Evolutionary Algorithm. What are the benefits and what are downsides? Use this to define an EA that solves the following scenario: [**6** ingredients] … up to **Y=15** additives out of possible **Z=60**. Every additive mustn't be more than **1%**, all additives together mustn't be more than **3%**. You may also use a council of students that rate the sodas; the best comparison is achieved when **two** sodas are compared."* — 2025 T2, **10 pt**
-- *"Explain all parts of an EA with an example that had some genome restrictions."* — 2023 `qn-03`, **10 pt**
-- *"Explain every aspect of EAs and how they contribute [+ exploration vs exploitation]"* — 2017 Q3, **10 pt**
+**✅ Answer**
 
-**Note the pattern: the recipe numbers change every year (7/70, 6/60), the structure never does.** Do not memorize 70; memorize the layout.
+**1. The idea.** An Evolutionary Algorithm is a stochastic, population-based optimization method inspired by biological evolution. It keeps a population of candidate solutions, evaluates each one with a fitness function, and repeatedly lets the better ones produce offspring by recombination and mutation, so the population improves over the generations.
 
-### THE BLOCK TO WRITE
+**2. The parts.**
 
-**① The idea (2 sentences)**
-
-> An Evolutionary Algorithm is a **stochastic, population-based optimization method** inspired by biological evolution. It maintains a population of candidate solutions, evaluates each with a fitness function, and repeatedly selects the better ones to produce offspring by recombination and mutation, so the population improves over generations.
-
-**② The parts** — name all six
-
-| Part | What it is |
+| Part | Explanation |
 |---|---|
-| **Individual** | One candidate solution. |
-| **Genome** | The encoding of that solution (bit string, vector of reals, tree, …). |
-| **Fitness function** | Maps a genome to a quality value; the thing being optimized. |
-| **Population** | The set of $\mu$ individuals held at one time. |
-| **Generation** | One full pass of the cycle. |
-| **Operators** | Selection, recombination/inheritance, mutation. |
+| Individual | An individual is one candidate solution. |
+| Genome | The genome is the encoding of a solution, for example a bit string, a vector of real numbers or a tree. |
+| Fitness function | The fitness function assigns a quality value to a genome, and it is the quantity being optimized. |
+| Population | The population is the set of $\mu$ individuals that exists at one time. |
+| Generation | A generation is one full pass through the EA cycle. |
+| Operators | The operators are selection, recombination (inheritance) and mutation. |
 
-**③ The EA cycle** — draw it as a loop, name every step
+**3. The EA cycle.**
 
 ```
         +-------------------- Initialization --------------------+
@@ -259,236 +241,555 @@ Full classification: **silent state ✔, symmetric ✔, legal ✔, peripheral �
        yes -> return best individual
 ```
 
-**④ Pros and cons**
+1. **Initialization** creates the first population randomly or from prior knowledge.
+2. **Fitness evaluation** computes the fitness of every individual.
+3. **External selection** decides which individuals survive into the next generation.
+4. **Parent selection** decides which survivors are allowed to reproduce.
+5. **Inheritance / recombination** combines the genomes of two parents into offspring.
+6. **Mutation** randomly changes single genes of the offspring.
+7. **Termination** checks whether to stop; otherwise the cycle repeats from step 2.
+
+**4. Benefits and downsides.**
 
 | Benefits | Downsides |
 |---|---|
-| Needs **no gradient** and no model of the objective function. | **No guarantee** of finding the global optimum. |
-| Works on **discrete, continuous and mixed** genomes. | **Many fitness evaluations** — expensive if evaluation is costly. |
-| **Anytime behaviour** — a usable answer at any interruption. | **Many parameters** to tune (population size, mutation rate, selection pressure). |
-| **Trivially parallel** — individuals evaluate independently. | Can **stagnate** in a local optimum or collapse to a super-individual. |
-| Robust against noisy or changing fitness. | Results are **not reproducible** without fixing the random seed. |
+| An EA needs no gradient and no model of the objective function. | An EA gives no guarantee of finding the global optimum. |
+| An EA works on discrete, continuous and mixed genomes. | An EA needs many fitness evaluations, which is expensive when evaluation is costly. |
+| An EA has anytime behaviour, so it has a usable answer whenever it is stopped. | An EA has many parameters to tune, such as population size, mutation rate and selection pressure. |
+| An EA is easy to parallelize, because individuals are evaluated independently. | An EA can stagnate in a local optimum or be taken over by a super-individual. |
+| An EA is robust against noisy or changing fitness. | The results are not reproducible unless the random seed is fixed. |
 
-**⑤ The application** — see the recipe below.
+**5. The application: the soda problem.** The numbers below are for 2025 (6 base ingredients, 60 additives), and the 2023 numbers (7 base ingredients, 70 additives) are given in brackets.
 
-### ⚙️ THE SODA RECIPE — how to instantiate it for whatever numbers they give
+**Step 0 — the numbers.** The problem has $B = 6$ ($B = 7$) base ingredients, $N = 60$ ($N = 70$) possible additives, at most $K = 15$ additives per soda, at most $A = 1\%$ per additive and at most $T = 3\%$ for all additives together. The students compare two sodas at a time, so the judge returns a pair winner.
 
-Let the paper's numbers be: **$n$ fixed ingredients**, **$Y$ additives chosen from $Z$ possible**, each additive **≤ 1 %**, all additives together **≤ 3 %**, fitness by **pairwise tasting**.
+**Step 1 — the genome.** The genome consists of $B$ real numbers for the base proportions and $K = 15$ slots. Each slot is a pair (index $\in \{1..N\}$, amount $\in [0, 1\%]$), and an amount of 0 means that the slot is unused, so "up to 15 additives" holds automatically. The genome length is $6 + 2\times15 = 6 + 30 = 36$ (for 2023: $7 + 30 = 37$). If exactly 15 additives are required, every amount must stay above a small minimum.
 
-**Genome.** Two parts:
-- a vector of $n$ **real numbers** giving the proportions of the fixed ingredients (normalised to sum to 97 %);
-- a list of **$Y$ (index, amount) pairs**, where index $\in \{1..Z\}$ selects the additive and amount $\in [0, 1\,\%]$ gives its share.
+**Step 2 — the constraints.**
+$$\begin{aligned}
+K \times A &= 15 \times 1\% = 15\% \\
+15\% &> 3\% \;\Rightarrow\; \text{the total cap is binding} \\
+\text{additives at the maximum} &= 3 \div 1 = 3 \\
+\text{average amount per slot} &= 3 \div 15 = 0.2\% \\
+\text{base ingredients} &\ge 100 - 3 = 97\%
+\end{aligned}$$
 
-> Say why you chose this: it is compact, and it makes the "exactly $Y$ additives" constraint **structural** — it cannot be violated because the genome has exactly $Y$ slots.
+The total cap of 3 % is the binding constraint, because 15 additives at 1 % would give 15 %. The repair operator therefore works in this order:
+1. If the sum of the amounts is above 3 %, every amount is multiplied by $3 / \text{sum}$.
+2. Every amount is clipped to $[0, 1\%]$.
+3. A duplicate index is replaced by a random unused index.
+4. The base values are scaled so that they fill the remaining percentage.
 
-**Constraint handling.** Name a strategy, do not leave it implicit — **and check first which constraint is actually binding.**
+A repair operator is better than a penalty here, because a student tasting is too expensive to waste on an infeasible soda. For example, if all 15 amounts are $0.3\%$:
+$$\begin{aligned}
+\textstyle\sum &= 15 \times 0.3 = 4.5\% > 3\% \;\Rightarrow\; \text{factor} = 3 \div 4.5 = 0.6667 \\
+0.3 \times 0.6667 &= 0.2\% \text{ per additive} \\
+\text{new } \textstyle\sum &= 15 \times 0.2 = 3.0\% \;\checkmark \\
+\text{base } 50, 20, 10, 10, 5, 5: \textstyle\sum &= 100, \;\text{factor} = (100 - 3) \div 100 = 0.97 \\
+50 \times 0.97 = 48.5, \; 20 \times 0.97 &= 19.4, \; 10 \times 0.97 = 9.7, \; 10 \times 0.97 = 9.7, \; 5 \times 0.97 = 4.85, \; 5 \times 0.97 = 4.85 \\
+48.5 + 19.4 + 9.7 + 9.7 + 4.85 + 4.85 &= 97.0 \;\checkmark
+\end{aligned}$$
+(For 2023 the base 40, 20, 10, 10, 10, 5, 5 becomes $38.8 + 19.4 + 9.7 + 9.7 + 9.7 + 4.85 + 4.85 = 97.0$.)
 
-> ⚠️ **Do this arithmetic before designing the repair operator.** $Y$ additives at the per-item cap would total $Y \times 1\% = 15\%$, but the **total cap is 3 %**. So the **per-item cap is slack and the total cap is binding**:
-> - at most $3\%/1\% = \mathbf{3}$ of the 15 additives can sit at their ceiling;
-> - the **average** additive must be $\le 3\%/15 = \mathbf{0.2\,\%}$, not 1 %;
-> - therefore **clipping to $[0,1\%]$ alone does NOT enforce the constraints** — a clipped genome can still total 15 %. The **normalisation to the 3 % budget is the operator that does the real work**; the per-item clip is a secondary, rarely-active correction.
+**Step 3 — the selection.** Parent selection uses a **tournament of size 2**, because the students only compare two sodas at a time, so no absolute fitness value exists and fitness-proportional selection is not applicable.
 
-- *All additives $\le 3\%$ (the binding one)* — if $\sum$ amounts $> 3\%$, **rescale all amounts by $3\% / \sum$**. This is a **repair** operator; the alternative is a **penalty** subtracted from fitness. Repair is better here because a human tasting is far too expensive to waste on an infeasible recipe.
-- *Each additive $\le 1\%$ (the slack one)* — **clip** the amount gene to $[0, 1\%]$ **after** rescaling.
-- *Indices must be distinct* — repair duplicates by resampling.
-- *"Up to" $Y$ additives* — keep $Y$ fixed slots and let **amount $= 0$ mean "slot unused"**, so "at most $Y$" is satisfied structurally and can never be violated.
-- *The base ingredients* then share the remaining $\ge 97\%$, normalised to sum with the additives to 100 %.
+**Step 4 — the operators.**
+- Parent selection is a tournament of size 2.
+- Recombination is one-point crossover on the base vector, and the additive slots are taken as a random subset from each parent, followed by the repair.
+- Mutation adds a small Gaussian step to one amount, and with a low probability it swaps one additive index for an unused one.
+- External selection is $(\mu+\lambda)$ with elitism, so the best soda is never lost.
 
-**Why an EA at all? — quantify it, this is the other half of the marks.** The discrete part of the search space alone is
-$$\binom{Z}{Y} = \binom{60}{15} \approx 5.32\times10^{13} \qquad\text{(2025)}, \qquad \binom{70}{15} \approx 7.21\times10^{14} \qquad\text{(2023)}$$
-and that is **before** the continuous ingredient proportions. With a human tasting panel you can afford perhaps a few hundred fitness evaluations. Exhaustive search is therefore off by more than ten orders of magnitude, and no gradient exists because the fitness comes from human judgement — **which is exactly the situation EAs are for.**
+**Step 5 — termination.** The EA stops when the tasting budget is used up, or when the best soda has not improved for several generations.
 
-**Fitness.** This is the part the question is really testing:
-- The students give **pairwise comparisons**, not absolute scores. So the raw output is a **relative** ordering, not a number.
-- Therefore use **tournament selection** (directly consumes pairwise comparisons) or convert the comparisons into a **rank** and use **rank-based** selection. Explicitly say: *fitness-proportional selection is not applicable, because no absolute fitness value exists.*
-- Note the practical limit: each comparison costs a human tasting, so **fitness evaluation is by far the most expensive step**, and the population must be kept small.
+**Step 6 — why an EA.** The discrete part alone has
+$$\binom{60}{15} = 53\,194\,089\,192\,720 \approx 5.3\times10^{13} \qquad \left(\binom{70}{15} = 721\,480\,692\,460\,864 \approx 7.2\times10^{14}\right)$$
+combinations, before the continuous amounts are even considered. The fitness comes from human tasting, so there is no gradient and no model, and only a few hundred evaluations are affordable. This is exactly the situation EAs are made for.
 
-### ⭐ HOW TO DECIDE WHICH SELECTION METHOD TO NAME
+---
 
-**Step 1 — remember there are TWO selection steps, and name one of each. They are separate marks.**
+**❓ 2017 Q3 · 10 pt** — *"Explain every aspect of EAs and how they contribute [+ exploration vs exploitation]"*
 
-| | **External selection** | **Parent selection** |
+**✅ Answer**
+
+You write parts 1 to 4 of the answer above (idea, parts, cycle with every step explained, benefits and downsides), and then add where exploration and exploitation happen:
+- **Exploration** happens in the random initialization and in mutation, because both create genuinely new points in the search space.
+- **Exploitation** happens in external selection, parent selection, elitism and the recombination of good parents, because they concentrate the search around solutions that are already good.
+- The balance between the two controls the algorithm. Too much exploration turns the EA into random search, and too much exploitation makes the population collapse onto one point and stagnate.
+
+### ⚙️ EA-DESIGN RECIPE — run these 6 steps on any recipe question
+
+The process never changes, and only the numbers change. You fill in the blanks in order.
+
+**Step 0 — Copy the numbers out of the question.**
+
+| Symbol | Meaning |
+|---|---|
+| $B$ | $B$ is the number of base ingredients. |
+| $N$ | $N$ is the number of possible extras (flavourings, oils, admixtures, and so on). |
+| $K$ | $K$ is the maximum number of extras allowed in one recipe. |
+| $A$ | $A$ is the maximum percentage of one extra. |
+| $T$ | $T$ is the maximum percentage of all extras together. |
+| $P$ | $P$ is the number of batches tested per round. |
+| Judge | The judge returns either a full ranking, a pair winner, or a number. |
+
+**Step 1 — Write the genome sentence.**
+> "$B$ real numbers are the base proportions. $K$ slots follow, and each slot is a pair (index $\in\{1..N\}$, amount $\in[0,A\%]$). An amount of 0 means that the slot is unused, so 'up to $K$' holds automatically. The genome length is $B + 2K$."
+
+**Step 2 — Do the constraint arithmetic.**
+1. Compute $K \times A$.
+2. If $K \times A > T$, write that the total cap is binding, and compute two numbers:
+   - the number of extras that can sit at their maximum, which is $T \div A$ rounded down;
+   - the average amount per slot, which is $T \div K$.
+3. If $K \times A \le T$, write that the total cap can never be violated, and skip repair step 1 below.
+4. The base ingredients receive $100 - \sum \text{amounts}$, which is at least $100 - T$.
+5. Write the repair, always in this order:
+   1. If the sum of the amounts is above $T$, every amount is multiplied by $T / \sum$.
+   2. Every amount is clipped to $[0, A]$.
+   3. A duplicate index is replaced by a new random unused index.
+   4. Every base value is multiplied by $(100 - \sum\text{amounts}) / \sum\text{base}$.
+
+**Step 3 — Choose the parent selection from the judge.**
+
+| The judge returns | Write this | Formula |
 |---|---|---|
-| Answers | *How many survive, and which?* | *Which survivors reproduce?* |
-| Choose from | $(\mu+\lambda)$ / $(\mu,\lambda)$, elitism, deterministic rank truncation | **wheel of fortune, softmax, tournament** |
-| Asked alone as | 2025 T6, `qn-02` 13 (the fitness diagrams) | 2025 T11, `qn-02` 9, `qn-03` (Wheel of Fortune) |
+| a full ranking of all $P$ batches | wheel of fortune on ranks | $\omega(r) = \dfrac{2(P-r+1)}{P(P+1)}$ |
+| the winner of a pair | tournament of size 2 | The pair winner becomes the parent. |
+| a number per batch | wheel of fortune, fitness-proportional | $\omega_i = f_i / \sum_j f_j$ |
 
-> ⚠️ **Wheel of fortune, softmax and tournament are ONLY parent selection. $(\mu+\lambda)$ and elitism are ONLY external selection.** Never offer one where the other belongs.
->
-> ⚠️ **"Wheel of fortune" and "rank-based" are not alternatives.** The lecture's wheel of fortune **is** rank-proportionate: *"a widely used way to implement a probabilistic, **rank proportionate** parent selection is the wheel of fortune."* So "rank-based wheel of fortune" is one coherent choice. The genuine axis is **fitness-proportional vs rank-proportional shares**.
+**Step 4 — Write the operators, changing only the selection name.**
+> "Parent selection is **[Step 3]**. Recombination is one-point crossover on the base vector, with a random subset of extra slots from each parent, followed by the repair. Mutation adds a small Gaussian step to one amount, and with a low probability it swaps an extra's index for an unused one. External selection is $(\mu+\lambda)$ with **elitism**, so the best recipe is never lost."
 
-**Step 2 — for parent selection, read what the FITNESS FUNCTION produces. That sentence in the question is the one that decides; the constraint numbers are decoration.**
+**Step 5 — Write the termination.**
+> "The EA stops when the evaluation budget is used up (rounds $=$ budget $\div$ evaluations per round), or when the best batch has not improved for several rounds."
 
-| What the fitness gives you | Name this | Because |
+**Step 6 — Write why an EA is used.**
+1. Compute $\binom{N}{K} = \dfrac{N (N-1) \cdots (N-K+1)}{K (K-1) \cdots 1}$.
+2. Write: "The discrete part alone has $\binom{N}{K} = \_\_\_$ combinations, before the continuous amounts. The fitness comes from a panel or an experiment, so there is no gradient and no model. Every evaluation is expensive, so only a few evaluations are affordable."
+
+### IMPORTANT THEORY
+
+**There are two selection steps, and each one needs its own method.**
+
+| | External selection | Parent selection |
 |---|---|---|
-| Absolute numbers, comparable scale | **wheel of fortune**, fitness-proportional | sector size $\propto$ fitness; simplest |
-| Absolute numbers, one individual dwarfing the rest | **wheel of fortune on ranks** | rank ignores the *size* of the gap ⇒ no super-individual takeover |
-| You must control selection pressure explicitly | **softmax**, $\omega_p = \dfrac{e^{f(p)/\tau}}{\sum_q e^{f(q)/\tau}}$ | large $\tau$ ⇒ near-equiprobable; small $\tau$ ⇒ greedy |
-| A **full ranking**, no numbers | **rank-based** ⇒ wheel of fortune on ranks | ranks are exactly what you have |
-| Only **pairwise comparisons** | **tournament** | tournament *is* pairwise comparison — nothing to convert |
-| Fitness noisy or very expensive | **tournament** | needs only comparisons; robust to noise |
+| Question it answers | It decides how many individuals survive and which ones. | It decides which survivors reproduce. |
+| Methods | $(\mu+\lambda)$, $(\mu,\lambda)$, elitism and deterministic rank-based truncation belong here. | The wheel of fortune, softmax and tournament belong here. |
 
-**Step 3 — for external selection, the safe default is $(\mu+\lambda)$ with elitism**, because it guarantees the best solution found is never lost and the performance graph is monotone. Switch to $(\mu,\lambda)$ only if the question says the **fitness drifts over time** or that escaping local optima matters.
+- The wheel of fortune, softmax and tournament are only parent-selection methods, and $(\mu+\lambda)$ and elitism are only external-selection methods.
+- The lecture's wheel of fortune is rank-proportionate, so "rank-based wheel of fortune" is one method and not two alternatives. The real choice is between fitness-proportional and rank-proportional shares.
 
-**Step 4 — write the choice PLUS one because-clause.** The examiner cannot mark "tournament" right or wrong — both methods are legitimate. **He marks the justification.** So:
+**The fitness type decides the parent selection.**
 
-> *"Parent selection: **tournament**, because the panel only ever compares two sodas at a time, so no absolute fitness value exists and a fitness-proportional wheel is not applicable."*
+| What the fitness gives | Method | Reason |
+|---|---|---|
+| Absolute numbers on a comparable scale | wheel of fortune, fitness-proportional | The sector size is proportional to the fitness, which is the simplest option. |
+| Absolute numbers with one individual far ahead | wheel of fortune on ranks | Ranks ignore the size of the gap, so no super-individual takes over. |
+| A need to control the selection pressure | softmax, $\omega_p = \dfrac{e^{f(p)/\tau}}{\sum_q e^{f(q)/\tau}}$ | A large $\tau$ makes the choice almost uniform, and a small $\tau$ makes it greedy. |
+| A full ranking without numbers | wheel of fortune on ranks | Ranks are exactly what is available. |
+| Only pairwise comparisons | tournament | A tournament is itself a pairwise comparison. |
+| Noisy or very expensive fitness | tournament | A tournament only needs comparisons and is robust to noise. |
 
-An unjustified correct choice scores less than a justified defensible one. **If you are unsure, pick either, justify it in one clause, and move on.**
-
-> **This is why the soda question plants the sentence** *"the best result is achieved if the students always compare 2 drinks to each other"* — it exists to make **tournament** correct. Change it to *"the panel ranks the batches"* and **rank-based** becomes correct instead.
-
-**Operators.**
-- **Parent selection:** tournament (pairs of sodas compared — matches the panel exactly).
-- **Recombination:** one-point crossover on the ingredient vector; for the additive list, take a random subset from each parent and repair duplicates.
-- **Mutation:** perturb an ingredient proportion by a small Gaussian step; with low probability replace one additive index by a random unused one.
-- **External selection:** $(\mu + \lambda)$ with **elitism**, so the best recipe found is never lost.
-
-**Termination.** Fixed number of generations, or a fixed tasting budget, or stagnation of the best individual.
+- For external selection the safe default is $(\mu+\lambda)$ with elitism, because the best solution is never lost and the performance graph never decreases. You switch to $(\mu,\lambda)$ only when the fitness changes over time or escaping local optima matters.
+- The examiner marks the justification, so you always write the method together with a "because" clause.
 
 ### VARIANTS
 
 **V1.** *"Design an EA to find the best chocolate recipe: 5 base ingredients, up to 10 flavourings from 40 possible, each flavouring ≤ 2 %, all flavourings ≤ 8 %. A panel ranks batches from best to worst."*
 
-<details><summary>Answer — write this</summary>
+<details><summary>Answer</summary>
 
-**Genome.** Two parts:
-- 5 real numbers = the proportions of the base ingredients;
-- 10 fixed slots, each a pair (index $\in\{1..40\}$, amount $\in[0,2\%]$). **Amount $=0$ means the slot is unused**, so "up to 10" holds structurally.
+**Step 0.** The numbers are $B=5$, $N=40$, $K=10$, $A=2$ and $T=8$, and the judge returns a full ranking.
 
-**Constraints — the total cap is the binding one.** $10\times2\% = 20\%$ but the total is capped at $8\%$, so at most $8/2 = 4$ flavourings can be at their ceiling and the average must be $\le 8/10 = 0.8\%$. Therefore:
-1. If $\sum$ amounts $> 8\%$, **rescale all amounts by $8\%/\sum$** (repair).
-2. **Then** clip each amount to $[0,2\%]$.
-3. Resample duplicate indices.
-4. Normalise the 5 base proportions to fill the remaining $\ge 92\%$.
+**Step 1.** The genome consists of 5 real numbers for the base proportions and 10 slots, each a pair (index $\in\{1..40\}$, amount $\in[0,2\%]$). An amount of 0 means that the slot is unused. The genome length is $5 + 2\times10 = 25$.
 
-**Fitness.** The panel returns a **full ranking** of the batches, so there is no absolute fitness value — only an ordering. Use **rank-based selection**, and the **wheel of fortune with rank-proportional shares is directly applicable**: $\omega_i = \frac{2(P-r(i)+1)}{P(P+1)}$. *(Contrast with the soda task, where the panel compares only two at a time and tournament selection is the natural fit.)*
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 10 \times 2 = 20 \\
+20 &> 8 \;\Rightarrow\; \text{the total cap is binding} \\
+\text{at maximum} &= 8 \div 2 = 4 \\
+\text{average} &= 8 \div 10 = 0.8\% \\
+\text{base} &\ge 100 - 8 = 92\%
+\end{aligned}$$
+The repair first rescales all amounts by $8 / \text{sum}$ if the sum is above 8 %, then clips each amount to $[0, 2\%]$, then replaces duplicate indices, and finally scales the base to the remaining percentage.
 
-**Operators.** Parent selection: wheel of fortune on the ranks. Recombination: one-point crossover on the base vector; random subset of flavouring slots from each parent, then repair. Mutation: small Gaussian step on a proportion; with low probability swap a flavouring index for an unused one. External selection: $(\mu+\lambda)$ with **elitism**, so the best recipe is never lost.
+**Step 3.** The panel returns a full ranking, so there is no absolute fitness value and parent selection uses the wheel of fortune on ranks with $\omega_i = \frac{2(P-r(i)+1)}{P(P+1)}$.
 
-**Termination.** Fixed number of tasting rounds (the panel is the cost bottleneck), or stagnation of the best batch.
+**Step 4.** The operators are the template sentence with "wheel of fortune on ranks" as the parent selection.
 
-**Why an EA.** The discrete part alone is $\binom{40}{10} = 847{,}660{,}528 \approx 8.5\times10^8$ combinations, before the continuous proportions; fitness is human judgement, so there is **no gradient and no model**, and only a few hundred evaluations are affordable.
+**Step 5.** The EA stops after a fixed number of tasting rounds or when the best batch stagnates.
+
+**Step 6.** The discrete part alone has $\binom{40}{10} = 847\,660\,528 \approx 8.5\times10^8$ combinations. The fitness is human judgement, so there is no gradient and no model, and only a few hundred evaluations are affordable.
 </details>
 
-**V2.** *"Where do exploration and exploitation enter an EA?"* (2017 Q3b)
+**D1.** *"Design an EA for the best soda: 4 base ingredients, up to 4 flavourings from 30 possible, each ≤ 1.5 %, all flavourings together ≤ 4 %. The panel always tastes two sodas and names the better one. Budget: 300 comparisons."*
+
+<details><summary>Answer — recipe run</summary>
+
+**Step 0.** The numbers are $B=4$, $N=30$, $K=4$, $A=1.5$ and $T=4$, and the judge returns a pair winner.
+
+**Step 1.** The genome length is $4 + 2\times4 = 4 + 8 = 12$.
+
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 4 \times 1.5 = 6 \\
+6 &> 4 \;\Rightarrow\; \text{the total cap is binding} \\
+\text{at maximum} &= 4 \div 1.5 = 2.67 \;\Rightarrow\; 2 \\
+\text{average} &= 4 \div 4 = 1\% \\
+\text{base} &\ge 100 - 4 = 96\%
+\end{aligned}$$
+
+The repair works as follows for the amounts $1.5, 1.5, 1.0, 1.0$:
+$$\begin{aligned}
+\textbf{1. } \textstyle\sum &= 1.5 + 1.5 + 1.0 + 1.0 = 5.0 > 4 \;\Rightarrow\; \text{factor} = 4 \div 5.0 = 0.8 \\
+1.5 \times 0.8 &= 1.2, \quad 1.5 \times 0.8 = 1.2, \quad 1.0 \times 0.8 = 0.8, \quad 1.0 \times 0.8 = 0.8 \\
+\text{new } \textstyle\sum &= 1.2 + 1.2 + 0.8 + 0.8 = 4.0 \;\checkmark \\
+\textbf{2. } &\text{all} \le 1.5 \;\checkmark \qquad \textbf{3. } \text{no duplicates} \\
+\textbf{4. } \text{base } 60, 20, 10, 10: \textstyle\sum &= 100, \;\text{factor} = (100 - 4) \div 100 = 0.96 \\
+60 \times 0.96 &= 57.6, \quad 20 \times 0.96 = 19.2, \quad 10 \times 0.96 = 9.6, \quad 10 \times 0.96 = 9.6 \\
+57.6 + 19.2 + 9.6 + 9.6 &= 96 \;\checkmark
+\end{aligned}$$
+
+**Step 3.** The judge returns a pair winner, so parent selection is a tournament of size 2, because the panel only compares two sodas and no absolute fitness exists.
+
+**Step 4.** The operators are the template sentence with "tournament of size 2" as the parent selection.
+
+**Step 5.** One tournament costs 1 comparison and produces 1 parent. $\lambda = 10$ offspring need $2 \times 10 = 20$ parents, so one generation costs 20 comparisons.
+$$300 \div 20 = 15 \text{ generations}$$
+The budget allows 15 generations.
+
+**Step 6.**
+$$\begin{aligned}
+30 \times 29 &= 870 \\
+870 \times 28 &= 24\,360 \\
+24\,360 \times 27 &= 657\,720 \\
+4 \times 3 \times 2 \times 1 &= 24 \\
+\tbinom{30}{4} = 657\,720 \div 24 &= 27\,405
+\end{aligned}$$
+The discrete part alone has 27 405 combinations.
+</details>
+
+**D2.** *"Design an EA for the best perfume: 3 base ingredients, up to 6 essential oils from 50 possible, each ≤ 3 %, all oils together ≤ 12 %. Each round the panel smells 6 perfumes and ranks them from best to worst. Budget: 20 rounds."*
+
+<details><summary>Answer — recipe run</summary>
+
+**Step 0.** The numbers are $B=3$, $N=50$, $K=6$, $A=3$, $T=12$ and $P=6$, and the judge returns a full ranking.
+
+**Step 1.** The genome length is $3 + 2\times6 = 3 + 12 = 15$.
+
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 6 \times 3 = 18 \\
+18 &> 12 \;\Rightarrow\; \text{the total cap is binding} \\
+\text{at maximum} &= 12 \div 3 = 4 \\
+\text{average} &= 12 \div 6 = 2\% \\
+\text{base} &\ge 100 - 12 = 88\%
+\end{aligned}$$
+
+The repair works as follows for the amounts $3, 3, 3, 2, 2, 1$:
+$$\begin{aligned}
+\textbf{1. } \textstyle\sum &= 3 + 3 + 3 + 2 + 2 + 1 = 14 > 12 \;\Rightarrow\; \text{factor} = 12 \div 14 = 0.8571 \\
+3 \times 0.8571 &= 2.5714 \;(\text{three times}) \\
+2 \times 0.8571 &= 1.7143 \;(\text{twice}) \\
+1 \times 0.8571 &= 0.8571 \\
+\text{new } \textstyle\sum &= 2.5714 \times 3 + 1.7143 \times 2 + 0.8571 = 7.7143 + 3.4286 + 0.8571 = 12.0000 \;\checkmark \\
+\textbf{2. } &\text{all} \le 3 \;\checkmark \qquad \textbf{3. } \text{no duplicates} \\
+\textbf{4. } \text{base } 80, 15, 5: \textstyle\sum &= 100, \;\text{factor} = (100 - 12) \div 100 = 0.88 \\
+80 \times 0.88 &= 70.4, \quad 15 \times 0.88 = 13.2, \quad 5 \times 0.88 = 4.4 \\
+70.4 + 13.2 + 4.4 &= 88 \;\checkmark
+\end{aligned}$$
+
+**Step 3.** The judge returns a full ranking, so parent selection is the wheel of fortune on ranks, because the panel gives an order and no absolute numbers.
+$$\begin{aligned}
+P(P+1) &= 6 \times 7 = 42 \\
+\omega(1) &= 2(6-1+1) \div 42 = 2 \times 6 \div 42 = 12/42 = 0.286 \\
+\omega(2) &= 2(6-2+1) \div 42 = 2 \times 5 \div 42 = 10/42 = 0.238 \\
+\omega(3) &= 2 \times 4 \div 42 = 8/42 = 0.190 \\
+\omega(4) &= 2 \times 3 \div 42 = 6/42 = 0.143 \\
+\omega(5) &= 2 \times 2 \div 42 = 4/42 = 0.095 \\
+\omega(6) &= 2 \times 1 \div 42 = 2/42 = 0.048 \\
+\text{check: } 12+10+8+6+4+2 &= 42 \Rightarrow 42/42 = 1 \;\checkmark
+\end{aligned}$$
+
+**Step 4.** The operators are the template sentence with "wheel of fortune on ranks" as the parent selection.
+
+**Step 5.** The budget allows $20 \text{ rounds} \times 6 \text{ perfumes} = 120$ evaluations.
+
+**Step 6.**
+$$\begin{aligned}
+50 \times 49 &= 2\,450 \\
+2\,450 \times 48 &= 117\,600 \\
+117\,600 \times 47 &= 5\,527\,200 \\
+5\,527\,200 \times 46 &= 254\,251\,200 \\
+254\,251\,200 \times 45 &= 11\,441\,304\,000 \\
+6 \times 5 \times 4 \times 3 \times 2 \times 1 &= 720 \\
+\tbinom{50}{6} = 11\,441\,304\,000 \div 720 &= 15\,890\,700
+\end{aligned}$$
+The discrete part alone has 15 890 700 combinations.
+</details>
+
+**D3.** *"Design an EA for the strongest concrete: 4 base ingredients, up to 3 admixtures from 25 possible, each ≤ 2 %, all admixtures together ≤ 5 %. A lab machine measures the compressive strength (MPa) of each of 5 samples per round."*
+
+<details><summary>Answer — recipe run</summary>
+
+**Step 0.** The numbers are $B=4$, $N=25$, $K=3$, $A=2$, $T=5$ and $P=5$, and the judge returns a number.
+
+**Step 1.** The genome length is $4 + 2\times3 = 4 + 6 = 10$.
+
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 3 \times 2 = 6 \\
+6 &> 5 \;\Rightarrow\; \text{the total cap is binding} \\
+\text{at maximum} &= 5 \div 2 = 2.5 \;\Rightarrow\; 2 \\
+\text{average} &= 5 \div 3 = 1.667\% \\
+\text{base} &\ge 100 - 5 = 95\%
+\end{aligned}$$
+
+The repair works as follows for the amounts $2, 2, 1.5$:
+$$\begin{aligned}
+\textbf{1. } \textstyle\sum &= 2 + 2 + 1.5 = 5.5 > 5 \;\Rightarrow\; \text{factor} = 5 \div 5.5 = 0.9091 \\
+2 \times 0.9091 &= 1.8182, \quad 2 \times 0.9091 = 1.8182, \quad 1.5 \times 0.9091 = 1.3636 \\
+\text{new } \textstyle\sum &= 1.8182 + 1.8182 + 1.3636 = 5.0000 \;\checkmark \\
+\textbf{2. } &\text{all} \le 2 \;\checkmark \qquad \textbf{3. } \text{no duplicates} \\
+\textbf{4. } \text{base } 15, 8, 30, 47: \textstyle\sum &= 100, \;\text{factor} = (100 - 5) \div 100 = 0.95 \\
+15 \times 0.95 &= 14.25, \quad 8 \times 0.95 = 7.6, \quad 30 \times 0.95 = 28.5, \quad 47 \times 0.95 = 44.65 \\
+14.25 + 7.6 + 28.5 + 44.65 &= 95.00 \;\checkmark
+\end{aligned}$$
+
+**Step 3.** The judge returns a number, so parent selection is the fitness-proportional wheel of fortune, because the machine gives an absolute, positive and comparable value. For the strengths $30, 25, 20, 15, 10$ MPa the shares are:
+$$\begin{aligned}
+\textstyle\sum f &= 30 + 25 + 20 + 15 + 10 = 100 \\
+\omega &= 30/100,\; 25/100,\; 20/100,\; 15/100,\; 10/100 = 0.30,\; 0.25,\; 0.20,\; 0.15,\; 0.10 \\
+\text{check: } 0.30+0.25+0.20+0.15+0.10 &= 1 \;\checkmark
+\end{aligned}$$
+If one sample is far stronger than all others, you switch to the wheel of fortune on ranks to avoid a super-individual.
+
+**Step 4.** The operators are the template sentence with "fitness-proportional wheel of fortune" as the parent selection.
+
+**Step 5.** The EA stops after a fixed number of test rounds, because each strength test needs 28 days of curing, or when the best strength stagnates.
+
+**Step 6.**
+$$\begin{aligned}
+25 \times 24 &= 600 \\
+600 \times 23 &= 13\,800 \\
+3 \times 2 \times 1 &= 6 \\
+\tbinom{25}{3} = 13\,800 \div 6 &= 2\,300
+\end{aligned}$$
+The 2 300 combinations are multiplied by continuous amounts, so the search space is still infinite and every test is a slow experiment.
+</details>
+
+**D4.** *"Design an EA for the best spice blend: 5 base spices, up to 4 extras from 20 possible, each ≤ 1 %, all extras together ≤ 5 %. Each round the panel tastes 8 blends and ranks them."* This is the case in which the total cap is not binding.
+
+<details><summary>Answer — recipe run</summary>
+
+**Step 0.** The numbers are $B=5$, $N=20$, $K=4$, $A=1$, $T=5$ and $P=8$, and the judge returns a full ranking.
+
+**Step 1.** The genome length is $5 + 2\times4 = 5 + 8 = 13$.
+
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 4 \times 1 = 4 \\
+4 &\le 5 \;\Rightarrow\; \text{the total cap can never be violated; only the per-extra cap matters} \\
+\text{base} &\ge 100 - 4 = 96\%
+\end{aligned}$$
+
+The repair works as follows for the amounts $1.3, 0.9, 0.4, 0.0$:
+$$\begin{aligned}
+\textbf{1. } &\text{skipped (not binding)} \\
+\textbf{2. } &1.3 \to 1.0, \quad 0.9, \quad 0.4, \quad 0.0 \;(\text{slot 4 unused}) \\
+\textstyle\sum &= 1.0 + 0.9 + 0.4 + 0.0 = 2.3 \le 5 \;\checkmark \\
+\textbf{3. } &\text{no duplicates} \\
+\textbf{4. } \text{base } 40, 20, 20, 10, 10: \textstyle\sum &= 100, \;\text{factor} = (100 - 2.3) \div 100 = 0.977 \\
+40 \times 0.977 &= 39.08, \quad 20 \times 0.977 = 19.54, \quad 20 \times 0.977 = 19.54 \\
+10 \times 0.977 &= 9.77, \quad 10 \times 0.977 = 9.77 \\
+39.08 + 19.54 + 19.54 + 9.77 + 9.77 &= 97.70 \;\checkmark
+\end{aligned}$$
+
+**Step 3.** The judge returns a full ranking, so parent selection is the wheel of fortune on ranks.
+$$\begin{aligned}
+P(P+1) &= 8 \times 9 = 72 \\
+\omega(1) &= 2(8-1+1) \div 72 = 2 \times 8 \div 72 = 16/72 = 0.222 \\
+\omega(2) &= 2 \times 7 \div 72 = 14/72 = 0.194 \\
+\omega(3) &= 2 \times 6 \div 72 = 12/72 = 0.167 \\
+\omega(4) &= 2 \times 5 \div 72 = 10/72 = 0.139 \\
+\omega(5) &= 2 \times 4 \div 72 = 8/72 = 0.111 \\
+\omega(6) &= 2 \times 3 \div 72 = 6/72 = 0.083 \\
+\omega(7) &= 2 \times 2 \div 72 = 4/72 = 0.056 \\
+\omega(8) &= 2 \times 1 \div 72 = 2/72 = 0.028 \\
+\text{check: } 16+14+12+10+8+6+4+2 &= 72 \Rightarrow 72/72 = 1 \;\checkmark
+\end{aligned}$$
+
+**Step 4.** The operators are the template sentence with "wheel of fortune on ranks" as the parent selection.
+
+**Step 5.** The EA stops after a fixed number of tasting rounds or when the best blend stagnates.
+
+**Step 6.**
+$$\begin{aligned}
+20 \times 19 &= 380 \\
+380 \times 18 &= 6\,840 \\
+6\,840 \times 17 &= 116\,280 \\
+4 \times 3 \times 2 \times 1 &= 24 \\
+\tbinom{20}{4} = 116\,280 \div 24 &= 4\,845
+\end{aligned}$$
+The discrete part alone has 4 845 combinations.
+</details>
+
+**D5.** *"Design an EA for the best fertiliser: 3 base nutrients, up to 5 micronutrients from 12 possible, each ≤ 0.5 %, all micronutrients together ≤ 1.5 %. Each season 4 test plots are fertilised and the crop yield (kg) of each plot is weighed. Budget: 10 seasons."*
+
+<details><summary>Answer — recipe run</summary>
+
+**Step 0.** The numbers are $B=3$, $N=12$, $K=5$, $A=0.5$, $T=1.5$ and $P=4$, and the judge returns a number.
+
+**Step 1.** The genome length is $3 + 2\times5 = 3 + 10 = 13$.
+
+**Step 2.**
+$$\begin{aligned}
+K\times A &= 5 \times 0.5 = 2.5 \\
+2.5 &> 1.5 \;\Rightarrow\; \text{the total cap is binding} \\
+\text{at maximum} &= 1.5 \div 0.5 = 3 \\
+\text{average} &= 1.5 \div 5 = 0.3\% \\
+\text{base} &\ge 100 - 1.5 = 98.5\%
+\end{aligned}$$
+
+The repair works as follows for the amounts $0.5, 0.5, 0.4, 0.3, 0.3$:
+$$\begin{aligned}
+\textbf{1. } \textstyle\sum &= 0.5 + 0.5 + 0.4 + 0.3 + 0.3 = 2.0 > 1.5 \;\Rightarrow\; \text{factor} = 1.5 \div 2.0 = 0.75 \\
+0.5 \times 0.75 &= 0.375, \quad 0.5 \times 0.75 = 0.375, \quad 0.4 \times 0.75 = 0.3 \\
+0.3 \times 0.75 &= 0.225, \quad 0.3 \times 0.75 = 0.225 \\
+\text{new } \textstyle\sum &= 0.375 + 0.375 + 0.3 + 0.225 + 0.225 = 1.5 \;\checkmark \\
+\textbf{2. } &\text{all} \le 0.5 \;\checkmark \qquad \textbf{3. } \text{no duplicates} \\
+\textbf{4. } \text{base } 50, 30, 20: \textstyle\sum &= 100, \;\text{factor} = (100 - 1.5) \div 100 = 0.985 \\
+50 \times 0.985 &= 49.25, \quad 30 \times 0.985 = 29.55, \quad 20 \times 0.985 = 19.7 \\
+49.25 + 29.55 + 19.7 &= 98.5 \;\checkmark
+\end{aligned}$$
+
+**Step 3.** The judge returns a number, so parent selection is the fitness-proportional wheel of fortune. For the yields $12, 10, 5, 3$ kg the shares are:
+$$\begin{aligned}
+\textstyle\sum f &= 12 + 10 + 5 + 3 = 30 \\
+\omega &= 12/30,\; 10/30,\; 5/30,\; 3/30 = 0.400,\; 0.333,\; 0.167,\; 0.100 \\
+\text{check: } 12+10+5+3 &= 30 \Rightarrow 30/30 = 1 \;\checkmark
+\end{aligned}$$
+
+**Step 4.** The operators are the template sentence with "fitness-proportional wheel of fortune" as the parent selection.
+
+**Step 5.** The budget allows $10 \text{ seasons} \times 4 \text{ plots} = 40$ evaluations, and the EA stops earlier if the best yield stagnates.
+
+**Step 6.**
+$$\begin{aligned}
+12 \times 11 &= 132 \\
+132 \times 10 &= 1\,320 \\
+1\,320 \times 9 &= 11\,880 \\
+11\,880 \times 8 &= 95\,040 \\
+5 \times 4 \times 3 \times 2 \times 1 &= 120 \\
+\tbinom{12}{5} = 95\,040 \div 120 &= 792
+\end{aligned}$$
+The 792 combinations are multiplied by continuous amounts, and only 40 evaluations fit into the budget.
+</details>
+
+**V2.** *"Name three termination criteria for an EA."*
 
 <details><summary>Answer</summary>
 
-- **Exploration** — random **initialization** of the population, and **mutation**, which introduce genuinely new points in the search space.
-- **Exploitation** — **selection** (external and parent), **elitism**, and **recombination of good parents**, which concentrate the search around already-good solutions.
-- The **balance** is what controls the algorithm: too much exploration is random search, too much exploitation collapses the population onto one point (a super-individual) and stagnates.
+Any three of these criteria are correct. The EA stops after a fixed number of generations, when a fixed time or evaluation budget is used up, when a target fitness is reached, when the best fitness has stagnated for $k$ generations, or when the population has converged and its diversity has fallen below a threshold.
 </details>
 
-**V3.** *"Name three termination criteria for an EA."*
+**V3.** *"Which step of an EA is the most expensive, and why?"*
 
 <details><summary>Answer</summary>
 
-Any three of: a **fixed number of generations**; a **fixed time or evaluation budget**; a **target fitness reached**; **stagnation** of the best fitness over $k$ generations; the **population has converged** (diversity below a threshold).
+Fitness evaluation is the most expensive step, because it must be done for every individual in every generation, and in real applications it involves a simulation, an experiment or a human tasting.
+
+If fitness evaluation is excluded, external selection is the most expensive step, because it sorts the population in $O(n \log n)$. Parent selection can reach $O(n^2)$, and mutation only needs $O(n)$ random numbers.
 </details>
 
-**V4.** *"Which step of an EA is the most expensive, and why?"*
-
-<details><summary>Answer</summary>
-
-**Fitness evaluation** — it must be done for every individual in every generation, and in real applications it involves a simulation, an experiment, or (as in the soda task) a human tasting.
-
-If fitness evaluation is explicitly excluded, the answer is **external selection**, which requires sorting the population, $O(n \log n)$; parent selection can reach $O(n^2)$; mutation is only $O(n)$ random numbers.
-</details>
-
-### ⚠️ TRAPS
-
-- **Answering only the theory half and skipping the application** (or vice versa). It is one question worth 10 points with two halves — budget 5 minutes each.
-- **Ignoring the pairwise-comparison hint.** It is in the question for a reason: it forces tournament or rank-based selection. Saying "fitness-proportional" here is wrong.
-- **Not naming a constraint-handling strategy.** "Genome restrictions" is literally the phrase `qn-03` uses.
+**⚠️ Traps.** You must answer both the theory half and the application half, because each is worth about 5 points. You must not use fitness-proportional selection when the students compare pairs. You must name a constraint-handling strategy, because `qn-03` explicitly mentions "genome restrictions".
 
 ---
 
 ## Q3 · The 5 criteria of life 🔒
-**Recurrence: 4/4. Always 5 points. The cheapest points on the paper.**
+**This question appeared on 4 of 4 papers and is always worth 5 points.**
 
-### Asked as
+**❓ 2025 T8** — *"Name 5 attributes, commonly used to define natural life."*
+**❓ 2023 `qn-02` 14** — *"Name 5 common criteria for life mentioned at the beginning of the lecture."*
+**❓ 2023 `qn-03`** — *"Name 5 properties commonly associated with life."*
+**❓ 2017 Q4** — *"Name 5 criteria of life."*
 
-- *"Name 5 attributes, commonly used to define natural life."* — 2025 T8
-- *"Name 5 common criteria for life mentioned at the beginning of the lecture."* — 2023 `qn-02` 14
-- *"Name 5 properties commonly associated with life."* — 2023 `qn-03`
-- *"Name 5 criteria of life."* — 2017 Q4
+**✅ Answer**
 
-### THE BLOCK TO WRITE
+There is no commonly accepted definition of life, but there are sets of criteria that a living system must fulfil. One common set is:
+1. **Metabolism:** A living system takes in, converts and releases matter and energy.
+2. **Reproduction:** A living system produces new individuals of its own kind.
+3. **Growth:** A living system increases in size and complexity during its lifetime.
+4. **Reaction to the environment:** A living system responds to external stimuli.
+5. **Movement out of itself:** A living system moves under its own power and not only when it is pushed.
 
-Open with one framing sentence, then **a numbered list — never a paragraph.** The marker is counting items.
+### IMPORTANT THEORY
 
-> There is no commonly accepted definition of life; instead there are several sets of criteria that must be fulfilled. One common set is:
-
-1. **Metabolism** — the organism takes in, converts and releases matter and energy.
-2. **Reproduction** — it produces new individuals of its own kind.
-3. **Growth** — it increases in size and complexity over its lifetime.
-4. **Reaction to the environment** — it responds to external stimuli.
-5. **Movement out of itself** — it moves under its own power, not only when pushed.
-
-Optional sixth and seventh if you want padding: **existence in space and time**, **storage of information about oneself** (the genome), **phylogenetic development** (the species evolves), **ontogenetic development** (the individual develops), **decay and death**.
+- Further criteria from the lecture are existence in space and time, storage of information about oneself (the genome), phylogenetic development (the species evolves), ontogenetic development (the individual develops), and decay and death.
+- **Koshland's 7 pillars of life** are a program to make copies of itself, adaptation and evolution through mutation and selection, a complex compartmentalized structure, the ability to take energy from the environment, regeneration systems, responsiveness through feedback, and many separated metabolic reactions.
+- **Strong Artificial Life** aims to really create artificial living beings from non-living material, mainly on a molecular basis. **Weak Artificial Life** aims to identify the properties, principles and circumstances of life by simulating them, and this lecture belongs to weak AL.
 
 ### VARIANTS
 
 **V1.** *"Name 7 criteria of life."*
 
 <details><summary>Answer</summary>
-Take the five above plus **existence in space and time** and **storage of information about oneself**. Alternatively quote **Koshland's 7 pillars** by name: a program to make copies of itself; adaptation and evolution through mutation and selection; a complex, compartmentalized structure; the ability to take energy from the environment; regeneration systems; responsiveness through feedback; numerous separated metabolic reactions.
+
+You write the five criteria above and add existence in space and time and storage of information about oneself. Alternatively, you can name Koshland's 7 pillars from the theory section.
 </details>
 
 **V2.** *"Name a border case of life and explain why it is problematic."*
 
 <details><summary>Answer</summary>
 
-Pick one and give the reason:
-- **Virus** — it reproduces and stores information about itself, but has **no metabolism of its own** and replicates only inside a host cell.
-- **Mule** — satisfies every criterion **except reproduction** (it is sterile), which shows no single criterion can be treated as strictly necessary.
-- **Crystal** — grows and is highly organised, but has **no metabolism, no reproduction, no reaction to stimuli**.
-- **Fire** — consumes, grows, moves and reacts, but does **not reproduce a description of itself**.
+Any one of these examples is correct:
+- A **virus** reproduces and stores information about itself, but it has no metabolism of its own and can only replicate inside a host cell.
+- A **mule** fulfils every criterion except reproduction, because it is sterile, which shows that no single criterion is strictly necessary.
+- A **crystal** grows and is highly organised, but it has no metabolism, no reproduction and no reaction to stimuli.
+- A **fire** consumes material, grows, moves and reacts, but it does not reproduce a description of itself.
 </details>
 
-**V3.** *"Which criteria of life are not met by Conway's Game of Life?"* (`sheet-03` A8 — plausible exam crossover)
+**V3.** *"Which criteria of life are not met by Conway's Game of Life?"* (`sheet-03` A8)
 
 <details><summary>Answer</summary>
 
-- **Metabolism — not met.** No energy or matter is taken in or converted; there is no energy budget at all.
-- **Growth (ontogenetic development) — not met.** A pattern does not develop through a life cycle; it persists, oscillates, moves or dies.
-- **Phylogenetic development — not met.** There is no mutation and no selection, hence no evolution.
-- **Reaction to the environment — only trivially met.** Cells react to neighbours, but there is no external environment and no adaptation.
-- **Reproduction — partly met.** A glider gun does produce new gliders, and self-replicating patterns exist.
+- Metabolism is not met, because no energy or matter is taken in or converted.
+- Growth as a life cycle is not met, because a pattern only persists, oscillates, moves or dies.
+- Phylogenetic development is not met, because there is no mutation and no selection and therefore no evolution.
+- Reaction to the environment is only met trivially, because cells react to their neighbours but there is no external environment.
+- Reproduction is partly met, because a glider gun produces new gliders and self-replicating patterns exist.
 
-Closing sentence: Game of Life satisfies the structural and dynamic criteria but fails the energetic and evolutionary ones — which is exactly why it is **weak** Artificial Life.
+The Game of Life fulfils the structural and dynamic criteria but not the energetic and evolutionary ones, which is why it is weak Artificial Life.
 </details>
 
 **V4.** *"What is the difference between strong and weak Artificial Life?"*
 
 <details><summary>Answer</summary>
 
-- **Strong AL** aims to **really create** artificial lifeforms — life out of non-living material — and works mainly on a **molecular** basis. The claim is that the artefact **is** alive.
-- **Weak AL** aims to **identify the properties, principles and circumstances** of life; rather than creating a living entity it **simulates** the conditions and behaviour of life. Most AL researchers, and this entire lecture, are weak AL.
+Strong Artificial Life aims to really create artificial living beings from non-living material, mainly on a molecular basis, and claims that the result is alive. Weak Artificial Life aims to identify the properties, principles and circumstances of life, and it simulates life instead of creating it.
 </details>
 
-### ⚠️ TRAPS
-
-- **Writing a paragraph instead of a list.** Five bullets, five marks. Prose containing the same five ideas scores worse.
-- **Giving fewer than asked.** If it says 5, give 5 (or 6 for safety). Do not give 3.
+**⚠️ Traps.** You must write a numbered list and not a paragraph, because the marker counts the items. You must give at least as many criteria as the question asks for.
 
 ---
 
 ## Q4 · Wolfram number ↔ rule table ⚙️
-**Recurrence: 4/4. 5 points forward, 10 points reverse.**
+**This question appeared on 4 of 4 papers. The forward version is worth 5 points and the reverse version is worth 10 points.**
 
-### Asked as
+**❓ 2023 `qn-02` 6** — *"Give a rule table for the Wolfram number 42_D with d=1, r=1, k=2."*
+**❓ 2023 `qn-03`** — *"Write down the ruleset for the Wolfram number 42_D."*
+**❓ 2017 Q5** — *"[Wolfram number] rule table"*
 
-- *"Give a rule table for the Wolfram number 42_D with d=1, r=1, k=2."* — 2023 `qn-02` 6
-- *"Write down the ruleset for the Wolfram number 42_D."* — 2023 `qn-03`
-- *"[Wolfram number] rule table"* — 2017 Q5
-- *"Name **all possible** Wolfram Numbers that produce the following d=1, k=2, r=1 patterns [t=0, t=1, t=2 shown]. Explain how you calculated the numbers."* — 2025 T1, **10 pt**
-- Oral C: $d{=}1, k{=}2, \mathbf{r{=}2}$, number **65538**
+**✅ Answer**
 
-### ⚙️ THE RECIPE — forward
+**Step 1 — the size of the table from $d$, $k$ and $r$.** The dimension $d = 1$ means that the cells sit in one row. The number of states $k = 2$ means that a cell is 0 (white) or 1 (black). The radius $r = 1$ means that a cell looks at one neighbour on each side.
+$$\begin{aligned}
+n &= 2r + 1 = 2\times1 + 1 = 3 &&\text{cells in one neighbourhood (left, self, right)} \\
+L &= k^{\,n} = 2^{3} = 8 &&\text{rows in the rule table} \\
+\text{largest Wolfram number} &= k^{\,L} - 1 = 2^{8} - 1 = 256 - 1 = 255
+\end{aligned}$$
+The number 42 lies between 0 and 255, so it is a valid Wolfram number.
 
-**Step 1.** Write the 8 neighbourhoods in **descending binary order** with their weights. This ordering IS the method:
+The 8 neighbourhoods are written from `111` down to `000`, and their weights are the powers of 2 from $2^7$ down to $2^0$:
 
 ```
  neighbourhood:  111   110   101   100   011   010   001   000
@@ -496,48 +797,46 @@ Closing sentence: Game of Life satisfies the structural and dynamic criteria but
                  128    64    32    16     8     4     2     1
 ```
 
-**Step 2.** Convert the decimal number to 8 bits, MSB = the `111` column.
-**Step 3.** Fill the output row.
-**Step 4.** Classify the rule (this is the standard free follow-up).
+**Step 2 — convert 42 into 8 bits by subtraction.** You go through the weights from 128 down to 1. If the weight fits into what is left, you write 1 and subtract it; otherwise you write 0.
 
-### WORKED — rule 42
+| Weight | Does the weight fit? | Bit | Left after |
+|---|---|---|---|
+| 128 | $128 \le 42$? no | 0 | 42 |
+| 64 | $64 \le 42$? no | 0 | 42 |
+| 32 | $32 \le 42$? yes | 1 | $42 - 32 = 10$ |
+| 16 | $16 \le 10$? no | 0 | 10 |
+| 8 | $8 \le 10$? yes | 1 | $10 - 8 = 2$ |
+| 4 | $4 \le 2$? no | 0 | 2 |
+| 2 | $2 \le 2$? yes | 1 | $2 - 2 = 0$ |
+| 1 | $1 \le 0$? no | 0 | 0 |
 
-$$42 = 32 + 8 + 2 = 2^5 + 2^3 + 2^1$$
+$$42_D = 00101010_B$$
 
-So the bits at weights $2^5, 2^3, 2^1$ are set — the neighbourhoods **101, 011, 001**:
+**Step 3 — the rule table.** The bits are written under the neighbourhoods, and they give the new state of the centre cell.
 
 ```
- 42_D = 0 0 1 0 1 0 1 0_B
+ neighbourhood (t):   111  110  101  100  011  010  001  000
+ weight:              128   64   32   16    8    4    2    1
+ new centre (t+1):     0    0    1    0    1    0    1    0
 
- neighbourhood:  111  110  101  100  011  010  001  000
- new state:       0    0    I    0    I    0    I    0
-
- as cells:       ###  ##.  #.#  #..  .##  .#.  ..#  ...
-                  .    .    #    .    #    .    #    .
+ as cells:            ###  ##.  #.#  #..  .##  .#.  ..#  ...
+                       .    .    #    .    #    .    #    .
 ```
 
-**Classification of rule 42:**
-- **Silent state?** $000 \to 0$. **Yes.**
-- **Symmetric?** Mirror pair $110 \to 0$ but $011 \to I$. **No.**
-- **Legal?** Needs symmetric AND silent. **No.**
-- **Totalistic?** SUM $=2$ gives $110{\to}0$, $101{\to}I$, $011{\to}I$ — not constant. **No.**
-- **Peripheral?** $111 \to 0$ but $101 \to I$, so the centre matters. **No.**
+**Step 4 — the check.** The weights under the 1s add up to $32 + 8 + 2 = 40 + 2 = 42$, so the table is correct.
 
-### ⚙️ THE RECIPE — reverse (the 10-pointer)
+**Step 5 — the classification.**
+- Rule 42 has a silent state, because `000` gives 0.
+- Rule 42 is not symmetric, because `110` gives 0 while its mirror image `011` gives 1.
+- Rule 42 is not legal, because it is not symmetric.
+- Rule 42 is not totalistic, because the neighbourhoods with sum 2 give different outputs (`110` gives 0 and `101` gives 1).
+- Rule 42 is not peripheral, because `111` gives 0 while `101` gives 1, so the centre cell matters.
 
-Given an evolution picture over $t=0,1,2$, find **all** Wolfram numbers consistent with it:
+---
 
-1. Write the rows aligned, one under the other.
-2. For **every** cell of row $t{+}1$, read its neighbourhood from row $t$ (itself + one either side). Each reading is one constraint "$abc \to o$".
-3. Collect constraints into the 8-row table. **If two cells give the same neighbourhood but different outputs, no rule produces the picture** — say so, that is the answer.
-4. Count the **unconstrained** lines. If $m$ of the 8 are pinned down, there are $$2^{\,8-m}$$ consistent Wolfram numbers.
-5. Report as: fixed part $+$ any subset of the free weights.
+**❓ 2025 T1 · 10 pt** — *"Name all possible Wolfram Numbers that produce the following d=1, k=2, r=1 patterns [t=0, t=1, t=2 shown]. Explain how you calculated the numbers."*
 
-### ✅ WORKED EXAMPLE — a full instance in the 2025 T1 format
-
-> ⚠️ The 2025 protocol records the task but **not the grids that were printed**, so the exact numbers from the real paper cannot be recovered. The instance below is constructed in the same format; the **method is what transfers**.
-
-**Question.** *"Name all possible Wolfram Numbers that produce the following $d{=}1$, $k{=}2$, $r{=}1$ patterns. Explain how you calculated the numbers."* Cells outside the window are white.
+The protocol does not record the printed grids, so the method is shown on a picture in the same format. You run the same steps on whatever picture is printed.
 
 ```
  position:  1  2  3  4  5  6  7  8  9
@@ -546,124 +845,319 @@ Given an evolution picture over $t=0,1,2$, find **all** Wolfram numbers consiste
      t=2:   .  .  #  .  .  .  #  .  .
 ```
 
-**What is being reversed:** the forward question gives you a number and asks for the pattern. Here you get the pattern and must find every number that could have produced it. Because a 3-row picture does not exercise all 8 neighbourhoods, **several rules fit — the answer is a set, not one number.**
+**✅ Answer**
 
-**Step 1 — one constraint per cell of each new row.**
+**Step 1 — the table size.** With $d = 1$, $k = 2$ and $r = 1$ the neighbourhood has $n = 2\times1 + 1 = 3$ cells, and the table has $L = 2^3 = 8$ rows with the weights 128, 64, 32, 16, 8, 4, 2 and 1. I assume that all cells outside the drawn window are white.
 
-| Step | Pos | Neighbourhood at $t$ | Output at $t{+}1$ | Constraint |
+**Step 2 — read every cell.** For every cell in row $t+1$, the three cells above it in row $t$ (left, same, right) form the neighbourhood, and the cell itself is the output.
+
+| Step | Position | Neighbourhood above | Output | Table entry |
 |---|---|---|---|---|
-| 0→1 | 3 | `000` | `.` | $000 \to 0$ |
-| 0→1 | 4 | `001` | `#` | $001 \to 1$ |
-| 0→1 | 5 | `010` | `.` | $010 \to 0$ |
-| 0→1 | 6 | `100` | `#` | $100 \to 1$ |
-| 1→2 | 3 | `001` | `#` | agrees ✓ |
-| 1→2 | 4 | `010` | `.` | agrees ✓ |
-| 1→2 | 5 | `101` | `.` | **$101 \to 0$ (new)** |
-| 1→2 | 6 | `010` | `.` | agrees ✓ |
-| 1→2 | 7 | `100` | `#` | agrees ✓ |
+| 0→1 | 3 | `000` | `0` | `000` → 0 |
+| 0→1 | 4 | `001` | `1` | `001` → 1 |
+| 0→1 | 5 | `010` | `0` | `010` → 0 |
+| 0→1 | 6 | `100` | `1` | `100` → 1 |
+| 0→1 | 7 | `000` | `0` | agrees |
+| 1→2 | 2 | `000` | `0` | agrees |
+| 1→2 | 3 | `001` | `1` | agrees |
+| 1→2 | 4 | `010` | `0` | agrees |
+| 1→2 | 5 | `101` | `0` | `101` → 0 |
+| 1→2 | 6 | `010` | `0` | agrees |
+| 1→2 | 7 | `100` | `1` | agrees |
+| 1→2 | 8 | `000` | `0` | agrees |
 
-All remaining cells sit in the white margins and repeat $000 \to 0$.
-
-**Step 2 — fill the table.** Five of the eight lines are pinned; three are never presented by this picture.
+**Step 3 — the conflict check.** No neighbourhood received both 0 and 1, so at least one Wolfram number produces the picture.
 
 ```
  neighbourhood:  111  110  101  100  011  010  001  000
- output:          x    x    0    I    x    0    I    0
  weight:         128   64   32   16    8    4    2    1
+ output:          ?    ?    0    1    ?    0    1    0
 ```
 
-**Step 3 — count.** $m = 5$ pinned $\Rightarrow 2^{8-5} = 2^{3} = \mathbf{8}$ consistent Wolfram numbers.
+**Step 4 — count the free rows.** The rows `111`, `110` and `011` never appear in the picture, so their outputs are free. With $f = 3$ free rows there are
+$$2^{f} = 2^{3} = 2\times2\times2 = 8 \text{ possible Wolfram numbers.}$$
 
-**Step 4 — report them.** Fixed part $= 16 + 2 = 18$; free weights $= \{128, 64, 8\}$.
+**Step 5 — the fixed part and the free weights.**
+$$\text{fixed part} = 16\,(\texttt{100}) + 2\,(\texttt{001}) = 18, \qquad \text{free weights} = \{128,\; 64,\; 8\}$$
 
-$$\boxed{\;\{18,\; 26,\; 82,\; 90,\; 146,\; 154,\; 210,\; 218\} \;=\; 18 + \text{any subset of } \{128,\,64,\,8\}\;}$$
+**Step 6 — list all numbers.** Every answer is the fixed part plus any combination of the free weights.
 
-**Step 5 — verify one.** Rule **90** is in the set ($18 + 64 + 8$), and rule 90 (XOR of the two neighbours) does generate exactly this Sierpiński opening. Rule **18** ($= 18 + \varnothing$) also does. Both are correct — that is the point of the question.
+| Free weights added | Sum | Wolfram number |
+|---|---|---|
+| none | $18$ | **18** |
+| 8 | $18 + 8$ | **26** |
+| 64 | $18 + 64$ | **82** |
+| 64 + 8 | $18 + 64 + 8$ | **90** |
+| 128 | $18 + 128$ | **146** |
+| 128 + 8 | $18 + 128 + 8$ | **154** |
+| 128 + 64 | $18 + 128 + 64$ | **210** |
+| 128 + 64 + 8 | $18 + 128 + 64 + 8$ | **218** |
 
-**The two sentences that earn marks:** the **white margins** are what give you $000 \to 0$ for free; and $111$, $110$, $011$ are unconstrained **because a single seed cannot produce two or three adjacent live cells within three steps**, so the picture carries no information about those neighbourhoods.
+$$\boxed{\{18,\; 26,\; 82,\; 90,\; 146,\; 154,\; 210,\; 218\}}$$
+
+The picture never shows the neighbourhoods `111`, `110` and `011`, so their outputs are free, and each free row doubles the number of answers to $2^3 = 8$.
+
+### ⚙️ RECIPES
+
+**Forward recipe (number → rule table).**
+1. You compute $n = 2r+1$, $L = k^n$ and the largest number $k^L - 1$, and you write the neighbourhoods from `111` to `000` with their weights.
+2. You convert the number into bits by going through the weights from the largest to the smallest, writing 1 and subtracting when the weight fits, and writing 0 otherwise.
+3. You write the bits under the neighbourhoods as the new centre state.
+4. You check that the weights under the 1s add up to the number.
+5. You classify the rule with the five checks below.
+
+| Property | The check |
+|---|---|
+| Silent state | The rule has a silent state if `000` gives 0. |
+| Symmetric | The rule is symmetric if `110` and `011` give the same output and `100` and `001` give the same output. |
+| Legal | The rule is legal if it is silent and symmetric. |
+| Totalistic | The rule is totalistic if neighbourhoods with the same number of 1s give the same output (sum 1: `100`, `010`, `001`; sum 2: `110`, `101`, `011`). |
+| Peripheral | The rule is peripheral if the centre does not matter: `111`=`101`, `110`=`100`, `011`=`001` and `010`=`000`. |
+
+**Reverse recipe (picture → all Wolfram numbers).**
+1. You compute the table size from $d$, $k$ and $r$ and draw the table with a `?` in every output.
+2. You read the three cells above every cell of row $t+1$ and write the output into the table, assuming that cells outside the window are white.
+3. You check for conflicts. If one neighbourhood gets both 0 and 1, no Wolfram number produces the picture, and that is the answer.
+4. You count the `?` rows as $f$, and the number of answers is $2^f$.
+5. You add the weights of the rows with output 1 as the fixed part, and you note the weights of the `?` rows as the free weights.
+6. You list the fixed part plus every combination of the free weights.
+
+### IMPORTANT THEORY
+
+- In general a 1-dimensional neighbourhood has $n = 2r+1$ cells, the table has $L = k^n$ rows, and there are $k^L$ possible rules. $L$ is the number of rows and $k^L$ is the number of rules, and the two must not be confused.
+- The Wolfram number reads the output column as a number in base $k$, with the row `111…1` as the most significant digit, and this works for any radius $r$.
 
 ### VARIANTS
 
-**V1.** *"Write the rule table for Wolfram number 90 and classify it."*
+**V1 (forward).** *"Give the rule table for Wolfram number 90 with $d=1$, $r=1$, $k=2$, and classify it."*
 
 <details><summary>Answer</summary>
 
-$90 = 64+16+8+2 = 2^6+2^4+2^3+2^1$ → neighbourhoods 110, 100, 011, 001:
+**Step 1.** The table has $n = 2\times1+1 = 3$ cells per neighbourhood, $L = 2^3 = 8$ rows and a largest number of $2^8 - 1 = 255$, so 90 is valid.
+
+**Step 2.**
+
+| Weight | Does it fit? | Bit | Left |
+|---|---|---|---|
+| 128 | $128 \le 90$? no | 0 | 90 |
+| 64 | $64 \le 90$? yes | 1 | $90-64 = 26$ |
+| 32 | $32 \le 26$? no | 0 | 26 |
+| 16 | $16 \le 26$? yes | 1 | $26-16 = 10$ |
+| 8 | $8 \le 10$? yes | 1 | $10-8 = 2$ |
+| 4 | $4 \le 2$? no | 0 | 2 |
+| 2 | $2 \le 2$? yes | 1 | $2-2 = 0$ |
+| 1 | $1 \le 0$? no | 0 | 0 |
+
+**Step 3.**
 ```
  111  110  101  100  011  010  001  000
-  0    I    0    I    I    0    I    0
+  0    1    0    1    1    0    1    0
 ```
-Rule 90 is **XOR of the two neighbours** (the centre is ignored). Classification: **silent ✔** ($000\to0$), **symmetric ✔**, **legal ✔**, **peripheral ✔**, **totalistic ✘** (SUM=2 gives $110{\to}I$, $101{\to}0$, $011{\to}I$).
+**Step 4.** The check gives $64 + 16 + 8 + 2 = 80 + 8 + 2 = 90$, so the table is correct.
 
-From a single seed it draws the **Sierpiński triangle**:
-```
- t=0    . . . . . . . # . . . . . . .
- t=1    . . . . . . # . # . . . . . .
- t=2    . . . . . # . . . # . . . . .
- t=3    . . . . # . # . # . # . . . .
- t=4    . . . # . . . . . . . # . . .
-```
+**Step 5.** Rule 90 has a silent state (`000` gives 0) and is symmetric (`110` and `011` give 1, `100` and `001` give 1), so it is legal. It is not totalistic, because for sum 2 `110` gives 1 and `101` gives 0. It is peripheral, because `111`=`101`=0, `110`=`100`=1, `011`=`001`=1 and `010`=`000`=0.
 </details>
 
-**V2.** *"Write the rule table for Wolfram number 110. Is it legal?"*
+**V2 (forward).** *"Give the rule table for Wolfram number 110 ($d=1$, $r=1$, $k=2$). Is it legal?"*
 
 <details><summary>Answer</summary>
 
-$110 = 64+32+8+4+2$ → neighbourhoods 110, 101, 011, 010, 001:
+**Step 1.** The table has $n = 3$, $L = 8$ and a largest number of 255.
+
+**Step 2.**
+
+| Weight | Does it fit? | Bit | Left |
+|---|---|---|---|
+| 128 | $128 \le 110$? no | 0 | 110 |
+| 64 | $64 \le 110$? yes | 1 | $110-64 = 46$ |
+| 32 | $32 \le 46$? yes | 1 | $46-32 = 14$ |
+| 16 | $16 \le 14$? no | 0 | 14 |
+| 8 | $8 \le 14$? yes | 1 | $14-8 = 6$ |
+| 4 | $4 \le 6$? yes | 1 | $6-4 = 2$ |
+| 2 | $2 \le 2$? yes | 1 | $2-2 = 0$ |
+| 1 | $1 \le 0$? no | 0 | 0 |
+
+**Step 3.**
 ```
  111  110  101  100  011  010  001  000
-  0    I    I    0    I    I    I    0
+  0    1    1    0    1    1    1    0
 ```
-**Silent ✔** but **not symmetric** ($100 \to 0$ while its mirror $001 \to I$), therefore **not legal**. Rule 110 is the famous **class IV** rule, later proved **Turing-complete**.
+**Step 4.** The check gives $64 + 32 + 8 + 4 + 2 = 96 + 8 + 4 + 2 = 110$, so the table is correct.
+
+**Step 5.** Rule 110 has a silent state, but it is not symmetric, because `100` gives 0 while `001` gives 1. Therefore rule 110 is not legal.
 </details>
 
-**V3.** *"Give the rule table for Wolfram number 184."*
+**V3 (forward, oral C).** *"$d=1$, $k=2$, $r=2$, Wolfram number 65538. How many rows does the table have, and which rows output 1?"*
 
 <details><summary>Answer</summary>
 
-$184 = 128 + 32 + 16 + 8 = 2^7 + 2^5 + 2^4 + 2^3$ → neighbourhoods 111, 101, 100, 011:
+**Step 1.** The larger radius makes the table bigger.
+$$\begin{aligned}
+n &= 2r+1 = 2\times2+1 = 5 \\
+L &= k^{n} = 2^{5} = 32 \text{ rows} \\
+\text{weights} &= 2^{31}, 2^{30}, \dots, 2^{1}, 2^{0}
+\end{aligned}$$
+
+**Step 2.** The weight $2^{17} = 131\,072$ is larger than 65 538, so every weight above $2^{16}$ gives 0.
+$$\begin{aligned}
+2^{16} = 65\,536 \le 65\,538 &\;\Rightarrow\; 1, \quad 65\,538 - 65\,536 = 2 \\
+2^{15} \dots 2^{2} > 2 &\;\Rightarrow\; 0 \\
+2^{1} = 2 \le 2 &\;\Rightarrow\; 1, \quad 2 - 2 = 0 \\
+2^{0} = 1 > 0 &\;\Rightarrow\; 0
+\end{aligned}$$
+
+**Step 3.** The row with weight $2^i$ belongs to the neighbourhood $i$ written as a 5-digit binary number.
+- The weight $2^{16}$ belongs to $16 = 10000_B$, so the neighbourhood `10000` gives 1.
+- The weight $2^{1}$ belongs to $1 = 00001_B$, so the neighbourhood `00001` gives 1.
+- All other 30 rows give 0.
+
+**Step 4.** The check gives $65\,536 + 2 = 65\,538$, so the answer is correct.
+</details>
+
+**V4 (reverse).** *"Name all Wolfram numbers ($d=1$, $k=2$, $r=1$) that produce this pattern."* The cells outside positions 1–7 are white.
+```
+ position:  1  2  3  4  5  6  7
+     t=0:   .  .  #  #  .  .  .
+     t=1:   .  #  #  #  #  .  .
+     t=2:   #  #  .  .  #  #  .
+```
+
+<details><summary>Answer</summary>
+
+**Step 1.** The table has $n = 3$ and $L = 8$ with the weights 128, 64, 32, 16, 8, 4, 2 and 1.
+
+**Step 2.**
+
+| Step | Position | Neighbourhood above | Output | Table entry |
+|---|---|---|---|---|
+| 0→1 | 1 | `000` (left is outside) | `0` | `000` → 0 |
+| 0→1 | 2 | `001` | `1` | `001` → 1 |
+| 0→1 | 3 | `011` | `1` | `011` → 1 |
+| 0→1 | 4 | `110` | `1` | `110` → 1 |
+| 0→1 | 5 | `100` | `1` | `100` → 1 |
+| 0→1 | 6 | `000` | `0` | agrees |
+| 0→1 | 7 | `000` (right is outside) | `0` | agrees |
+| 1→2 | 1 | `001` (left is outside) | `1` | agrees |
+| 1→2 | 2 | `011` | `1` | agrees |
+| 1→2 | 3 | `111` | `0` | `111` → 0 |
+| 1→2 | 4 | `111` | `0` | agrees |
+| 1→2 | 5 | `110` | `1` | agrees |
+| 1→2 | 6 | `100` | `1` | agrees |
+| 1→2 | 7 | `000` | `0` | agrees |
+
+**Step 3.** There is no conflict.
+```
+ neighbourhood:  111  110  101  100  011  010  001  000
+ weight:         128   64   32   16    8    4    2    1
+ output:          0    1    ?    1    1    ?    1    0
+```
+
+**Step 4.** The rows `101` and `010` are free, so $f = 2$ and there are $2^{2} = 2\times2 = 4$ answers.
+
+**Step 5.**
+$$\text{fixed part} = 64\,(\texttt{110}) + 16\,(\texttt{100}) + 8\,(\texttt{011}) + 2\,(\texttt{001}) = 64 + 16 + 8 + 2 = 90, \qquad \text{free weights} = \{32,\; 4\}$$
+
+**Step 6.**
+
+| Free weights added | Sum | Wolfram number |
+|---|---|---|
+| none | $90$ | **90** |
+| 4 | $90 + 4$ | **94** |
+| 32 | $90 + 32$ | **122** |
+| 32 + 4 | $90 + 32 + 4$ | **126** |
+
+$$\boxed{\{90,\; 94,\; 122,\; 126\}}$$
+</details>
+
+**V5 (reverse, with a conflict).** *"Name all Wolfram numbers ($d=1$, $k=2$, $r=1$) that produce this pattern."*
+```
+ position:  1  2  3  4  5  6
+     t=0:   .  #  .  .  .  .
+     t=1:   .  .  .  .  #  .
+```
+
+<details><summary>Answer</summary>
+
+**Step 1.** The table has $n = 3$ and $L = 8$.
+
+**Step 2.**
+
+| Position | Neighbourhood above | Output | Table entry |
+|---|---|---|---|
+| 4 | `000` | `0` | `000` → 0 |
+| 5 | `000` | `1` | `000` → 1 |
+
+**Step 3.** The neighbourhood `000` gives 0 at position 4 and 1 at position 5, which is a conflict. Therefore no Wolfram number with $d=1$, $k=2$, $r=1$ produces this pattern.
+</details>
+
+**V6 (reverse).** *"Name all Wolfram numbers ($d=1$, $k=2$, $r=1$) that produce this pattern."* The cells outside the window are white.
+```
+ position:  1  2  3  4  5  6  7
+     t=0:   .  .  .  #  .  .  .
+     t=1:   .  .  #  #  #  .  .
+```
+
+<details><summary>Answer</summary>
+
+**Step 1.** The table has $n = 3$ and $L = 8$ with the weights 128, 64, 32, 16, 8, 4, 2 and 1.
+
+**Step 2.**
+
+| Position | Neighbourhood above | Output | Table entry |
+|---|---|---|---|
+| 1 | `000` | `0` | `000` → 0 |
+| 2 | `000` | `0` | agrees |
+| 3 | `001` | `1` | `001` → 1 |
+| 4 | `010` | `1` | `010` → 1 |
+| 5 | `100` | `1` | `100` → 1 |
+| 6 | `000` | `0` | agrees |
+| 7 | `000` | `0` | agrees |
+
+**Step 3.** There is no conflict.
 ```
  111  110  101  100  011  010  001  000
-  I    0    I    I    I    0    0    0
+ 128   64   32   16    8    4    2    1
+  ?    ?    ?    1    ?    1    1    0
 ```
-**Silent ✔**, **symmetric ✘** ($110\to0$ vs $011\to I$), **not legal**, not peripheral, not totalistic. (Rule 184 is the classic **traffic-flow** rule.)
+**Step 4.** The rows `111`, `110`, `101` and `011` are free, so $f = 4$ and there are $2^4 = 2\times2\times2\times2 = 16$ answers.
+
+**Step 5.** The fixed part is $16 + 4 + 2 = 22$, and the free weights are $\{128, 64, 32, 8\}$.
+
+**Step 6.**
+
+| Added | Number | Added | Number |
+|---|---|---|---|
+| none | $22$ | 128 | $22+128 = 150$ |
+| 8 | $22+8 = 30$ | 128+8 | $150+8 = 158$ |
+| 32 | $22+32 = 54$ | 128+32 | $150+32 = 182$ |
+| 32+8 | $54+8 = 62$ | 128+32+8 | $182+8 = 190$ |
+| 64 | $22+64 = 86$ | 128+64 | $150+64 = 214$ |
+| 64+8 | $86+8 = 94$ | 128+64+8 | $214+8 = 222$ |
+| 64+32 | $86+32 = 118$ | 128+64+32 | $214+32 = 246$ |
+| 64+32+8 | $118+8 = 126$ | 128+64+32+8 | $246+8 = 254$ |
+
+$$\{22, 30, 54, 62, 86, 94, 118, 126, 150, 158, 182, 190, 214, 222, 246, 254\}$$
 </details>
 
-**V4.** *"$d=1, k=2, r=2$, Wolfram number 65538. How many lines does the table have and how many outputs are I?"*
-
-<details><summary>Answer</summary>
-
-$n = 2r+1 = 5$, so the table has $L = 2^5 = \mathbf{32}$ lines and there are $Z = 2^{32}$ rules.
-$65538 = 65536 + 2 = 2^{16} + 2^{1}$, so **exactly two** of the 32 lines output $I$ — those at weights $2^{16}$ and $2^{1}$. Indexing the 32 neighbourhoods from $11111$ (weight $2^{31}$) down to $00000$ (weight $2^0$), those are the neighbourhoods with binary index $16 = 10000_B$ and $1 = 00001_B$.
-
-**The moral to state:** the Wolfram numbering is not special to $r=1$; it is just "read the output column as a base-$k$ number", and the table gets longer.
-</details>
-
-### ⚠️ TRAPS
-
-- **Getting the column order backwards.** `111` is the MSB. Always write the header row first.
-- **Confusing $L$ (table lines) with $Z$ (number of rules).**
-- On the reverse question, **forgetting to report ALL numbers.** The question says "all possible" — the $2^{8-m}$ count is the point.
+**⚠️ Traps.** You must write the lines for $n$, $L$ and the largest number every time. You must write the columns from `111` on the left to `000` on the right. You must not confuse $L$ with $k^L$. On the reverse question you must give all $2^f$ numbers, not just one. You must state that cells outside the window are assumed to be white.
 
 ---
 
 ## Q5 · Langton's Ant 🔒
-**Recurrence: 4/4. Always 5 points.**
+**This question appeared on 4 of 4 papers and is always worth 5 points.**
 
-### Asked as
+**❓ 2025 T3** — *"Name the 4 micro behaviors of Langton's Ant and give a short scribble visualization for each of them."*
+**❓ 2023 `qn-02` 10** — *"Explain the 4 steps of microbehaviour of Langton's Ant, support your explanation by a drawing of each step."*
+**❓ 2023 `qn-03`** — *"[4 micro-behaviours]"*
 
-- *"Name the 4 micro behaviors of Langton's Ant and give a short scribble visualization **for each of them**."* — 2025 T3
-- *"Explain the 4 steps of microbehaviour of Langton's Ant, support your explanation by a drawing of each step."* — 2023 `qn-02` 10
-- *"[4 micro-behaviours]"* — 2023 `qn-03`
-- *"Compare the patterns and behaviour on a uniform **white** plane vs a uniform **black** plane."* — 2017 Q7
+**✅ Answer**
 
-### THE BLOCK TO WRITE
+Langton's Ant moves on a grid of white and black cells. On a white cell it turns 90° to the right, and on a black cell it turns 90° to the left; in both cases it then flips the colour of the cell and moves one cell forward. Each step consists of four micro-behaviours:
 
-**The rule, first, in words:**
-> At a **white** cell: turn **90° right**, flip the cell, move forward one step.
-> At a **black** cell: turn **90° left**, flip the cell, move forward one step.
-
-**The four micro-behaviours — scan → turn → flip → move.** Four separate drawings are demanded.
+1. **Scan:** The ant reads the colour of the cell it stands on, which is its only input.
+2. **Turn:** The ant turns 90° to the right if the cell is white and 90° to the left if the cell is black.
+3. **Flip:** The ant inverts the colour of the cell it stands on, which is its only way of writing.
+4. **Move:** The ant moves one cell forward in its new direction.
 
 ```
    (1) SCAN                 (2) TURN                (3) FLIP                (4) MOVE
@@ -677,18 +1171,23 @@ $65538 = 65536 + 2 = 2^{16} + 2^{1}$, so **exactly two** of the 32 lines output 
    the ant                (90° L if BLACK)       (white -> black)       the new heading
 ```
 
-1. **Scan** — the ant reads the state of the cell it stands on. This is its only input; it has no memory.
-2. **Turn** — 90° **right if white**, 90° **left if black**. Only the heading changes.
-3. **Flip** — the ant inverts the cell it stands on. This is its only way of writing.
-4. **Move** — one cell forward along the new heading.
+---
 
-### The three macroscopic phases (uniform white plane)
+**❓ 2017 Q7** — *"Compare the patterns and behaviour on a uniform white plane vs a uniform black plane."*
 
-| Phase | When | What |
+**✅ Answer**
+
+The two runs are mirror images of each other with the same statistics. The rule is colour-symmetric: exchanging white and black only exchanges "turn right" with "turn left". On a black plane the ant therefore produces the left–right mirrored trajectory with inverted colours. All three phases occur in the same order and at the same step counts: a symmetric phase until about step 420, a chaotic phase until about step 10 000, and then the highway with a period of 104 steps. The only difference is that the highway runs off in the mirrored diagonal direction.
+
+### IMPORTANT THEORY
+
+**The three phases on a uniform white plane.**
+
+| Phase | When | What happens |
 |---|---|---|
-| **1 — Symmetric growth** | to ≈ step **420** | small, almost symmetric pattern |
-| **2 — Chaotic growth** | ≈ step **400 – 10 000** | growth with no distinguishable structure; **deterministic chaos** |
-| **3 — Highway** | from ≈ step **10 000** | a highly structured, **persistent, repetitive** pattern with **cycle time 104 steps**, carrying the ant off to infinity |
+| 1 — Symmetric growth | until about step 420 | The ant builds a small, almost symmetric pattern. |
+| 2 — Chaotic growth | from about step 400 to 10 000 | The pattern grows without visible structure, which is deterministic chaos. |
+| 3 — Highway | from about step 10 000 | The ant builds a persistent, repetitive pattern with a cycle of **104 steps** and moves off to infinity. |
 
 ```
  black
@@ -701,10 +1200,9 @@ $65538 = 65536 + 2 = 2^{16} + 2^{1}$, so **exactly two** of the 32 lines output 
          ~420           ~10 000
 ```
 
-Add the lecture's own remark, worth a mark on any "explain" version:
-> Although the rule is simple and every step is comprehensible, the short-term behaviour is hard to impossible to predict and the mid-term behaviour resists prediction entirely. The only way to know the grid at time $t$ is to **run the simulation**.
+- Although every single step is simple, the short-term behaviour is hard to predict and the mid-term behaviour cannot be predicted at all. The only way to know the grid at time $t$ is to run the simulation.
 
-### The first four steps, drawn
+**The first four steps on a white plane.**
 
 ```
   t=0                t=1                t=2                t=3                t=4
@@ -715,91 +1213,58 @@ Add the lecture's own remark, worth a mark on any "explain" version:
 . . . . .          . . . . .          . . . . .          . . . . .          . . . . .
 ```
 
-At $t=4$ the ant is back on its starting cell, which is now **black**, so it turns **left** and the square breaks open.
+At $t=4$ the ant is back on its starting cell, which is now black, so it turns left and the square breaks open.
 
 ### VARIANTS
 
-**V1.** *"Compare Langton's Ant on a uniform white plane with a uniform black plane."* (2017 Q7)
+**V1.** *"Langton's Ant starts on a white square of an infinite checkerboard. Describe the behaviour."*
 
 <details><summary>Answer</summary>
 
-**They are mirror images with identical statistics.** The rule is **colour-symmetric**: exchanging the two colours swaps "turn right" with "turn left" and changes nothing else. So the black-plane run produces the **left–right mirrored** trajectory. **All three phases occur in the same order at the same step counts**, and the highway still has **period 104** — it simply runs off in the mirrored diagonal direction. The trail colours are inverted.
+On a checkerboard the colours alternate, so the ant turns right, left, right, left, and so on. It therefore moves in a perfectly regular diagonal staircase to infinity, without a chaotic phase and without a highway. This shows that the initial configuration, and not only the rule, decides whether the behaviour becomes chaotic.
 </details>
 
-**V2.** *"Langton's Ant starts on a white square of an infinite checkerboard. Describe the behaviour and draw the first steps."*
-
-<details><summary>Answer</summary>
-
-On a checkerboard the colours alternate, so the ant alternates **right, left, right, left** and produces a **perfectly regular diagonal staircase** to infinity — no chaotic phase and no highway.
-
-```
-   step 1: white -> turn R, flip, move E          . . . . o
-   step 2: black -> turn L, flip, move N          . . . o .
-   step 3: white -> turn R, flip, move E          . . o . .
-   step 4: black -> turn L, flip, move N          . o . . .
-   ... repeating for ever                         o . . . .
-```
-This shows that **the initial configuration, not the rule, decides whether the behaviour is chaotic.**
-</details>
-
-**V3.** *"Why is Langton's Ant called a two-dimensional Turing machine?"*
+**V2.** *"Why is Langton's Ant called a two-dimensional Turing machine?"*
 
 <details><summary>Answer</summary>
 
 | Turing machine | Langton's Ant |
 |---|---|
-| Tape | the 2-dim grid |
-| Tape alphabet | $\{$white, black$\}$ |
-| Read/write head | the ant |
-| Internal state | the ant's **heading** (N, E, S, W) — four states |
-| Transition function | read symbol → write flipped symbol → change state (turn) → move |
-| Halting state | **none** — the ant never halts |
+| tape | The tape is the 2-dimensional grid. |
+| tape alphabet | The alphabet is {white, black}. |
+| read/write head | The head is the ant. |
+| internal state | The state is the ant's heading (N, E, S, W), so there are four states. |
+| transition function | The ant reads a colour, writes the flipped colour, changes its state by turning, and moves. |
+| halting state | There is no halting state, because the ant never stops. |
 
-Gajardo, Moreira and Goles (2000) proved a **single** Langton's Ant can implement **any Boolean function**.
+Gajardo, Moreira and Goles (2000) proved that a single Langton's Ant can compute any Boolean function.
 </details>
 
-**V4.** *"What does the notation RL mean for Langton's Ant?"*
+**V3.** *"What does the notation RL mean for Langton's Ant?"*
 
 <details><summary>Answer</summary>
 
-It is the generalisation to $k > 2$ cell states. The state is **increased by one cyclically** at every move, and the rule is written as a **string of turn directions, one letter per state**. **Langton's original ant is `RL`** — turn **R**ight on state 0 (white), **L**eft on state 1 (black). Other rules named in the lecture: `RLR`, `LLRR`, `RRLLLRLLLRRR`; different strings give wildly different long-term behaviour.
+The notation describes the generalisation to more than two cell states. At every step the state of the cell increases by one cyclically, and the rule is written as a string with one turn direction per state. Langton's original ant is `RL`, which means that it turns right on state 0 (white) and left on state 1 (black). The lecture also names the rules `RLR`, `LLRR` and `RRLLLRLLLRRR`, which show very different long-term behaviour.
 </details>
 
-### ⚠️ TRAPS
-
-- **Drawing one picture instead of four.** Both papers say "of each step" / "for each of them".
-- **Omitting which colour causes which turn.** Write "white ⇒ right, black ⇒ left" in words next to the drawing.
-- **Forgetting the number 104.** It is the most markable single figure in this answer.
+**⚠️ Traps.** You must draw four separate pictures, one for each micro-behaviour. You must write which colour causes which turn. You must remember the highway period of 104 steps.
 
 ---
 
 ## Q6 · Braitenberg vehicles 🔒
-**Recurrence: 4/4 — and it fills TWO slots on most papers** (2023 asked it twice, 2025 asked it twice). Treat it as worth **10 points**.
+**This question appeared on 4 of 4 papers and often fills two slots on the same paper, so it is worth about 10 points.**
 
-### ⭐ FIRST: WHICH OF THE THREE QUESTIONS DID YOU GET?
+**❓ 2023 `qn-02` 7** — *"What is the probabilistic / stochastic component of a type 1 vehicle?"*
+**❓ 2025 T14** — *"…and how is that beneficial?"*
+**❓ 2023 `qn-03`** — *"Which part of a Type I vehicle can profit from a stochastic element?"*
 
-Three distinct Braitenberg questions have been asked. **Find your wording in the left column and write the answer named on the right — do not write all three.**
+**✅ Answer**
 
-| If the paper says… | Paper | Write |
-|---|---|---|
-| *"What is the **probabilistic / stochastic component** of a **type 1** vehicle?"* · *"…and how is that beneficial?"* · *"Which part of a Type I vehicle **can profit from a stochastic element**?"* | `qn-02` 7 · 2025 T14 · `qn-03` | **§ Q6a** |
-| *"What would happen if you **change proximity to distance sensors** in Braitenberg 3b?"* · *"Someone accidentally **replaced all the proximity-sensors with distance-sensors**. Explain the expected behaviour and draw an imagery example."* | `qn-02` 8 · 2025 T4 | **§ Q6b** |
-| *"Imagine a Braitenberg vehicle **for obstacle avoidance** …"* (design it / draw the scene) | 2017 Q9 | **§ Q6c** |
+**1. The type 1 vehicle.** A type 1 vehicle has one sensor and one motor with a positive connection: the more of the sensed quality there is, the faster the motor runs. With a temperature sensor, the vehicle speeds up in warm areas and slows down in cold areas. Because the connection is positive, the vehicle always moves forward.
 
----
+**2. The stochastic component.** The stochastic component is not built in on purpose. It comes from small perturbations caused by the mechanical construction, the surface and friction, and these perturbations change the vehicle's **direction** slightly. The part that profits from the stochastic element is therefore the heading of the vehicle, not the sensor value and not the motor speed.
 
-### § Q6a — The stochastic component of a type 1 vehicle
-
-**The answer, in three parts. Write all three; the third is what most people miss.**
-
-**① What a type 1 vehicle is.**
-> A type 1 vehicle has **one sensor and one motor**, connected positively: *"The more there is of the quality to which the sensor is tuned, the faster the motor goes."* With a temperature sensor it speeds up in warm areas and slows down in cold ones. Because the connection is positive and the sensor gives only positive values, **the vehicle always moves forward**.
-
-**② WHAT the stochastic component IS** — this is the literal answer to *"what is it"* and *"which part"*:
-> The stochastic component is **not** designed in — it comes from **small perturbations from the mechanical construction, from the surface, and from friction**, which cause the vehicle to **change its direction slightly**. So the part that carries the randomness is the vehicle's **heading / direction of travel**, not the sensor reading and not the motor speed.
-
-**③ WHY it is beneficial** (the half that 2025 T14 adds explicitly):
-> Moving only straight ahead — even with changing speed — is boring, and the vehicle would explore nothing. **It is the stochastic component that makes the behaviour interesting.** Because the vehicle **moves quickly in warm regions and slowly in cold ones**, and now wanders rather than going straight, it **spends longer in the cold regions**. From an outside perspective it therefore looks as if the vehicle **"loves" cold regions and "dislikes" warm ones** — apparently goal-directed behaviour produced with **no goal, no map and no plan**. That is the entire point of Braitenberg's argument.
+**3. Why it is beneficial.** Without the stochastic component the vehicle would only drive straight ahead and explore nothing. With it, the vehicle wanders around, moves fast through warm regions and slowly through cold regions, and therefore spends more time in the cold regions. From outside it looks as if the vehicle "loves" cold regions, although it has no goal, no map and no plan.
 
 ```
         Type 1                          resulting trajectory
@@ -817,11 +1282,12 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
 
 ---
 
-### § Q6b — Proximity sensors replaced by distance sensors
+**❓ 2023 `qn-02` 8** — *"What would happen if you change proximity to distance sensors in Braitenberg 3b?"*
+**❓ 2025 T4** — *"Someone accidentally replaced all the proximity-sensors with distance-sensors. Explain the expected behaviour and draw an imagery example."*
 
-**The whole answer turns on ONE fact. State it first, then the consequence.**
+**✅ Answer**
 
-**① The sensor characteristic is inverted.**
+**1. The sensor characteristic is inverted.** A proximity sensor gives a large value when an object is close, whereas a distance sensor gives a small value when an object is close. Replacing one with the other therefore inverts the sensor-motor mapping.
 
 ```
    PROXIMITY sensor                  DISTANCE sensor
@@ -837,15 +1303,9 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
    near  ->  LARGE value             near  ->  SMALL value
 ```
 
-> A **proximity** sensor gives a **large** value when the object is **close**. A **distance** sensor gives a **small** value when the object is close. Swapping them therefore **inverts the sensor-motor mapping**.
+**2. The consequence.** A type 3b vehicle has crossed inhibitory connections, so a large sensor value slows down the motor on the opposite side and the vehicle turns away. With distance sensors, a close obstacle produces a small value and therefore almost no inhibition, so both motors run at full speed and the vehicle drives straight into the obstacle. Open space produces a large value and strong inhibition, so the vehicle turns away from free space and towards obstacles.
 
-**② The consequence — spell out both directions.**
-> A type 3b has **crossed inhibitory** connections, so a large sensor value strongly inhibits the motor on the **opposite** side and the vehicle turns away.
->
-> With **distance** sensors, an obstacle that is **close** now produces a **small** value and therefore **almost no inhibition** — both motors run at full speed and the vehicle **drives straight into the obstacle**. Conversely, **open space** produces a **large** value and **strong inhibition** of the opposite motor, so the vehicle **turns away from free space and towards obstacles**.
-
-**③ The verdict, in one sentence.**
-> **The obstacle-avoiding vehicle becomes an obstacle-seeking vehicle and collides.** In Braitenberg's vocabulary the 3b "explorer" now behaves like a **3a**: it approaches the nearest object and stops at — or crashes into — it.
+**3. The result.** The obstacle-avoiding vehicle becomes an obstacle-seeking vehicle and collides. The 3b "explorer" now behaves like a 3a vehicle, which approaches the nearest object.
 
 ```
    WITH PROXIMITY (correct)          WITH DISTANCE (swapped)
@@ -860,18 +1320,17 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
 
 ---
 
-### § Q6c — Design a Braitenberg vehicle for obstacle avoidance
+**❓ 2017 Q9** — *"Imagine a Braitenberg vehicle for obstacle avoidance …"* (design it and draw the scene)
 
-**① Name the type and the wiring.**
-> Use a **type 3b**: **two proximity sensors, two motors, connections CROSSED and INHIBITORY (negative)**. Type 3b is **the most popular of the Braitenberg vehicles and is found in many robotic applications**, because the structure is easy to implement.
+**✅ Answer**
 
-**② State the rule in the lecture's own words.**
-> *"The closer the object is, the higher the proximity value is, the more the motor on the opposite side will be inhibited."* The inhibited motor slows down, so the robot **turns away from the obstacle**.
+**1. The type and the wiring.** The vehicle is a type 3b vehicle with two proximity sensors and two motors, and the connections are crossed and inhibitory (negative). Type 3b is the most popular Braitenberg vehicle in robotics, because it is easy to build.
 
-**③ Name the principle.**
-> The basic principle behind 3b obstacle avoidance is **antagonistic inhibition**, which appears to be a **fundamental principle in living nature** (compare lateral inhibition in activator-inhibitor reaction-diffusion systems).
+**2. The rule.** The closer an object is, the higher the proximity value is, and the more the motor on the opposite side is inhibited. The inhibited motor slows down, so the vehicle turns away from the obstacle.
 
-**④ Draw the scene — the question demands vehicle AND obstacle AND trajectory.**
+**3. The principle.** The basic principle behind 3b obstacle avoidance is antagonistic inhibition, which is a fundamental principle in living nature.
+
+**4. The scene.**
 
 ```
          ###########  obstacle
@@ -888,8 +1347,7 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
         trajectory curves away                away from the obstacle
 ```
 
-**⑤ Add the weakness — a bonus sentence that costs nothing.**
-> 3b obstacle avoidance is fascinating and powerful compared to its complexity, but it is **not "fool-proof": corners are already a challenge** for this kind of purely reactive control. In a corner the vehicle alternately turns left and right and ends up **static or oscillating**. Fixes: add a **stochastic component**, use a **steeper sensor-motor characteristic**, or add **memory**.
+**5. The weakness.** 3b obstacle avoidance is powerful for such a simple structure, but it is not fool-proof, because corners are a problem. In a corner the vehicle turns left and right alternately and ends up standing still or oscillating. This can be fixed by adding a stochastic component, a steeper sensor-motor characteristic, or memory.
 
 ```
    THE CORNER PROBLEM
@@ -901,9 +1359,9 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
      ######
 ```
 
----
+### IMPORTANT THEORY
 
-### REFERENCE — the vehicle types (backing material for all three answers)
+**The vehicle types.**
 
 ```
      2a          2b            3a          3b
@@ -915,200 +1373,197 @@ Three distinct Braitenberg questions have been asked. **Find your wording in the
   excitatory   excitatory   inhibitory   inhibitory
 ```
 
-| Type | Connection | Behaviour with a light source | Braitenberg's word |
+| Type | Connection | Behaviour with a light source | Braitenberg's name |
 |---|---|---|---|
-| **1** | one sensor, one motor, positive | always drives forward, faster with more stimulus | — |
-| **2a** | positive, **uncrossed** | drives **away** from the light, slowing as it gets further; stops when the light is no longer visible | **fear** |
-| **2b** | positive, **crossed** | drives **towards** the light with **increasing** speed, and would hit it | **aggression** |
-| **2c** | both sensors to both motors | dismissed by Braitenberg — *"a somewhat more luxurious version of Vehicle 1"* | — |
-| **3a** | negative, **uncrossed** | turns **towards** the light and **stops in front of it, facing it frontally** — ends up *"sitting motionless in front of the light source"* | **love** |
-| **3b** | negative, **crossed** | turns **away**, passing *"almost in slow motion"*, then **speeds up** once heading away and may leave the playground | **explorer** |
-| **3c** | 4 sensor pairs, 2a+2b+3a+3b combined | dislikes heat, destroys light bulbs, prefers oxygen and organic matter | — |
-| **5–7** | — | **5**: internal states with chains of logic elements. **6**: type-5 structure designed by an **evolutionary process**. **7**: **learning** the internal structure (Mnemotrix). | — |
+| 1 | One sensor drives one motor positively. | The vehicle always drives forward and goes faster with more stimulus. | — |
+| 2a | The connections are positive and uncrossed. | The vehicle drives away from the light and slows down until it no longer sees the light. | fear |
+| 2b | The connections are positive and crossed. | The vehicle drives towards the light with increasing speed and hits it. | aggression |
+| 2c | Both sensors are connected to both motors. | Braitenberg dismissed it as "a somewhat more luxurious version of Vehicle 1". | — |
+| 3a | The connections are negative and uncrossed. | The vehicle turns towards the light and stops in front of it, facing it. | love |
+| 3b | The connections are negative and crossed. | The vehicle turns away, passes the light "almost in slow motion", and then speeds up and leaves. | explorer |
+| 3c | Four sensor pairs combine 2a, 2b, 3a and 3b. | The vehicle dislikes heat, destroys light bulbs, and prefers oxygen and organic matter. | — |
+| 5–7 | These types have internal structure. | Type 5 has internal states built from logic elements, type 6 has a type-5 structure designed by an evolutionary process, and type 7 learns its internal structure (Mnemotrix). | — |
 
-> Types **1, 2 and 3 have a linear** increasing or decreasing characteristic between the physical modality (distance, proximity, light, …) and the motor value — e.g. *the closer the object is, the slower the motor will run*.
+- The number 2 means excitatory (+) and 3 means inhibitory (−). The letter a means uncrossed and b means crossed.
+- Types 1, 2 and 3 have a linear characteristic between the sensed quantity and the motor speed, for example "the closer the object is, the slower the motor runs".
 
 ### VARIANTS
 
-**V1.** *"What would happen if you swapped proximity for distance sensors in a Braitenberg **3a**?"*
+**V1.** *"What would happen if you swapped proximity for distance sensors in a Braitenberg 3a?"*
 
 <details><summary>Answer</summary>
-3a with proximity sensors approaches an object and stops facing it. Inverting the sensor characteristic inverts this: **the vehicle now turns away from objects and accelerates into open space** — it behaves like a **3b explorer**. State the general rule: **swapping proximity for distance sensors converts 3a ↔ 3b behaviour**, because it flips the sign of the sensor-motor mapping.
+
+A 3a vehicle with proximity sensors approaches an object and stops in front of it. Inverting the sensor characteristic inverts this behaviour, so the vehicle now turns away from objects and speeds up into open space, like a 3b explorer. In general, swapping proximity sensors for distance sensors turns 3a behaviour into 3b behaviour and the other way round, because it flips the sign of the sensor-motor mapping.
 </details>
 
 **V2.** *"How would you build a vehicle that keeps a fixed working distance $d_w$ from a wall?"*
 
 <details><summary>Answer</summary>
-Use a **3a-style inhibitory mapping whose zero-crossing sits at $d_w$**, so the motor command is proportional to $(d - d_w)$:
-- **closer than $d_w$** → negative → the vehicle **reverses**;
-- **further than $d_w$** → positive → the vehicle **advances**;
-- **exactly $d_w$** → zero → it **holds station**.
 
-$d_w$ is a **stable fixpoint** of the sensor-motor loop.
+You use a 3a-style mapping whose zero point lies at $d_w$, so the motor command is proportional to $(d - d_w)$.
+- If the vehicle is closer than $d_w$, the command is negative and the vehicle reverses.
+- If the vehicle is further away than $d_w$, the command is positive and the vehicle moves forward.
+- If the vehicle is exactly at $d_w$, the command is zero and the vehicle stays in place.
+
+The distance $d_w$ is therefore a stable fixpoint of the sensor-motor loop.
 </details>
 
 **V3.** *"Why is type 3b preferred over type 2a for obstacle avoidance?"*
 
 <details><summary>Answer</summary>
-Both turn away from the stimulus, but **2a is excitatory and accelerates as it escapes**, whereas **3b is inhibitory and slows down near the obstacle**, passing it *"almost in slow motion"* before speeding up again. Braking near danger is both **safer** (less impact energy if it does collide) and **technically easier** with real motors. That is why 3b is the one found in real robotic applications.
+
+Both types turn away from the stimulus, but 2a is excitatory and speeds up while it escapes, whereas 3b is inhibitory and slows down near the obstacle before speeding up again. Braking near an obstacle is safer, because a collision has less energy, and it is technically easier with real motors. That is why 3b is used in real robots.
 </details>
 
 **V4.** *"What is a type 2c vehicle and why did Braitenberg dismiss it?"*
 
 <details><summary>Answer</summary>
-A **2c** connects **both sensors to both motors**. Braitenberg dismissed it immediately because with symmetric input to both motors there is no differential steering — it is *"nothing but a somewhat more luxurious version of Vehicle 1"*. The interesting contrast is between **2a and 2b**.
+
+A type 2c vehicle connects both sensors to both motors. Braitenberg dismissed it because both motors receive the same input, so the vehicle cannot steer, and it is "nothing but a somewhat more luxurious version of Vehicle 1".
 </details>
 
-### ⚠️ TRAPS
-
-- **Answering all three questions when only one was asked.** Use the routing table at the top.
-- **Not drawing the scene.** 2017 Q9 and 2025 T4 both say "draw". Vehicle **and** obstacle **and** trajectory.
-- **Saying "it would behave oddly" on the sensor-swap question.** Be specific: *near → small value → no inhibition → drives into the obstacle.*
-- **Confusing 2a/2b with 3a/3b.** **2 = excitatory (+), 3 = inhibitory (−); a = uncrossed, b = crossed.**
-- **On Q6a, giving only "there is noise".** Name its *source* (mechanical construction, surface, friction), what it acts on (the **direction**), and the *benefit* (lingers in cold regions ⇒ looks like it "loves" cold).
-
+**⚠️ Traps.** You must answer only the Braitenberg question that was asked. You must draw the vehicle, the obstacle and the trajectory when a drawing is asked. On the sensor-swap question you must state the chain "near gives a small value, so there is no inhibition, so the vehicle drives into the obstacle". You must not confuse 2a/2b with 3a/3b. On the type 1 question you must name the source of the noise, what it acts on (the direction) and its benefit.
 
 ---
 
 ## Q7 · Lindenmayer System producing `OAOAOA…O` ⚙️
-**Recurrence: 4/4. Always 5 points. Same target string every year.**
+**This question appeared on 4 of 4 papers and is always worth 5 points.**
 
-### Asked as
+**❓ 2023 `qn-02` 16** — *"Develop a Lindenmayer with max. 4 rules that produces OAOAOAOAOAOAOAO at t=3 starting with t=0 and the axiom O."*
+**❓ 2017 Q11** — *(the same question)*
 
-- *"Develop a Lindenmayer with max. 4 rules that produces **OAOAOAOAOAOAOAO** at t=3 starting with t=0 and the axiom O."* — 2023 `qn-02` 16
-- *"Create an L-System that creates the sequence **0A0A0A0A0A0A0** at step t=3 with a maximum of 4 rules."* — 2023 `qn-03`
-- *"Define a L0-System that when starting with O generates the following sequence at exactly time-step t=3: **OAOAOAOAOAOAO**"* — 2025 T16
-- 2017 Q11 — same question
+**✅ Answer**
 
-### THE ANSWER
+The target `OAOAOAOAOAOAOAO` has 15 symbols (8 O and 7 A). Two rules are enough.
 
-**Two rules suffice.**
+| Symbol | Meaning | Value |
+|---|---|---|
+| $V$ | The alphabet is the set of all symbols. | $\{O, A\}$ |
+| $w$ | The axiom is the start string at $t=0$. | $O$ |
+| $P$ | The production rules are applied to all symbols in parallel at every step. | $O \to OAO, \quad A \to A$ |
 
-$$V = \{O, A\}, \qquad w = O, \qquad P: \; O \to OAO, \;\; A \to A$$
+**Verification by expansion.**
 
-**Verify by expanding — always show this table, it is most of the marks:**
-
-| $t$ | string | length |
+| $t$ | String | Length |
 |---|---|---|
 | 0 | `O` | 1 |
 | 1 | `OAO` | 3 |
 | 2 | `OAOAOAO` | 7 |
 | 3 | `OAOAOAOAOAOAOAO` | **15** |
 
-Show one expansion explicitly so the marker sees the parallel rewriting:
-> $t=2 \to t=3$: `O A O A O A O` → `(OAO) A (OAO) A (OAO) A (OAO)` = `OAOAOAOAOAOAOAO`
+From $t=2$ to $t=3$ every symbol is replaced at the same time: `O A O A O A O` becomes `(OAO) A (OAO) A (OAO) A (OAO)`, which is `OAOAOAOAOAOAOAO`.
 
-**Length recurrence:** $L(t+1) = 2L(t) + 1$ with $L(0)=1$, so $L(t) = 2^{t+1} - 1$: 1, 3, 7, 15, 31, …
+The length follows $L(t+1) = 2L(t) + 1$ with $L(0) = 1$, so $L(t) = 2^{t+1} - 1$, which gives 1, 3, 7, 15, 31, and so on.
 
-**Also define the formalism** (one line, free marks):
-> An L-System is the 4-tuple $(V, C, w, P)$ — $V$ variables, $C$ constants, $A = V \cup C$ the alphabet, $w$ the axiom, $P$ the production rules. This is a **D0L-System**: **d**eterministic, **0**-context (context-free), with all symbols rewritten **in parallel** at each step.
+This L-System is a **D0L-System**, which means that it is deterministic and context-free (0 context), and all symbols are rewritten in parallel.
 
-### ⚠️ THE LENGTH DISCREPANCY — read this before the exam
+---
 
-The papers do not agree on the target length:
+**❓ 2023 `qn-03`** — *"Create an L-System that creates the sequence 0A0A0A0A0A0A0 at step t=3 with a maximum of 4 rules."*
+**❓ 2025 T16** — *"Define a L0-System that when starting with O generates the following sequence at exactly time-step t=3: OAOAOAOAOAOAO"*
 
-- 2017 and 2023 print **`OAOAOAOAOAOAOAO` = 15 symbols** (8 O, 7 A) → solved exactly by $O \to OAO,\; A \to A$ at $t=3$. ✔
-- `qn-01` (2025) records **`OAOAOAOAOAOAO` = 13 symbols** (7 O, 6 A).
+**✅ Answer**
 
-**13 is not reachable at $t=3$ from axiom `O` with rules of this family.** Proof sketch: if $O \to$ (alternating string with $p$ O's) and $A \to$ (alternating string with $q$ A's), then with $q=1$ the O-count is $p^t$, which for $t=3$ gives 1, 8, 27, … — never 7. So the 2025 protocol almost certainly **miscounted from memory**.
+First you count the printed target. `OAOAOAOAOAOAO` has 13 symbols (7 O and 6 A). If the printed string actually has 15 symbols, you write the answer above instead.
 
-**What to do in the exam:** **count the O's and A's in the string actually printed on your paper**, then match the length sequence. If it is $2^{t+1}-1$, the two-rule answer above works. If it is not, say which length you counted and give the rules for that length — and state your reasoning. Never assume 15.
+The two-rule system $O \to OAO$, $A \to A$ gives 15 symbols at $t=3$, so it does not work for 13 symbols. A system with 4 rules does work:
+
+| Symbol | Meaning | Value |
+|---|---|---|
+| $V$ | The alphabet is the set of all symbols. | $\{O, A, X, Y\}$ |
+| $w$ | The axiom is the start string. | $O$ |
+| $P$ | The production rules are applied in parallel. | $O \to X, \quad X \to YAYAYAYAYAYAY, \quad Y \to O, \quad A \to A$ |
+
+**Verification by expansion.**
+
+| $t$ | String | Length |
+|---|---|---|
+| 0 | `O` | 1 |
+| 1 | `X` | 1 |
+| 2 | `YAYAYAYAYAYAY` | 13 |
+| 3 | `OAOAOAOAOAOAO` | **13** |
+
+At $t=3$ every Y has become O and every A has stayed A, so the string is exactly the target. The helper symbols X and Y are variables that disappear by step 3.
 
 ### ⚙️ THE GENERAL RECIPE
 
-To hit an alternating target of length $L$ at step $t$ from axiom `O`:
+1. You count the symbols in the printed target and note the length $L$ and the number of each letter.
+2. You compute the length sequence of a candidate rule. For $O \to OAO$ and $A \to A$ the lengths are $L(t) = 2^{t+1} - 1$, which gives 1, 3, 7, 15, 31.
+3. If the target length matches the sequence at the asked step, you use that rule.
+4. If the length does not match, you change the right-hand side (for example $O \to OAOAO$ gives 1, 5, 17, 53) or you add helper variables that turn into O and A at the asked step.
+5. You always verify by expanding the string step by step up to the asked $t$, because the expansion table earns most of the marks.
 
-1. **Count the symbols** in the printed target. Get $L$, and the counts of each letter.
-2. **Compute the length sequence** for a candidate rule. For $O \to O A O$, $A \to A$: $L(t) = 2^{t+1}-1$.
-3. **Match.** If $L$ is 3, 7, 15, 31 at $t = 1, 2, 3, 4$ — use the two-rule answer.
-4. If the target grows differently, adjust the right-hand side: $O \to OAOAO$ gives $L(t+1) = 3L(t)+2$, i.e. 1, 5, 17, 53.
-5. **Always verify by full expansion** to the required $t$. The expansion table is worth more marks than the rules themselves.
+### IMPORTANT THEORY
+
+- An L-System is the 4-tuple $(V, C, w, P)$, where $V$ is the set of variables (symbols that are replaced), $C$ is the set of constants (symbols that stay), $A = V \cup C$ is the alphabet, $w$ is the axiom, and $P$ is the set of production rules.
+- The basic form is the **D0L-System**, which is deterministic and context-free, and it rewrites all symbols in parallel at every step.
+- The lecture's example with $V = \{C, A\}$, axiom `C`, $C \to A$ and $A \to CA$ produces the string lengths 1, 1, 2, 3, 5, 8, 13, 21, which are the Fibonacci numbers.
+- In turtle graphics, `+` turns left by an angle $\alpha$, `−` turns right by $\alpha$, `[` stores the current position on a stack, and `]` returns to the last stored position. Variables are read as "draw forward", so a rule like $F \to F[-F]F[+F][F]$ draws a plant.
+- Extensions of L-Systems are bracketed, context-dependent, stochastic and parametric L-Systems.
 
 ### VARIANTS
 
 **V1.** *"Give an L-System producing `OAOAOAO` at t=2 from axiom O."*
 
 <details><summary>Answer</summary>
-Same rules: $O \to OAO$, $A \to A$. $t=0$: `O` (1) → $t=1$: `OAO` (3) → $t=2$: `OAOAOAO` (7). ✔
+
+The rules $O \to OAO$ and $A \to A$ work, because the expansion is `O` (1 symbol) at $t=0$, `OAO` (3) at $t=1$ and `OAOAOAO` (7) at $t=2$.
 </details>
 
-**V2.** *"Give an L-System producing `OAOAOAOAOAOAOAOAOAOAOAOAOAOAOAO` (31 symbols) at t=4 from axiom O."*
+**V2.** *"Give an L-System producing the 31-symbol string `OAOA…O` at t=4 from axiom O."*
 
 <details><summary>Answer</summary>
-Same rules again — $L(4) = 2^5 - 1 = 31$. ✔ **This is why you learn the recurrence and not the string.**
+
+The rules $O \to OAO$ and $A \to A$ work again, because $L(4) = 2^{5} - 1 = 32 - 1 = 31$. This is why you learn the length formula instead of the string.
 </details>
 
 **V3.** *"Create an L-System with exactly three rules that produces the 32-symbol string `ABBCBCCABCCACAABBCCACAABCAABABBC` at step 5, starting from axiom A."* (`sheet-04`)
 
 <details><summary>Answer</summary>
 
-Length 32 $= 2^5$ at $t=5$ from a 1-symbol axiom means **every rule must exactly double its symbol**: each rule has a right-hand side of length 2. With three variables $A, B, C$ the rules have the form $A \to xy$, $B \to xy$, $C \to xy$.
-
-Read the answer off the target by expanding backwards: the step-1 string is the first 2 symbols' worth, i.e. $A \to AB$. Then step 2 = 4 symbols `ABBC`, so $B \to BC$. Step 3 = 8 symbols `ABBCBCCA`, so $C \to CA$.
+The length is $32 = 2^5$ at $t=5$ from a 1-symbol axiom, so every rule must double its symbol and has a right-hand side of length 2. The rules can be read off the prefixes of the target:
+- At $t=1$ the string is the first 2 symbols `AB`, so $A \to AB$.
+- At $t=2$ the string is the first 4 symbols `ABBC`, so $B \to BC$.
+- At $t=3$ the string is the first 8 symbols `ABBCBCCA`, so $C \to CA$.
 
 $$P: \quad A \to AB, \qquad B \to BC, \qquad C \to CA$$
 
-Verify: $t{=}0$ `A` → $t{=}1$ `AB` → $t{=}2$ `ABBC` → $t{=}3$ `ABBCBCCA` → $t{=}4$ `ABBCBCCABCCACAAB` (16) → $t{=}5$ 32 symbols. ✔
-
-**The general method to state:** length $2^t$ ⇒ every right-hand side has length 2; then read successive prefixes of the target to recover each rule.
+The expansion `A` → `AB` → `ABBC` → `ABBCBCCA` → `ABBCBCCABCCACAAB` (16) → 32 symbols confirms the rules.
 </details>
 
 **V4.** *"What are the turtle-graphics constants in an L-System?"*
 
 <details><summary>Answer</summary>
 
-Aligned with the Logo turtle-graphics syntax: **`+`** turn left by angle $\alpha$, **`−`** turn right by $\alpha$, **`[`** remember the current position (push to stack), **`]`** restore the last position (pop from stack). Variables are read as "draw forward". Example: $F \to F[-F]F[+F][F]$ draws a plant.
+The constant `+` turns left by the angle $\alpha$, `−` turns right by $\alpha$, `[` pushes the current position onto a stack, and `]` pops the last position from the stack. The variables are read as "draw forward".
 </details>
 
-### ⚠️ TRAPS
-
-- **Not verifying by expansion.** The rules alone are half the answer.
-- **Assuming the length is 15.** Count what is printed.
-- **Forgetting the parallel rewriting.** All symbols are replaced simultaneously — say it.
+**⚠️ Traps.** You must verify the rules with an expansion table. You must count the printed target instead of assuming 15 symbols. You must say that all symbols are rewritten in parallel.
 
 ---
 
 ## Q8 · von Neumann — name and explain 2 aspects 🔒
-**Recurrence: 4/4. Always 5 points. Pure recall — but the choice of the second aspect matters.**
+**This question appeared on 4 of 4 papers and is always worth 5 points.**
 
-### Asked as
+**❓ 2025 T10** — *"Name 2 things that John von Neumann is associated with."*
+**❓ 2023 `qn-02` 11** — *"Name and explain two aspects of Artificial Life that are connected with John von Neumann."*
+**❓ 2023 `qn-03`** — *"Name two concepts associated with John von Neumann and explain them briefly."*
+**❓ 2017 Q14** — *(the same question)*
 
-- *"Name 2 things that John von Neumann is associated with."* — 2025 T10
-- *"Name and explain two aspects of Artificial Life that are connected with John von Neumann."* — 2023 `qn-02` 11
-- *"Name two concepts associated with John von Neumann and explain them briefly."* — 2023 `qn-03`
-- 2017 Q14 — same
+**✅ Answer**
 
-### ⚠️ PICK TWO THAT DO NOT OVERLAP
+**1. The Universal Constructor.** Von Neumann designed a machine that is universal with respect to computation **and** with respect to construction, so that among all the things it can build is a copy of itself. This artificial self-copying is called replication.
+- The machine lives on a virtually infinite rectangular cellular automaton grid with an unlimited supply of elements.
+- Each cell has **29 states**, and the whole machine consists of about **150 000 elements**.
+- The machine consists of a construction unit, a construction arm (which can cut, fuse and sense), a tape unit and an infinite tape.
+- The tape encodes the sequence of actions. The arm builds a new pattern of cells, and the machine copies both itself **and its tape**, which makes it genuine replication.
+- Nobili and Pesavento implemented the machine in 1995 with 32 states.
 
-> The tempting pair is **"the Universal Constructor" + "cellular automata"**. Do not use it. **The Universal Constructor *is* a cellular automaton**, so a strict marker can treat them as **one** aspect and award half the marks. Every wording says *"two"*, and they must be **independent**.
-
-**Use this pair — both concrete, both drawable, no overlap:**
-
----
-
-### ① The Universal Constructor (self-replicating automaton, 1940s)
-
-> Von Neumann was fascinated by the idea of building a machine capable of **reproducing itself**. He designed a system that is **universal with respect to computation AND universal with respect to construction** — so that among everything it can build is **a copy of itself**. That is **replication**, the artificial counterpart of biological reproduction.
-
-**Give the concrete figures — this is where the marks are:**
-
-| | |
-|---|---|
-| Lives on | a virtually **infinite rectangular grid CA**, with an unlimited supply of elements |
-| States | **29** per cell |
-| Size | approximately **150 000 elements** |
-| Parts | a **construction unit**, a **construction arm** (which can cut, fuse and sense), a **tape unit**, and an **(infinite) tape** encoding the sequence of actions |
-| Later implementation | Nobili-Pesavento, **1995**, using **32 states** |
-
-> A **tape of cells encodes the sequence of actions** to be performed. Using a writing head (the construction arm) the machine prints out a new pattern of cells, **allowing it to make a complete copy of itself *and of the tape*.** Copying the tape as well is what makes it genuine replication rather than mere construction.
-
----
-
-### ② The von Neumann neighbourhood
-
-> In a cellular automaton, the **von Neumann neighbourhood** of a cell consists of **the cell itself plus the cells sharing an edge with it** — the four orthogonal neighbours in two dimensions. It is the standard alternative to the **Moore** neighbourhood, which also includes the diagonal (corner) neighbours.
+**2. The von Neumann neighbourhood.** In a cellular automaton, the von Neumann neighbourhood of a cell consists of the cell itself and the cells that share an edge with it, which are the 4 orthogonal neighbours in two dimensions. The Moore neighbourhood additionally includes the diagonal neighbours.
 
 $$n_{\text{von Neumann}} = 2d + 1 \qquad\text{vs}\qquad n_{\text{Moore}} = 3^{\,d} \qquad (r = 1)$$
+
+Here $n$ is the number of cells in the neighbourhood and $d$ is the dimension of the grid.
 
 ```
    von Neumann, r=1              Moore, r=1
@@ -1118,107 +1573,97 @@ $$n_{\text{von Neumann}} = 2d + 1 \qquad\text{vs}\qquad n_{\text{Moore}} = 3^{\,
        . # .                       # # #
 
    n = 2d+1 = 5 cells           n = 3^d = 9 cells
-   (C + the 4 edge neighbours)  (C + all 8 surrounding)
 ```
 
-**Say where it is actually used in this course — that turns a name into an explanation:**
+The von Neumann neighbourhood is used by Langton's Loop, the forest-fire CA and the BTW sandpile, whereas the Game of Life uses the Moore neighbourhood.
 
-- **Langton's Loop** — $d=2$, von Neumann, written by the lecture as $n = 4r+1 = 5$, with $k=8$ states.
-- **Byl's, Chou-Reggia's and Perrier's loops** — all von Neumann.
-- **The forest-fire CA** — $d=2$, $r=1$, **von Neumann**, $k=3$.
-- **The BTW sandpile** — a toppling cell redistributes one grain to each of its **$r=1$ von Neumann** neighbours.
-- **The contrast worth naming:** Conway's Game of Life deliberately uses **Moore**, not von Neumann.
+You should not pair "Universal Constructor" with "cellular automata", because the Universal Constructor is itself a cellular automaton and a strict marker may count both as one aspect.
 
----
+### IMPORTANT THEORY
 
-### OTHER DEFENSIBLE SECOND ASPECTS
+**Other aspects connected with von Neumann.**
 
-If you would rather not use the neighbourhood, any of these works — **provided it does not overlap with ①**:
-
-| Aspect | What to write |
+| Aspect | Explanation |
 |---|---|
-| **Co-founding CA theory** | With **Stanislav Ulam (1940)** and **Arthur Burks**, von Neumann originated cellular automata as a model of computation — *"Theory and Organisation of Complicated Automata"* (**1949**). The **original idea of a 2-dimensional CA was Ulam's and von Neumann's**, not Wolfram's; Wolfram began the systematic study of the 1-dim case only in **1982**. |
-| **The von Neumann architecture** | The classical stored-program computer architecture — with the irony the lecture points out explicitly: **cellular automata are called NON-von-Neumann computers**, even though von Neumann invented both. Naming that irony shows you understand the distinction rather than tripping on it. |
-| **Self-replication as a concept** | The distinction between biological **reproduction** and artificial **replication**, and the question of what a machine needs in order to build a copy of itself — which he answered with the six required elements (below). |
+| Founding CA theory | Together with Stanislaw Ulam (1940) and Arthur Burks, von Neumann originated cellular automata as a model of computation, published in *"Theory and Organisation of Complicated Automata"* (1949). The idea of the 2-dimensional CA came from Ulam and von Neumann, while Wolfram only began the systematic study of 1-dimensional CAs in 1982. |
+| Von Neumann architecture | Von Neumann described the classical stored-program computer. The lecture points out that cellular automata are called **non-von-Neumann computers**, although von Neumann invented both. |
+| Self-replication | Von Neumann distinguished biological reproduction from artificial replication and asked what a machine needs in order to build a copy of itself. |
 
-**The six elements von Neumann specified as necessary** (`sheet-04` A1 asks for this):
-several **computational elements**; a **manipulating element** (like a hand); a **cutting element** to disconnect parts; a **fusing element** to connect parts; a **sensing element** to recognise parts; and **"girders"** — rigid structural building blocks forming the chassis and the information carrier.
+**The six elements that von Neumann specified as necessary for self-replication** are computational elements, a manipulating element (like a hand), a cutting element to disconnect parts, a fusing element to connect parts, a sensing element to recognise parts, and "girders", which are rigid building blocks that form the chassis and carry information.
 
----
+**Reproduction versus replication.** Reproduction is the ability of a living system to produce new individuals of its kind, and it is a fundamental property of biological life. Replication is the corresponding ability of an artificial system to produce a copy of itself, and the lecture uses this word to avoid claiming that the artificial system is alive.
+
+**Langton's Loop.** Langton's Loop is a CA with $d = 2$, a von Neumann neighbourhood with $n = 4r+1 = 5$, and $k = 8$ states, where state 0 is the silent state. Only 219 of the $8^5 = 32\,768$ rule entries produce something other than the silent state. The start configuration has 86 cells, and the loop replicates after **151 time steps**. It consists of a square loop body and a construction arm, each made of a channel covered by a sheath, and the message string `70-70-70-70-70-70-40-40` circulates counter-clockwise and is duplicated at the T-junction. The arm first extends at step 7, the first corner forms at steps 29–34, the daughter loop closes at step 122 and detaches at steps 125–129, and at step 151 both loops are working and continue to breed further loops.
+
+**The self-replicating loops.**
+
+| Loop | Year | $k$ | Neighbourhood | Start cells | Period |
+|---|---|---|---|---|---|
+| Langton's Loop | 1984 | 8 | von Neumann | 86 | 151 |
+| Byl's Loop | 1989 | 6 | von Neumann | 12 | 25 |
+| Chou-Reggia Loop | 1993 | 8 | von Neumann | **5** | **15** |
+| Tempesti Loop | 1995 | 10 | Moore | 148 | 304 |
+| Perrier Loop | 1996 | 64 | von Neumann | 158 | 235 |
+
+The Chou-Reggia Loop is the smallest known self-reproducing loop, because all sheaths were removed. Byl removed the inner sheath of Langton's Loop, Tempesti added construction capabilities, and Perrier added a program stack and an extensible data tape.
+
+**Chris Langton** organised the first conference on Artificial Life in 1987, built Langton's Loop, defined the $\lambda$ measure of complexity, and invented Langton's Ant. He also coined the phrase "life as it could be".
 
 ### VARIANTS
 
 **V1.** *"Describe von Neumann's Universal Constructor."* (`sheet-04` A1)
 
 <details><summary>Answer</summary>
-Everything in ① above, **plus the six required elements** listed just above, **plus** the conceptual point that the tape is copied along with the machine. Add the homework the lecture sets alongside it: *write a program that prints out its own source code* — **a Quine** — as the software analogue of self-replication.
+
+You write part 1 of the main answer and add the six necessary elements from the theory section. You also state that the tape is copied together with the machine. The software analogue of self-replication is a **Quine**, which is a program that prints its own source code.
 </details>
 
 **V2.** *"What is the difference between reproduction and replication?"*
 
 <details><summary>Answer</summary>
-**Reproduction** is the biological capability of a living system to produce new individuals of its kind — one of the fundamental properties of biological life. **Replication** is the equivalent capability for **artificial** systems: a machine producing a copy of itself. The lecture uses "replication" precisely to avoid claiming the artificial system is alive.
+
+Reproduction is the ability of a living system to produce new individuals of its kind. Replication is the ability of an artificial system to produce a copy of itself, and the word is used so that the artificial system is not claimed to be alive.
 </details>
 
 **V3.** *"Name the parameters of Langton's Loop."*
 
 <details><summary>Answer</summary>
 
-$d=2$ rectangular grid; **von Neumann** neighbourhood with $n = 4r+1 = 5$; $k = 8$ states $(0..7)$ with **0 the silent state**; only **219** of the $k^n = 8^5 = 32\,768$ rule-table entries yield something other than the silent state; **86 cells** in the starting configuration; the loop **replicates after 151 time steps**.
-
-Structure: a square **loop body** plus a **construction arm**, each a **channel covered by a sheath**, carrying the message string `70-70-70-70-70-70-40-40` separated by `1`s counter-clockwise, **duplicated at the T-junction**.
-
-Milestones: step 7 the arm first extends; steps 29–34 the first corner forms; step 122 the daughter loop closes; steps 125–129 it detaches; **step 151 both loops are operating**; step 152 the next cycle starts — and thereafter **mother and daughter both breed further loops**.
+Langton's Loop has $d = 2$, a von Neumann neighbourhood with $n = 4r+1 = 5$, and $k = 8$ states with 0 as the silent state. Only 219 of the $8^5 = 32\,768$ rule entries give a non-silent state, the start configuration has 86 cells, and the loop replicates after 151 time steps.
 </details>
 
 **V4.** *"Name the self-replicating loops and their sizes."*
 
 <details><summary>Answer</summary>
 
-| Loop | Year | $k$ | Neighbourhood | Start cells $S$ | Period $p$ |
-|---|---|---|---|---|---|
-| **Langton's Loop** | 1984 | 8 | von Neumann | 86 | 151 |
-| **Byl's Loop** | 1989 | 6 | von Neumann | 12 | 25 |
-| **Chou-Reggia Loop** | 1993 | 8 | von Neumann | **5** | **15** |
-| **Tempesti Loop** | 1995 | 10 | Moore | 148 | 304 |
-| **Perrier Loop** | 1996 | 64 | von Neumann | 158 | 235 |
-
-**Chou-Reggia is the smallest self-reproducing loop known**, obtained by removing all sheaths. Byl reduced Langton's by removing the inner sheath; Tempesti added construction capabilities; Perrier added a program stack and an extensible data tape.
+You write the loop table from the theory section and state that the Chou-Reggia Loop, with 5 cells and a period of 15, is the smallest known self-reproducing loop.
 </details>
 
-**V5.** *"What is Chris Langton associated with?"* (the mirror-image question — plausible)
+**V5.** *"What is Chris Langton associated with?"*
 
 <details><summary>Answer</summary>
-Four things, all named on one slide: he **organised the First Conference on Artificial Life in 1987**; he built the CA-based self-replicating structure called **Langton's Loop**; he defined the **$\lambda$ measure of complexity**; and he invented the simple Turing machine called **Langton's Ant**. He also coined the framing *"life as it could be"*.
+
+Chris Langton organised the first conference on Artificial Life in 1987, built Langton's Loop, defined the $\lambda$ measure of complexity, and invented Langton's Ant.
 </details>
 
-### ⚠️ TRAPS
-
-- **Picking two overlapping aspects.** "Universal Constructor" + "cellular automata" can be marked as one. Pair the Universal Constructor with the **neighbourhood**, the **1949 co-founding**, or the **architecture** instead.
-- **Naming two things but explaining neither.** Every wording says *"and explain"*. Two sentences minimum each.
-- **Giving the von Neumann architecture without the irony.** The lecture calls CAs **NON-von-Neumann computers** — mention it, or it looks like you have missed the distinction.
-- **Forgetting the numbers.** 29 states, ~150 000 elements, 32-state Nobili-Pesavento implementation, $n = 2d+1$.
-
+**⚠️ Traps.** You must choose two aspects that do not overlap. You must explain each aspect in at least two sentences. You must give the numbers: 29 states, about 150 000 elements, the 32-state implementation from 1995, and $n = 2d+1$.
 
 ---
 
 ## Q9 · Wheel of Fortune ⚙️
-**Recurrence: 4/4. 5 points. Asked as concept AND as derivation.**
+**This question appeared on 4 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2023 `qn-03`** — *"What is the task of the Wheel of Fortune?"*
+**❓ 2023 `qn-02` 9** — *"What is the purpose of Wheel of Fortune in EAs?"*
+**❓ 2017 Q15** — *(the same family; the wording was not recorded)*
 
-- *"What is the task of the Wheel of Fortune?"* — 2023 `qn-03`
-- *"What is the purpose of Wheel of Fortune in EAs?"* — 2023 `qn-02` 9
-- *"Given P individuals. You want to use the wheel of fortune for selection. This takes into account every individual. **Derive a formula for $\omega_1(P)$**, the probability that the highest-rank individual is selected. State the formula in dependence of the population-size P."* — 2025 T11
-- 2017 Q15 — same family
+**✅ Answer**
 
-### THE ANSWER — concept version
+The Wheel of Fortune (roulette-wheel selection) is a probabilistic, rank-proportionate method for **parent selection** in an EA. Its task is to choose the parents in such a way that better individuals are more likely to be chosen, while weaker individuals still have a chance.
 
-> The Wheel of Fortune (Roulette-Wheel Selection) is a **probabilistic, rank-proportionate parent-selection** method. Its task is to choose which individuals become parents, in such a way that **better individuals are more likely to be chosen but weaker individuals still have a non-zero chance**.
->
-> Each individual gets a **sector of a wheel** whose size grows as its fitness improves — equivalently, as its fitness-dependent rank $r(f(g))$ becomes smaller. The wheel is then spun once per parent needed.
->
-> **Why not just take the best?** Keeping a chance for weaker individuals **maintains diversity** and prevents premature convergence onto a **super-individual**; it is the **exploration** component of the selection step. Using **rank** rather than raw fitness makes the pressure independent of the fitness scale.
+Each individual gets a sector of a wheel, and the sector becomes larger the better the individual's rank is. The wheel is spun once for every parent that is needed.
+
+The weaker individuals keep a chance because this maintains diversity and prevents the population from collapsing onto one super-individual. Using the rank instead of the raw fitness makes the selection pressure independent of the scale of the fitness values.
 
 ```
      P = 4, rank-proportional shares
@@ -1232,140 +1677,127 @@ Four things, all named on one slide: he **organised the First Conference on Arti
             ----          total:          10/10
 ```
 
-### ⚙️ THE DERIVATION — 2025 T11
+---
 
-The lecture's own numbers confirm the scheme: $P=2 \Rightarrow \tfrac23 + \tfrac13$; $P=3 \Rightarrow \tfrac36 + \tfrac26 + \tfrac16$; $P=4 \Rightarrow \tfrac4{10} + \tfrac3{10} + \tfrac2{10} + \tfrac1{10}$.
+**❓ 2025 T11** — *"Given P individuals. You want to use the wheel of fortune for selection. This takes into account every individual. Derive a formula for $\omega_1(P)$, the probability that the highest-rank individual is selected. State the formula in dependence of the population-size P."*
 
-**Derive it in four lines:**
+**✅ Answer**
 
-1. Rank the $P$ individuals so the best has rank $r = 1$ and the worst $r = P$. Give the individual of rank $r$ a share proportional to $P - r + 1$, so the best gets weight $P$ and the worst weight $1$.
-2. The normalising total is
-   $$\sum_{j=1}^{P} j \;=\; \frac{P(P+1)}{2}$$
-3. Hence the selection probability of the individual with rank $r(i)$ is
-   $$\omega_i \;=\; \frac{P - r(i) + 1}{\tfrac{P(P+1)}{2}} \;=\; \frac{2\,\bigl(P - r(i) + 1\bigr)}{P(P+1)}$$
-4. For the **highest-ranked** individual, $r = 1$, so the numerator is $P$:
-   $$\boxed{\;\omega_1(P) \;=\; \frac{P}{\tfrac{P(P+1)}{2}} \;=\; \frac{2}{P+1}\;}$$
+The symbols are defined as follows: $P$ is the population size, $r(i)$ is the rank of individual $i$ (1 is the best), and $\omega_i$ is the probability that individual $i$ is selected in one spin.
 
-**Define the symbols:** $P$ = population size; $r(i)$ = fitness rank of individual $i$ (1 = best); $\omega_i$ = probability that $i$ is selected in one spin.
+1. The individuals are ranked from $r = 1$ (best) to $r = P$ (worst). The individual with rank $r$ gets a share proportional to $P - r + 1$, so the best individual gets weight $P$ and the worst gets weight 1.
+2. The sum of all weights is
+$$\sum_{j=1}^{P} j = \frac{P(P+1)}{2}$$
+3. The selection probability of the individual with rank $r(i)$ is therefore
+$$\omega_i = \frac{P - r(i) + 1}{\tfrac{P(P+1)}{2}} = \frac{2\,\bigl(P - r(i) + 1\bigr)}{P(P+1)}$$
+4. For the best individual $r = 1$, so its weight is $P - 1 + 1 = P$:
+$$\boxed{\;\omega_1(P) = \frac{P}{\tfrac{P(P+1)}{2}} = \frac{2}{P+1}\;}$$
 
-**Sanity-check against the lecture:** $P=2 \Rightarrow \omega_1 = 2/3$ ✔; $P=3 \Rightarrow 2/4 = 1/2 = 3/6$ ✔; $P=4 \Rightarrow 2/5 = 4/10$ ✔.
+The formula matches the lecture's examples: $P = 2$ gives $\omega_1 = 2/3$, $P = 3$ gives $2/4 = 3/6$, and $P = 4$ gives $2/5 = 4/10$.
+
+### IMPORTANT THEORY
+
+- The lecture names three probabilistic parent-selection methods: the Wheel of Fortune (roulette-wheel selection), Boltzmann (softmax) selection, and tournament selection.
+- **Softmax selection** uses
+$$\omega_p = \frac{e^{\,f(p)/\tau}}{\sum_{q} e^{\,f(q)/\tau}}$$
+where $f(p)$ is the fitness of individual $p$ and $\tau > 0$ is the temperature. A large $\tau$ makes the selection almost uniform (weak selection pressure), and a small $\tau$ concentrates the probability on the best individuals. Softmax is easy to implement, and its selection pressure is easy to control.
+- **Tournament selection** draws some individuals at random and compares them pairwise. The winner of each tournament enters the parent pool, and further rounds among the winners increase the fitness of the pool.
 
 ### VARIANTS
 
-**V1.** *"What is the probability that the WORST individual is selected?"*
+**V1.** *"What is the probability that the worst individual is selected?"*
 
 <details><summary>Answer</summary>
-$r = P$, so the numerator is $P - P + 1 = 1$:
+
+The worst individual has $r = P$, so its weight is $P - P + 1 = 1$.
 $$\omega_P = \frac{2}{P(P+1)}$$
-Check $P=4$: $2/20 = 1/10$ ✔.
+For $P = 4$ this gives $2/(4 \times 5) = 2/20 = 1/10$, which matches the lecture.
 </details>
 
 **V2.** *"What is the probability that the best individual is selected at least once in $\rho$ spins (with replacement)?"*
 
 <details><summary>Answer</summary>
-Each spin independently misses it with probability $1 - \omega_1$, so
+
+Each spin misses the best individual with probability $1 - \omega_1$, independently of the other spins.
 $$P(\text{at least once}) = 1 - (1-\omega_1)^{\rho} = 1 - \left(1 - \frac{2}{P+1}\right)^{\rho} = 1 - \left(\frac{P-1}{P+1}\right)^{\rho}$$
 </details>
 
 **V3.** *"For $P = 9$, give $\omega_1$, $\omega_5$ and $\omega_9$ numerically."*
 
 <details><summary>Answer</summary>
-Total $= 9\cdot10/2 = 45$.
-- $\omega_1 = (9-1+1)/45 = 9/45 = 1/5 = 0.200$ — matches $2/(P+1) = 2/10$ ✔
-- $\omega_5 = (9-5+1)/45 = 5/45 = 1/9 \approx 0.111$
-- $\omega_9 = (9-9+1)/45 = 1/45 \approx 0.022$
-Sum over all ranks $= 45/45 = 1$ ✔
+
+The sum of the weights is $9 \times 10 / 2 = 90 / 2 = 45$.
+- $\omega_1 = (9-1+1)/45 = 9/45 = 0.200$, which matches $2/(P+1) = 2/10$.
+- $\omega_5 = (9-5+1)/45 = 5/45 \approx 0.111$.
+- $\omega_9 = (9-9+1)/45 = 1/45 \approx 0.022$.
+
+The weights of all ranks add up to $45/45 = 1$.
 </details>
 
 **V4.** *"Name the three probabilistic parent-selection methods and give the softmax formula."*
 
 <details><summary>Answer</summary>
 
-The lecture lists: **Wheel of Fortune (Roulette-Wheel Selection)**, **Boltzmann / Softmax Selection**, and **Tournament Selection**.
-
-**Softmax:**
-$$\omega_p = \frac{e^{\,f(p)/\tau}}{\sum_{q} e^{\,f(q)/\tau}}$$
-where $f(p)$ is the fitness of individual $p$ and $\tau > 0$ is the **temperature**. A **large $\tau$** gives a nearly **equiprobable** distribution (weak selection pressure); a small $\tau$ concentrates probability on the best. It is easy to implement and easy to control the selection pressure with.
-
-**Tournament:** some individuals are drawn randomly from the population and compared **pairwise**; the winner of each tournament enters the pool of parents, and further stages of tournaments among winners increase the pool's fitness further.
+The three methods are the Wheel of Fortune, softmax (Boltzmann) selection and tournament selection. The softmax formula is $\omega_p = e^{f(p)/\tau} / \sum_q e^{f(q)/\tau}$, where $f(p)$ is the fitness of individual $p$ and $\tau$ is the temperature. A large $\tau$ gives almost equal probabilities, and a small $\tau$ favours the best individuals.
 </details>
 
-### ⚠️ TRAPS
-
-- **Answering only "it selects parents".** Say *why* the weak keep a chance: diversity, avoiding a super-individual, exploration.
-- **Using raw fitness instead of rank.** The lecture's wheel is **rank**-proportionate — that is what makes $\omega_1 = 2/(P+1)$ independent of the actual fitness values.
+**⚠️ Traps.** You must say why weaker individuals keep a chance (diversity, avoiding a super-individual). You must use the rank and not the raw fitness, because the lecture's wheel is rank-proportionate.
 
 ---
 
 ## Q10 · Fibonacci and the golden ratio ⚙️
-**Recurrence: 4/4. 5 points.**
+**This question appeared on 4 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2025 T18** — *"How does the Fibonacci-Sequence and the golden ratio relate? Derive a formula and give exemplary calculations."*
+**❓ 2023 `qn-02` 15** — *"Proof that golden ratio is the limit of Fibonacci (bzw calculate)"*
+**❓ 2023 `qn-03`** — *"What is the relation between the golden ratio and the Fibonacci sequence?"*
 
-- *"How does the Fibonacci-Sequence and the golden ratio relate? Derive a formula and give exemplary calculations."* — 2025 T18
-- *"Proof that golden ratio is the limit of Fibonacci (bzw calculate)"* — 2023 `qn-02` 15
-- *"What is the relation between the golden ratio and the Fibonacci sequence?"* — 2023 `qn-03`
-- *"Fibonacci **vs logistic growth**"* — 2017 Q16 (**different variant — see V1**)
+**✅ Answer**
 
-### THE ANSWER — the limit derivation
+The ratio of two consecutive Fibonacci numbers converges to the golden ratio $\varphi \approx 1.618$.
 
-**State the sequence first:**
-$$x_{i+1} = x_i + x_{i-1}, \qquad x_0 = 0,\; x_1 = 1$$
-$$\{\,0,\,1,\,1,\,2,\,3,\,5,\,8,\,13,\,21,\,34,\,55,\,89,\,\ldots\,\}$$
-Mentioned by **Leonardo of Pisa (Fibonacci) in 1202**, inspired by a growing rabbit population with unbounded reproduction.
+The Fibonacci sequence is defined by $F_{n+2} = F_{n+1} + F_n$ with the start values $F_0 = 0$ and $F_1 = 1$, which gives $0, 1, 1, 2, 3, 5, 8, 13, 21, 34, \ldots$
 
-**Derivation (the sheet's route — cleanest for "derive a formula"):**
+**Derivation.** Let $\beta = \lim_{n\to\infty} F_{n+1}/F_n$ be the limit of the ratio.
+$$\begin{aligned}
+F_{n+2} &= F_{n+1} + F_n && \text{divide both sides by } F_{n+1} \\
+\frac{F_{n+2}}{F_{n+1}} &= 1 + \frac{F_n}{F_{n+1}} && \text{let } n \to \infty \\
+\beta &= 1 + \frac{1}{\beta} && \text{multiply both sides by } \beta \\
+\beta^2 - \beta - 1 &= 0 \\
+\beta &= \frac{1 + \sqrt{5}}{2} \approx 1.618 = \varphi
+\end{aligned}$$
+The negative root is discarded because the ratio of two positive numbers is positive.
 
-Let $\beta$ be the limit of the ratio of consecutive terms:
-$$\beta = \lim_{n\to\infty} \frac{F_{n+1}}{F_n}$$
-Divide the recurrence $F_{n+2} = F_{n+1} + F_n$ by $F_{n+1}$:
-$$\frac{F_{n+2}}{F_{n+1}} = 1 + \frac{F_n}{F_{n+1}}$$
-Take the limit on both sides. The left side tends to $\beta$, and $F_n/F_{n+1} \to 1/\beta$:
-$$\beta = 1 + \frac{1}{\beta} \quad\Longrightarrow\quad \beta^2 - \beta - 1 = 0$$
-$$\beta = \frac{1 + \sqrt{5}}{2} \approx 1.618033988\ldots$$
-(the negative root is discarded because the ratio is positive).
+**Exemplary calculations.**
 
-**The "exemplary calculations" the question demands — always include this table:**
+| $n$ | $F_{n+1}/F_n$ |
+|---|---|
+| 1 | $1/1 = 1.0000$ |
+| 2 | $2/1 = 2.0000$ |
+| 3 | $3/2 = 1.5000$ |
+| 4 | $5/3 = 1.6667$ |
+| 5 | $8/5 = 1.6000$ |
+| 6 | $13/8 = 1.6250$ |
+| 7 | $21/13 = 1.6154$ |
+| 8 | $34/21 = 1.6190$ |
 
-| $n$ | $F_n$ | $F_{n+1}/F_n$ |
-|---|---|---|
-| 1 | 1 | $1/1 = 1.0000$ |
-| 2 | 1 | $2/1 = 2.0000$ |
-| 3 | 2 | $3/2 = 1.5000$ |
-| 4 | 3 | $5/3 = 1.6667$ |
-| 5 | 5 | $8/5 = 1.6000$ |
-| 6 | 8 | $13/8 = 1.6250$ |
-| 7 | 13 | $21/13 = 1.6154$ |
-| 8 | 21 | $34/21 = 1.6190$ |
+The ratios oscillate around $\varphi \approx 1.618$ and converge to it. The reciprocal is $1/\varphi = \varphi - 1 \approx 0.618$.
 
-The ratios **oscillate around and converge to** $\varphi \approx 1.618$.
+---
 
-**The lecture's alternative (geometric) derivation** — worth knowing in case the question says "golden ratio" first:
+**❓ 2017 Q16** — *"Fibonacci vs logistic growth"*
 
-> The golden ratio divides an interval so that *the whole is to the longer part as the longer is to the shorter*:
-> $$\frac{1}{x} = \frac{x}{1-x} \;\Longrightarrow\; 1-x = x^2 \;\Longrightarrow\; x^2 + x - 1 = 0$$
-> with solutions $\varphi \approx 1.618033988$ and $\rho = 1/\varphi \approx 0.618033988$.
+**✅ Answer**
 
-**The identities — each is a free extra line:**
-$$\varphi - \rho = 1, \qquad \varphi\cdot\rho = 1, \qquad \frac{1}{\varphi} = \varphi - 1, \qquad \frac{1}{\rho} = \rho + 1, \qquad \varphi^2 = 1 + \varphi, \qquad \rho^2 = 1 - \rho$$
+The Fibonacci sequence grows without limit, whereas logistic growth is limited by the available resources.
 
-### VARIANTS
-
-**V1.** *"Compare the Fibonacci sequence with logistic growth."* (2017 Q16 — **this is a different question, prepare it**)
-
-<details><summary>Answer</summary>
-
-Give **both formulas**, then compare on **boundedness**:
-
-| | **Fibonacci** | **Logistic growth (Verhulst, 1838)** |
+| | **Fibonacci** | **Logistic growth** |
 |---|---|---|
 | Formula | $x_{i+1} = x_i + x_{i-1}$ | $x_{i+1} = x_i + a(M - x_i)\,x_i$ |
-| Growth rate | proportional to the population itself | throttled by the **remaining resources** $(M - x_i)$ |
-| Behaviour | grows **geometrically** with ratio $\varphi \approx 1.618$, **unbounded** | rises almost exponentially, **inflects at $x = \tfrac12 M$**, converges to the ceiling $M$ |
-| Shape | exponential curve | **sigmoid** curve |
-| Realism | the lecture's point: *"unbounded reproduction is not realistic"* | models restricted resources |
-
-Continuous version: $dP/dt = P(1-P)$, solving to $P(t) = \dfrac{1}{1+e^{-t}}$ — the **sigmoid** or **Fermi function**.
+| Symbols | $x_i$ is the population at step $i$. | $a$ is the growth rate and $M$ is the resource limit. |
+| Growth | The population grows by the factor $\varphi \approx 1.618$ per step. | The growth slows down as the remaining resources $(M - x_i)$ shrink. |
+| Bound | The population is unbounded. | The population converges to $M$. |
+| Shape | The curve is exponential. | The curve is a sigmoid with its inflection point at $x = M/2$. |
 
 ```
    x                          x
@@ -1375,23 +1807,48 @@ Continuous version: $dP/dt = P(1-P)$, solving to $P(t) = \dfrac{1}{1+e^{-t}}$ �
    |        /                 |      /   inflection at M/2
    |     _/                   |   _/
    +----------> i             +----------> i
-   unbounded                  self-limiting
+   unbounded                  bounded by M
 ```
-</details>
 
-**V2.** *"Derive the fixpoints of the logistic map $x_{i+1} = a\,x_i(1-x_i)$ and draw $x^*(a)$."*
+The continuous form of logistic growth is $dP/dt = P(1-P)$, and its solution is the sigmoid $P(t) = \dfrac{1}{1+e^{-t}}$.
+
+### IMPORTANT THEORY
+
+- The Fibonacci sequence was described by Leonardo of Pisa in 1202 as a model of a growing rabbit population with unbounded reproduction.
+- The lecture derives the golden ratio geometrically: it divides an interval so that the whole is to the longer part as the longer part is to the shorter part.
+$$\frac{1}{x} = \frac{x}{1-x} \;\Longrightarrow\; 1-x = x^2 \;\Longrightarrow\; x^2 + x - 1 = 0$$
+The solutions give $\varphi \approx 1.618033988$ and $\rho = 1/\varphi \approx 0.618033988$.
+- The golden ratio satisfies these identities:
+$$\varphi - \rho = 1, \qquad \varphi\cdot\rho = 1, \qquad \frac{1}{\varphi} = \varphi - 1, \qquad \frac{1}{\rho} = \rho + 1, \qquad \varphi^2 = 1 + \varphi, \qquad \rho^2 = 1 - \rho$$
+- Logistic growth was described by Verhulst in 1838. The lecture's point is that unbounded reproduction is not realistic, and the sigmoid solution $P(t) = 1/(1+e^{-t})$ is known in neural networks as the Fermi function.
+- The logistic map $x_{i+1} = a\,x_i(1-x_i)$ is a special version of logistic growth, and it shows the route from a fixpoint through period doubling to chaos.
+
+### VARIANTS
+
+**V1.** *"Derive the fixpoints of the logistic map $x_{i+1} = a\,x_i(1-x_i)$ and draw $x^*(a)$."*
 
 <details><summary>Answer</summary>
 
-At a fixpoint the value stops changing, so $x^* = a x^*(1 - x^*)$. Either $x^* = 0$, or dividing by $x^*$:
-$$1 = a(1-x^*) \;\Longrightarrow\; x^* = 1 - \frac{1}{a}$$
-So $x^* \in \{0,\; 1 - 1/a\}$.
+At a fixpoint the value does not change, so $x_{i+1} = x_i = x^*$.
+$$\begin{aligned}
+x^* &= a\,x^*(1 - x^*) \\
+x^* = 0 \quad &\text{or} \quad 1 = a(1 - x^*) \\
+1 - x^* &= \frac{1}{a} \\
+x^* &= 1 - \frac{1}{a}
+\end{aligned}$$
 
-**The exact thresholds to quote:** $0<a<1$ decay to 0; $1<a<3$ convergence to the fixpoint; $3 < a < 3.44949$ period 2; then 4, 8, 16 …; $3.56995 < a < 4$ onset of deterministic chaos; $a = 4$ chaos; $a > 4$ divergence.
+The fixpoints are therefore $x^* = 0$ and $x^* = 1 - 1/a$.
+
+- For $0<a<1$, the sequence decays to 0.
+- For $1<a<3$, the sequence converges to the fixpoint $1-1/a$.
+- For $3<a<3.44949$, the sequence oscillates between 2 values.
+- Beyond that, the period doubles to 4, 8, 16, and so on.
+- For $3.56995<a<4$, the sequence is chaotic.
+- For $a>4$, the sequence diverges.
 
 ```
-  x*  ^                                   ,;'  bifurcation
-  1.0 |                            ___--=='    diagram
+  x*  ^                                   ,;'
+  1.0 |                            ___--=='
       |                     ___----   \\\
       |          ______----             ''
       |     ----                     (period doubling)
@@ -1402,70 +1859,50 @@ So $x^* \in \{0,\; 1 - 1/a\}$.
 ```
 </details>
 
-**V3.** *"Prove or disprove: the Fibonacci sequence rises faster than the exponential function."* (`sheet-05`)
+**V2.** *"Prove or disprove: the Fibonacci sequence rises faster than the exponential function."* (`sheet-05`)
 
 <details><summary>Answer</summary>
 
-**Disprove.** The Fibonacci sequence **is** (asymptotically) an exponential function: since $F_{n+1}/F_n \to \varphi$, we have $F_n \sim C\varphi^n$ — it grows exponentially with **base $\varphi \approx 1.618$**. So it does not rise faster than "the exponential function" in general; it rises faster than any exponential with base $< \varphi$ and slower than any with base $> \varphi$ (e.g. $2^n$ overtakes it). Exact form (Binet): $F_n = \dfrac{\varphi^n - (-1/\varphi)^n}{\sqrt5}$.
+The statement is **disproved**. Because $F_{n+1}/F_n \to \varphi$, the sequence behaves like $F_n \approx C\,\varphi^n$, so it **is** an exponential function with base $\varphi \approx 1.618$. It rises faster than exponentials with a base below 1.618 and slower than exponentials with a base above 1.618, such as $2^n$. The exact formula is $F_n = \dfrac{\varphi^n - (-1/\varphi)^n}{\sqrt5}$.
 </details>
 
-**V4.** *"What is the golden angle and where does it appear?"*
+**V3.** *"What is the golden angle and where does it appear?"*
 
 <details><summary>Answer</summary>
 
-**137.51°** — the angle obtained by dividing a full turn in the golden ratio. It appears in **phyllotaxis**: each new leaf grows where the inhibitor left by existing leaves is weakest, which drives the angle between successive leaves toward 137.51°. The visible spiral counts in pinecones and sunflowers are **consecutive Fibonacci numbers**.
+The golden angle is $360° \times (1 - 1/\varphi) = 360° \times 0.382 \approx 137.5°$. It is the angle between successive leaves on a plant stem (phyllotaxis). The numbers of spirals in sunflowers and pinecones are consecutive Fibonacci numbers.
 </details>
 
-### ⚠️ TRAPS
-
-- **Skipping the numeric table.** Two of the four wordings explicitly say "give exemplary calculations" / "bzw calculate".
-- **Answering the limit question when 2017 Q16 asked for the logistic comparison.** Read which one you got.
+**⚠️ Traps.** You lose marks if you skip the numeric table. You also lose marks if you derive the limit when the question asks for Fibonacci versus logistic growth.
 
 ---
 ---
 
 # ASKED ON THREE OF THE FOUR PAPERS
 
-**Q11 alone has been a 10-pointer every time it appeared.** Together ≈20 points.
-
 ---
 
 ## Q11 · The Didabot experiment 🔒
-**Recurrence: 3/4 — and it was worth 10 points on every one of them.** Missing from 2025 only.
+**This question appeared on 3 of 4 papers and was worth 10 points every time.**
 
-### Asked as
+**❓ 2023 `qn-02` 2 · 10 pt** — *"Explain the Didabot experiment. What was the purpose of the Didabots? What were the results? What happens when you use more than one Didabot?"*
+**❓ 2023 `qn-03` · 10 pt** — *"Explain the Didabot experiments and the observed differences between a single and multiple bots."*
+**❓ 2017 Q2 · 10 pt** — *(The topic is the same; the exact wording was not recorded.)*
 
-- *"Explain the Didabot experiment. What was the purpose of the Didabots? What were the results? What happens when you use more than one Didabot?"* — 2023 `qn-02` 2, **10 pt** (the protocol adds: *"we were supposed to write down everything we know about the experiment"*)
-- *"Explain the Didabot experiments and the observed differences between a single and multiple bots."* — 2023 `qn-03`, **10 pt**
-- 2017 Q2, **10 pt**
+**✅ Answer**
 
-**Treat this as seriously as Game of Life.** It has never appeared for fewer than 10 points.
+**1. What a Didabot is.** A Didabot is a small teaching robot ("Didactic Robot") built at the AI Lab of the University of Zürich. It has two motors with differential steering and six infrared proximity sensors. In the experiment only the two sensors that point diagonally to the front are used.
 
-### THE BLOCK TO WRITE — six parts
+**2. The purpose.** The purpose of the experiment is to study reactive obstacle avoidance. The robot is controlled as a Braitenberg type 3b vehicle:
+- If the left sensor is stimulated, the robot turns to the right.
+- If the right sensor is stimulated, the robot turns to the left.
 
-**① What a Didabot is**
+The robot has no rule for clustering or tidying, and it has no map.
 
-> Didabots are a development of the **AI Lab of the University of Zürich** (Switzerland) for **teaching students** — the name is short for **Didactic Robots** (Maris & Schaad, 1995). The goal was *"to create a group of general purpose robots that are small and flexible and can easily be programmed from a host computer"*.
->
-> **Structure:** a chassis with **two motors (differential steering)** and **6 wheels**, a µProcessor board, **six infrared (IR) proximity sensors**, six ambient light sensors, nine touch sensors, a beeper, a light bulb, and two wheel encoders.
->
-> **In the Didabot experiment only two of the IR proximity sensors are used — the two pointing diagonally to the front.**
-
-**② The purpose of the experiment**
-
-> To investigate **reactive obstacle avoidance** capabilities in an arena containing many rectangular obstacles (boxes). The robot is controlled in a **Braitenberg type 3b** manner:
-> *"if there is a sensory stimulation on the left, turn (a bit) to the right; if there is a sensory stimulation on the right, turn (a bit) to the left."*
->
-> **There is no clustering rule, no tidying rule, and no map. The only programmed behaviour is obstacle avoidance.** This is the single most important sentence in the whole answer.
-
-**③ The unexpected result**
-
-> After a while the box distribution has changed in a very specific way: **the boxes build clusters — heaps of several boxes close together — plus some boxes pushed against the boundary of the arena.**
-> (Maris, M. & te Boekhorst, R., 1996, *"Exploiting Physical Constraints: Heap formation through behavioral error in a group of robots"*, IROS '96, Osaka.)
+**3. The result.** The boxes, which start scattered randomly in the arena, end up gathered in heaps, and some boxes end up lined along the walls.
 
 ```
-   ARENA BEFORE                        ARENA AFTER
-
+   BEFORE                              AFTER
    +---------------------+            +---------------------+
    |   []      []    []  |            |[][]           []    |
    |        []       []  |            |[]            [][][] |
@@ -1473,127 +1910,96 @@ So $x^* \in \{0,\; 1 - 1/a\}$.
    |     []  []      []  |            |      [][][]         |
    |  []       []        |            |[]     [][]      [][]|
    +---------------------+            +---------------------+
-   boxes scattered at random          heaps in the interior AND
-                                      boxes lined up at the walls
+   boxes scattered                    heaps + boxes at walls
 ```
 
-**④ Why it happens — the four essential properties**
+**4. Why heaps form.** Heaps form because of four essential properties:
+1. The boxes can be pushed by the robot.
+2. The boxes are smaller than the distance between the two sensors.
+3. The front of the robot is curved, not flat.
+4. The robot uses Braitenberg type 3b obstacle avoidance.
 
-The lecture lists exactly four; name all four:
-
-1. **The boxes can be pushed around** by the robot.
-2. **The boxes are smaller than the distance between the two sensors used.**
-3. **The front of the robot is not flat, but curved.**
-4. **Braitenberg type 3b obstacle-avoidance behaviour.**
-
-**The mechanism:**
-
-> When a box is *somewhere in reach* of the sensors, the type 3b control produces normal obstacle avoidance. But when the box is **directly in front**, it sits **between the two sensors** and is therefore **"invisible" to the robot**. It then "sits on the nose" of the Didabot and is **pushed around** by the moving robot until it is eventually released.
+When a box is directly in front of the robot, it lies between the two sensors. The robot therefore cannot see the box and pushes it along.
 
 ```
-   BOX SEEN (off to one side)          BOX NOT SEEN (dead ahead)
-
-        [box]                                  [box]
-          \                                      |
-        \  \  /                                \ | /
-         (SL SR)                                (SL SR)
-          \___/                                  \___/
-      sensor triggered ->              box falls in the BLIND SPOT
-      3b turns away                    between the sensors ->
-                                       robot pushes it along
+   BOX TO THE SIDE                    BOX STRAIGHT AHEAD
+        [box]                                [box]
+          \                                    |
+        \  \  /                              \ | /
+         (SL SR)                              (SL SR)
+          \___/                                \___/
+   sensor sees it -> turns away       blind spot -> box is pushed
 ```
 
-**⑤ The two release mechanisms (single Didabot)**
+**5. How a single robot releases a box.** A single robot releases a pushed box in two ways:
+- **Spontaneous release:** The curved nose and the jiggling of the robot slide the box into the view of one sensor. The robot then turns, and the box is left at a random spot.
+- **Induced release:** The sensors detect an obstacle or another box. The robot turns away, and the pushed box is left right next to that obstacle or box. This is how heaps grow. Walls trigger the same release, which is why boxes collect along the walls.
 
-| Mechanism | How it works | Where the box lands |
-|---|---|---|
-| **Spontaneous release** | Because the nose is **curved**, the **natural jiggling** of the robot has a probability of moving the box aside until it comes into the reach of one sensor. The 3b behaviour then makes the robot turn. | At an **arbitrary** position. |
-| **Induced release** | The robot encounters **an obstacle or another box** with its sensors; the 3b behaviour makes it turn, and the box on the nose is released. | **Close to an obstacle or another box — and this is what forms the heaps.** |
+**6. Emergence.** The heap building is emergent behaviour. A global pattern appears although the robot only follows a simple local avoidance rule and no goal is programmed.
 
-> So heaps grow **autocatalytically**: the more boxes are already in one place, the more likely a passing Didabot is to trigger an induced release there and add another. Clusters form **everywhere in the inner part of the arena, and explicitly at the boundaries** (the wall itself triggers induced release).
-
-**What the heap size and count depend on** (a free extra sentence): the **density of objects**, the **probability of spontaneous release** (and hence **the shape of the robot**), the **characteristics of the sensors**, and the **details of the type 3b implementation**.
-
-**⑥ Emergence — the conclusion**
-
-> The behaviour has been described as *"cleaning up"*, *"making free space"*, or *"trying to build clusters"* — **but in fact the programmed micro-behaviour is just reactive obstacle avoidance following Braitenberg's principle of antagonistic inhibition.** The tidying is **emergent**: a complex global pattern arising from a multiplicity of relatively simple local interactions, with **no representation of the goal anywhere in the robot**.
-
-### ⑦ ONE vs MANY DIDABOTS — the part the question always asks
-
-> With multiple identical Didabots in the arena, **each one does exactly the same thing**: type 3b obstacle avoidance, box pushing, heap building. The two existing release principles — spontaneous and induced — remain active. **But a third mechanism becomes active:**
->
-> **Induced release type 2:** **two Didabots approaching each other** perform an avoiding movement (type 3b behaviour) **and thus release any boxes they are carrying.**
+**7. More than one Didabot.** Every robot behaves exactly like a single robot, but a third release mechanism appears:
+- **Induced release type 2:** When two Didabots meet, both turn away from each other, and both drop the boxes they are pushing.
+- As my own inference (this is not on the slides), heaps form faster with more robots, but robots also disturb each other's heaps.
 
 ```
-    SINGLE DIDABOT                     MULTIPLE DIDABOTS
-
-    releases: spontaneous              releases: spontaneous
-              induced (obstacle/box)             induced (obstacle/box)
-                                                 induced TYPE 2 (robot-robot)
-         [box]
-           \                             (=O=)  ->     <-  (=O=)
-          (=O=)  ->                        \             /
-                                          [box]       [box]
-                                        both turn away, both drop
+    (=O=)  ->     <-  (=O=)
+      \               /
+     [box]         [box]
+   both turn away, both drop their box
 ```
 
-> ⚠️ **Say only what the slides say.** The lecture's stated difference for multiple robots is **the third release mechanism**, and that several Didabots are building clusters of boxes. It is reasonable to add that clustering therefore proceeds **faster** with more robots, and that robots also **interfere with each other's heaps** — but flag that as your own inference, since the deck does not state it. Do not invent numbers.
+### IMPORTANT THEORY
+
+- Didabots were developed by Maris and Schaad (1995) at the AI Lab of the University of Zürich as small, flexible general-purpose robots that can be programmed from a host computer.
+- A Didabot has a chassis with two motors (differential steering) and 6 wheels, a microprocessor board, six infrared proximity sensors, six ambient light sensors, nine touch sensors, a beeper, a light bulb and two wheel encoders.
+- The experiment was published by Maris and te Boekhorst (1996) as *"Exploiting Physical Constraints: Heap formation through behavioral error in a group of robots"*.
+- The size and number of the heaps depend on the density of objects, the probability of spontaneous release (and therefore the shape of the robot), the characteristics of the sensors, and the details of the 3b implementation.
+- The behaviour has been described as "cleaning up", "making free space" or "building clusters", but the programmed behaviour is only reactive obstacle avoidance based on Braitenberg's principle of antagonistic inhibition.
+- Heaps grow autocatalytically: the more boxes already lie in one place, the more likely a passing robot releases another box there.
 
 ### VARIANTS
 
-**V1.** *"Why do the boxes end up at the walls of the arena?"*
+**V1.** *"Why do boxes end up at the walls?"*
 
 <details><summary>Answer</summary>
 
-The **wall is an obstacle**. When a Didabot carrying a box on its nose approaches the wall, its sensors detect it and the 3b behaviour makes it turn — an **induced release** — depositing the box at the boundary. Since every robot travelling outward eventually meets the wall, boxes accumulate there as well as in interior heaps.
+The wall acts as an obstacle. A robot pushing a box detects the wall, turns away because of its 3b behaviour, and leaves the box at the wall. This is an induced release.
 </details>
 
-**V2.** *"What would happen if the boxes were LARGER than the distance between the two sensors?"*
+**V2.** *"What if the boxes were larger than the distance between the two sensors?"*
 
 <details><summary>Answer</summary>
 
-**No heaps would form.** A box larger than the sensor separation can never fall into the blind spot between the two sensors, so it is **always detected**, the 3b behaviour always turns the robot away, and **no box is ever pushed**. The robot would perform pure obstacle avoidance and the box distribution would stay essentially unchanged. This shows the effect depends on a **physical/morphological accident**, not on the control program — which is exactly the paper's title, *"Exploiting Physical Constraints"*.
+No heaps would form. A large box can never hide between the two sensors, so the robot always detects it and turns away. The robot therefore never pushes any box.
 </details>
 
-**V3.** *"What would happen if the front of the robot were flat instead of curved?"*
+**V3.** *"What if the robot's front were flat instead of curved?"*
 
 <details><summary>Answer</summary>
 
-**Spontaneous release would become much rarer.** The curved nose is what lets the natural jiggling of the robot slide the box sideways into a sensor's field of view. With a flat front the box would stay centred in the blind spot and be pushed much further, so releases would be almost entirely **induced** — near obstacles and other boxes. The likely consequence is **fewer, larger heaps** and less scatter. Note explicitly that the lecture lists the robot's **shape** as one of the factors determining heap size and number.
+Spontaneous release would become rare, because the box would stay centred in the blind spot. Almost all releases would then be induced near boxes and walls, so there would be fewer but larger heaps.
 </details>
 
-**V4.** *"Define emergence and give the Didabots as an example."*
+**V4.** *"Define emergence with the Didabots as example."*
 
 <details><summary>Answer</summary>
 
-**Emergence** is *"the way complex systems and patterns arise out of a multiplicity of relatively simple interactions"* — it is central to the theories of integrative levels and of complex systems.
-
-**Didabots as the example:** the global pattern is *boxes gathered into heaps*, which looks purposeful and has been called "cleaning up". The local rule is only *turn away from whatever a sensor detects*. Nothing in the robot represents a heap, a goal, or the arena. The pattern arises from the interaction of the control rule with the **physical morphology** (blind spot, curved nose) and the environment. Other examples from the course: **swarm intelligence**, ant colonies, and Conway's Game of Life gliders.
+Emergence is the appearance of complex global patterns from many simple local interactions. In the Didabot experiment the only rule is "turn away from whatever a sensor detects", yet the global result is that boxes gather in heaps. Other examples are Game of Life gliders, ant trails and Boids flocking.
 </details>
 
-### ⚠️ TRAPS
-
-- **Forgetting to say there is no clustering rule.** That is the entire point of the experiment.
-- **Skipping the "more than one Didabot" sub-question.** It is named explicitly in two of the three wordings and it is worth its own marks — the answer is **induced release type 2**.
-- **Only giving one release mechanism.** There are **two** for a single robot and **three** for several.
-- **Not naming the four essential properties.** They are a numbered list on the slide and thus a numbered list of marks.
+**⚠️ Traps.** You must state that the robot has no clustering rule. You must answer the part about more than one Didabot, which is induced release type 2. You must give both release mechanisms for one robot and all three for several robots.
 
 ---
 
 ## Q12 · EA fitness diagrams 🔒
-**Recurrence: 3/4. 5 points. TWO DIFFERENT DIAGRAMS — do not confuse them.**
+**This question appeared on 3 of 4 papers and is worth 5 points. There are two different diagrams.**
 
-### Asked as
+**❓ 2023 `qn-02` 13** — *"Draw the distribution of fitness before and after external selection with (µ+λ) and elitism."*
+**❓ 2025 T6** — *"Given an EA with rank-based, elitism, (λ+µ) selection process. Draw diagrams depicting the fitness of the population sorted by fitness before and after the selection process."*
 
-- *"Draw the **distribution of fitness** before and after external selection with (µ+λ) and elitism."* — 2023 `qn-02` 13
-- *"Given an EA with rank-based, elitism, (λ+µ) selection process. Draw diagrams depicting the **fitness of the population sorted by fitness** before and after the selection process."* — 2025 T6
-- 2017 Q6 — the **performance graph** variant
+**✅ Answer**
 
-**Read which one you were given.** "Sorted by fitness, before and after selection" = **Diagram A**. "Fitness over generations / over time" = **Diagram B**. They look nothing alike.
-
-### DIAGRAM A — population sorted by fitness, before vs after external selection
-
-**Axes:** $x$ = individual index, **sorted by fitness** (best on the left); $y$ = fitness $f$. Label both.
+The $x$-axis shows the individuals sorted by fitness with the best on the left, and the $y$-axis shows the fitness $f$.
 
 ```
       BEFORE external selection                AFTER (mu + lambda), elitism, rank-based
@@ -1611,33 +2017,25 @@ The **wall is an obstacle**. When a Didabot carrying a box on its nose approache
   |                  *                     |          |
   +---------------------------> index      +----------|----------------> index
    1                        P               1        mu                P
-       all P individuals                     the worst lambda = P - mu
-                                             are DISCARDED; the best mu
-                                             survive UNCHANGED
 ```
 
-**Write these four sentences with it:**
+1. Before selection, the diagram shows all $P$ individuals as a curve that decreases from the best to the worst.
+2. After selection, only the best $\mu$ individuals survive and the worst $\lambda = P - \mu$ are removed, so the curve is cut off at $\mu$.
+3. The surviving part is identical to the left part of the curve before selection, because deterministic, rank-based, elitist selection does not change any fitness value.
+4. The best fitness stays the same because elitism keeps the best individual, and the mean fitness rises because the worst individuals are gone.
 
-1. **Before:** the population sorted by fitness gives a **monotonically decreasing curve** from the best individual down to the worst.
-2. **After:** external selection **"keeps the Best and discards the Losers"** — the worst $\lambda = P - \mu$ individuals are removed, so the curve is **truncated** at $\mu$ and **ends in a sharp cut**.
-3. **The surviving part is identical to the left part of the "before" curve** — because the selection is **deterministic and rank-based with elitism**, no surviving individual has its fitness changed, and the best individual is guaranteed to survive.
-4. **The mean fitness of the population rises**, but the **maximum is unchanged** — selection alone never creates a better individual, it only removes worse ones.
+---
 
-**If asked for the following steps too** (`sheet-08` asks for inheritance and mutation as well):
+**❓ 2017 Q6** — *performance graph of an EA with (µ+λ) and elitism*
 
-- **After inheritance/recombination:** the $\lambda$ empty slots are refilled with offspring whose fitness lies **mostly between the parent values**, so the curve is **restored to length $P$** but the new tail sits **below** the surviving parents.
-- **After mutation:** the values are **spread out** again — some offspring get better, some worse — so the curve becomes **smoother and noisier**, and occasionally a mutant **exceeds** the previous best.
+**✅ Answer**
 
-### DIAGRAM B — the performance graph
-
-> The **performance graph** shows the development of the fitness $f^*(t)$ of the **best individual in each generation** with respect to time. It is **"the most important tool to monitor the optimization process of a working evolutionary algorithm."**
-
-**Axes:** $x$ = time / generation $t$; $y$ = $f^*(t)$, the fitness of the best individual.
+The performance graph shows the fitness $f^*(t)$ of the best individual in each generation $t$.
 
 ```
   f*(t)
     ^
-    |                        ________________  <- slow increase (convergence)
+    |                        ________________  <- slow increase
     |                    ___/
     |                 __/
     |              __/
@@ -1646,254 +2044,209 @@ The **wall is an obstacle**. When a Didabot carrying a box on its nose approache
     |   __/
     |  /
     | /   <- initial situation
-    +-------------------------------------> t
-
-    Monotonically non-decreasing: it can NEVER go down.
+    +-------------------------------------> t (generations)
 ```
 
-**The three phases the lecture names:** *initial situation* → *strong increase* → *slow increase*.
-
-**The rule you must state — this is what the question is really testing:**
-
-> - For a **deterministic, rank-dependent elitism strategy $(\mu + \lambda)$, the performance graph will increase MONOTONICALLY.**
-> - For a **probabilistic, non-elitism strategy, the performance graph can decrease**, but should show an increase in the long run.
-
-**Why it is monotone** — say it explicitly, it is the marked reasoning:
-> Because the $+$ strategy keeps the parents in the next generation and elitism guarantees the best individual survives, the best fitness at $t+1$ is at least the best fitness at $t$. It can therefore never decrease.
+- The graph goes through three phases: the initial situation, a strong increase, and a slow increase.
+- With a deterministic, rank-based $(\mu+\lambda)$ strategy with elitism, the graph increases monotonically and never goes down. This is because the parents survive and the best individual is always kept.
+- With a probabilistic strategy without elitism, the graph can go down, but it still rises in the long run.
 
 ```
-   (mu + lambda) with elitism          (mu , lambda) or non-elitism
-
-   f*  ^      _____                    f*  ^        /\    ____
-       |   __/                             |    /\_/  \__/
-       |  /                                |   /   can drop when the
-       | /   never decreases               |  /    parents are discarded
-       +-----------------> t               +-----------------> t
+   (mu + lambda) + elitism           (mu , lambda) / non-elitist
+   f*  ^      _____                  f*  ^        /\    ____
+       |   __/                           |    /\_/  \__/
+       |  /                              |   /
+       | /   never decreases             |  /    can drop
+       +-----------------> t             +-----------------> t
 ```
 
-### THE $(\mu+\lambda)$ vs $(\mu,\lambda)$ BLOCK
+### IMPORTANT THEORY
 
-Straight from the slides:
-
-- **$+$ (plus) strategy:** the next generation consists of **$\mu$ parents + $\lambda$ offspring — the parents survive.**
-- **$,$ (comma) strategy:** the next generation consists of **only the $\lambda$ offspring — the parents are discarded.**
-
-| | $(\mu + \lambda)$ | $(\mu , \lambda)$ |
-|---|---|---|
-| Parents | survive | discarded |
-| Best fitness over time | **monotonically non-decreasing** | can decrease |
-| Re-evaluations | saved (parents keep their fitness) | every individual is new |
-| Risk | **stagnation** in a local optimum | loses good solutions |
-| Best used when | fitness is static and reliable | **fitness drifts over time**, or escaping local optima matters |
-
-**Named special cases from the slides:**
-- **$(1+1)$** — one parent, one child, inheritance by **copying only** (no recombination), only mutation, rank-based deterministic external selection.
-- **$(1+\lambda)$** — one parent, $\lambda$ offspring.
-- **$(\mu+\lambda)$** — $\mu$ parents, $\lambda$ offspring, recombination + mutation + external selection, parents survive.
-- **$(\mu,\lambda)$** — the same but parents are discarded.
+- The performance graph is called "the most important tool to monitor the optimization process of a working evolutionary algorithm".
+- After inheritance (recombination), the $\lambda$ empty places are refilled with offspring whose fitness lies mostly between the parents' values, so the sorted curve has length $P$ again with the new part below the surviving parents.
+- After mutation, the fitness values spread out, so the curve becomes noisier and a mutant can occasionally exceed the previous best.
+- In the $(\mu+\lambda)$ strategy the $\mu$ parents survive together with the $\lambda$ offspring, and in the $(\mu,\lambda)$ strategy only the offspring survive.
+- The $(1+1)$ strategy has one parent and one child, copies the parent without recombination, uses only mutation, and selects deterministically by rank. The $(1+\lambda)$ strategy has one parent and $\lambda$ offspring.
+- $(\mu+\lambda)$ saves re-evaluations, because the parents keep their fitness values, but it risks stagnation. $(\mu,\lambda)$ can escape local optima and suits fitness functions that change over time.
 
 ### VARIANTS
 
-**V1.** *"Draw the performance graph for a probabilistic, non-elitism strategy and explain the difference."*
+**V1.** *"Compare $(\mu+\lambda)$ and $(\mu,\lambda)$."*
 
 <details><summary>Answer</summary>
 
-```
-  f*(t)
-    ^          /\      ___/\____
-    |     /\__/  \    /
-    |    /        \__/
-    |   /   <- can DECREASE, because the best individual
-    |  /       is not guaranteed to survive the selection
-    | /
-    +---------------------------> t
-```
-Because selection is probabilistic and there is no elitism, **the current best individual can fail to be selected and be lost**, so $f^*(t)$ can drop. Over the long run it should still increase. The trade-off: the ability to lose the best is also the ability to **escape a local optimum**.
+| | $(\mu + \lambda)$ | $(\mu , \lambda)$ |
+|---|---|---|
+| Next generation | It consists of the $\mu$ parents and the $\lambda$ offspring. | It consists of the $\lambda$ offspring only. |
+| Parents | The parents survive. | The parents are discarded. |
+| Best fitness | The best fitness never decreases. | The best fitness can decrease. |
+| Risk | The population can get stuck in a local optimum. | Good solutions can be lost. |
+| When to use | It suits a fitness function that does not change. | It suits a fitness function that changes over time, or when local optima must be escaped. |
 </details>
 
-**V2.** *"Sketch the fitness distribution after MUTATION."*
+**V2.** *"Sketch the fitness distribution after mutation."*
 
 <details><summary>Answer</summary>
 
 ```
    after selection + inheritance         after mutation
-
   f ^  *                               f ^  *
     |    *                               |   * *
     |      * *                           |     *  *
     |         * *                        |   *      * *
     |            * * *                   |        *   *  *
     +-----------------> index            +-----------------> index
-    smooth, offspring cluster            SPREAD OUT and noisier;
-    between parent values                a few mutants may exceed
-                                         the previous best
 ```
-Mutation is the **exploration** operator: it perturbs individuals randomly, widening the fitness spread. Most mutants are worse, a few are better — and those few are the only mechanism by which the population can exceed its current maximum.
+Mutation spreads the fitness values out. Most mutants become worse, but a few become better and can exceed the previous best.
 </details>
 
-**V3.** *"An EA has $P = 100$, $\mu = 20$. How many offspring are generated per generation, and what fraction of the population is discarded?"*
+**V3.** *"$P = 100$, $\mu = 20$. How many offspring are created per generation, and what fraction is discarded?"*
 
 <details><summary>Answer</summary>
 
-Keeping the population constant at $P$: $\lambda = P - \mu = 100 - 20 = \mathbf{80}$ offspring are generated from the 20 surviving parents, and $\lambda/P = 80/100 = \mathbf{80\,\%}$ of the population is discarded each generation. The **selection pressure** is $\mu/P = 20\%$ — a low $\mu/P$ means high pressure and fast but possibly premature convergence.
+$$\lambda = P - \mu = 100 - 20 = 80 \text{ offspring}, \qquad \frac{\lambda}{P} = \frac{80}{100} = 80\% \text{ discarded}$$
+The EA creates 80 offspring per generation and discards 80 % of the population.
 </details>
 
-**V4.** *"Name the termination criteria for an EA."* (six on the slide)
+**V4.** *"Name the termination criteria for an EA."*
 
 <details><summary>Answer</summary>
 
-By **performance of the best individual**; by **performance of a sub-population**; by **stagnation / development of the fitness improvement**; by **time**; by **number of generations**; by **choice of a human operator**.
+1. The EA stops when the best individual reaches a target performance.
+2. The EA stops when a sub-population reaches a target performance.
+3. The EA stops when the fitness stops improving (stagnation).
+4. The EA stops when a time limit is reached.
+5. The EA stops after a fixed number of generations.
+6. The EA stops when a human operator decides to stop it.
 </details>
 
 **V5.** *"What are the two principles for initializing the first population?"*
 
 <details><summary>Answer</summary>
 
-1. **Start as good as possible** — use all a priori knowledge available, and try to avoid illegal genomes.
-2. **Enough richness, enough diversity** — sample as much of the fitness landscape as possible and try to cover the complete search space.
-
-These are in tension: seeding with known-good solutions reduces diversity, which risks premature convergence.
+1. The population should start as good as possible, so prior knowledge is used and illegal genomes are avoided.
+2. The population should be diverse enough to cover as much of the search space as possible.
 </details>
 
-### ⚠️ TRAPS
-
-- **Drawing the wrong diagram.** "Sorted by fitness, before/after selection" ≠ "fitness over generations". Read the axis words in the question.
-- **Not labelling the axes.** An unlabelled sketch scores nothing.
-- **Forgetting to say WHY the elitist $(\mu+\lambda)$ graph is monotone.** That sentence is the question.
-- **Drawing the "after selection" curve as a shrunken copy.** It is the **same curve, truncated** — the survivors' fitness values do not change.
+**⚠️ Traps.** You lose the question if you draw the performance graph when the question asks for fitness sorted before and after selection, or the other way round. You must label both axes. You must say why the elitist graph never goes down.
 
 ---
 
 ## Q13 · EA mutation probability ⚙️
-**Recurrence: 3/4. 5 points. THREE different formulas — the question decides which.**
+**This question appeared on 3 of 4 papers and is worth 5 points. There are three different questions with three different formulas.**
 
-### Asked as — read these three side by side, they are NOT the same question
+The symbols are the same in all three answers: $p$ is the probability that one bit flips, $L$ is the number of bits in a genome, $N$ is the number of offspring, and $Q$ is the probability asked for. One bit stays unchanged with probability $(1-p)$.
 
-- *"Calculate the probability that **at least one element of a sequence / genome** is affected by a mutation."* — 2023 `qn-03` → **Formula ①**
-- *"A parent $X(i)$ with a genome of $L$ bit has created $N$ offspring identical to the parent. The mutation operator modifies each of these $N$ offspring by flipping each of the $N \cdot L$ bits with a probability of $p$. Derive a formula for the probability $Q$ that **at least one of the $N$ new individuals is different to the parent**."* — 2023 `qn-02` 4 → **Formula ②**
-- *"…parent selection selects only [the best] individual and creates exact copies to create $N$ new individuals. Each bit is mutated with probability $p = \frac{1}{L^2}$. Calculate and derive a formula for the probability $Q$ that in the new population **no individual is identical to the parent**."* — 2025 T13 → **Formula ③**
+**❓ 2023 `qn-03`** — *"Calculate the probability that at least one element of a sequence / genome is affected by a mutation."*
 
-### THE THREE FORMULAS
+**✅ Answer**
 
-**Start from the one building block and derive everything from it.** State it first:
+The probability that none of the $L$ bits flips is $(1-p)^L$, so the probability that at least one bit flips is the complement.
+$$\begin{aligned}
+P(\text{no bit flips}) &= (1-p)^{L} \\
+Q = P(\text{at least one bit flips}) &= 1 - (1-p)^{L}
+\end{aligned}$$
 
-> A single bit is **not** flipped with probability $(1-p)$. Bits are mutated **independently**, so a block of $m$ bits survives completely unchanged with probability $(1-p)^m$.
->
-> **Symbols:** $p$ = probability that one bit is flipped; $L$ = number of bits in one genome; $N$ = number of offspring; $Q$ = the probability asked for.
+---
 
-**① At least one bit of ONE genome is affected** ($m = L$)
+**❓ 2023 `qn-02` 4** — *"A parent X(i) with a genome of L bit has created N offspring identical to the parent. The mutation operator modifies each of these N offspring by flipping each of the N·L bits with a probability of p. Derive a formula for the probability Q that at least one of the N new individuals is different to the parent."*
 
-$$Q = 1 - (1-p)^{L}$$
+**✅ Answer**
 
-> The complement of "at least one bit flips" is "no bit flips", which has probability $(1-p)^L$.
+All $N$ offspring stay identical only if none of the $N \cdot L$ bits flips. The probability that at least one offspring differs is the complement of that.
+$$\begin{aligned}
+P(\text{all } N \text{ offspring identical}) &= (1-p)^{NL} \\
+Q = P(\text{at least one offspring differs}) &= 1 - (1-p)^{NL}
+\end{aligned}$$
 
-**② At least one of $N$ offspring differs from the parent** ($m = N\cdot L$)
+---
 
-$$Q = 1 - (1-p)^{N L}$$
+**❓ 2025 T13** — *"…parent selection selects only [the best] individual and creates exact copies to create N new individuals. Each bit is mutated with probability p = 1/L². Calculate and derive a formula for the probability Q that in the new population no individual is identical to the parent."*
 
-> "At least one offspring differs" is the complement of "**every** offspring is identical", which requires **all $N \cdot L$ bits** to survive unchanged — probability $(1-p)^{NL}$.
+**✅ Answer**
 
-**③ NO offspring is identical to the parent**
+One offspring is identical to the parent if none of its $L$ bits flips. It differs with the complementary probability. Because the $N$ offspring mutate independently, the probability that all of them differ is that value to the power $N$.
+$$\begin{aligned}
+P(\text{one offspring identical}) &= (1-p)^{L} \\
+P(\text{one offspring differs}) &= 1 - (1-p)^{L} \\
+Q = P(\text{all } N \text{ offspring differ}) &= \Bigl(1 - (1-p)^{L}\Bigr)^{N}
+\end{aligned}$$
 
-$$Q = \Bigl(1 - (1-p)^{L}\Bigr)^{N}$$
-
-> One offspring is identical to the parent with probability $(1-p)^L$, so it **differs** with probability $1 - (1-p)^L$. The $N$ offspring mutate independently, so **all $N$ differ** with that probability raised to the $N$-th power.
-
-**⚠️ ② and ③ are different and both have been asked.** ② is *"at least one differs"*; ③ is *"none is identical"* = *"all differ"*. Read the sentence twice before you write.
-
-```
-        "at least one differs"          "no one is identical"
-        = NOT(all identical)            = ALL differ
-        = 1 - (1-p)^(N*L)               = (1 - (1-p)^L)^N
-```
-
-### WORKED — 2025 T13 with $p = 1/L^2$
-
-Substitute into ③:
-
+Substituting $p = 1/L^2$ gives:
 $$Q = \left(1 - \left(1 - \frac{1}{L^{2}}\right)^{L}\right)^{N}$$
 
-**Then simplify, which is what "calculate" asks for.** For large $L$, expand to first order:
+For large $L$, the inner term can be approximated as $\left(1 - \frac{1}{L^2}\right)^{L} \approx 1 - L\cdot\frac{1}{L^2} = 1 - \frac{1}{L}$. Therefore:
+$$Q \approx \left(1 - \left(1 - \frac{1}{L}\right)\right)^{N} = \left(\frac{1}{L}\right)^{N} = L^{-N}$$
 
-$$\left(1-\frac{1}{L^{2}}\right)^{L} \approx 1 - L\cdot\frac{1}{L^{2}} = 1 - \frac{1}{L}$$
+This means that $Q$ is very small, so the new population almost certainly contains an exact copy of the parent.
 
-so
+```
+  "at least one differs"   = 1 - (1-p)^(N*L)
+  "no one is identical"    = (1 - (1-p)^L)^N
+```
 
-$$1 - \left(1-\frac{1}{L^{2}}\right)^{L} \approx \frac{1}{L} \qquad\Longrightarrow\qquad \boxed{\;Q \approx \left(\frac{1}{L}\right)^{N} = L^{-N}\;}$$
+### IMPORTANT THEORY
 
-> **Interpret the result in one sentence — this earns the last mark:** with $p = 1/L^2$ the mutation rate is so low that each offspring has only about a $1/L$ chance of differing from its parent at all, so the probability that *none* of the $N$ offspring is a copy falls off as $L^{-N}$ — i.e. for any realistic $L$ and $N$, the new population is **almost certain to contain an exact copy of the parent**. That is a very weak mutation operator.
+These edge cases check whether a formula is correct.
 
-### SANITY CHECKS — do these in the margin, they catch sign errors
-
-| Case | ① $1-(1-p)^L$ | ③ $(1-(1-p)^L)^N$ | Meaning |
+| Case | $1-(1-p)^L$ | $(1-(1-p)^L)^N$ | Meaning |
 |---|---|---|---|
-| $p = 0$ | $0$ | $0$ | No mutation ⇒ nothing ever differs. ✔ |
-| $p = 1$ | $1$ | $1$ | Every bit flips ⇒ every offspring is the exact complement, so all differ. ✔ (But there is **no diversity** — all offspring are identical to each other.) |
-| $p = 0.5$ | $1 - 2^{-L}$ | $\approx 1$ | Each bit is randomised ⇒ pure random restart, no inheritance. |
-| $p$ small | $\approx pL$ | $\approx (pL)^N$ | The useful regime: local search around the parent. |
+| $p = 0$ | $0$ | $0$ | Without mutation nothing ever changes. |
+| $p = 1$ | $1$ | $1$ | Every bit flips, so every offspring is the complement of the parent, and all offspring are identical to each other. |
+| $p = 0.5$ | $1 - 2^{-L}$ | $\approx 1$ | Every bit is random, so mutation becomes a random restart without inheritance. |
+| small $p$ | $\approx pL$ | $\approx (pL)^N$ | This is the useful case, in which mutation performs a local search around the parent. |
+
+- The number of flipped bits in a genome is binomially distributed: $P(k \text{ flips}) = \binom{L}{k} p^{k} (1-p)^{L-k}$.
+- The standard mutation rate is $p = 1/L$, which flips one bit per genome on average. The exam's $p = 1/L^2$ is $L$ times weaker.
 
 ### VARIANTS
 
-**V1.** *"$L = 10$, $N = 4$, $p = 0.01$. Give ①, ② and ③ numerically."*
+**V1.** *"$L = 10$, $N = 4$, $p = 0.01$. Compute all three probabilities."*
 
 <details><summary>Answer</summary>
 
-$(1-p) = 0.99$.
-- $(0.99)^{10} = 0.9044$
-- ① $Q = 1 - 0.9044 = \mathbf{0.0956}$ — one genome is affected ~9.6 % of the time.
-- ② $Q = 1 - (0.99)^{40} = 1 - 0.6690 = \mathbf{0.3310}$ — at least one of the 4 offspring differs.
-- ③ $Q = (1 - 0.9044)^{4} = (0.0956)^4 = \mathbf{8.35 \times 10^{-5}}$ — all four differ; very unlikely.
-
-Note ② $\gg$ ③, as it must be: "at least one" is far easier than "all".
+$$\begin{aligned}
+1 - p &= 0.99 \\
+(0.99)^{10} &= 0.9044 \\
+\text{①}\; Q &= 1 - 0.9044 = 0.0956 \\
+(0.99)^{40} &= 0.6690 \\
+\text{②}\; Q &= 1 - 0.6690 = 0.3310 \\
+\text{③}\; Q &= (1 - 0.9044)^{4} = 0.0956^{4} = 0.0956 \times 0.0956 \times 0.0956 \times 0.0956 = 8.35 \times 10^{-5}
+\end{aligned}$$
+A single genome is mutated with probability 9.56 %, at least one of the four offspring differs with probability 33.1 %, and all four differ with probability 0.00835 %.
 </details>
 
-**V2.** *"Derive the probability that EXACTLY one bit of a genome of length $L$ is flipped."*
+**V2.** *"What is the probability that exactly one bit of a genome of length $L$ flips?"*
 
 <details><summary>Answer</summary>
 
-Choose which bit flips ($L$ ways), it flips with probability $p$, and the other $L-1$ bits must survive:
-
-$$P(\text{exactly one}) = \binom{L}{1} p (1-p)^{L-1} = L\,p\,(1-p)^{L-1}$$
-
-More generally, the number of flipped bits is **binomially distributed**:
-$$P(k \text{ flips}) = \binom{L}{k} p^{k} (1-p)^{L-k}$$
+There are $L$ choices for the flipped bit, that bit flips with probability $p$, and the other $L-1$ bits stay unchanged.
+$$P = \binom{L}{1}\,p\,(1-p)^{L-1} = L\,p\,(1-p)^{L-1}$$
 </details>
 
-**V3.** *"What value of $p$ makes exactly one bit flip per genome on average?"*
+**V3.** *"Which $p$ flips one bit per genome on average?"*
 
 <details><summary>Answer</summary>
 
-The expected number of flipped bits is $E = L\,p$. Setting $E = 1$ gives
-$$p = \frac{1}{L}$$
-This is the standard textbook default mutation rate, and it is worth contrasting with the exam's $p = 1/L^2$, which is a factor $L$ **weaker** — on average only $1/L$ bits flip per genome, i.e. most offspring are exact copies.
+The expected number of flipped bits is $L\,p$. Setting it to 1 gives the answer.
+$$L\,p = 1 \;\Rightarrow\; p = \frac{1}{L}$$
 </details>
 
-**V4.** *"How many distinct offspring can one-point crossover produce from two parents with genomes of $L$ genes?"*
+**V4.** *"How many distinct offspring can one-point crossover produce from two parents with $L$ genes?"*
 
 <details><summary>Answer</summary>
 
-The crossover point can sit in any of the $L-1$ gaps between genes, and each cut yields **two** complementary children, so
-
-$$\#\text{offspring} = 2(L-1)$$
-
-(The cuts before the first gene and after the last gene are excluded, since they just reproduce the parents.)
+There are $L - 1$ possible cut positions, and each cut produces 2 children, so one-point crossover can produce $2(L-1)$ distinct offspring.
 </details>
 
 **V5.** *"What is a super-individual and how do you avoid one?"*
 
 <details><summary>Answer</summary>
 
-A **super-individual** is one individual so much fitter than the rest that, under fitness-proportional selection, it takes over almost the whole population within a few generations. The result is a **collapse of diversity** and premature convergence to whatever local optimum that individual sits in.
-
-**Avoidance:** use **rank-based** selection instead of fitness-proportional (the shares then depend only on ordering, not on the size of the fitness gap); use **softmax with a high temperature $\tau$** to flatten the distribution; or **cap the number of offspring** any single parent may produce.
+A super-individual is an individual that is so much fitter than the rest that it takes over the population under fitness-proportional selection, which destroys the diversity. It can be avoided by using rank-based selection, by using softmax with a high temperature $\tau$, or by limiting the number of offspring per parent.
 </details>
 
-### ⚠️ TRAPS
-
-- **The big one: ② vs ③.** *"At least one differs"* and *"no individual is identical"* are different formulas. Underline the phrase in the question before you start.
-- **Forgetting to define $p$, $L$, $N$ and $Q$.** The 2017 paper explicitly demands "which variable means what".
-- **Not substituting $p = 1/L^2$** when the question gives it. The question says "calculate", not just "derive".
-- **Working forwards instead of via the complement.** Always compute "nothing happens" first, then subtract from 1.
+**⚠️ Traps.** You must not mix up "at least one differs" with "none is identical". You must define $p$, $L$, $N$ and $Q$. You must substitute $p = 1/L^2$ when the question gives it.
 
 ---
 ---
@@ -1903,156 +2256,146 @@ A **super-individual** is one individual so much fitter than the rest that, unde
 ---
 
 ## Q14 · Counting the possible rules of a CA ⚙️
-**Asked on 2 of 4. 5 points. The numbers change every time — this is a pure recipe.**
+**This question appeared on 2 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2025 T9** — *"Calculate the number of possible rules and derive a formula for a CA with d=3, k=2, r=1 Moore."*
 
-- *"Calculate the number of possible rules and derive a formula for a CA with **$d=3$, $k=2$, $r=1$ Moore**."* — 2025 T9
-- *"[Rule count for **$d=1$, $r=3$, $k=4$**]"* — 2017 Q8
-- *"How long would it take to print all $Z$ possible rules for a 1-dim CA with **$k=4$ and $r=1$** at 100 rules per second? Set up a formula $Z = Z(r,k)$."* — `sheet-02` A1
-- *"Write formulas for the number $Z$ of possible rules … a) all, b) peripheral $Z_p$, c) totalistic $Z_t$, d) with a silent state $Z_s$."* — `sheet-02` A5
+**✅ Answer**
 
-### THE RECIPE — three lines, always the same three lines
-
-**Keep $n$, $L$ and $Z$ strictly apart. Confusing $L$ with $Z$ is the standard way to lose this question.**
-
-$$n = \text{size of the neighbourhood} \qquad L = k^{\,n} \qquad Z = k^{\,L}$$
-
-- **$k$** = number of states one cell may take.
-- **$n$** = number of cells consulted by the rule (**including the cell itself**).
-- **$L$** = number of **lines in the rule table** — one per possible neighbourhood configuration. Each of the $n$ cells independently takes one of $k$ states ⇒ $k^n$ combinations.
-- **$Z$** = number of **possible rules**. Each of the $L$ lines is filled independently with one of $k$ outputs ⇒ $k^L$.
-
-**Step 1 — get $n$ from the geometry.** This is the only part that changes:
-
-| Neighbourhood | $n$ | Example |
-|---|---|---|
-| $d=1$, radius $r$ | $n = 2r+1$ | $r=1 \Rightarrow 3$; $r=3 \Rightarrow 7$ |
-| $d$-dim **Moore**, $r=1$ | $n = 3^{\,d}$ | $d=2 \Rightarrow 9$; $d=3 \Rightarrow 27$ |
-| $d$-dim **von Neumann**, $r=1$ | $n = 2d+1$ | $d=2 \Rightarrow 5$; $d=3 \Rightarrow 7$ |
-| $d$-dim Moore, radius $r$ | $n = (2r+1)^{d}$ | $d=2, r=2 \Rightarrow 25$ |
-
-**Step 2 — plug into $L = k^n$. Step 3 — plug into $Z = k^L$.** Then state the magnitude in words.
-
-### WORKED — 2017 Q8: $d=1$, $r=3$, $k=4$
-
-$$n = 2r+1 = 2(3)+1 = 7$$
-$$L = k^{n} = 4^{7} = 16\,384$$
-$$Z = k^{L} = 4^{16\,384}$$
-
-> In words: the neighbourhood consults 7 cells, the rule table has 16 384 lines, and there are $4^{16384}$ possible rules.
-
-### WORKED — 2025 T9: $d=3$, $k=2$, $r=1$, Moore
-
-$$n = 3^{\,d} = 3^{3} = 27$$
-$$L = k^{n} = 2^{27} = 134\,217\,728$$
-$$Z = k^{L} = 2^{\,2^{27}} = 2^{134\,217\,728}$$
-
-> **Draw the neighbourhood** — a $3\times3\times3$ cube of cells, 27 including the centre. And say the magnitude: $Z$ is a power tower with roughly $4\times10^{7}$ decimal digits.
+The symbols mean the following: $k$ is the number of states per cell, $n$ is the number of cells in the neighbourhood, $L$ is the number of rows in the rule table, and $Z$ is the number of possible rules. Each of the $n$ cells can take $k$ states, so there are $k^n$ rows. Each row can get one of $k$ outputs, so there are $k^L$ rules.
+$$\begin{aligned}
+n &= 3^{d} = 3^{3} = 27 \\
+L &= k^{n} = 2^{27} = 134\,217\,728 \\
+Z &= k^{L} = 2^{2^{27}} = 2^{134\,217\,728}
+\end{aligned}$$
+The Moore neighbourhood in $d = 3$ is a $3\times3\times3$ cube that includes the centre cell, so it contains 27 cells.
 
 ```
-    3 x 3 x 3 Moore neighbourhood in d=3
-
-         # # #          # # #          # # #
-         # # #          # C #          # # #
-         # # #          # # #          # # #
-       back layer     middle layer   front layer
-                                          n = 27
+   back layer     middle layer   front layer
+     # # #          # # #          # # #
+     # # #          # C #          # # #
+     # # #          # # #          # # #          n = 27
 ```
 
-### THE FOUR RESTRICTED COUNTS
+---
 
-| | Formula | Derivation |
+**❓ 2017 Q8** — *number of rules for d=1, r=3, k=4*
+
+**✅ Answer**
+
+In one dimension the neighbourhood contains the cell itself and $r$ cells on each side, so $n = 2r + 1$.
+$$\begin{aligned}
+n &= 2r + 1 = 2\times3 + 1 = 7 \\
+L &= k^{n} = 4^{7} = 16\,384 \\
+Z &= k^{L} = 4^{16\,384}
+\end{aligned}$$
+The rule table therefore has 16 384 rows, and there are $4^{16\,384}$ possible rules.
+
+---
+
+**❓ `sheet-02` A1** — *"How long would it take to print all Z possible rules for a 1-dim CA with k=4 and r=1 at 100 rules per second? Set up a formula Z = Z(r,k)."*
+
+**✅ Answer**
+$$\begin{aligned}
+Z(r,k) &= k^{\,k^{2r+1}} \\
+Z(1,4) &= 4^{\,4^{3}} = 4^{64} = 2^{128} \approx 3.40\times10^{38} \\
+T &= \frac{3.40\times10^{38}}{100\ \mathrm{s^{-1}}} = 3.40\times10^{36}\ \mathrm{s} \\
+T &= \frac{3.40\times10^{36}}{3.156\times10^{7}\ \mathrm{s/year}} \approx 1.08\times10^{29}\ \text{years}
+\end{aligned}$$
+Printing all rules would take about $1.08\times10^{29}$ years.
+
+---
+
+**❓ `sheet-02` A5** — *"Write formulas for the number Z of possible rules: a) all, b) peripheral Z_p, c) totalistic Z_t, d) with a silent state Z_s."* ($d = 1$)
+
+**✅ Answer**
+
+| | Formula | Reason |
 |---|---|---|
-| **all rules** | $Z = k^{\,k^{2r+1}}$ | $L = k^{2r+1}$ lines, each independently one of $k$ outputs. |
-| **peripheral** | $Z_p = k^{\,k^{2r}}$ | The centre is ignored, so only $2r$ cells matter ⇒ $k^{2r}$ lines. |
-| **totalistic** | $Z_t = k^{\,n(k-1)+1}$ | Output depends only on the **sum**, which runs $0 \ldots n(k-1)$ ⇒ $n(k-1)+1$ lines. |
-| **silent state** | $Z_s = k^{\,L-1}$ | One line (all-zero neighbourhood) is **forced** to 0, leaving $L-1$ free. |
+| a) all rules | $Z = k^{\,k^{2r+1}}$ | The table has $k^{2r+1}$ rows, and each row gets one of $k$ outputs. |
+| b) peripheral | $Z_p = k^{\,k^{2r}}$ | The centre cell is ignored, so only $2r$ cells matter and the table has $k^{2r}$ rows. |
+| c) totalistic | $Z_t = k^{\,(2r+1)(k-1)+1}$ | Only the sum matters, and the sum can take the values $0$ to $(2r+1)(k-1)$. |
+| d) silent state | $Z_s = k^{\,k^{2r+1}-1}$ | The all-zero row is fixed to 0, so one row fewer is free. |
 
-**Sanity check with $d=1, r=1, k=2$:** $Z = 256$, $Z_p = 2^4 = 16$, $Z_t = 2^{3(1)+1} = 16$, $Z_s = 2^7 = 128$ — exactly half the rules have a silent state, as expected.
+For $r=1$ and $k=2$ the formulas give $Z = 2^{8} = 256$, $Z_p = 2^{4} = 16$, $Z_t = 2^{3\times1+1} = 2^{4} = 16$ and $Z_s = 2^{7} = 128$.
+
+### IMPORTANT THEORY
+
+- The number $2^{2^{27}}$ from 2025 T9 has about $4\times10^{7}$ decimal digits.
+- Exhaustive search over all CA rules is impossible, which is why Wolfram classified the behaviours of CAs instead of listing all rules.
+- For $d=1$, $r=1$, $k=2$ exactly half of all rules ($128$ of $256$) have a silent state, and $32$ rules are legal.
 
 ### VARIANTS
 
-**V1.** *"$d=2$, $k=3$, $r=1$ Moore. How many rules?"*
+The neighbourhood size is $n = 2r+1$ for $d=1$ with radius $r$, $n = 3^d$ for a $d$-dimensional Moore neighbourhood with $r=1$, $n = 2d+1$ for a $d$-dimensional von Neumann neighbourhood with $r=1$, and $n = (2r+1)^d$ for a $d$-dimensional Moore neighbourhood with radius $r$.
 
-<details><summary>Answer</summary>
-$n = 3^2 = 9$; $L = 3^9 = 19\,683$; $Z = 3^{19\,683}$.
-</details>
-
-**V2.** *"$d=2$, $k=2$, $r=1$ von Neumann. How many rules, and how many are legal?"*
-
-<details><summary>Answer</summary>
-$n = 2d+1 = 5$; $L = 2^5 = 32$; $Z = 2^{32} \approx 4.3\times10^9$ ("4 Giga").
-
-**Legal = symmetric AND silent.** The silent state fixes 1 of the 32 lines. Symmetry pairs up the neighbourhoods that are mirror images of each other; only the un-paired (self-mirrored) ones stay free. Give the method and note that the exact count depends on how many of the 32 configurations are self-symmetric — the marks are for the reasoning, not a memorized number.
-</details>
-
-**V3.** *`sheet-02` A1 — printing time for $k=4$, $r=1$ at 100 rules/second.*
+**V1.** *"$d=2$, $k=3$, $r=1$ Moore. How many rules are there?"*
 
 <details><summary>Answer</summary>
 
-$$Z(r,k) = k^{\,k^{2r+1}}, \qquad Z(1,4) = 4^{\,4^{3}} = 4^{64} = 2^{128} \approx 3.40\times10^{38}$$
-$$T = \frac{Z}{100\ \mathrm{s^{-1}}} \approx 3.40\times10^{36}\ \mathrm{s} \approx 1.08\times10^{29}\ \text{years}$$
-
-Roughly $10^{19}$ times the age of the universe. **The expected conclusion is the moral, not the number:** exhaustive search over CA rules is impossible in principle — which is exactly why Wolfram classified *behaviours* instead of enumerating rules.
+$$n = 3^{2} = 9, \qquad L = 3^{9} = 19\,683, \qquad Z = 3^{19\,683}$$
+There are $3^{19\,683}$ possible rules.
 </details>
 
-### ⚠️ TRAPS
+**V2.** *"$d=2$, $k=2$, $r=1$ von Neumann. How many rules are there?"*
 
-- **Confusing $L$ and $Z$.** Write all three lines, labelled.
-- **Forgetting the centre cell** when counting $n$. Moore in $d=3$ is 27, not 26.
-- **Not giving the derivation.** Both papers say "derive a formula" *and* asked for the value.
+<details><summary>Answer</summary>
+
+$$n = 2d + 1 = 2\times2 + 1 = 5, \qquad L = 2^{5} = 32, \qquad Z = 2^{32} = 4\,294\,967\,296$$
+There are $2^{32} = 4\,294\,967\,296$ possible rules.
+</details>
+
+**V3.** *"How many legal rules exist for $d=1$, $r=1$, $k=2$?"*
+
+<details><summary>Answer</summary>
+
+- The rows `111`, `101`, `010` and `000` are their own mirror images, so they give 4 free choices.
+- The mirror pairs `110`/`011` and `100`/`001` must share one output each, so they give 2 more free choices.
+- Together there are $4 + 2 = 6$ free choices.
+- The silent state fixes `000` → 0, which leaves $6 - 1 = 5$ free choices.
+
+$$Z_{\text{legal}} = 2^{5} = 32$$
+There are 32 legal rules.
+</details>
+
+**⚠️ Traps.** You must not confuse $L$, the number of rows, with $Z$, the number of rules. You must count the centre cell, so the Moore neighbourhood in $d=3$ has 27 cells, not 26.
 
 ---
 
 ## Q15 · "A totalistic rule with a silent state is legal" — prove or disprove 🔒
-**Asked on 2 of 4. 5 points. The answer is a three-step proof.**
+**This question appeared on 2 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2025 T17** — *"Is the following statement true or not? 'A totalistic rule with silent state is legal.'"*
+**❓ 2023 `qn-02` 17** — *"Is a totalistic rule with a silent state always legal? (Proof)"*
 
-- *"Is the following statement true or not? 'A totalistic rule with silent state is legal.'"* — 2025 T17
-- *"Is a totalistic rule with a silent state always legal? (Proof)"* — 2023 `qn-02` 17
-- *"Prove or disprove: **All totalistic rules are legal**, because they are symmetric and have a silent state."* — `sheet-02` A2 ← **different claim, different answer**
+**✅ Answer — the statement is TRUE.**
 
-### THE DEFINITIONS — write these first, the proof is nothing without them
+**Definitions.**
+- A rule has a **silent state** if a neighbourhood of only zeros produces 0.
+- A rule is **symmetric** if every neighbourhood and its mirror image produce the same output.
+- A rule is **legal** if it is symmetric **and** has a silent state.
+- A rule is **totalistic** if its output depends only on the sum of the states in the neighbourhood.
 
-- **Silent state:** the rule has a silent state if the neighbourhood with **all cells set to 0** maps onto **0**.
-- **Symmetric:** a neighbourhood and its **mirror image** yield the same next state.
-- **Legal:** the rule is **symmetric AND has a silent state**. Both, not either.
-- **Totalistic:** the next state depends **only on the sum** of the set cells in the neighbourhood.
+**Proof.**
+1. A legal rule must be symmetric and have a silent state. The silent state is given, so it remains to show that a totalistic rule is symmetric.
+2. The output of a totalistic rule depends only on $\mathrm{SUM} = a_{i-r} + \ldots + a_i + \ldots + a_{i+r}$.
+3. Mirroring the neighbourhood only changes the order of the terms. Addition is commutative, so the sum stays the same, the output stays the same, and the rule is symmetric.
+4. The rule is symmetric and has a silent state, so it is legal. $\blacksquare$
 
-### THE PROOF — exam version: **TRUE**
+---
 
-**Step 1 — what must be shown.**
-> By definition a rule is legal $\iff$ it is symmetric **and** has a silent state. The silent state is given by assumption. So it remains only to show **totalistic $\Rightarrow$ symmetric**.
+**❓ `sheet-02` A2** — *"Prove or disprove: All totalistic rules are legal, because they are symmetric and have a silent state."*
 
-**Step 2 — totalistic $\Rightarrow$ symmetric.**
-> A totalistic rule's output depends only on
-> $$\mathrm{SUM}(t) = a_{i-r}(t) + \ldots + a_i(t) + \ldots + a_{i+r}(t)$$
-> **Addition is commutative**, so any reordering of the neighbourhood cells — in particular **mirroring** — leaves the sum unchanged:
-> $$\mathrm{SUM}(a_{i-r},\ldots,a_{i+r}) = \mathrm{SUM}(a_{i+r},\ldots,a_{i-r})$$
-> Equal sums must give equal outputs, so a neighbourhood and its mirror image yield the same next state. That is exactly the definition of **symmetric**.
+**✅ Answer — the statement is DISPROVED.**
 
-**Step 3 — conclude.**
-> The rule is symmetric (Step 2) and has a silent state (assumption), therefore it is **legal**. $\blacksquare$
-
-### ⚠️ THE SHEET VERSION IS A DIFFERENT CLAIM — answer: **DISPROVED**
-
-*"All totalistic rules are legal"* drops the "with a silent state" condition.
-
-- The **first half is true**: all totalistic rules **are** symmetric, by Step 2 above.
-- The **second half is false**: nothing forces a totalistic rule to map $\mathrm{SUM}=0$ onto state 0.
-
-**Counterexample** ($d=1, r=1, k=2$):
+All totalistic rules are symmetric, because the sum does not depend on the order of the cells. However, not all totalistic rules have a silent state. The following rule for $d=1$, $r=1$, $k=2$ is a counterexample:
 
 ```
    SUM(t)     3   2   1   0
-   a_i(t+1)   0   0   0   I     <- SUM = 0 maps to I
+   a_i(t+1)   0   0   0   1     <- SUM 0 maps to 1
 ```
 
-This rule is totalistic (it is defined purely on the sum) but has **no silent state**, so it is **not legal**. Hence "all totalistic rules are legal" is **disproved**.
-
-> **In the exam: read which claim you were given, and say which one you are answering.** One sentence — *"The statement as given includes the silent state as a hypothesis, so I prove it true; without that hypothesis it would be false, by [counterexample]."* — covers both and is worth the extra mark.
+This rule is totalistic, but it maps `000` to 1, so it has no silent state and is not legal.
 
 ### VARIANTS
 
@@ -2060,172 +2403,140 @@ This rule is totalistic (it is defined purely on the sum) but has **no silent st
 
 <details><summary>Answer</summary>
 
-**No.** Legal = symmetric + silent; totalistic is strictly **stronger** than symmetric. **Counterexample: rule 204**, the identity rule (output = centre cell):
+No, not every legal rule is totalistic. Rule 204, whose output equals the centre cell, is a counterexample:
 ```
  111  110  101  100  011  010  001  000
-  I    I    0    0    I    I    0    0
+  1    1    0    0    1    1    0    0
 ```
-It is symmetric ✔ and has a silent state ✔, so it is **legal** — but it is **not totalistic**, since $\mathrm{SUM}=2$ gives $110\to I$, $101\to 0$, $011\to I$, which are not all equal.
-
-**The implication runs one way only: totalistic $\Rightarrow$ symmetric, but symmetric $\not\Rightarrow$ totalistic.**
+Rule 204 is symmetric and has a silent state, so it is legal. For the sum 2, however, `110` gives 1 while `101` gives 0, so the rule is not totalistic.
 </details>
 
 **V2.** *"Is a peripheral rule with a silent state always legal?"*
 
 <details><summary>Answer</summary>
 
-**No.** Peripheral means the centre cell is ignored; it says nothing about mirror symmetry. **Counterexample** ($d=1,r=1,k=2$): a peripheral rule that maps left-neighbour-only, e.g. output $=$ the **left** neighbour's state. Then $100 \to I$ but its mirror $001 \to 0$, so it is **not symmetric** and therefore **not legal**, even though $000 \to 0$ gives it a silent state.
+No, it is not always legal. The rule "output = left neighbour" is a counterexample. It maps `000` to 0, so it has a silent state, and it ignores the centre cell, so it is peripheral. However, `100` gives 1 while its mirror `001` gives 0, so the rule is not symmetric and therefore not legal.
 </details>
 
-**V3.** *"Is Conway's Game of Life rule legal? Justify."*
+**V3.** *"Is Conway's Game of Life rule legal?"*
 
 <details><summary>Answer</summary>
 
-**Yes.**
-- **Silent state ✔** — an all-dead neighbourhood with a dead centre maps to dead, so an empty grid stays empty.
-- **Symmetric ✔** — the rule depends only on *how many* neighbours are alive, never on *which* ones, so any mirroring or rotation gives the same result.
-- Legal = symmetric + silent ⇒ **legal**. (The lecture states this outright.)
+Yes, the Game of Life rule is legal.
+- It has a silent state, because a dead cell with only dead neighbours stays dead.
+- It is symmetric, because only the number of live neighbours matters, not their positions.
 
-But note: **not peripheral** (the centre's own state matters at exactly 2 neighbours) and **not totalistic** — it is **outer-totalistic**.
+It is not totalistic, because the state of the centre cell matters: a live cell with 2 live neighbours survives, but a dead cell with 2 live neighbours stays dead. The rule is called outer-totalistic.
 </details>
 
-### ⚠️ TRAPS
-
-- **Asserting the answer without unfolding the definitions.** "Proof" means Steps 1–3.
-- **Missing that the sheet's claim differs.** Underline whether "with a silent state" is present.
-- **Forgetting commutativity is the actual reason.** That one word is the proof.
+**⚠️ Traps.** You must write the definitions before the proof. You must check whether the claim includes "with a silent state", because the answer changes without it.
 
 ---
 
 ## Q16 · Wolfram's classes — III vs IV 🔒
-**Asked on 2 of 4. 5 points. Always as a compare-and-contrast.**
+**This question appeared on 2 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2025 T15** — *"Explain what Wolfram's class 3 and class 4 are, how they differ and what they have in common."*
+**❓ 2023 `qn-02` 12** — *"Explain the difference and similarities between Type 3 and 4 classes of CA."*
 
-- *"Explain what Wolfram's class 3 and class 4 are, how they differ and what they have in common."* — 2025 T15
-- *"Explain the difference and similarities between Type 3 and 4 classes of CA."* — 2023 `qn-02` 12
-- *"Name the 4 behaviours of CAs (Wolfram's classification) and describe their characteristics in your own words (max two sentences each)."* — `sheet-02` A6
+**✅ Answer**
 
-### HOW THE CLASSIFICATION IS MADE — one free mark, say it first
+**Class III (chaotic)** CAs show deterministic chaos. Their patterns look random, they never become periodic, and they contain no stable structures.
 
-> To determine the class, the CA is **initialised with a random pattern and iterated for a long time**; this is **repeated for several random initialisations**, and the typical resulting dynamics is then classified. The classes are to some extent **aligned with observations from nonlinear dynamical systems theory**.
-
-### THE FOUR CLASSES
-
-| Class | Name | Characteristic |
-|---|---|---|
-| **I** | **Homogeneous** | The CA reaches a **homogeneous state for all cells**, mostly the silent state. Everything dies out. |
-| **II** | **Periodic** | **Periodic, oscillatory patterns**, including stable (fixed) patterns. |
-| **III** | **Chaotic** | **Deterministic chaos** — no periodicity is observable. |
-| **IV** | **Complex, Patterns, "Self Organisation"** | **Interesting structures evolve, persist, seem to interact, and generate new structures.** |
+**Class IV (complex)** CAs produce local structures that form, persist, move, interact with each other and create new structures.
 
 ```
- CLASS I - Homogeneous            CLASS II - Periodic
- ####...##.#..##.#.               #..#..#..#..#..#.
- ..#.....#.....#..                #..#..#..#..#..#.
- .................                #..#..#..#..#..#.
- .................                #..#..#..#..#..#.
- dies to a uniform state          stable / oscillating local patterns
-
-
  CLASS III - Chaotic              CLASS IV - Complex
  #.##..#.#.###..#.                ....#.......##...
  ##.#.###..#..###                 ...#.#......##...
  #..####.#.##.#.#                 ....##.....##....
  .##.#..###.#..##                 .......#..##.....
  ###..##.#..###.#                 ......#.#..#.....
- random-looking for ever          localised structures persist,
- no periodicity, no structure     move, collide, create new ones
+ random-looking forever           structures persist and move
 ```
 
-### THE ANSWER — similarities first, then differences
+**What they have in common.**
+- Both classes arise from simple, local, deterministic rules.
+- Neither class becomes periodic, unlike classes I and II.
+- Neither class can be predicted, so the CA must be run to know its state at time $t$.
+- Both classes are sensitive to the initial state.
 
-**Half the marks are in the "in common" half, which candidates skip. Do both.**
+**How they differ.**
 
-**What they have in common:**
-- Both arise from **simple, local, deterministic rules** with no central control.
-- Both are **aperiodic** — neither settles into a repeating global cycle, so neither is class I or II.
-- Both look **irregular and complicated**, and neither can be predicted analytically: **the only way to know the state at time $t$ is to run the automaton**.
-- Both are **sensitive to the initial configuration**.
-
-**How they differ:**
-
-| | **Class III — Chaotic** | **Class IV — Complex** |
+| | Class III | Class IV |
 |---|---|---|
-| **Structures** | No persistent localised structures; uniformly random-looking everywhere. | **Localised structures form and persist** (e.g. gliders). |
-| **Interaction** | Nothing to interact — disturbances just spread. | Structures **move, collide, interact, generate new structures**. |
-| **Information** | Local information is **destroyed**, diffusing into noise. | Local information is **transported and processed** — a glider carries a bit. |
-| **Position** | Fully disordered. | **Between order and chaos** — the "edge of chaos", between class II and III. |
-| **Computation** | None. | Supports **universal computation** (Rule 110, Game of Life). |
-| **Example** | Rule 30; the logistic map at $a=4$. | **Rule 110**; **Conway's Game of Life**; the **glider**. |
+| Structures | No lasting structures form, and the pattern stays noise-like. | Persistent local structures such as gliders form. |
+| Interaction | Nothing interacts. | Structures collide and create new structures. |
+| Information | Local information is destroyed. | Information is carried by moving structures, for example one glider carries one bit. |
+| Computation | The CA cannot compute. | The CA can perform universal computation. |
+| Example | Rule 30 is class III. | Rule 110 and the Game of Life are class IV. |
 
-> **The one-sentence discriminator:** both are aperiodic and unpredictable, but class III destroys local structure into uniform noise, whereas class IV supports **persistent, moving, interacting structures** — which is what makes class IV capable of computation.
+---
+
+**❓ `sheet-02` A6** — *"Name the 4 behaviours of CAs (Wolfram's classification) and describe their characteristics in your own words (max two sentences each)."*
+
+**✅ Answer**
+
+To classify a CA, it is started from random patterns, run for a long time, and the typical outcome over several runs is classified.
+
+| Class | Name | Behaviour |
+|---|---|---|
+| I | Homogeneous | All cells reach the same state, usually the silent state. |
+| II | Periodic | The CA settles into stable or oscillating local patterns. |
+| III | Chaotic | The CA shows deterministic chaos and never becomes periodic. |
+| IV | Complex | Structures form, persist, interact and generate new structures. |
+
+### IMPORTANT THEORY
+
+- The Wolfram classes are aligned with observations from nonlinear dynamical systems theory: class I corresponds to a fixpoint, class II to a limit cycle, and class III to a strange (chaotic) attractor.
+- Class IV lies between order and chaos, between classes II and III, which is often called the "edge of chaos".
+- Class IV rules such as rule 110 and the Game of Life can perform universal computation, because their moving structures can transport and process information.
 
 ### VARIANTS
 
 **V1.** *"Which class does the blinker belong to? And the glider?"*
 
 <details><summary>Answer</summary>
-The **blinker** is *"the archetype of a periodic **class II** behaviour"* — it oscillates with period 2. The **glider** is *"the prototypic **class IV** pattern"* — a persistent localised structure that travels and can interact. (Both phrases are the lecture's own.)
+
+The blinker belongs to class II, because it oscillates with period 2. The glider belongs to class IV, because it is a persistent structure that moves.
 </details>
 
-**V2.** *"Which Wolfram class does the r-pentomino show? Support with arguments."* (`sheet-03` A4)
+**V2.** *"Which Wolfram class does the r-pentomino show?"* (`sheet-03` A4)
 
 <details><summary>Answer</summary>
 
-**Class IV.**
-- It runs for over a thousand generations of apparently chaotic activity, so it is **not class I** (it does not die out) and **not class II** (it does not settle quickly).
-- It is **not class III** either, because it does **not** stay aperiodic for ever: it eventually settles into still lifes and oscillators **while emitting gliders**.
-- Those gliders are the decisive evidence: **persistent, localised, propagating structures** are the defining feature of class IV and are absent from class III.
-
-**Honest caveat worth including:** during its long transient it *looks* class III, so "class III during the transient, class IV overall" is a defensible answer — say which you mean and why. The marks are for the argument.
+The r-pentomino shows class IV behaviour. It does not die out, so it is not class I. It does not settle quickly, so it is not class II. It eventually settles into still lifes and oscillators while sending out gliders, and these persistent moving structures make it class IV rather than class III.
 </details>
 
-**V3.** *"Give the four classes with one CA example each."*
+**V3.** *"Give one example for each class."*
 
 <details><summary>Answer</summary>
 
-- **I — Homogeneous:** rule 0 (everything → 0); rule 255.
-- **II — Periodic:** rule 4, rule 204 (identity, freezes the pattern); the blinker in Game of Life.
-- **III — Chaotic:** rule 30; rule 90 from a random start.
-- **IV — Complex:** **rule 110**; Conway's Game of Life.
+Rule 0 is class I, rule 204 and the blinker are class II, rule 30 is class III, and rule 110 and the Game of Life are class IV.
 </details>
 
-### ⚠️ TRAPS
-
-- **Only listing differences.** Both wordings explicitly ask what they have **in common**.
-- **Saying class IV is "more random" than class III.** It is the opposite — class IV is *more structured*, sitting between order and chaos.
+**⚠️ Traps.** You must also say what the two classes have in common, because both wordings ask for it. You must not call class IV "more random": class IV is more structured than class III.
 
 ---
 
 ## Q17 · Self-Organized Criticality — the scaling law 🔒+⚙️
-**Asked on 2 of 4. 5 points. Once as the formula, once as the diagram.**
+**This question appeared on 2 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2017 Q13** — *write and explain the SOC scaling law*
 
-- *"[Write and explain the SOC scaling law]"* — 2017 Q13
-- *"Draw a diagram visualizing the **Gutenberg-Richter-Law** and define the variables you used."* — 2025 T5
+**✅ Answer**
 
-### THE MOTIVATION — one sentence that frames everything
+A function $f$ obeys a **scaling law** (it is scale invariant) if
+$$f(\lambda x) = C(\lambda)\,f(x)$$
+where $\lambda$ is the factor by which the argument is scaled and $C(\lambda)$ does **not** depend on $x$.
 
-> **How large is a typical earthquake?** There are **a lot of small** earthquakes, **some** with medium strength, **a few large**, and **rare extreme** ones. There is no "typical" size — and that is what a scaling law expresses.
+The sizes of events in a self-organized critical system follow a **power law**:
+$$N(s) \sim \frac{1}{s^{\,b}} \quad\Longrightarrow\quad \log N(s) = \text{const} - b\,\log s$$
+- $s$ is the size of an event.
+- $N(s)$ is the number of events of size $s$.
+- $b$ is the exponent, which is the slope in the log–log plot.
 
-### ① THE SCALING LAW — the definition
-
-> A function $f(x)$ obeys a **scaling law**, or is **scaling invariant**, if scaling the argument $x \to \lambda x$ gives
-> $$f(\lambda x) = C(\lambda)\,f(x)$$
-> where the scaling factor $C(\lambda)$ **does not depend on $x$**. In principle $C(\lambda)$ can be any function, but it is often simply $\lambda^{n}$ for an integer $n$.
-
-### ② THE POWER LAW — the size distribution
-
-> **How does the number of events $N(s)$ depend on the size $s$ of the event?**
-> $$N(s) \sim \frac{1}{s^{\,b}} \qquad\Longrightarrow\qquad \log N(s) \sim -\,b \log s$$
->
-> **Define every symbol:** $s$ = size / strength of an event; $N(s)$ = number (frequency) of events of that size; $b$ = the characteristic exponent.
->
-> This is a **linearly decreasing dependency of the number of events on the strength, both in logarithmic scale** — so in a **log–log plot the graph is a straight, decreasing line**.
-
-**Draw it — this is the diagram the exam wants:**
+In a log–log plot the power law is a straight, falling line. There are many small events and few large ones, and there is no typical event size.
 
 ```
    log N(s)
@@ -2237,19 +2548,23 @@ The **blinker** is *"the archetype of a periodic **class II** behaviour"* — it
       |          *
       |            *
       |              *
-      |                *
       +-------------------------> log s
-
-   Straight, DECREASING line in a log-log plot.
-   Many small events, few large ones, no characteristic size.
 ```
 
-### ③ GUTENBERG-RICHTER (1949, 1954) — the instantiated version, 2025 T5
+Self-organized criticality means that the system drives itself into this critical state without any parameter being tuned from outside. Examples are the sandpile, the forest fire model and earthquakes.
 
-> The Gutenberg-Richter law gives a statistical dependency between the number $N$ of earthquakes **with at least magnitude $M$**, and the magnitude $M$ (strength on a logarithmic scale):
-> $$\log_{10} N = a - b\,M \qquad\Longleftrightarrow\qquad N = 10^{\,a - bM}$$
->
-> **Symbols:** $N$ = number of earthquakes of at least magnitude $M$; $M$ = magnitude; $a$ = a constant setting the overall level (total seismicity of the region); $b$ = a constant **typically close to $b = 1.0$**, with $0.5 < b < 1.5$ reasonable in special environments.
+---
+
+**❓ 2025 T5** — *"Draw a diagram visualizing the Gutenberg-Richter-Law and define the variables you used."*
+
+**✅ Answer**
+
+The Gutenberg-Richter law is
+$$\log_{10} N = a - b\,M \qquad\Longleftrightarrow\qquad N = 10^{\,a - bM}$$
+- $N$ is the number of earthquakes with a magnitude of **at least** $M$.
+- $M$ is the magnitude of an earthquake.
+- $a$ is a constant that describes the overall earthquake activity of the region.
+- $b$ is the slope of the line, and it is approximately **1**.
 
 ```
    log10 N
@@ -2257,55 +2572,25 @@ The **blinker** is *"the archetype of a periodic **class II** behaviour"* — it
     5 |  *
       |     *
     4 |        *
-      |           *          slope = -b  (b ~ 1.0)
+      |           *          slope = -b  (b ~ 1)
     3 |              *
       |                 *
     2 |                    *
       |                       *
     1 |                          *
-      +---+---+---+---+---+---+---+---> M  (magnitude)
+      +---+---+---+---+---+---+---+---> M
           2   3   4   5   6   7   8
-
-   b ~ 1  =>  each unit of magnitude means
-              TEN TIMES fewer earthquakes
 ```
 
-> **Say the interpretation:** with $b \approx 1$, going up one unit of magnitude makes earthquakes about **ten times rarer**.
+Because $b \approx 1$, each increase of the magnitude by 1 means that earthquakes become 10 times rarer.
 
-### ④ THE OTHER POWER LAWS ON THE SLIDES — one line each
+### IMPORTANT THEORY
 
-| Law | Formula | What it relates |
-|---|---|---|
-| **Size distribution** | $N(s) \sim 1/s^{\,b}$ | number of events vs event size |
-| **Temporal / inter-event-interval** | $N(t) \sim 1/t^{\,g}$ | number of events vs time between events |
-| **Power spectrum** | $P(f) \sim 1/f^{\,a}$ | signal power vs frequency ("$1/f$ noise") |
-| **Gutenberg-Richter** (1949/54) | $\log_{10} N = a - bM$, $b\approx1$ | earthquakes |
-| **Zipf's Law** (1935) | $f(r) \sim 1/r^{\,\gamma}$, $\gamma \approx 1$ | word frequency vs its **rank** — the most frequent word occurs about twice as often as the second, three times as often as the third |
-| **Zipf-Mandelbrot** | $f(r) \sim 1/(r+b)^{\gamma}$ | Zipf with an offset; $b=0$ gives Zipf exactly |
-| **Lotka's Law** (1926) | $Y(x) = C/x^{\alpha}$, $\alpha \approx 2$ | number of authors vs number of publications |
-
-**The named SOC example systems:** forest-fire model (Chen/Bak/Jensen 1990; Drossel/Schwabl 1992), **sandpile model (Bak, Tang, Wiesenfeld 1987)**, land slides (Fuji 1969), percolation theory (Broadbent & Hammersley 1957), earthquakes (Gutenberg & Richter), Zipf, Lotka, Auerbach (1913).
-
-### ⑤ THE BTW SANDPILE — the algorithm, in case it is asked
-
-> Each cell $z(x,y)$ holds the number of grains (or the local slope). Critical value **$C = 4$**, so stable cells have $z \in \{0,1,2,3\}$. Neighbourhood $r=1$, **von Neumann**.
-
-```
- 0: Initialize all positions (random or a special pattern)
- 1: Choose a position (x,y) randomly
- 2: Add a grain:  z(x,y) -> z(x,y) + 1
- 3: If ALL z(x,y) < 4  GOTO step 1
- 4: Take an unstable position and redistribute:
-        z(x,y)   -> z(x,y) - 4
-        z(x-1,y) -> z(x-1,y) + 1
-        z(x+1,y) -> z(x+1,y) + 1
-        z(x,y-1) -> z(x,y-1) + 1
-        z(x,y+1) -> z(x,y+1) + 1
-    Grains at the edge FALL OFF the playground and are lost.
- 5: GOTO step 3   (repeat 4 until everything is stable)
-```
-
-> The redistribution can make neighbours unstable in turn, causing further topplings — **an avalanche**. The **sizes of these avalanches follow the power law**, and the system reaches this critical state **by itself**, with no parameter tuned — which is precisely what "**self-organized** criticality" means.
+- The lecture motivates scaling laws with earthquakes: there are many small earthquakes, some of medium strength, a few large ones and rare extreme ones, so there is no typical size.
+- In the Gutenberg-Richter law $b$ is typically close to 1.0, and values of $0.5 < b < 1.5$ occur in special environments.
+- The **Zipf-Mandelbrot law** $f(r) \sim 1/(r+b)^{\gamma}$ extends Zipf's law with an offset $b$, and $b = 0$ gives Zipf's law.
+- The named SOC example systems are the forest-fire model (Chen, Bak and Jensen 1990; Drossel and Schwabl 1992), the sandpile model (Bak, Tang and Wiesenfeld 1987), landslides (Fuji 1969), percolation theory (Broadbent and Hammersley 1957), earthquakes (Gutenberg and Richter 1949/1954), Zipf's law (1935), Lotka's law (1926) and Auerbach (1913).
+- In contrast to SOC, a classical phase transition needs an experimenter to tune a parameter, such as the temperature, to its critical value.
 
 ### VARIANTS
 
@@ -2313,225 +2598,185 @@ The **blinker** is *"the archetype of a periodic **class II** behaviour"* — it
 
 <details><summary>Answer</summary>
 
-Because the system **evolves naturally into the critical state through a self-organizational process**, with **no external parameter tuned to a critical value**. In the sandpile you only ever drop grains at random; the slope arranges itself at the critical angle. Contrast with a classical phase transition, where an experimenter must tune the temperature to $T_c$.
+It is called self-organized because the system reaches the critical state by itself, without any parameter being tuned from outside. For example, dropping sand grains at random places builds up the critical slope of a sandpile on its own.
 </details>
 
-**V2.** *"Draw a diagram visualizing Zipf's Law and define your variables."*
+**V2.** *"Draw Zipf's law and define the variables."*
 
 <details><summary>Answer</summary>
 
-Same shape as Gutenberg-Richter — a falling straight line in log–log:
-```
-   log f(r)
-      ^
-      |  *
-      |     *
-      |        *      slope = -gamma  (gamma ~ 1)
-      |           *
-      |              *
-      +------------------> log r
-```
-**Symbols:** $r$ = the rank of a word in the frequency-sorted list; $f(r)$ = the frequency of that word; $\gamma$ = the characteristic exponent, very often $\approx 1$; $N$ = the number of words (size of the corpus).
-
-**Statement:** the frequency of any word is **inversely proportional to its rank** — the most frequent word occurs about twice as often as the second, three times as often as the third, and so on.
+Zipf's law is
+$$f(r) \sim \frac{1}{r^{\,\gamma}}, \quad \gamma \approx 1$$
+where $r$ is the rank of a word sorted by frequency, $f(r)$ is the frequency of that word, and $\gamma$ is the exponent. In a log–log plot of $\log f$ against $\log r$ the law is a straight falling line with slope $-\gamma$. The most frequent word occurs twice as often as the second and three times as often as the third.
 </details>
 
 **V3.** *"Prove that $f(x) = a\,x^{-\alpha}$ is scale invariant."*
 
 <details><summary>Answer</summary>
 
-Substitute $x \to \lambda x$:
-$$f(\lambda x) = a(\lambda x)^{-\alpha} = a\,\lambda^{-\alpha} x^{-\alpha} = \lambda^{-\alpha}\bigl(a\,x^{-\alpha}\bigr) = \lambda^{-\alpha} f(x)$$
-So $f(\lambda x) = C(\lambda) f(x)$ with $C(\lambda) = \lambda^{-\alpha}$, which **does not depend on $x$**. Hence $f$ obeys a scaling law. $\blacksquare$
-
-**Interpretation:** rescaling the event size only rescales the count by a constant factor — the distribution **looks the same at every scale**, so there is **no characteristic event size**.
+$$f(\lambda x) = a(\lambda x)^{-\alpha} = a\,\lambda^{-\alpha}x^{-\alpha} = \lambda^{-\alpha}\,(a\,x^{-\alpha}) = \lambda^{-\alpha} f(x)$$
+The factor $C(\lambda) = \lambda^{-\alpha}$ does not depend on $x$, so $f$ is scale invariant. $\blacksquare$
 </details>
 
-**V4.** *"Explain the forest-fire model and its control parameters."*
+**V4.** *"Explain the BTW sandpile."*
 
 <details><summary>Answer</summary>
 
-A **non-deterministic CA**: $d=2$, rectangular grid, $r=1$, **von Neumann**, $k=3$ with states **A** (empty/ashes), **T** (tree), **F** (burning tree/fire).
+The sandpile is a 2-dimensional grid with a von Neumann neighbourhood, where $z(x,y)$ is the number of grains on a cell and the critical value is 4.
+1. A grain is added to a random cell, so $z \to z + 1$.
+2. If a cell has $z \ge 4$, it loses 4 grains and each of its 4 neighbours gains 1 grain. Grains that fall over the edge are lost.
+3. Step 2 is repeated until all cells have fewer than 4 grains, and this chain of topplings is an avalanche. Then the process returns to step 1.
 
-**Transitions:** fire turns into ashes; **spontaneous growth** at rate $p$; **spontaneous fire** at rate $f$; **induced fire** — a tree burns if at least one neighbour burns; **induced growth** — a tree grows if at least one neighbour is a tree, at rate $q$.
-
-**Control parameters: $p$, $f$, $q$.** $q = 0$ (no induced growth) is a good setting to start from, and **interesting (fractal) behaviour arises when $f \ll p$**, e.g. $p/f = 100$.
+The sizes of the avalanches follow a power law.
 </details>
 
-### ⚠️ TRAPS
+**V5.** *"Explain the forest-fire model."*
 
-- **Drawing linear axes.** The whole point is that it is a straight line **in log–log**. Label the axes $\log N$ and $\log s$.
-- **Not defining the variables.** 2025 T5 says "define the variables you used" — that is half the marks.
-- **Forgetting $b \approx 1$.** The examiner wants exact values.
+<details><summary>Answer</summary>
+
+The forest-fire model is a stochastic CA with $d=2$, a von Neumann neighbourhood and $k=3$ states: empty, tree and fire.
+- A burning cell becomes empty.
+- An empty cell grows a tree with probability $p$.
+- A tree catches fire with probability $f$, which models lightning.
+- A tree catches fire if one of its neighbours burns.
+
+The parameters are $p$, $f$ and $q$, where $q$ is the rate of induced growth. The fire sizes follow a power law when $f \ll p$.
+</details>
+
+**V6.** *"Name other power laws."*
+
+<details><summary>Answer</summary>
+
+| Law | Formula |
+|---|---|
+| Time between events | $N(t) \sim 1/t^{\,g}$ |
+| $1/f$ noise | $P(f) \sim 1/f^{\,a}$ |
+| Zipf's law | $f(r) \sim 1/r^{\gamma}$ with $\gamma \approx 1$ |
+| Lotka's law (authors vs publications) | $Y(x) = C/x^{\alpha}$ with $\alpha \approx 2$ |
+</details>
+
+**⚠️ Traps.** You must use log–log axes, not linear axes. You must define every variable. You must give the value $b \approx 1$.
 
 ---
 ---
 
 # ASKED ON ONE OF THE FOUR PAPERS
 
-**Do not skip these.** Each paper takes ~17 of the ~21 pool questions, and which ones get dropped rotates. All four below are current lecture material.
-
 ---
 
 ## Q18 · The Ant Algorithm — the 4 phases 🔒
-**⚠️ THIS QUESTION WAS MISSING FROM MY EARLIER POOL TABLE. It is on `qn-03` (2023) as a 5-pointer.**
+**This question appeared on 1 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2023 `qn-03`** — *"Describe the 4 phases of the Ant Algorithm."*
 
-- *"Ant Algorithm [5 Points] — **Describe the 4 phases of the Ant Algorithm.**"* — 2023 `qn-03`
+**✅ Answer**
 
-### THE FRAME — one sentence
-
-> The **Ant Algorithm** is a **method for discrete optimization**, inspired by observations of real ant colonies — in particular their **foraging behaviour** and how ants find **shortest paths between a food source and the nest**. First published by **M. Dorigo** and colleagues in **1991/1992**.
-
-**Essential ingredients of an Ant System (AS):** multiple **cooperating agents**, simply structured; each has a **sensory system**, a method to **deposit pheromones (stigmergy)**, and a **simple mechanism to decide where to go**. **The pheromones evaporate after a while.**
-
-### THE FOUR PHASES — the answer
+1. **Random search.** The ants leave the nest in random directions and deposit pheromone along their paths.
+2. **Food found.** By chance, one ant reaches the food source.
+3. **Return and reinforcement.** This ant returns to the nest along its own trail and deposits more pheromone. Its trail is walked twice, so it has the highest pheromone concentration.
+4. **Positive feedback and evaporation.** The other ants choose a path with a probability that depends on the pheromone concentration, so more ants take the strongest trail and add even more pheromone. The pheromone on the other trails evaporates, so the shortest path wins.
 
 ```
-  PHASE 1: RANDOM SEARCH        PHASE 2: FOOD FOUND
-
+  1: RANDOM SEARCH              2: FOOD FOUND
       N                              N
      /|\                            /|\
-    / | \  ants leave in           / | \
-   /  |  \ arbitrary directions,  /  |  \
-  .   .   . dropping pheromone   .   .   *---[F]
-                                          one ant reaches
-                                          the food by chance
+    / | \                          / | \
+   /  |  \                        /  |  \
+  .   .   .                      .   .   *---[F]
 
-  PHASE 3: RETURN & REINFORCE   PHASE 4: POSITIVE FEEDBACK
-
+  3: RETURN & REINFORCE         4: POSITIVE FEEDBACK
       N                              N
-      |                              |
-      | winner returns along         ||  more ants take it,
-      | its OWN trail, dropping      ||  each adding pheromone;
-      | more pheromone -> that       ||  the other trails
-      * trail is used TWICE          ||  EVAPORATE away
       |                              ||
+      | same trail back,             ||  more ants, more pheromone;
+      | more pheromone               ||  other trails evaporate
+      *                              ||
      [F]                            [F]
 ```
 
-**① Random search and pheromone deposition.**
-> Ants leave the nest $N$ **heading into arbitrary directions**, searching for food. During their journey they **deposit pheromones along their pathway**. Ants without a prior pheromone trail are simply performing **random movements** — slow and inefficient, but it can be shown that there is a chance of even finding the **optimal** path.
+### IMPORTANT THEORY
 
-**② Discovery of the food source.**
-> **By chance, one of the ants reaches the source of food** while the others are still searching. It picks up some food.
-
-**③ Return and reinforcement.**
-> The successful ant **travels back to the nest following its own pheromone trail**, so it takes (almost) the same route back, **dropping more pheromone on the way**. Because this trail is **traversed twice — forth and back — it now carries a higher pheromone concentration** than the trails of the still-searching ants.
-
-**④ Positive feedback (autocatalysis) and evaporation.**
-> Other ants **sense the pheromone and base their movement on its concentration**: *the higher the concentration, the more likely an ant will take that path*, otherwise it follows an almost random route. So the most successful path gets a **higher probability of being chosen, more ants take it, and they further increase the concentration — positive feedback, an autocatalytic mechanism.** Meanwhile **the other pheromone trails decay** through evaporation.
-
-### WHY EVAPORATION MATTERS — three reasons, straight from the slide
-
-> The process of time-dependent evaporation is tricky:
-> - it **enforces faster, and thereby shorter routes**;
-> - it **can react to dynamic changes of the environment** — an exhausted food source, a changed path length;
-> - it acts as a **virtual reset of unused trails**.
-
-### EXPLORATION vs EXPLOITATION — the standard follow-up
-
-> - Ants **performing random movements: exploration.**
-> - Ants **following a trail, using knowledge acquired before: exploitation.** The more successful a path has been, the more likely it is taken — those trails are **local minima** of the underlying optimization problem.
-
-### THE DISCRETE VERSION — for the "how is it an optimization method?" follow-up
-
-> Transposing the ant algorithm to a discrete world is straightforward: the ants **travel along a graph**, where the nest and the food are two special nodes and the other nodes are connected by edges representing allowed routes. In each discrete time step an ant travels **one edge**; **pheromones are deposited on the edges reciprocal to the length of the edge**; **evaporation is implemented as an exponential decay**; and the **pheromone-dependent decision is implemented using a softmax / Boltzmann distribution**.
-
-**Variants named on the slides:** Ant System (AS), Ant Colony System (ACS), Ant Colony Optimization (ACO), AntNet.
+- The Ant Algorithm is a method for discrete optimization inspired by the foraging behaviour of real ant colonies, which find the shortest path between the nest and a food source. It was first published by M. Dorigo and colleagues in 1991/1992.
+- An Ant System consists of many simple, cooperating agents. Each agent has a sensory system, a way to deposit pheromones (stigmergy) and a simple mechanism to decide where to go, and the pheromones evaporate over time.
+- Ants that move randomly perform **exploration**. Ants that follow a trail use knowledge gained before and perform **exploitation**, and the more successful a path has been, the more likely it is taken.
+- Random movement alone is slow, but it can be shown that it has a chance of finding even the optimal path.
+- The named variants are the Ant System (AS), the Ant Colony System (ACS), Ant Colony Optimization (ACO) and AntNet.
 
 ### VARIANTS
 
-**V1.** *"What is stigmergy?"*
+**V1.** *"Why is pheromone evaporation needed?"*
 
 <details><summary>Answer</summary>
 
-**Stigmergy** is indirect coordination through the **environment**: an agent modifies the environment (here, by depositing pheromone), and other agents respond to that modification rather than communicating directly. It is what lets simple agents cooperate **with no central control, no direct messages and no global map** — the pheromone field *is* the shared memory.
+1. Evaporation favours faster and therefore shorter routes.
+2. Evaporation lets the colony adapt when the environment changes, for example when a food source is used up.
+3. Evaporation resets trails that are no longer used.
 </details>
 
-**V2.** *"Pheromone evaporates exponentially. If the concentration must fall to 10 % after 42 steps, what is the decay factor?"* (`sheet-06`)
+**V2.** *"What is stigmergy?"*
 
 <details><summary>Answer</summary>
 
-Exponential decay: $\tau(t) = \tau_0\,\rho^{\,t}$, where $\tau_0$ is the initial concentration and $\rho$ the per-step decay factor. Require $\rho^{42} = 0.1$:
-$$\rho = 0.1^{1/42} = 10^{-1/42} \approx \mathbf{0.9462}$$
-So about **5.4 % of the pheromone evaporates per step**.
+Stigmergy is indirect communication through the environment. An ant changes the environment by depositing pheromone, and the other ants react to that change.
 </details>
 
-**V3.** *"Where do exploration and exploitation appear in the EA, the ant algorithm, and PSO?"* (asked directly on 2017 Q3 and in orals)
+**V3.** *"Pheromone decays exponentially to 10 % after 42 steps. What is the decay factor?"* (`sheet-06`)
 
 <details><summary>Answer</summary>
 
-| | **Exploration** | **Exploitation** |
+$$\begin{aligned}
+\tau(t) &= \tau_0\,\rho^{\,t} \\
+\rho^{42} &= 0.1 \\
+\rho &= 0.1^{1/42} = 10^{-1/42} \approx 0.9467
+\end{aligned}$$
+The decay factor is 0.9467, so about 5.3 % of the pheromone evaporates per step.
+</details>
+
+**V4.** *"How is the ant algorithm made discrete?"*
+
+<details><summary>Answer</summary>
+
+The ants move on a graph in which the nest and the food are nodes, and each ant travels one edge per time step. The pheromone deposited on an edge is proportional to 1 divided by the edge length. Evaporation is modelled as exponential decay, and the choice of the next edge uses a softmax (Boltzmann) distribution over the pheromone values.
+</details>
+
+**V5.** *"Where do exploration and exploitation appear in the EA, the ant algorithm and PSO?"*
+
+<details><summary>Answer</summary>
+
+| | Exploration | Exploitation |
 |---|---|---|
-| **EA** | random initialization; **mutation** | selection, elitism, recombination of good parents |
-| **Ant algorithm** | random movement of ants with no trail; pheromone **evaporation** | following high-concentration trails; pheromone reinforcement |
-| **PSO** | the random factor $R$; inertia $w V_j$ keeping the old direction | the pull toward **personal best** and **global best** |
+| EA | Random initialization and mutation explore. | Selection, elitism and recombination exploit. |
+| Ant algorithm | Random movement and evaporation explore. | Following strong trails and reinforcing them exploit. |
+| PSO | The random factor $R$ and the inertia $wV_j$ explore. | The pull toward the personal best and the global best exploits. |
 </details>
 
-### ⚠️ TRAPS
-
-- **Giving the four phases as a story with no structure.** Number them 1–4 — the question says "the 4 phases".
-- **Omitting evaporation.** It is what makes the algorithm find the *shortest* path rather than just *a* path.
+**⚠️ Traps.** You must number the four phases. You must mention evaporation.
 
 ---
 
 ## Q19 · Particle Swarm Optimization 🔒+⚙️
-**Asked on 1 of 4 (2017 Q10) — and it is the NEWEST material in the course (`lect-12`), which makes it more likely to return, not less.**
+**This question appeared on 1 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2017 Q10** — *write and explain the PSO position update formula*
 
-- *"[Write and explain the PSO **position** update formula]"* — 2017 Q10
+**✅ Answer**
 
-### THE FRAME
-
-> **Particle Swarm Optimization** is an Artificial-Life-inspired, **multi-hypothesis, meta-heuristic method for optimization**. Based on **C. Reynolds' Boids**, it was developed by **J. Kennedy, R. Eberhart and Y. Shi**, who added an **objective (a position) that the simulated individuals should reach**. The results were so successful that PSO became a well accepted optimization method. It is related to Evolutionary Algorithms, Particle Filters and Boids.
-
-**Each particle $j$ has:** a **position $X_j$** in the search space $S$; a **velocity $V_j$** (its change in position); and a **memory** storing the best result it has found so far — its **personal best** $X_{j,pb}$ with $f(X_{j,pb})$ — and optionally the best of the group it belongs to, $X_{j,grb}$.
-
-### ⚠️ THE VELOCITY UPDATE HAS **FOUR** TERMS IN THIS LECTURE
-
+The velocity of particle $j$ is updated first, and then its position is updated with the new velocity.
 $$V_j \;\leftarrow\; w\,V_j \;+\; a\,R\,(X_{j,pb} - X_j) \;+\; b\,R\,(X_{gb} - X_j) \;+\; g\,R\,(X_{j,grb} - X_j)$$
-
-$$\boxed{\,X_j \;\leftarrow\; X_j + V_j\,} \qquad \text{$\leftarrow$ this is the POSITION update 2017 Q10 asked for}$$
-
-**Name every term — the slide does, and so must you:**
+$$X_j \;\leftarrow\; X_j + V_j$$
 
 | Term | Meaning |
 |---|---|
-| $w\,V_j$ | **keep the old direction** (inertia / momentum) |
-| $a\,R\,(X_{j,pb} - X_j)$ | **steer towards the personal best** |
-| $b\,R\,(X_{gb} - X_j)$ | **steer towards the global best** |
-| $g\,R\,(X_{j,grb} - X_j)$ | **steer towards the group best** |
+| $w\,V_j$ | The particle keeps part of its old direction (inertia). |
+| $a\,R\,(X_{j,pb} - X_j)$ | The particle moves toward its own personal best position. |
+| $b\,R\,(X_{gb} - X_j)$ | The particle moves toward the best position of the whole swarm. |
+| $g\,R\,(X_{j,grb} - X_j)$ | The particle moves toward the best position of its group. |
 
-**Define every symbol:**
-- $X_j$ = position of particle $j$; $V_j$ = its velocity.
-- $X_{j,pb}$ = personal best position of particle $j$; $X_{gb}$ = best position in the whole swarm; $X_{j,grb}$ = best position in $j$'s group.
-- $w, a, b, g$ = control parameters, with $0.0 \le w \le 1.0$ and $0.0 \le a, b, g \le 4.0$.
-- **$R$ = a random value in $[0 \ldots 1]$ — this is the exploration component**, so that particles do not follow identical trajectories.
-
-**Typical values from the slide:** $P = 20 \ldots 40$ particles, $w = 1.0$, $a = 2.0$, $b = 2.0$, $g = 1.0$.
-
-**The two common simplifications — worth a sentence:**
-- **Usually no special group is defined**, and only personal best and global best are used: $g = 0.0$.
-- **Sometimes the group is the spatial neighbourhood** and the global best is omitted: $b = 0.0$.
-
-### THE MAIN LOOP
+- $X_j$ is the position of particle $j$, and $V_j$ is its velocity.
+- $X_{j,pb}$ is the personal best, $X_{gb}$ is the global best, and $X_{j,grb}$ is the group best.
+- $w \in [0,1]$ and $a, b, g \in [0,4]$ are weights. Typical values are $w=1$, $a=2$, $b=2$ and $g=1$, and $g$ is often set to 0.
+- $R$ is a random number in $[0,1]$, and it provides exploration.
 
 ```
- Init: X_j , V_j , groups
- Main loop:
-     calculate new velocity  V_j
-     calculate new position  X_j  <-  X_j + V_j
-     calculate new performance f(X_j)  , evaluate particle
-     store new best performances: personal best / global best / group best
-     Finish?
-```
-
-```
-   PSO in the search space
-
         X_gb (global best)
           *
            \
@@ -2544,68 +2789,75 @@ $$\boxed{\,X_j \;\leftarrow\; X_j + V_j\,} \qquad \text{$\leftarrow$ this is the
    inertia  X_j,pb (personal best)
 ```
 
+### IMPORTANT THEORY
+
+- Particle Swarm Optimization is a multi-hypothesis, meta-heuristic optimization method inspired by Artificial Life. It is based on Reynolds' Boids and was developed by J. Kennedy, R. Eberhart and Y. Shi, who added an objective that the individuals should reach. It is related to Evolutionary Algorithms, particle filters and Boids.
+- Each particle $j$ has a position $X_j$ in the search space, a velocity $V_j$, and a memory of the best position it has found (the personal best $X_{j,pb}$ with its fitness), and optionally the best position of its group $X_{j,grb}$.
+- A typical swarm has $P = 20$ to $40$ particles.
+- Usually no groups are defined and only the personal best and the global best are used, so $g = 0$. Sometimes the group is the spatial neighbourhood and the global best is left out, so $b = 0$.
+- In a topology with groups, a particle only uses its own personal best and the information from its local neighbourhood to compute its new velocity.
+
 ### VARIANTS
 
-**V1.** *"Name the swarm topologies."*
+**V1.** *"Write the PSO main loop."*
 
 <details><summary>Answer</summary>
 
-**Singletons** (no special topology, just single particles); **Ring** (cyclic, one-dimensional); **Grid** ($N$-dimensional regular structure, including a torus); **Mesh** (randomly connected particles); **Fully-connected**.
-
-Within a group, **only the particle's own personal best and the information from a local neighbourhood** are used to compute the new velocity.
+```
+ Init: X_j, V_j, groups
+ Loop:
+   1. compute the new velocity V_j
+   2. compute the new position X_j <- X_j + V_j
+   3. evaluate the fitness f(X_j)
+   4. update the personal, group and global best
+   5. stop if finished, otherwise repeat
+```
 </details>
 
-**V2.** *"How are position and velocity bounds handled?"*
+**V2.** *"Name the swarm topologies."*
 
 <details><summary>Answer</summary>
 
-- **Position bounds:** for most applications an area of the search space where results are expected can be determined a priori, so particle positions are restricted to it. Particles that "try to escape" can be handled by different philosophies: **bounce, reset to start, reset randomly, reset to the stored best**, …
-- **Velocity bounds:** an **upper bound on the velocity** can be defined to restrict how far a particle moves per step.
+The swarm topologies are singletons, the ring, the grid (including the torus), the mesh with random connections, and the fully connected swarm.
 </details>
 
-**V3.** *"What is the difference between PSO and Boids?"*
+**V3.** *"How are position and velocity bounds handled?"*
 
 <details><summary>Answer</summary>
 
-They are **different paradigms with a different purpose** — the lecture flags this explicitly.
-- **Boids** is a **simulation** of natural flocking: three steering rules, **no objective function**, and the goal is realistic-looking collective motion.
-- **PSO** is an **optimization method**: it adds an **objective function** $f$ and a **memory of the best positions found** (personal / group / global best), and the swarm's motion is a search for the optimum, not an imitation of birds.
-
-PSO is *based on* Boids — the velocity update is *"a weighted combination of 4 different aspects, comparable to the steering rules of Boids"*.
+- Positions are restricted to the area where good results are expected. A particle that leaves this area either bounces back, is reset to its start, is reset to a random position, or is reset to its best position.
+- Velocities are limited by an upper bound on $|V_j|$.
 </details>
 
-**V4.** *"What is $R$ for, and which term gives exploration vs exploitation?"*
+**V4.** *"What is the difference between PSO and Boids?"*
 
 <details><summary>Answer</summary>
 
-$R$ is a **random value in $[0,1]$** redrawn each step, providing **stochastic weighting** so particles do not follow identical, deterministic trajectories — it is labelled **(exploration)** on the slide.
-
-- **Exploration:** the random factor $R$, and the inertia term $w V_j$ which carries a particle past the current best.
-- **Exploitation:** the pull toward $X_{j,pb}$ and especially $X_{gb}$, which concentrates the swarm on the best found so far.
+Boids is a simulation of flocking that uses three steering rules and has no objective. PSO is an optimization method that uses Boids-like motion but adds an objective function $f$ and a memory of the best positions found.
 </details>
 
-### ⚠️ TRAPS
+**V5.** *"What is $R$ for, and which terms explore and which exploit?"*
 
-- **Giving only three terms.** This lecture's formula has **four** — the group-best term is there even though it is usually switched off with $g = 0$.
-- **Giving only the velocity update.** 2017 Q10 asked for the **position** update: $X_j \leftarrow X_j + V_j$. Give both.
-- **Confusing PSO with Boids.** Different purpose — see V3.
+<details><summary>Answer</summary>
+
+$R$ is a random value in $[0,1]$ that prevents all particles from following identical paths. The random factor $R$ and the inertia term $wV_j$ provide exploration. The pull toward $X_{j,pb}$ and $X_{gb}$ provides exploitation.
+</details>
+
+**⚠️ Traps.** You must give all four velocity terms, because the lecture uses four. You must also give the position update, because 2017 asked for it.
 
 ---
 
 ## Q20 · Reynolds' Boids 🔒
-**Asked on 1 of 4 (2017 Q12). 5 points. Pure recall — three rules, three sketches.**
+**This question appeared on 1 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2017 Q12** — *name and explain the rules producing swarming behaviour*
 
-- *"[Name and explain the rules producing swarming behaviour]"* — 2017 Q12
+**✅ Answer**
 
-### THE ANSWER — three rules, each one sentence plus a sketch
-
-> **C. Reynolds' Boids** (1986) model how an individual boid manoeuvres, **based on the positions and velocities of its nearby flockmates**.
-
-**① Separation — steer to avoid crowding local flockmates.**
-**② Alignment — steer towards the average heading of local flockmates.**
-**③ Cohesion — steer to move toward the average position of local flockmates.**
+Each boid steers using only the flockmates in its local neighbourhood. It follows three rules:
+1. **Separation:** The boid steers away from nearby flockmates to avoid crowding them.
+2. **Alignment:** The boid steers toward the average heading of its nearby flockmates.
+3. **Cohesion:** The boid steers toward the average position of its nearby flockmates.
 
 ```
    SEPARATION                ALIGNMENT                 COHESION
@@ -2616,141 +2868,92 @@ $R$ is a **random value in $[0,1]$** redrawn each step, providing **stochastic w
        /  \                      ->    ->                 / \
      o    o                    ->    ->                  o   o
 
-   steer AWAY from            match the AVERAGE         steer TOWARD the
-   nearby flockmates          HEADING of neighbours     AVERAGE POSITION
-   (avoid collision)          (fly the same way)        (stay together)
+   away from neighbours       same direction            toward the centre
 ```
 
-**The two points that turn 3/5 into 5/5:**
+All three rules are local and there is no leader, so the flocking behaviour is emergent.
 
-- **All three rules use only a LOCAL neighbourhood** — each boid sees only its nearby flockmates, never the whole flock. There is **no leader and no global plan**.
-- The flocking is therefore **emergent**: realistic collective motion arises from three simple local steering rules.
+### IMPORTANT THEORY
 
-### CONTEXT — swarm intelligence, if the question is broader
-
-> **Swarm intelligence (SI)** is the **collective behaviour of decentralized, self-organized systems**, natural or artificial. The expression was introduced by **Gerardo Beni and Jing Wang in 1989**, in the context of cellular robotic systems. SI systems consist of a population of **simple agents interacting locally** with one another and with their environment; the agents follow very simple rules and **although there is no centralized control structure**, local and partly random interactions **lead to the emergence of "intelligent" global behaviour, unknown to the individual agents**.
->
-> **Natural examples:** ant colonies, bird flocking, animal herding, bacterial growth, fish schooling, microbial intelligence.
+- C. Reynolds introduced Boids in 1986. Each boid manoeuvres based on the positions and velocities of its nearby flockmates, and Reynolds demonstrated a simulated flock avoiding cylindrical obstacles.
+- **Swarm intelligence** is the collective behaviour of decentralized, self-organized natural or artificial systems. The term was introduced by Gerardo Beni and Jing Wang in 1989 for cellular robotic systems.
+- A swarm-intelligence system consists of many simple agents that interact locally with each other and with their environment. There is no central control, but the local and partly random interactions lead to "intelligent" global behaviour that the individual agents do not know about.
+- Natural examples of swarm intelligence are ant colonies, bird flocks, animal herds, bacterial growth, fish schools and microbial intelligence.
+- Adding an objective to the Boids rules turns the flocking simulation into an optimization method, which is the step from Boids to PSO.
 
 ### VARIANTS
 
-**V1.** *"How would you extend Boids so the flock moves toward a goal?"* (`sheet-11`)
+**V1.** *"How do you make the flock move toward a goal?"* (`sheet-11`)
 
 <details><summary>Answer</summary>
 
-Add a **fourth steering term** pulling each boid toward the target position (or toward the optimum of an objective function), and combine it with the three existing rules as a **weighted sum**:
+A fourth steering term that points toward the goal is added, and all terms are combined as a weighted sum:
 $$\text{steer} = w_1\,\text{sep} + w_2\,\text{align} + w_3\,\text{coh} + w_4\,(X_{\text{goal}} - X_j)$$
-The weights trade flock cohesion against goal-seeking. **This is exactly the step from Boids to PSO**: adding an objective turns a flocking simulation into an optimization method.
 </details>
 
-**V2.** *"How is obstacle avoidance added to Boids?"*
+**V2.** *"How is obstacle avoidance added?"*
 
 <details><summary>Answer</summary>
 
-As a further steering term that **repels the boid from nearby obstacle surfaces**, weighted more strongly than the flocking rules so it dominates when a collision is imminent. Reynolds demonstrated this in 1986 with a **simulated boid flock avoiding cylindrical obstacles**. It is structurally the same as **separation**, applied to obstacles instead of flockmates.
+An extra steering term pushes the boid away from nearby obstacles. This term is weighted more strongly than the flocking rules, and it works like separation applied to obstacles.
 </details>
 
-**V3.** *"What happens if you remove each of the three rules in turn?"*
+**V3.** *"What happens if each rule is removed?"*
 
 <details><summary>Answer</summary>
 
-- **No separation** → boids collide and collapse onto a single point; the flock has no volume.
-- **No alignment** → boids stay together but move incoherently, milling about rather than travelling as a flock.
-- **No cohesion** → the flock disperses; boids drift apart and never form a group.
-
-All three are needed: cohesion pulls in, separation pushes out, and alignment gives the group a common direction.
+- Without separation, the boids collide and bunch up.
+- Without alignment, the boids stay together but move in random directions.
+- Without cohesion, the flock drifts apart.
 </details>
 
-### ⚠️ TRAPS
-
-- **Naming the rules without saying they are LOCAL.** That is the emergence point.
-- **Confusing alignment with cohesion.** Alignment matches **heading/velocity**; cohesion matches **position**.
+**⚠️ Traps.** You must say that the rules are local. You must not mix up alignment, which is about the heading, with cohesion, which is about the position.
 
 ---
 
 ## Q21 · Subsumption architecture — suppression vs inhibition 🔒
-**Asked on 1 of 4 (2025 T7). 5 points. Two mechanisms, two diagrams.**
+**This question appeared on 1 of 4 papers and is worth 5 points.**
 
-### Asked as
+**❓ 2025 T7** — *"There are two mechanisms, how the higher levels of the subsumption architecture influence the lower level. Describe and visualize them."*
 
-- *"There are two mechanisms, how the higher levels of the subsumption architecture influence the lower level. **Describe and visualize them.**"* — 2025 T7
+**✅ Answer**
 
-### THE FRAME
+A higher layer influences a lower layer through **suppression** or **inhibition**.
 
-> The **Subsumption Architecture** was introduced by **Rodney A. Brooks (1985)** in *"A Robust Layered Control System for a Mobile Robot"* (A.I. Memo 864, MIT). Instead of decomposing a robot controller into **functional** modules (the classical **SMPA** chain: **S**ense → **M**odel → **P**lan → **A**ct), it decomposes it into **task-achieving behaviours** stacked as **levels of competence**.
-
-```
-   CLASSICAL SMPA (functional decomposition)
-
-   sensors -> [Sense] -> [Model] -> [Plan] -> [Act] -> actuators
-              one broken block breaks the whole chain
-
-
-   SUBSUMPTION (task-achieving behaviours)
-
-              +--> [ level 3: build maps        ] --+
-              +--> [ level 2: explore           ] --+
-   sensors ---+--> [ level 1: wander            ] --+--> actuators
-              +--> [ level 0: avoid objects     ] --+
-              each layer is a COMPLETE controller on its own
-```
-
-**Brooks' 8 levels of competence:** 0. avoid contact with objects — 1. wander aimlessly around without hitting things — 2. explore the world — 3. build a map and plan routes — 4. notice changes in the environment — 5. reason about the world — 6. formulate and execute plans changing the world — 7. reason about the behaviour of other objects.
-
-**Layered control:** *"Control is layered, with higher level layers subsuming the lower levels."* If necessary or appropriate for the task, the higher layers **subsume the effect of the lower layers**, so higher-level behaviours can **dominate** lower-level ones.
-
-> **The robustness argument — always worth a sentence:** if some part of the layered structure produces no commands (busy, damaged, …), **the lower levels remain operational and still implement a working controller**. That is the key advantage over SMPA, where one broken stage kills the whole chain.
-
-**Module structure:** each module is a **finite state machine augmented with instance variables**, with **input lines, output lines and a reset**. Brooks designed them as FSMs explicitly so they are easy to implement in hardware. Modules connect into a **network**, and the signals between them correspond to **messages** between subtasks (e.g. `halt` sent to `motor`).
-
-### ⭐ THE ANSWER — the two mechanisms
-
-> Beside connecting output lines to input lines, **the output of a module can alter the signal on another connection by 2 methods:**
-
-| | **Suppression** | **Inhibition** |
+| | **Suppression (S)** | **Inhibition (I)** |
 |---|---|---|
-| **What it does** | **Overwriting** signal lines for $z$ time steps | **Cancelling** signals for $z$ time steps |
-| **Acts on** | an **INPUT** line | an **OUTPUT** line |
-| **Effect** | the suppressing signal **replaces** what was there | the inhibited signal is **blocked**; nothing gets through |
-| **Symbol** | a circle marked **S** on the line | a circle marked **I** on the line |
-| **The number in the circle** | the **time $z$** for which the effect lasts | the **time $z$** for which the effect lasts |
+| Where it acts | Suppression acts on an **input** line of a module. | Inhibition acts on an **output** line of a module. |
+| Effect | The signal from the higher layer **replaces** the normal input. | The output is **blocked**, so nothing passes. |
+| Duration | The effect lasts for $z$ time steps, the number written in the circle. | The effect lasts for $z$ time steps, the number written in the circle. |
 
-**Draw both — the question says "visualize":**
+**Suppression (on an input line).** The higher-layer signal replaces the normal input of the module for $z$ time steps.
 
-```text
- ================================================================
-                     SUPPRESSION (Input)
- ================================================================
-                                 
-                   [ Higher Layer ]
-                          |
-                          | (Sends override signal)
-                          v
-                        ( S ) <--- Lasts for z time steps
-                          |
-  [ Normal Input ] -------+-------> [ Module ]
-                          
-  EFFECT: The normal input is disconnected. The signal from the 
-          higher layer goes into the module instead.
- 
- ================================================================
-                     INHIBITION (Output)
- ================================================================
- 
-                   [ Higher Layer ]
-                          |
-                          | (Sends blocking signal)
-                          v
-                        ( I ) <--- Lasts for z time steps
-                          |
-  [ Module ] -------------+-------> [ X ] (NOTHING PASSES)
-                          
-  EFFECT: The module's normal output is blocked like a brick wall. 
-          Nothing gets sent to the next layer or motors.
- ================================================================
+```mermaid
+flowchart LR
+    H1["Higher layer"] -->|"override signal"| S1(("S<br/>z"))
+    N1["Normal input"] --> S1
+    S1 -->|"higher-layer signal passes"| M1["Module"]
 ```
 
-> **The one-sentence discriminator:** **suppression replaces a signal on an input line; inhibition blocks a signal on an output line.** In both cases the number written inside the circle is the **number of time steps** the effect lasts.
+**Inhibition (on an output line).** The output of the module is blocked for $z$ time steps, so nothing reaches the next module or the motors.
+
+```mermaid
+flowchart LR
+    H2["Higher layer"] -->|"blocking signal"| I2(("I<br/>z"))
+    M2["Module"] -->|"output"| I2
+    I2 -.->|"nothing passes"| X2["Next module / motors"]
+```
+
+In short, suppression replaces an input, and inhibition blocks an output.
+
+### IMPORTANT THEORY
+
+- The Subsumption Architecture was introduced by Rodney A. Brooks in 1985 in *"A Robust Layered Control System for a Mobile Robot"* (A.I. Memo 864, MIT).
+- The classical **SMPA** architecture (Sense → Model → Plan → Act) decomposes a controller into functional modules in a chain. Subsumption instead decomposes it into task-achieving behaviours, which are stacked as levels of competence.
+- In layered control, the higher layers subsume the lower layers: when necessary, the higher layers override the effect of the lower layers, so higher-level behaviours can dominate lower-level ones.
+- If a part of the layered structure produces no commands, for example because it is busy or damaged, the lower levels remain operational and still form a working controller.
+- Each module is a finite state machine augmented with instance variables, with input lines, output lines and a reset. Brooks designed the modules as FSMs so that they are easy to build in hardware.
+- The modules are connected into a network, and the signals between them are messages between subtasks, for example `halt` sent to `motor`.
 
 ### VARIANTS
 
@@ -2758,100 +2961,111 @@ All three are needed: cohesion pulls in, separation pushes out, and alignment gi
 
 <details><summary>Answer</summary>
 
-In **SMPA** the modules form a **chain** — Sense → Model → Plan → Act — so **every module must work** for the robot to do anything; a failure anywhere leaves the robot inert.
+```
+   SMPA:        sensors -> [Sense] -> [Model] -> [Plan] -> [Act] -> actuators
 
-In **subsumption**, **each layer is a complete controller by itself** that runs from sensors to actuators. If a higher layer is busy, damaged, or silent, **the lower layers keep operating** and the robot still avoids obstacles and wanders. Competence degrades gracefully instead of collapsing.
+   SUBSUMPTION:           +--> [ level 2: explore      ] --+
+                sensors --+--> [ level 1: wander       ] --+--> actuators
+                          +--> [ level 0: avoid objects] --+
+```
+SMPA is a chain, so the robot stops working if any single module fails. In subsumption every layer is a complete controller, so the lower layers keep working when a higher layer fails.
 </details>
 
-**V2.** *"Give an example of subsumption with two layers."*
+**V2.** *"Give an example with two layers."*
 
 <details><summary>Answer</summary>
 
-- **Level 0 — avoid objects:** reads the proximity sensors and steers away from obstacles. Always running.
-- **Level 1 — wander:** generates a random heading every few seconds and drives that way.
+- Level 0 makes the robot avoid obstacles by steering away from them.
+- Level 1 makes the robot wander by choosing a random heading every few seconds.
 
-Level 1 **suppresses** level 0's input with its desired heading when the path is clear. When an obstacle appears, level 0's avoidance output **inhibits** the wander command for $z$ time steps so the robot turns away, then wandering resumes. The robot wanders *and* never collides, with no map and no planner.
+When the path is clear, level 1 suppresses the heading input of level 0 with its random heading. When an obstacle appears, the avoid output of level 0 inhibits the wander command for $z$ steps, so the robot turns away and then continues wandering.
 </details>
 
-**V3.** *"Name Brooks' requirements for a control system."*
+**V3.** *"What are Brooks' requirements for a control system?"*
 
 <details><summary>Answer</summary>
 
-Brooks' *"robotics wish list for Santa Claus"*: **Multiple Goals**, **Multiple Sensors**, **Robustness**, **Additivity** (being able to add new capabilities without redesigning what already works).
+Brooks requires multiple goals, multiple sensors, robustness, and additivity, which means that new abilities can be added without redesigning the existing system.
 </details>
 
-### ⚠️ TRAPS
+**V4.** *"Name Brooks' levels of competence."*
 
-- **Swapping them.** *Suppression = input = overwrite. Inhibition = output = cancel.* Memorize as **"S for Substitute, I for Interrupt"**.
-- **Not visualizing.** The question says "describe **and visualize**". Two labelled diagrams.
-- **Forgetting the number in the circle.** It is the **time constant $z$** — how many time steps the effect lasts.
+<details><summary>Answer</summary>
+
+0. The robot avoids objects.
+1. The robot wanders around.
+2. The robot explores the world.
+3. The robot builds maps.
+4. The robot notices changes in the environment.
+5. The robot reasons about the world.
+6. The robot plans and changes the world.
+7. The robot reasons about the behaviour of other objects.
+</details>
+
+**⚠️ Traps.** You must not swap the two mechanisms: suppression acts on the input and substitutes the signal, and inhibition acts on the output and interrupts the signal. You must draw both mechanisms. You must say that the number $z$ in the circle is the duration.
 
 ---
 ---
 
 # ⚠️ COVERAGE CHECK — every past-exam task, accounted for
 
-All **69 tasks** across the four written papers map onto the 21 questions above. Nothing is left unsolved.
+All 69 tasks of the four written papers belong to the 21 questions above, so no task is left unsolved.
 
-| Paper | Tasks | Where |
+| Paper | Tasks | Where the answer is |
 |---|---|---|
-| **2017 (G)** — 17 tasks | Q1 GoL(10) · Q2 Didabots(10) · Q3 EA(10) · Q4 life · Q5 Wolfram no. · Q6 perf. graph · Q7 Langton · Q8 rule count · Q9 Braitenberg · Q10 PSO · Q11 L-System · Q12 Boids · Q13 SOC · Q14 von Neumann · Q15 Wheel · Q16 Fibonacci · Q17 glider | Q1, Q11, Q2, Q3, Q4, Q12, Q5, Q14, Q6, Q19, Q7, Q20, Q17, Q8, Q9, Q10, Q1 |
-| **2023 `qn-02`** — 17 tasks | 1 GoL(10) · 2 Didabots(10) · 3 EA(10) · 4 EA mutation · 5 glider · 6 Wolfram 42 · 7 Braitenberg t1 · 8 sensor swap · 9 Wheel · 10 Langton · 11 von Neumann · 12 class III/IV · 13 fitness distr. · 14 life · 15 golden ratio · 16 L-System · 17 totalistic-legal | Q1, Q11, Q2, Q13, Q1, Q4, Q6, Q6, Q9, Q5, Q8, Q16, Q12, Q3, Q10, Q7, Q15 |
-| **2023 `qn-03`** — 12 recorded | GoL(10) · EA(10) · Didabots(10) · EA mutation · von Neumann · life · Braitenberg t1 · Wolfram 42 · L-System · golden ratio · Wheel · **Ant Algorithm** | Q1, Q2, Q11, Q13, Q8, Q3, Q6, Q4, Q7, Q10, Q9, **Q18** |
-| **2025 `qn-01`** — 18 tasks | T1 Wolfram rev.(10) · T2 EA(10) · T3 Langton · T4 Braitenberg · T5 Gutenberg-Richter · T6 EA fitness · T7 subsumption · T8 life · T9 rule count · T10 von Neumann · T11 Wheel · T12 glider · T13 EA mutation · T14 Braitenberg t1 · T15 classes · T16 L-System · T17 totalistic-legal · T18 Fibonacci | Q4, Q2, Q5, Q6, Q17, Q12, Q21, Q3, Q14, Q8, Q9, Q1, Q13, Q6, Q16, Q7, Q15, Q10 |
+| **2017 (G)** — 17 tasks | Q1 GoL (10) · Q2 Didabots (10) · Q3 EA (10) · Q4 life · Q5 Wolfram number · Q6 performance graph · Q7 Langton · Q8 rule count · Q9 Braitenberg · Q10 PSO · Q11 L-System · Q12 Boids · Q13 SOC · Q14 von Neumann · Q15 Wheel · Q16 Fibonacci · Q17 glider | Q1, Q11, Q2, Q3, Q4, Q12, Q5, Q14, Q6, Q19, Q7, Q20, Q17, Q8, Q9, Q10, Q1 |
+| **2023 `qn-02`** — 17 tasks | 1 GoL (10) · 2 Didabots (10) · 3 EA (10) · 4 EA mutation · 5 glider · 6 Wolfram 42 · 7 Braitenberg type 1 · 8 sensor swap · 9 Wheel · 10 Langton · 11 von Neumann · 12 class III/IV · 13 fitness distribution · 14 life · 15 golden ratio · 16 L-System · 17 totalistic-legal | Q1, Q11, Q2, Q13, Q1, Q4, Q6, Q6, Q9, Q5, Q8, Q16, Q12, Q3, Q10, Q7, Q15 |
+| **2023 `qn-03`** — 12 recorded | GoL (10) · EA (10) · Didabots (10) · EA mutation · von Neumann · life · Braitenberg type 1 · Wolfram 42 · L-System · golden ratio · Wheel · Ant Algorithm | Q1, Q2, Q11, Q13, Q8, Q3, Q6, Q4, Q7, Q10, Q9, Q18 |
+| **2025 `qn-01`** — 18 tasks | T1 reverse Wolfram (10) · T2 EA (10) · T3 Langton · T4 Braitenberg · T5 Gutenberg-Richter · T6 EA fitness · T7 subsumption · T8 life · T9 rule count · T10 von Neumann · T11 Wheel · T12 glider · T13 EA mutation · T14 Braitenberg type 1 · T15 classes · T16 L-System · T17 totalistic-legal · T18 Fibonacci | Q4, Q2, Q5, Q6, Q17, Q12, Q21, Q3, Q14, Q8, Q9, Q1, Q13, Q6, Q16, Q7, Q15, Q10 |
 
-**Two corrections I made while checking this:**
-
-1. **The Ant Algorithm (Q18) was missing from my earlier pool table.** It is a genuine 5-point task on `qn-03` (2023). The pool is **21 questions, not 20**.
-2. **The PSO velocity formula in my earlier notes had three terms; the lecture has four** (it includes the group-best term $g\,R\,(X_{j,grb} - X_j)$). Corrected in Q19.
+The pool contains 21 questions, because the Ant Algorithm (Q18) appears as a 5-point task on `qn-03`. The PSO velocity formula in the lecture has four terms, including the group-best term $g\,R\,(X_{j,grb} - X_j)$.
 
 ---
 
 # THE FULL SELF-TEST — one pass over all 21
 
-Cover every answer. Write them out on paper, timed. **This is a complete mock paper's worth of content: 90 minutes, ~90 points.**
+You cover every answer and write the answers on paper under time pressure. This self-test contains a complete mock paper's worth of content: about 90 minutes and about 90 points.
 
-1. Explain Game of Life in full and draw a glider moving to the lower left, $t=0..3$. **(10 min)**
-2. Name and explain all parts and steps of an EA, plus pros and cons. **(10 min)**
+1. Explain the Game of Life in full and draw a glider moving to the lower left for $t=0$ to $t=3$. **(10 min)**
+2. Name and explain all parts and steps of an EA, including the pros and cons. **(10 min)**
 3. Name 5 criteria of life. **(2 min)**
 4. Write the rule table for Wolfram number 42 and classify it. **(4 min)**
-5. Draw the 4 micro-behaviours of Langton's Ant, labelled. **(4 min)**
-6. What happens if proximity sensors are swapped for distance sensors in a 3b? Draw it. **(4 min)**
-7. Give an L-System producing `OAOAOAOAOAOAOAO` at $t=3$ from axiom `O`, with the expansion table. **(4 min)**
+5. Draw the 4 micro-behaviours of Langton's Ant with labels. **(4 min)**
+6. Explain what happens if the proximity sensors of a 3b vehicle are replaced by distance sensors, and draw it. **(4 min)**
+7. Give an L-System that produces `OAOAOAOAOAOAOAO` at $t=3$ from the axiom `O`, with the expansion table. **(4 min)**
 8. Name and explain 2 things von Neumann is associated with. **(3 min)**
 9. Derive $\omega_1(P)$ for the Wheel of Fortune. **(4 min)**
-10. Derive the relation between Fibonacci and the golden ratio, with a numeric table. **(4 min)**
-
-11. Explain the Didabot experiment in full: purpose, result, the four essential properties, both release mechanisms, and what changes with more than one Didabot. **(10 min)**
-12. Draw the fitness of the population sorted by fitness, before and after $(\mu+\lambda)$ external selection with elitism. Then draw the performance graph and say why it is monotone. **(5 min)**
-13. Derive $Q$ for (a) at least one of $N$ offspring differing from the parent, and (b) no offspring being identical to the parent. Substitute $p = 1/L^2$ into (b). **(5 min)**
+10. Derive the relation between the Fibonacci sequence and the golden ratio, with a numeric table. **(4 min)**
+11. Explain the Didabot experiment in full: the purpose, the result, the four essential properties, both release mechanisms, and what changes with more than one Didabot. **(10 min)**
+12. Draw the fitness of the population sorted by fitness before and after $(\mu+\lambda)$ external selection with elitism. Then draw the performance graph and explain why it never decreases. **(5 min)**
+13. Derive $Q$ for (a) at least one of $N$ offspring differing from the parent and (b) no offspring being identical to the parent, and substitute $p = 1/L^2$ into (b). **(5 min)**
 14. Derive the number of possible rules for a CA with $d=3$, $k=2$, $r=1$ Moore. **(4 min)**
-15. Prove or disprove: "a totalistic rule with a silent state is legal". **(4 min)**
-16. Explain Wolfram's class III and class IV — differences **and** similarities. **(4 min)**
-17. Write the SOC scaling law, then draw and label the Gutenberg-Richter diagram, defining every variable. **(5 min)**
+15. Prove or disprove that "a totalistic rule with a silent state is legal". **(4 min)**
+16. Explain Wolfram's classes III and IV, including their differences and their similarities. **(4 min)**
+17. Write the SOC scaling law, then draw and label the Gutenberg-Richter diagram and define every variable. **(5 min)**
 18. Describe the 4 phases of the Ant Algorithm. **(5 min)**
-19. Give the PSO velocity **and** position update formulas, naming all four velocity terms and every symbol. **(4 min)**
+19. Give the PSO velocity and position update formulas, and name all four velocity terms and every symbol. **(4 min)**
 20. Name and sketch Reynolds' three Boids rules. **(3 min)**
-21. Describe **and visualize** the two mechanisms by which higher subsumption layers influence lower ones. **(4 min)**
+21. Describe and draw the two mechanisms by which higher subsumption layers influence lower ones. **(4 min)**
 
-**Total: ~85 minutes.** That is the real exam, at real speed.
+The total is about 85 minutes, which is the real exam at real speed.
 
 ---
 
 # THE NIGHT-BEFORE SHORTLIST
 
-If you only have time for one pass, drill these in this order — they are the highest points per minute:
+If you only have time for one pass, you should practise these questions in this order, because they give the most points per minute:
 
-1. **Q3** life criteria — 5 pt, pure list, 2 minutes.
-2. **Q8** von Neumann — 5 pt, pure recall.
-3. **Q20** Boids — 5 pt, three rules.
-4. **Q21** subsumption — 5 pt, two diagrams, one discriminator sentence.
-5. **Q5** Langton's Ant — 5 pt, four labelled sketches + the number 104.
-6. **Q7** L-System — 5 pt, two rules + the expansion table.
-7. **Q9** Wheel of Fortune — 5 pt, four-line derivation to $2/(P+1)$.
-8. **Q10** Fibonacci — 5 pt, derivation + numeric table.
-9. **Q1** Game of Life — up to 10 pt, spec + 23/3 + blinker + glider.
-10. **Q2** EA — 10 pt, six parts + cycle + pros/cons + the recipe application.
-11. **Q11** Didabots — 10 pt, six parts + one-vs-many.
+1. **Q3** (criteria of life) is worth 5 points and is a pure list that takes 2 minutes.
+2. **Q8** (von Neumann) is worth 5 points and is pure recall.
+3. **Q20** (Boids) is worth 5 points and consists of three rules.
+4. **Q21** (subsumption) is worth 5 points and consists of two diagrams and one distinguishing sentence.
+5. **Q5** (Langton's Ant) is worth 5 points and consists of four labelled sketches and the number 104.
+6. **Q7** (L-System) is worth 5 points and consists of the rules and the expansion table.
+7. **Q9** (Wheel of Fortune) is worth 5 points and is a four-line derivation of $2/(P+1)$.
+8. **Q10** (Fibonacci) is worth 5 points and consists of the derivation and the numeric table.
+9. **Q1** (Game of Life) is worth up to 10 points and consists of the specification, the rule 23/3, the blinker and the glider.
+10. **Q2** (EA) is worth 10 points and consists of the parts, the cycle, the pros and cons, and the recipe application.
+11. **Q11** (Didabots) is worth 10 points and consists of the seven answer parts, including the part about more than one Didabot.
 
-That is **~70 points** from eleven questions.
+These eleven questions are worth about 70 points.
